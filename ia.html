@@ -426,6 +426,49 @@ async function send(){
   
   busy=false; document.getElementById('sendBtn').disabled=false;
 }
+    const BACKEND = 'https://afyados-backend.onrender.com';
+    const r = await fetch(BACKEND + '/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: hist })
+    });
+
+    if (!r.ok) throw new Error('Erro na conexão com o servidor.');
+
+    rmTyping();
+    
+    // Início do sistema de Streaming (Leitura palavra por palavra)
+    const reader = r.body.getReader();
+    const decoder = new TextDecoder();
+    let reply = "";
+
+    // Renderiza a bolha vazia da IA Afyados
+    renderMsg('bot', ''); 
+    const allMsgs = document.querySelectorAll('.msg-row.bot .msg-text');
+    const lastMsgBubble = allMsgs[allMsgs.length - 1];
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      const chunk = decoder.decode(value);
+      reply += chunk;
+      
+      // Atualiza o texto na tela em tempo real com formatação Markdown
+      lastMsgBubble.innerHTML = md(reply); 
+      document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+    }
+
+    convs[curId].messages.push({role:'bot',content:reply}); 
+    save();
+
+  } catch (err) {
+    rmTyping();
+    renderMsg('bot', '❌ Erro: ' + err.message);
+  }
+  
+  busy=false; document.getElementById('sendBtn').disabled=false;
+}
     let reply='';
     const BACKEND = 'https://afyados-backend.onrender.com';
     const r=await fetch(BACKEND+'/chat',{
