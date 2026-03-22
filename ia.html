@@ -381,8 +381,7 @@ async function send(){
   
   busy=true; document.getElementById('sendBtn').disabled=true; addTyping();
   const hist=convs[curId].messages.map(m=>({role:m.role==='bot'?'assistant':m.role,content:m.content}));
-
-  try{
+try {
     const BACKEND = 'https://afyados-backend.onrender.com';
     const r = await fetch(BACKEND + '/chat', {
       method: 'POST',
@@ -394,16 +393,17 @@ async function send(){
 
     rmTyping();
     
-    // Início do sistema de Streaming (Leitura palavra por palavra)
+    // Início da lógica de Streaming (Leitura em tempo real)
     const reader = r.body.getReader();
     const decoder = new TextDecoder();
     let reply = "";
 
-    // Renderiza a bolha vazia da IA Afyados
+    // Cria a bolha de mensagem da IA vazia
     renderMsg('bot', ''); 
     const allMsgs = document.querySelectorAll('.msg-row.bot .msg-text');
     const lastMsgBubble = allMsgs[allMsgs.length - 1];
 
+    // Loop que lê cada palavra conforme ela chega do Render
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
@@ -411,9 +411,22 @@ async function send(){
       const chunk = decoder.decode(value);
       reply += chunk;
       
-      // Atualiza o texto na tela em tempo real com formatação Markdown
+      // Atualiza o texto na tela instantaneamente
       lastMsgBubble.innerHTML = md(reply); 
       document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+    }
+
+    convs[curId].messages.push({role:'bot', content:reply}); 
+    save();
+
+  } catch (err) {
+    rmTyping();
+    renderMsg('bot', '❌ Erro: ' + err.message);
+  }
+  
+  busy = false; 
+  document.getElementById('sendBtn').disabled = false;
+}
     }
 
     convs[curId].messages.push({role:'bot',content:reply}); 
