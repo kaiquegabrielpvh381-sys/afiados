@@ -4,14 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IA Afyados</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;overflow:hidden;}
 body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;display:flex;font-size:16px;}
+
+/* SIDEBAR */
 .sidebar{width:260px;flex-shrink:0;background:#171717;display:flex;flex-direction:column;height:100vh;transition:transform .25s;z-index:100;border-right:1px solid rgba(255,255,255,.06);}
 .sb-top{padding:12px 8px;display:flex;flex-direction:column;gap:4px;}
-.logo-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;margin-bottom:4px;}
+.logo-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;cursor:pointer;}
+.logo-row:hover{background:rgba(255,255,255,.06);}
 .logo-icon{width:28px;height:28px;background:linear-gradient(135deg,#D6006E,#9000DC);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
 .logo-icon img{width:18px;height:18px;object-fit:contain;}
 .logo-name{font-size:15px;font-weight:600;color:#ececec;}
@@ -36,6 +39,8 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
 .back-link{display:flex;align-items:center;gap:8px;color:#6e6e80;text-decoration:none;font-size:13px;padding:9px 12px;border-radius:8px;transition:all .15s;}
 .back-link:hover{background:rgba(255,255,255,.07);color:#ececec;}
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;}
+
+/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden;min-width:0;}
 .topbar{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.06);}
 .sb-toggle{display:none;background:none;border:none;color:#6e6e80;padding:6px;border-radius:8px;cursor:pointer;}
@@ -43,9 +48,11 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
 .topbar-title{font-size:15px;font-weight:600;color:#ececec;}
 .clear-btn{background:none;border:1px solid rgba(255,255,255,.12);color:#6e6e80;font-size:12px;font-weight:500;padding:5px 11px;border-radius:7px;cursor:pointer;font-family:inherit;transition:all .15s;}
 .clear-btn:hover{border-color:rgba(255,255,255,.25);color:#ececec;}
+
+/* WELCOME */
 .welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow-y:auto;}
 .w-icon{width:56px;height:56px;background:linear-gradient(135deg,#D6006E,#9000DC);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 32px rgba(214,0,110,.3);}
-.w-icon svg{width:26px;height:26px;}
+.w-icon svg{width:28px;height:28px;}
 .welcome h1{font-size:26px;font-weight:600;color:#ececec;text-align:center;margin-bottom:8px;}
 .welcome-sub{font-size:15px;color:#8e8ea0;text-align:center;max-width:380px;line-height:1.6;margin-bottom:28px;}
 .sug-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:520px;width:100%;}
@@ -53,12 +60,14 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
 .sug-card:hover{background:#3a3a3a;border-color:rgba(255,255,255,.15);}
 .sug-t{font-size:13px;font-weight:500;color:#ececec;margin-bottom:3px;}
 .sug-s{font-size:12px;color:#8e8ea0;line-height:1.4;}
+
+/* MESSAGES */
 .messages{flex:1;overflow-y:auto;display:none;flex-direction:column;padding:8px 0;}
 .messages.show{display:flex;}
 .messages::-webkit-scrollbar{width:4px;}
 .messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px;}
 .msg-row{padding:12px 0;display:flex;justify-content:center;}
-.msg-inner{max-width:680px;width:100%;padding:0 24px;display:flex;gap:14px;}
+.msg-inner{max-width:720px;width:100%;padding:0 24px;display:flex;gap:14px;}
 .msg-row.user .msg-inner{justify-content:flex-end;}
 .msg-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;color:white;}
 .msg-row.bot .msg-av{background:linear-gradient(135deg,#D6006E,#9000DC);}
@@ -67,50 +76,61 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
 .msg-row.user .msg-content{flex:0 1 auto;max-width:80%;}
 .msg-name{font-size:12px;font-weight:600;color:#8e8ea0;margin-bottom:6px;}
 .msg-row.user .msg-name{display:none;}
-.msg-text{font-size:15px;line-height:1.75;color:#ececec;}
+.msg-text{font-size:15px;line-height:1.8;color:#ececec;}
 .msg-row.user .msg-text{background:#2f2f2f;border:1px solid rgba(255,255,255,.1);padding:12px 16px;border-radius:18px;border-bottom-right-radius:4px;display:inline-block;}
-.msg-text h1{font-size:20px;font-weight:700;margin:18px 0 8px;}
-.msg-text h2{font-size:17px;font-weight:700;margin:16px 0 7px;}
-.msg-text h3{font-size:15px;font-weight:700;margin:13px 0 6px;}
-.msg-text h4{font-size:14px;font-weight:700;margin:11px 0 5px;}
-.msg-text p{margin-bottom:10px;}
+
+/* MARKDOWN STYLES */
+.msg-text h1{font-size:22px;font-weight:700;margin:20px 0 10px;color:#fff;}
+.msg-text h2{font-size:18px;font-weight:700;margin:18px 0 8px;color:#fff;}
+.msg-text h3{font-size:16px;font-weight:700;margin:14px 0 7px;color:#ececec;}
+.msg-text h4{font-size:14px;font-weight:700;margin:12px 0 6px;color:#ececec;}
+.msg-text p{margin-bottom:12px;}
 .msg-text p:last-child{margin-bottom:0;}
-.msg-text strong{font-weight:700;}
+.msg-text strong{font-weight:700;color:#fff;}
 .msg-text em{font-style:italic;color:#c5c5d2;}
-.msg-text code{background:#2a2a2a;border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:2px 6px;font-size:13px;font-family:Menlo,Monaco,Consolas,monospace;}
-.msg-text pre{background:#1a1a1a;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px;overflow-x:auto;margin:10px 0;}
+.msg-text code{background:#2a2a2a;border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:2px 7px;font-size:13px;font-family:Menlo,Monaco,Consolas,monospace;color:#e0e0e0;}
+.msg-text pre{background:#1a1a1a;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0;}
 .msg-text pre code{background:none;border:none;padding:0;font-size:13px;}
-.msg-text ul{padding-left:20px;margin:6px 0 10px;}
-.msg-text ol{padding-left:20px;margin:6px 0 10px;}
-.msg-text li{margin-bottom:4px;}
-.msg-text blockquote{border-left:3px solid rgba(214,0,110,.5);padding-left:14px;color:#8e8ea0;margin:10px 0;font-style:italic;}
-.msg-text hr{border:none;border-top:1px solid rgba(255,255,255,.1);margin:14px 0;}
-.msg-text table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px;}
-.msg-text th{background:rgba(255,255,255,.07);padding:8px 12px;text-align:left;font-weight:600;border:1px solid rgba(255,255,255,.1);}
-.msg-text td{padding:7px 12px;border:1px solid rgba(255,255,255,.08);}
+.msg-text ul,.msg-text ol{padding-left:22px;margin:8px 0 12px;}
+.msg-text li{margin-bottom:6px;line-height:1.7;}
+.msg-text blockquote{border-left:3px solid rgba(214,0,110,.6);padding-left:14px;color:#a0a0b0;margin:12px 0;font-style:italic;}
+.msg-text hr{border:none;border-top:1px solid rgba(255,255,255,.1);margin:16px 0;}
+.msg-text table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+.msg-text th{background:rgba(255,255,255,.08);padding:9px 13px;text-align:left;font-weight:600;border:1px solid rgba(255,255,255,.1);}
+.msg-text td{padding:8px 13px;border:1px solid rgba(255,255,255,.08);}
+.msg-text tr:hover td{background:rgba(255,255,255,.03);}
 .msg-text a{color:#D6006E;text-decoration:none;}
-.msg-text a:hover{text-decoration:underline;}
+.msg-text a:hover{text-decoration:underline;color:#FF1A7E;}
+.msg-text img{max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.1);display:block;margin:10px 0;}
+.msg-text figure{margin:12px 0;}
+.msg-text figcaption{font-size:12px;color:#8e8ea0;margin-top:5px;font-style:italic;}
+
+/* TYPING */
 .typing-dots{display:flex;gap:4px;padding:6px 0;align-items:center;}
 .typing-dots span{width:7px;height:7px;background:#6e6e80;border-radius:50%;animation:bounce 1.2s infinite;}
 .typing-dots span:nth-child(2){animation-delay:.2s;}
 .typing-dots span:nth-child(3){animation-delay:.4s;}
-.stream-cursor::after{content:"▋";animation:blink .7s infinite;color:#D6006E;font-size:12px;margin-left:1px;}
+.stream-cursor::after{content:"▋";animation:blink .7s infinite;color:#D6006E;font-size:14px;margin-left:2px;vertical-align:middle;}
+
+/* INPUT */
 .input-area{padding:12px 16px 16px;flex-shrink:0;}
-.status-bar{max-width:680px;margin:0 auto 8px;padding:8px 14px;background:rgba(255,100,100,.08);border:1px solid rgba(255,100,100,.2);border-radius:10px;font-size:13px;color:#ff9999;display:none;}
+.status-bar{max-width:720px;margin:0 auto 8px;padding:8px 14px;background:rgba(255,100,100,.08);border:1px solid rgba(255,100,100,.2);border-radius:10px;font-size:13px;color:#ff9999;display:none;}
 .status-bar.show{display:block;}
 .status-bar.warn{background:rgba(255,200,50,.07);border-color:rgba(255,200,50,.2);color:#ffd97a;}
-.input-wrap{max-width:680px;margin:0 auto;background:#2f2f2f;border:1px solid rgba(255,255,255,.12);border-radius:16px;display:flex;align-items:flex-end;gap:8px;padding:10px 12px;transition:border-color .2s;}
-.input-wrap:focus-within{border-color:rgba(255,255,255,.25);}
+.input-wrap{max-width:720px;margin:0 auto;background:#2f2f2f;border:1px solid rgba(255,255,255,.12);border-radius:16px;display:flex;align-items:flex-end;gap:8px;padding:10px 12px;transition:border-color .2s;}
+.input-wrap:focus-within{border-color:rgba(255,255,255,.28);}
 .input-box{flex:1;background:none;border:none;color:#ececec;font-family:inherit;font-size:15px;line-height:1.6;resize:none;outline:none;max-height:160px;min-height:26px;}
 .input-box::placeholder{color:#6e6e80;}
 .send-btn{width:34px;height:34px;background:#D6006E;border:none;border-radius:9px;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
 .send-btn:hover:not(:disabled){background:#FF1A7E;}
 .send-btn:disabled{background:#3a3a3a;color:#6e6e80;cursor:not-allowed;}
-.input-hint{text-align:center;font-size:11px;color:#6e6e80;margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;}
+.input-hint{text-align:center;font-size:11px;color:#6e6e80;margin-top:8px;max-width:720px;margin-left:auto;margin-right:auto;}
+
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .msg-row{animation:fadeUp .2s ease;}
+
 @media(max-width:768px){
   .sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);}
   .sidebar.open{transform:translateX(0);}
@@ -122,9 +142,11 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
 </style>
 </head>
 <body>
+
+<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
-    <a href="index.html" class="logo-row" onclick="location.reload();return false;">
+    <a class="logo-row" onclick="location.reload()">
       <div class="logo-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:18px;height:18px;object-fit:contain;"></div>
       <span class="logo-name">Afyados</span>
       <span class="logo-tag">IA</span>
@@ -147,32 +169,37 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
   </div>
 </div>
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
+
+<!-- MAIN -->
 <div class="main">
   <div class="topbar">
     <div style="display:flex;align-items:center;gap:8px;">
       <button class="sb-toggle" onclick="toggleSidebar()">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <span class="topbar-title">IA Afyados</span>
+      <span class="topbar-title" id="topTitle">IA Afyados</span>
     </div>
     <button class="clear-btn" onclick="clearChat()">Limpar</button>
   </div>
+
   <div class="welcome" id="welcome">
     <div class="w-icon">
-      <svg width="26" height="26" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
+      <svg width="28" height="28" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M12 8v4l3 3"/></svg>
     </div>
     <h1>Como posso ajudar?</h1>
     <p class="welcome-sub">Tire dúvidas sobre APGs, SOI e qualquer conteúdo da Afya — a qualquer hora.</p>
     <div class="sug-grid">
       <div class="sug-card" onclick="useSug('O que é uma APG e como me preparar?')"><div class="sug-t">O que é uma APG?</div><div class="sug-s">Como funciona e como se preparar</div></div>
       <div class="sug-card" onclick="useSug('Dicas para estudar SOI na Afya')"><div class="sug-t">Dicas para SOI</div><div class="sug-s">Estratégias para a matéria mais difícil</div></div>
-      <div class="sug-card" onclick="useSug('Explica o potencial de ação cardíaco')"><div class="sug-t">Potencial de ação cardíaco</div><div class="sug-s">Explicação simples e didática</div></div>
-      <div class="sug-card" onclick="useSug('Resumo completo sobre o sistema cardiovascular')"><div class="sug-t">Sistema cardiovascular</div><div class="sug-s">Resumo completo e organizado</div></div>
+      <div class="sug-card" onclick="useSug('Explica o potencial de ação cardíaco com imagens')"><div class="sug-t">Potencial de ação cardíaco</div><div class="sug-s">Com imagens e referências</div></div>
+      <div class="sug-card" onclick="useSug('Resumo completo sobre o sistema cardiovascular com tabela comparativa')"><div class="sug-t">Sistema cardiovascular</div><div class="sug-s">Resumo completo com tabelas</div></div>
       <div class="sug-card" onclick="useSug('Como montar os objetivos de aprendizagem de uma APG')"><div class="sug-t">Objetivos de APG</div><div class="sug-s">Como estruturar corretamente</div></div>
       <div class="sug-card" onclick="useSug('Como organizar minha rotina de estudos na Afya')"><div class="sug-t">Rotina de estudos</div><div class="sug-s">Como se organizar na faculdade</div></div>
     </div>
   </div>
+
   <div class="messages" id="messages"></div>
+
   <div class="input-area">
     <div class="status-bar" id="statusBar"></div>
     <div class="input-wrap">
@@ -184,67 +211,103 @@ body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI"
     <div class="input-hint">Enter para enviar &nbsp;·&nbsp; Shift+Enter para nova linha</div>
   </div>
 </div>
-<script>
-var SYS = "Você é a IA oficial da Afyados, consultoria acadêmica de medicina para calouros da faculdade Afya.\n\nSeu nome é IA Afyados. Nunca mencione Claude, ChatGPT, GPT, OpenAI ou Gemini. Se perguntarem, diga apenas que é a IA desenvolvida pela Afyados. Responda sempre em português brasileiro.\n\nSeu papel: Professor médico experiente, dominando os requisitos da graduação em Medicina da AFYA (PBL/APG). Priorize o que mais cai em provas.\n\nEstrutura obrigatória:\n1. ORIENTAÇÃO INICIAL\n2. ORGANIZAÇÃO MACROESTRUTURAL\n3. FUNCIONAMENTO DINÂMICO\n4. APROFUNDAMENTO PROGRESSIVO\n5. RESUMO INTEGRATIVO (pontos-chave de provas)\n6. REFERÊNCIAS\n\nFontes: Moore, Netter, Guyton, Robbins, Junqueira, Silverthorn, Tortora, Langman.\nUse **negrito** para termos-chave. Formate tabelas em markdown quando útil.";
 
+<script>
 var BACKEND = "https://afyados-backend.onrender.com";
 var convs = {}, curId = null, busy = false;
 
 function load(){ try{ convs = JSON.parse(localStorage.getItem("afy_c") || "{}"); }catch(e){ convs = {}; } }
 function save(){ try{ localStorage.setItem("afy_c", JSON.stringify(convs)); }catch(e){} }
 
+// ── MARKDOWN PARSER ──
 function md(raw){
   if(!raw) return "";
   var s = raw;
-  var codeBlocks = [];
+  // Code blocks first
+  var blocks = [];
   s = s.replace(/```(\w*)\n?([\s\S]*?)```/g, function(_,lang,code){
-    var i = codeBlocks.length;
-    codeBlocks.push("<pre><code>" + code.trim().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") + "</code></pre>");
-    return "\x00CODE" + i + "\x00";
+    var i = blocks.length;
+    blocks.push('<pre><code>' + code.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</code></pre>');
+    return '\x00B'+i+'\x00';
   });
-  s = s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-  s = s.replace(/`([^`\n]+)`/g,"<code>$1</code>");
-  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function(_,alt,url){ return "<figure><img src=\""+url+"\" alt=\""+alt+"\" style=\"max-width:100%;border-radius:10px;\" onerror=\"this.parentElement.style.display='none'\"><figcaption>"+alt+"</figcaption></figure>"; });
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');
-  s = s.replace(/(?<![="'(])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank">$1</a>');
-  s = s.replace(/^#### (.+)$/gm,"<h4>$1</h4>");
-  s = s.replace(/^### (.+)$/gm,"<h3>$1</h3>");
-  s = s.replace(/^## (.+)$/gm,"<h2>$1</h2>");
-  s = s.replace(/^# (.+)$/gm,"<h1>$1</h1>");
-  s = s.replace(/\*\*\*(.+?)\*\*\*/g,"<strong><em>$1</em></strong>");
-  s = s.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
-  s = s.replace(/\*(.+?)\*/g,"<em>$1</em>");
-  s = s.replace(/^[-*]{3,}$/gm,"<hr>");
-  s = s.replace(/^> (.+)$/gm,"<blockquote>$1</blockquote>");
-  s = s.replace(/^[\*\-\+] (.+)$/gm,"<li>$1</li>");
-  s = s.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, function(m){ return "<ul>"+m+"</ul>"; });
-  s = s.replace(/^\d+\. (.+)$/gm,"<li>$1</li>");
-  s = s.split("\n\n").map(function(p){
-    p = p.trim(); if(!p) return "";
-    if(/^<(h[1-4]|ul|ol|pre|blockquote|hr|figure)/.test(p)) return p;
-    return "<p>"+p.replace(/\n/g,"<br>")+"</p>";
-  }).join("\n");
-  s = s.replace(/\x00CODE(\d+)\x00/g, function(_,i){ return codeBlocks[parseInt(i)]; });
+  // Escape HTML
+  s = s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Inline code
+  s = s.replace(/`([^`\n]+)`/g,'<code>$1</code>');
+  // Images before links
+  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<figure><img src="$2" alt="$1" onerror="this.style.display=\'none\'"><figcaption>$1</figcaption></figure>');
+  // Links
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // Auto links
+  s = s.replace(/(?<![="'])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+  // Headers
+  s = s.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
+  s = s.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  s = s.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  s = s.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  // Bold/italic
+  s = s.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
+  s = s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  s = s.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  // HR
+  s = s.replace(/^[-*]{3,}$/gm,'<hr>');
+  // Blockquote
+  s = s.replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>');
+  // Tables
+  s = s.replace(/^\|(.+)\|$/gm, function(row){
+    var cells = row.split('|').filter(function(c){ return c.trim(); });
+    return '<tr>' + cells.map(function(c){ return '<td>'+c.trim()+'</td>'; }).join('') + '</tr>';
+  });
+  s = s.replace(/(<tr>.*?<\/tr>\n?)+/gs, function(m){
+    var rows = m.trim().split('\n');
+    var first = rows[0];
+    var rest = rows.slice(1);
+    // Check if second row is separator
+    if(rest[0] && /^[\|\s\-:]+$/.test(rest[0].replace(/<[^>]+>/g,''))){
+      var header = first.replace(/<td>/g,'<th>').replace(/<\/td>/g,'</th>');
+      rest = rest.slice(1);
+      return '<table><thead>'+header+'</thead><tbody>'+rest.join('\n')+'</tbody></table>';
+    }
+    return '<table><tbody>'+m+'</tbody></table>';
+  });
+  // Lists
+  s = s.replace(/^[\*\-\+] (.+)$/gm,'<li>$1</li>');
+  s = s.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, function(m){ return '<ul>'+m+'</ul>'; });
+  s = s.replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
+  // Paragraphs
+  s = s.split('\n\n').map(function(p){
+    p = p.trim(); if(!p) return '';
+    if(/^<(h[1-4]|ul|ol|pre|blockquote|hr|figure|table)/.test(p)) return p;
+    return '<p>'+p.replace(/\n/g,'<br>')+'</p>';
+  }).join('\n');
+  // Restore code blocks
+  s = s.replace(/\x00B(\d+)\x00/g, function(_,i){ return blocks[parseInt(i)]; });
   return s;
 }
 
+// ── HISTORY ──
 function renderHist(){
-  var list = document.getElementById("histList");
+  var list = document.getElementById('histList');
   var ids = Object.keys(convs).sort(function(a,b){ return b.localeCompare(a); });
   if(!ids.length){ list.innerHTML = '<div class="no-hist">Suas conversas aparecerão aqui.</div>'; return; }
   list.innerHTML = ids.map(function(id){
     var c = convs[id];
-    return '<div class="conv '+(id===curId?"active":"")+'" onclick="loadConv(\''+id+'\')"><span class="conv-title">'+esc(c.title)+'</span><button class="conv-del" onclick="event.stopPropagation();delConv(\''+id+'\')">✕</button></div>';
-  }).join("");
+    return '<div class="conv '+(id===curId?'active':'')+'" onclick="loadConv(\''+id+'\')">'
+      +'<span class="conv-title">'+esc(c.title)+'</span>'
+      +'<button class="conv-del" onclick="event.stopPropagation();delConv(\''+id+'\')">✕</button>'
+      +'</div>';
+  }).join('');
 }
 
-function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
 function loadConv(id){
   var c = convs[id]; if(!c) return;
-  curId = id; showMessages();
-  var msgs = document.getElementById("messages");
-  msgs.innerHTML = "";
+  curId = id;
+  document.getElementById('topTitle').textContent = c.title;
+  showMessages();
+  var msgs = document.getElementById('messages');
+  msgs.innerHTML = '';
   c.messages.forEach(function(m){ renderMsg(m.role, m.content); });
   msgs.scrollTop = msgs.scrollHeight;
   renderHist(); closeSidebar();
@@ -254,40 +317,42 @@ function delConv(id){ delete convs[id]; save(); if(curId===id) newChat(); else r
 
 function newChat(){
   curId = null;
-  document.getElementById("welcome").style.display = "flex";
-  var msgs = document.getElementById("messages");
-  msgs.classList.remove("show"); msgs.innerHTML = "";
+  document.getElementById('topTitle').textContent = 'IA Afyados';
+  document.getElementById('welcome').style.display = 'flex';
+  var msgs = document.getElementById('messages');
+  msgs.classList.remove('show'); msgs.innerHTML = '';
   renderHist(); closeSidebar(); hideStatus();
 }
 
 function clearChat(){
   if(curId){ convs[curId].messages = []; save(); }
-  var msgs = document.getElementById("messages");
-  msgs.innerHTML = ""; msgs.classList.remove("show");
-  document.getElementById("welcome").style.display = "flex";
+  var msgs = document.getElementById('messages');
+  msgs.innerHTML = ''; msgs.classList.remove('show');
+  document.getElementById('welcome').style.display = 'flex';
+  document.getElementById('topTitle').textContent = 'IA Afyados';
   curId = null; renderHist(); hideStatus();
 }
 
 function showMessages(){
-  document.getElementById("welcome").style.display = "none";
-  document.getElementById("messages").classList.add("show");
+  document.getElementById('welcome').style.display = 'none';
+  document.getElementById('messages').classList.add('show');
 }
 
 function showStatus(msg, type){
-  var bar = document.getElementById("statusBar");
+  var bar = document.getElementById('statusBar');
   bar.textContent = msg;
-  bar.className = "status-bar show" + (type==="warn" ? " warn" : "");
+  bar.className = 'status-bar show' + (type==='warn' ? ' warn' : '');
 }
-function hideStatus(){ document.getElementById("statusBar").className = "status-bar"; }
+function hideStatus(){ document.getElementById('statusBar').className = 'status-bar'; }
 
 function renderMsg(role, text){
   showMessages();
-  var msgs = document.getElementById("messages");
-  var row = document.createElement("div");
-  row.className = "msg-row " + (role==="user" ? "user" : "bot");
-  var inner = document.createElement("div");
-  inner.className = "msg-inner";
-  if(role === "bot"){
+  var msgs = document.getElementById('messages');
+  var row = document.createElement('div');
+  row.className = 'msg-row ' + (role==='user' ? 'user' : 'bot');
+  var inner = document.createElement('div');
+  inner.className = 'msg-inner';
+  if(role === 'bot'){
     inner.innerHTML = '<div class="msg-av">A</div><div class="msg-content"><div class="msg-name">IA Afyados</div><div class="msg-text">' + md(text) + '</div></div>';
   } else {
     inner.innerHTML = '<div class="msg-content"><div class="msg-text">' + esc(text) + '</div></div>';
@@ -300,131 +365,149 @@ function renderMsg(role, text){
 
 function addTyping(){
   showMessages();
-  var msgs = document.getElementById("messages");
-  var row = document.createElement("div");
-  row.className = "msg-row bot"; row.id = "typRow";
+  var msgs = document.getElementById('messages');
+  var row = document.createElement('div');
+  row.className = 'msg-row bot'; row.id = 'typRow';
   row.innerHTML = '<div class="msg-inner"><div class="msg-av">A</div><div class="msg-content"><div class="msg-name">IA Afyados</div><div class="msg-text"><div class="typing-dots"><span></span><span></span><span></span></div></div></div></div>';
   msgs.appendChild(row); msgs.scrollTop = msgs.scrollHeight;
-  setTimeout(function(){
-    if(document.getElementById("typRow")) showStatus("⏳ Servidor iniciando, aguarde...", "warn");
-  }, 8000);
 }
-function rmTyping(){ var t = document.getElementById("typRow"); if(t) t.remove(); }
+function rmTyping(){ var t = document.getElementById('typRow'); if(t) t.remove(); }
 
+// ── SEND ──
 function send(){
   if(busy) return;
-  var inp = document.getElementById("inputBox");
+  var inp = document.getElementById('inputBox');
   var text = inp.value.trim(); if(!text) return;
   hideStatus();
+
   if(!curId){
-    curId = "c" + Date.now();
-    var title = text.length > 50 ? text.substring(0,50) + "…" : text;
+    curId = 'c' + Date.now();
+    var title = text.length > 50 ? text.substring(0,50) + '…' : text;
     convs[curId] = {title: title, messages: []};
+    document.getElementById('topTitle').textContent = title;
   }
-  inp.value = ""; inp.style.height = "auto";
-  renderMsg("user", text);
-  convs[curId].messages.push({role:"user", content:text});
+
+  inp.value = ''; inp.style.height = 'auto';
+  renderMsg('user', text);
+  convs[curId].messages.push({role:'user', content:text});
   save(); renderHist();
-  busy = true; document.getElementById("sendBtn").disabled = true; addTyping();
+
+  busy = true;
+  document.getElementById('sendBtn').disabled = true;
+  addTyping();
 
   var hist = convs[curId].messages.map(function(m){
-    return {role: m.role==="bot" ? "assistant" : m.role, content: m.content};
+    return {role: m.role==='bot' ? 'assistant' : m.role, content: m.content};
   });
 
   var controller = new AbortController();
-  var warnTimer = setTimeout(function(){
-    if(document.getElementById("typRow")) showStatus("⏳ Servidor acordando, aguarde alguns segundos...", "warn");
-  }, 6000);
-  var timeout = setTimeout(function(){ controller.abort(); }, 90000);
 
-  fetch(BACKEND + "/chat", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
+  // Show warning if slow start
+  var warnTimer = setTimeout(function(){
+    if(document.getElementById('typRow')) showStatus('⏳ Servidor acordando, aguarde...', 'warn');
+  }, 7000);
+
+  var timeout = setTimeout(function(){ controller.abort(); }, 120000);
+
+  fetch(BACKEND + '/chat', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({messages: hist}),
     signal: controller.signal
-  }).then(function(r){
+  })
+  .then(function(r){
     clearTimeout(warnTimer); clearTimeout(timeout);
     rmTyping(); hideStatus();
 
     if(!r.ok){
       return r.text().then(function(t){
-        var msg = "Erro no servidor (" + r.status + ").";
+        var msg = 'Erro no servidor (' + r.status + ').';
         try{ msg = JSON.parse(t).error || msg; }catch(e){}
-        showStatus("❌ " + msg);
-        busy = false; document.getElementById("sendBtn").disabled = false;
+        showStatus('❌ ' + msg);
+        busy = false; document.getElementById('sendBtn').disabled = false;
       });
     }
 
-    // Check if streaming (text/event-stream) or JSON
-    var ct = r.headers.get("content-type") || "";
+    var ct = r.headers.get('content-type') || '';
 
-    if(ct.includes("text/event-stream")){
-      // STREAMING mode
-      var botRow = renderMsg("bot", "");
-      var bubble = botRow.querySelector(".msg-text");
-      bubble.classList.add("stream-cursor");
-      bubble.innerHTML = "";
-      var full = "";
+    if(ct.includes('text/event-stream')){
+      // ── STREAMING ──
+      var botRow = renderMsg('bot', '');
+      var bubble = botRow.querySelector('.msg-text');
+      bubble.classList.add('stream-cursor');
+      var full = '';
       var reader = r.body.getReader();
-      var decoder = new TextDecoder("utf-8");
+      var decoder = new TextDecoder('utf-8');
+      var buf = '';
 
       function read(){
         reader.read().then(function(result){
           if(result.done){
-            bubble.classList.remove("stream-cursor");
+            bubble.classList.remove('stream-cursor');
             bubble.innerHTML = md(full);
             if(full.trim()){
-              convs[curId].messages.push({role:"bot", content:full});
+              convs[curId].messages.push({role:'bot', content:full});
               save();
             }
-            busy = false; document.getElementById("sendBtn").disabled = false;
+            busy = false; document.getElementById('sendBtn').disabled = false;
             return;
           }
-          var chunk = decoder.decode(result.value, {stream:true});
-          var lines = chunk.split("\n").filter(function(l){ return l.startsWith("data: "); });
+          buf += decoder.decode(result.value, {stream:true});
+          var lines = buf.split('\n');
+          buf = lines.pop(); // keep incomplete line
           lines.forEach(function(line){
-            var data = line.replace("data: ","").trim();
-            if(data === "[DONE]") return;
+            line = line.trim();
+            if(!line.startsWith('data:')) return;
+            var data = line.slice(5).trim();
+            if(data === '[DONE]') return;
             try{
               var parsed = JSON.parse(data);
-              if(parsed.text){ full += parsed.text; bubble.innerHTML = md(full); document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight; }
+              if(parsed.text){
+                full += parsed.text;
+                bubble.innerHTML = md(full) + '<span class="stream-cursor-span"></span>';
+                document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
+              }
             }catch(e){}
           });
           read();
-        }).catch(function(e){ showStatus("❌ " + e.message); busy = false; document.getElementById("sendBtn").disabled = false; });
+        }).catch(function(e){
+          bubble.classList.remove('stream-cursor');
+          showStatus('❌ ' + e.message);
+          busy = false; document.getElementById('sendBtn').disabled = false;
+        });
       }
       read();
 
     } else {
-      // JSON mode (fallback)
+      // ── JSON fallback ──
       r.json().then(function(d){
-        if(d.error){ showStatus("❌ " + d.error); busy = false; document.getElementById("sendBtn").disabled = false; return; }
-        var reply = d.reply || "";
-        renderMsg("bot", reply);
-        convs[curId].messages.push({role:"bot", content:reply});
-        save(); busy = false; document.getElementById("sendBtn").disabled = false;
+        if(d.error){ showStatus('❌ ' + d.error); busy = false; document.getElementById('sendBtn').disabled = false; return; }
+        var reply = d.reply || '';
+        renderMsg('bot', reply);
+        convs[curId].messages.push({role:'bot', content:reply});
+        save(); busy = false; document.getElementById('sendBtn').disabled = false;
       });
     }
-
-  }).catch(function(e){
-    clearTimeout(warnTimer); clearTimeout(timeout); rmTyping();
-    showStatus("❌ " + (e.name === "AbortError" ? "Servidor demorou demais. Tente novamente." : (e.message || "Erro de conexão.")));
-    busy = false; document.getElementById("sendBtn").disabled = false;
+  })
+  .catch(function(e){
+    clearTimeout(warnTimer); clearTimeout(timeout); rmTyping(); hideStatus();
+    showStatus('❌ ' + (e.name==='AbortError' ? 'Servidor demorou demais. Tente novamente.' : (e.message || 'Erro de conexão.')));
+    busy = false; document.getElementById('sendBtn').disabled = false;
   });
 }
 
-// Keep alive - ping every 9 minutes
-(function keepAlive(){
-  function ping(){ try{ fetch(BACKEND + "/"); }catch(e){} }
+// Keep alive
+(function(){
+  function ping(){ try{ fetch(BACKEND+'/'); }catch(e){} }
   ping();
   setInterval(ping, 9*60*1000);
 })();
 
-function useSug(t){ document.getElementById("inputBox").value = t; send(); }
-function onKey(e){ if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); send(); } }
-function resize(el){ el.style.height = "auto"; el.style.height = Math.min(el.scrollHeight, 160) + "px"; }
-function toggleSidebar(){ document.getElementById("sidebar").classList.toggle("open"); document.getElementById("sbOverlay").classList.toggle("show"); }
-function closeSidebar(){ document.getElementById("sidebar").classList.remove("open"); document.getElementById("sbOverlay").classList.remove("show"); }
+function useSug(t){ document.getElementById('inputBox').value = t; send(); }
+function onKey(e){ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); send(); } }
+function resize(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,160)+'px'; }
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('sbOverlay').classList.toggle('show'); }
+function closeSidebar(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('sbOverlay').classList.remove('show'); }
 
 load(); renderHist();
 </script>
