@@ -164,4 +164,75 @@ function parseMedicos(t) {
             const trimmed = l.trim();
             if (!trimmed) return ''; // Linha vazia
             if (trimmed.startsWith('<h') || trimmed.startsWith('<div') || trimmed.startsWith('<ul') || trimmed.startsWith('<li')) return trimmed; // Já é HTML
-            return `<p>${trimmed}</p>`; // É
+            return `<p>${trimmed}</p>`; // É um parágrafo
+        }).join('');
+}
+
+async function send() {
+    if(busy) return;
+    const inp = document.getElementById('inputBox');
+    const text = inp.value.trim();
+    if(!text) return;
+
+    if(!curId){ curId='c'+Date.now(); convs[curId]={title: text.substring(0,25), messages:[]}; }
+
+    inp.value=''; inp.style.height='auto';
+    renderMsg('user', text);
+    convs[curId].messages.push({role:'user', content:text});
+    save(); renderHist();
+
+    busy=true;
+    const msgsDiv = document.getElementById('messages');
+    
+    // Bolha da IA vazia para streaming
+    const row = document.createElement('div');
+    row.className='msg-row bot';
+    row.innerHTML=`<div class="msg-av">🤖</div><div class="msg-text"></div>`;
+    msgsDiv.appendChild(row);
+    const textDiv = row.querySelector('.msg-text');
+
+    // Prepara o histórico para o backend
+    const histCompleto = [{role:'system', content:'AFYADOS_PROMPT_OFFICIAL_V1'}].concat(convs[curId].messages);
+
+    try {
+        const r = await fetch('https://afyados-backend.onrender.com/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ messages: histCompleto })
+        });
+
+        const reader = r.body.getReader();
+        const decoder = new TextDecoder();
+        let reply = "";
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            reply += decoder.decode(value, {stream: true});
+            // Usa o renderizador médico avançado
+            textDiv.innerHTML = parseMedicos(reply);
+            msgsDiv.scrollTop = msgsDiv.scrollHeight;
+        }
+        convs[curId].messages.push({role:'bot', content:reply});
+        save();
+    } catch (e) { textDiv.innerHTML="❌ Erro de conexão com o cérebro da Afyados. Tente novamente."; }
+    busy=false;
+}
+
+function renderMsg(role, text) {
+    const msgsDiv = document.getElementById('messages');
+    const row = document.createElement('div');
+    row.className=`msg-row ${role==='user'?'user':'bot'}`;
+    row.innerHTML=`<div class="msg-av">${role==='user'?'👤':'🤖'}</div><div class="msg-text">${role==='user'?esc(text):parseMedicos(text)}</div>`;
+    msgsDiv.appendChild(row);
+    msgsDiv.scrollTop = msgsDiv.scrollHeight;
+}
+
+function newChat(){ curId=null; document.getElementById('messages').innerHTML='<div class="msg-row bot"><div class="msg-av">🤖</div><div class="msg-text"><h3>Nova tutoria iniciada.</h3><p>Mande sua dúvida técnica sobre SOI, HAM ou APG.</p></div></div>'; renderHist(); }
+function delConv(id){ delete convs[id]; save(); newChat(); }
+function loadConv(id){ curId=id; document.getElementById('messages').innerHTML=''; convs[id].messages.forEach(m=>renderMsg(m.role, m.content)); renderHist(); }
+
+load();
+</script>
+</body>
+</html>
