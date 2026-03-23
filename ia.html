@@ -4,158 +4,136 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IA Afyados</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;overflow:hidden;}
-body{background:#212121;color:#ececec;font-family:"Inter","Segoe UI",system-ui,sans-serif;display:flex;font-size:15px;line-height:1.6;}
-
-/* SIDEBAR */
-.sidebar{width:256px;flex-shrink:0;background:#171717;display:flex;flex-direction:column;height:100vh;transition:transform .25s;z-index:100;}
-.sb-top{padding:10px 8px;display:flex;flex-direction:column;gap:2px;}
-.logo-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;text-decoration:none;}
-.logo-icon{width:26px;height:26px;background:linear-gradient(135deg,#D6006E,#9000DC);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
-.logo-icon img{width:16px;height:16px;object-fit:contain;}
-.logo-name{font-size:14px;font-weight:600;color:#ececec;}
-.logo-tag{font-size:10px;font-weight:600;color:#D6006E;background:rgba(214,0,110,.12);border:1px solid rgba(214,0,110,.25);padding:1px 7px;border-radius:100px;margin-left:2px;}
-.new-btn{display:flex;align-items:center;gap:9px;background:transparent;border:none;color:#ececec;font-size:14px;padding:9px 12px;border-radius:8px;cursor:pointer;font-family:inherit;transition:background .15s;width:100%;text-align:left;}
+body{background:#212121;color:#ececec;font-family:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;display:flex;font-size:16px;}
+.sidebar{width:260px;flex-shrink:0;background:#171717;display:flex;flex-direction:column;height:100vh;transition:transform .25s;z-index:100;border-right:1px solid rgba(255,255,255,.06);}
+.sb-top{padding:12px 8px;display:flex;flex-direction:column;gap:4px;}
+.logo-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:10px;text-decoration:none;margin-bottom:4px;}
+.logo-icon{width:28px;height:28px;background:linear-gradient(135deg,#D6006E,#9000DC);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.logo-icon img{width:18px;height:18px;object-fit:contain;}
+.logo-name{font-size:15px;font-weight:600;color:#ececec;}
+.logo-tag{font-size:10px;font-weight:600;color:#D6006E;background:rgba(214,0,110,.12);border:1px solid rgba(214,0,110,.25);padding:2px 7px;border-radius:100px;}
+.new-btn{display:flex;align-items:center;gap:8px;background:transparent;border:none;color:#ececec;font-size:14px;padding:10px 12px;border-radius:8px;cursor:pointer;font-family:inherit;transition:background .15s;width:100%;text-align:left;}
 .new-btn:hover{background:rgba(255,255,255,.07);}
 .sb-div{height:1px;background:rgba(255,255,255,.07);margin:4px 8px;}
 .hist-wrap{flex:1;overflow-y:auto;padding:4px 8px;}
 .hist-wrap::-webkit-scrollbar{width:3px;}
 .hist-wrap::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px;}
-.hist-lbl{font-size:11px;font-weight:600;color:#6e6e80;padding:10px 10px 6px;letter-spacing:.06em;text-transform:uppercase;}
-.conv{display:flex;align-items:center;gap:6px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:background .15s;}
-.conv:hover{background:rgba(255,255,255,.06);}
-.conv.active{background:rgba(255,255,255,.09);}
-.conv-name{font-size:13px;color:#b4b4c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;}
-.conv.active .conv-name{color:#ececec;}
-.conv-del{opacity:0;background:none;border:none;color:#6e6e80;cursor:pointer;padding:2px 4px;border-radius:4px;font-size:12px;flex-shrink:0;}
+.hist-lbl{font-size:11px;font-weight:600;color:#6e6e80;padding:10px 10px 6px;letter-spacing:.05em;text-transform:uppercase;}
+.conv{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;transition:background .15s;}
+.conv:hover{background:rgba(255,255,255,.07);}
+.conv.active{background:rgba(255,255,255,.1);}
+.conv-title{font-size:13px;color:#c5c5d2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;}
+.conv.active .conv-title{color:#ececec;}
+.conv-del{opacity:0;background:none;border:none;color:#6e6e80;cursor:pointer;padding:2px 5px;border-radius:4px;font-size:12px;flex-shrink:0;transition:all .15s;}
 .conv:hover .conv-del{opacity:1;}
 .conv-del:hover{color:#ff6b6b;}
-.no-hist{font-size:13px;color:#6e6e80;padding:10px 10px;line-height:1.6;}
+.no-hist{padding:12px 10px;font-size:13px;color:#6e6e80;line-height:1.6;}
 .sb-bot{padding:8px;border-top:1px solid rgba(255,255,255,.07);}
-.back-link{display:flex;align-items:center;gap:9px;color:#8e8ea0;text-decoration:none;font-size:13px;padding:9px 12px;border-radius:8px;transition:all .15s;}
-.back-link:hover{background:rgba(255,255,255,.06);color:#ececec;}
+.back-link{display:flex;align-items:center;gap:8px;color:#6e6e80;text-decoration:none;font-size:13px;padding:9px 12px;border-radius:8px;transition:all .15s;}
+.back-link:hover{background:rgba(255,255,255,.07);color:#ececec;}
 .sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;}
-
-/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden;min-width:0;}
-
-/* TOPBAR */
-.topbar{height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;}
-.sb-toggle{display:none;background:none;border:none;color:#8e8ea0;padding:6px;border-radius:7px;cursor:pointer;}
+.topbar{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0;border-bottom:1px solid rgba(255,255,255,.06);}
+.sb-toggle{display:none;background:none;border:none;color:#6e6e80;padding:6px;border-radius:8px;cursor:pointer;}
 .sb-toggle:hover{background:rgba(255,255,255,.07);color:#ececec;}
-.top-title{font-size:15px;font-weight:600;color:#ececec;}
-.clear-btn{background:none;border:1px solid rgba(255,255,255,.1);color:#8e8ea0;font-size:12px;font-weight:500;padding:5px 12px;border-radius:7px;cursor:pointer;font-family:inherit;transition:all .15s;}
-.clear-btn:hover{border-color:rgba(255,255,255,.22);color:#ececec;}
-
-/* WELCOME */
+.topbar-title{font-size:15px;font-weight:600;color:#ececec;}
+.clear-btn{background:none;border:1px solid rgba(255,255,255,.12);color:#6e6e80;font-size:12px;font-weight:500;padding:5px 11px;border-radius:7px;cursor:pointer;font-family:inherit;transition:all .15s;}
+.clear-btn:hover{border-color:rgba(255,255,255,.25);color:#ececec;}
 .welcome{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow-y:auto;}
-.w-logo{width:52px;height:52px;background:linear-gradient(135deg,#D6006E,#9000DC);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
-.welcome h1{font-size:24px;font-weight:600;text-align:center;margin-bottom:8px;}
-.welcome p{font-size:14px;color:#8e8ea0;text-align:center;max-width:360px;line-height:1.65;margin-bottom:26px;}
+.w-icon{width:56px;height:56px;background:linear-gradient(135deg,#D6006E,#9000DC);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 0 32px rgba(214,0,110,.3);}
+.w-icon svg{width:26px;height:26px;}
+.welcome h1{font-size:26px;font-weight:600;color:#ececec;text-align:center;margin-bottom:8px;}
+.welcome-sub{font-size:15px;color:#8e8ea0;text-align:center;max-width:380px;line-height:1.6;margin-bottom:28px;}
 .sug-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;max-width:520px;width:100%;}
-.sug{background:#2f2f2f;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:13px 15px;cursor:pointer;transition:all .18s;text-align:left;}
-.sug:hover{background:#383838;border-color:rgba(255,255,255,.14);}
-.sug-t{font-size:13px;font-weight:500;color:#ececec;margin-bottom:2px;}
-.sug-s{font-size:12px;color:#8e8ea0;}
-
-/* MESSAGES */
+.sug-card{background:#2f2f2f;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .2s;text-align:left;}
+.sug-card:hover{background:#3a3a3a;border-color:rgba(255,255,255,.15);}
+.sug-t{font-size:13px;font-weight:500;color:#ececec;margin-bottom:3px;}
+.sug-s{font-size:12px;color:#8e8ea0;line-height:1.4;}
 .messages{flex:1;overflow-y:auto;display:none;flex-direction:column;padding:8px 0;}
 .messages.show{display:flex;}
 .messages::-webkit-scrollbar{width:4px;}
 .messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px;}
-.msg-row{display:flex;justify-content:center;padding:10px 0;animation:fadeUp .18s ease;}
-.msg-inner{max-width:680px;width:100%;padding:0 24px;display:flex;gap:12px;}
-.msg-row.user .msg-inner{justify-content:flex-end;gap:0;}
-.av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#D6006E,#9000DC);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;margin-top:2px;}
-.msg-row.user .av{display:none;}
-.msg-body{flex:1;min-width:0;}
-.msg-row.user .msg-body{flex:0 1 auto;max-width:78%;}
-.msg-sender{font-size:13px;font-weight:600;color:#ececec;margin-bottom:5px;}
-.msg-row.user .msg-sender{display:none;}
+.msg-row{padding:12px 0;display:flex;justify-content:center;}
+.msg-inner{max-width:680px;width:100%;padding:0 24px;display:flex;gap:14px;}
+.msg-row.user .msg-inner{justify-content:flex-end;}
+.msg-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;flex-shrink:0;margin-top:2px;color:white;}
+.msg-row.bot .msg-av{background:linear-gradient(135deg,#D6006E,#9000DC);}
+.msg-row.user .msg-av{display:none;}
+.msg-content{flex:1;min-width:0;}
+.msg-row.user .msg-content{flex:0 1 auto;max-width:80%;}
+.msg-name{font-size:12px;font-weight:600;color:#8e8ea0;margin-bottom:6px;}
+.msg-row.user .msg-name{display:none;}
 .msg-text{font-size:15px;line-height:1.75;color:#ececec;}
-.msg-row.user .msg-text{background:#2f2f2f;border:1px solid rgba(255,255,255,.1);padding:11px 15px;border-radius:18px;border-bottom-right-radius:4px;display:inline-block;white-space:pre-wrap;word-break:break-word;}
-
-/* Markdown */
-.msg-text h1{font-size:20px;font-weight:700;margin:18px 0 9px;line-height:1.3;}
-.msg-text h2{font-size:17px;font-weight:700;margin:16px 0 8px;line-height:1.3;}
+.msg-row.user .msg-text{background:#2f2f2f;border:1px solid rgba(255,255,255,.1);padding:12px 16px;border-radius:18px;border-bottom-right-radius:4px;display:inline-block;}
+.msg-text h1{font-size:20px;font-weight:700;margin:18px 0 8px;}
+.msg-text h2{font-size:17px;font-weight:700;margin:16px 0 7px;}
 .msg-text h3{font-size:15px;font-weight:700;margin:13px 0 6px;}
 .msg-text h4{font-size:14px;font-weight:700;margin:11px 0 5px;}
-.msg-text p{margin:0 0 10px;}
+.msg-text p{margin-bottom:10px;}
 .msg-text p:last-child{margin-bottom:0;}
 .msg-text strong{font-weight:700;}
 .msg-text em{font-style:italic;color:#c5c5d2;}
-.msg-text code{background:#2a2a2a;border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:1px 5px;font-size:13px;font-family:Menlo,Monaco,"Courier New",monospace;}
-.msg-text pre{background:#1a1a1a;border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:14px 16px;overflow-x:auto;margin:10px 0;}
+.msg-text code{background:#2a2a2a;border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:2px 6px;font-size:13px;font-family:Menlo,Monaco,Consolas,monospace;}
+.msg-text pre{background:#1a1a1a;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px;overflow-x:auto;margin:10px 0;}
 .msg-text pre code{background:none;border:none;padding:0;font-size:13px;}
-.msg-text ul,.msg-text ol{padding-left:20px;margin:6px 0 10px;}
+.msg-text ul{padding-left:20px;margin:6px 0 10px;}
+.msg-text ol{padding-left:20px;margin:6px 0 10px;}
 .msg-text li{margin-bottom:4px;}
-.msg-text ul li{list-style:disc;}
-.msg-text ol li{list-style:decimal;}
-.msg-text blockquote{border-left:3px solid rgba(214,0,110,.45);padding-left:13px;color:#9e9eb0;margin:10px 0;font-style:italic;}
+.msg-text blockquote{border-left:3px solid rgba(214,0,110,.5);padding-left:14px;color:#8e8ea0;margin:10px 0;font-style:italic;}
 .msg-text hr{border:none;border-top:1px solid rgba(255,255,255,.1);margin:14px 0;}
-.msg-text a{color:#D6006E;text-decoration:none;word-break:break-all;}
-.msg-text a:hover{text-decoration:underline;color:#FF1A7E;}
-.msg-text figure{margin:14px 0;}
-.msg-text figure img{max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.1);display:block;}
-.msg-text figcaption{font-size:12px;color:#8e8ea0;margin-top:6px;font-style:italic;}
-.msg-text pre{background:#1a1a1a;border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px;overflow-x:auto;margin:12px 0;}
-.msg-text pre code{background:none;border:none;padding:0;font-size:13px;font-family:"Söhne Mono",Menlo,Monaco,Consolas,monospace;color:#e8d5b7;line-height:1.6;}
-.msg-text code{background:#2f2f2f;border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:2px 6px;font-size:13px;font-family:"Söhne Mono",Menlo,Monaco,Consolas,monospace;color:#e8d5b7;}
 .msg-text table{width:100%;border-collapse:collapse;margin:10px 0;font-size:14px;}
-.msg-text th{background:rgba(255,255,255,.07);padding:7px 11px;text-align:left;font-weight:600;border:1px solid rgba(255,255,255,.1);}
-.msg-text td{padding:6px 11px;border:1px solid rgba(255,255,255,.07);}
-.msg-text tr:nth-child(even) td{background:rgba(255,255,255,.02);}
-
-/* Typing */
-.typing{display:flex;gap:4px;align-items:center;padding:4px 0;}
-.typing span{width:6px;height:6px;background:#6e6e80;border-radius:50%;animation:bounce 1.2s infinite;}
-.typing span:nth-child(2){animation-delay:.2s;}
-.typing span:nth-child(3){animation-delay:.4s;}
-@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
-.cursor::after{content:"▋";animation:blink .7s infinite;color:#D6006E;font-size:11px;margin-left:1px;vertical-align:middle;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-/* INPUT */
-.input-area{padding:10px 16px 16px;flex-shrink:0;}
-.status-bar{max-width:680px;margin:0 auto 8px;padding:8px 14px;border-radius:9px;font-size:13px;display:none;}
+.msg-text th{background:rgba(255,255,255,.07);padding:8px 12px;text-align:left;font-weight:600;border:1px solid rgba(255,255,255,.1);}
+.msg-text td{padding:7px 12px;border:1px solid rgba(255,255,255,.08);}
+.msg-text a{color:#D6006E;text-decoration:none;}
+.msg-text a:hover{text-decoration:underline;}
+.msg-text figure{margin:12px 0;}
+.msg-text figure img{max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.1);display:block;}
+.msg-text figcaption{font-size:12px;color:#8e8ea0;margin-top:5px;font-style:italic;}
+.typing-dots{display:flex;gap:4px;padding:6px 0;align-items:center;}
+.typing-dots span{width:7px;height:7px;background:#6e6e80;border-radius:50%;animation:bounce 1.2s infinite;}
+.typing-dots span:nth-child(2){animation-delay:.2s;}
+.typing-dots span:nth-child(3){animation-delay:.4s;}
+.stream-cursor::after{content:"\u258B";animation:blink .7s infinite;color:#D6006E;font-size:12px;margin-left:1px;}
+.input-area{padding:12px 16px 16px;flex-shrink:0;}
+.status-bar{max-width:680px;margin:0 auto 8px;padding:8px 14px;background:rgba(255,100,100,.08);border:1px solid rgba(255,100,100,.2);border-radius:10px;font-size:13px;color:#ff9999;display:none;}
 .status-bar.show{display:block;}
-.status-bar.error{background:rgba(255,80,80,.08);border:1px solid rgba(255,80,80,.2);color:#ff9999;}
-.status-bar.warn{background:rgba(255,200,50,.07);border:1px solid rgba(255,200,50,.18);color:#ffd97a;}
-.input-wrap{max-width:680px;margin:0 auto;background:#2f2f2f;border:1px solid rgba(255,255,255,.1);border-radius:14px;display:flex;align-items:flex-end;gap:8px;padding:9px 11px;transition:border-color .18s;}
-.input-wrap:focus-within{border-color:rgba(255,255,255,.22);}
-.ibox{flex:1;background:none;border:none;color:#ececec;font-family:inherit;font-size:15px;line-height:1.6;resize:none;outline:none;max-height:150px;min-height:24px;}
-.ibox::placeholder{color:#6e6e80;}
-.sbtn{width:32px;height:32px;background:#D6006E;border:none;border-radius:8px;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;flex-shrink:0;}
-.sbtn:hover:not(:disabled){background:#FF1A7E;}
-.sbtn:disabled{background:#333;color:#555;cursor:not-allowed;}
-.hint{text-align:center;font-size:11px;color:#555;margin-top:7px;max-width:680px;margin-left:auto;margin-right:auto;}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.status-bar.warn{background:rgba(255,200,50,.07);border-color:rgba(255,200,50,.2);color:#ffd97a;}
+.input-wrap{max-width:680px;margin:0 auto;background:#2f2f2f;border:1px solid rgba(255,255,255,.12);border-radius:16px;display:flex;align-items:flex-end;gap:8px;padding:10px 12px;transition:border-color .2s;}
+.input-wrap:focus-within{border-color:rgba(255,255,255,.25);}
+.input-box{flex:1;background:none;border:none;color:#ececec;font-family:inherit;font-size:15px;line-height:1.6;resize:none;outline:none;max-height:160px;min-height:26px;}
+.input-box::placeholder{color:#6e6e80;}
+.send-btn{width:34px;height:34px;background:#D6006E;border:none;border-radius:9px;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
+.send-btn:hover:not(:disabled){background:#FF1A7E;}
+.send-btn:disabled{background:#3a3a3a;color:#6e6e80;cursor:not-allowed;}
+.input-hint{text-align:center;font-size:11px;color:#6e6e80;margin-top:8px;max-width:680px;margin-left:auto;margin-right:auto;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg-row{animation:fadeUp .2s ease;}
 @media(max-width:768px){
   .sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);}
   .sidebar.open{transform:translateX(0);}
   .sb-overlay.show{display:block;}
   .sb-toggle{display:flex;}
   .sug-grid{grid-template-columns:1fr;}
-  .msg-inner{padding:0 14px;}
+  .msg-inner{padding:0 16px;}
 }
 </style>
 </head>
 <body>
-
-<!-- SIDEBAR -->
 <div class="sidebar" id="sidebar">
   <div class="sb-top">
-    <a href="javascript:location.reload()" class="logo-row">
-      <div class="logo-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:16px;height:16px;object-fit:contain;"></div>
+    <a href="index.html" class="logo-row">
+      <div class="logo-icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:18px;height:18px;object-fit:contain;"></div>
       <span class="logo-name">Afyados</span>
       <span class="logo-tag">IA</span>
     </a>
     <button class="new-btn" onclick="newChat()">
-      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       Nova conversa
     </button>
   </div>
@@ -166,167 +144,281 @@ body{background:#212121;color:#ececec;font-family:"Inter","Segoe UI",system-ui,s
   </div>
   <div class="sb-bot">
     <a href="index.html" class="back-link">
-      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       Voltar ao site
     </a>
   </div>
 </div>
 <div class="sb-overlay" id="sbOverlay" onclick="closeSidebar()"></div>
-
-<!-- MAIN -->
 <div class="main">
   <div class="topbar">
     <div style="display:flex;align-items:center;gap:8px;">
       <button class="sb-toggle" onclick="toggleSidebar()">
         <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <span class="top-title">IA Afyados</span>
+      <span class="topbar-title">IA Afyados</span>
     </div>
     <button class="clear-btn" onclick="clearChat()">Limpar</button>
   </div>
-
   <div class="welcome" id="welcome">
-    <div class="w-logo">
-      <svg width="24" height="24" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
+    <div class="w-icon">
+      <svg width="26" height="26" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18"/></svg>
     </div>
     <h1>Como posso ajudar?</h1>
-    <p>Tire dúvidas sobre APGs, SOI e qualquer conteúdo da Afya — a qualquer hora.</p>
+    <p class="welcome-sub">Tire dúvidas sobre APGs, SOI e qualquer conteúdo da Afya — a qualquer hora.</p>
     <div class="sug-grid">
-      <div class="sug" onclick="useSug('O que é uma APG e como me preparar?')"><div class="sug-t">O que é uma APG?</div><div class="sug-s">Como funciona e como se preparar</div></div>
-      <div class="sug" onclick="useSug('Estratégias para estudar SOI na Afya')"><div class="sug-t">Dicas para SOI</div><div class="sug-s">Estratégias para a matéria mais difícil</div></div>
-      <div class="sug" onclick="useSug('Explica o potencial de ação cardíaco')"><div class="sug-t">Potencial de ação cardíaco</div><div class="sug-s">Explicação simples e didática</div></div>
-      <div class="sug" onclick="useSug('Resumo completo do sistema cardiovascular')"><div class="sug-t">Sistema cardiovascular</div><div class="sug-s">Resumo completo e organizado</div></div>
-      <div class="sug" onclick="useSug('Como montar objetivos de aprendizagem de APG')"><div class="sug-t">Objetivos de APG</div><div class="sug-s">Como estruturar corretamente</div></div>
-      <div class="sug" onclick="useSug('Como organizar minha rotina de estudos na Afya')"><div class="sug-t">Rotina de estudos</div><div class="sug-s">Como se organizar na faculdade</div></div>
+      <div class="sug-card" onclick="useSug('O que é uma APG e como me preparar?')"><div class="sug-t">O que é uma APG?</div><div class="sug-s">Como funciona e como se preparar</div></div>
+      <div class="sug-card" onclick="useSug('Dicas para estudar SOI na Afya')"><div class="sug-t">Dicas para SOI</div><div class="sug-s">Estratégias para a matéria mais difícil</div></div>
+      <div class="sug-card" onclick="useSug('Explica o potencial de ação cardíaco')"><div class="sug-t">Potencial de ação cardíaco</div><div class="sug-s">Explicação simples e didática</div></div>
+      <div class="sug-card" onclick="useSug('Resumo completo sobre o sistema cardiovascular')"><div class="sug-t">Sistema cardiovascular</div><div class="sug-s">Resumo completo e organizado</div></div>
+      <div class="sug-card" onclick="useSug('Como montar os objetivos de aprendizagem de uma APG')"><div class="sug-t">Objetivos de APG</div><div class="sug-s">Como estruturar corretamente</div></div>
+      <div class="sug-card" onclick="useSug('Como organizar minha rotina de estudos na Afya')"><div class="sug-t">Rotina de estudos</div><div class="sug-s">Como se organizar na faculdade</div></div>
     </div>
   </div>
-
   <div class="messages" id="messages"></div>
-
   <div class="input-area">
     <div class="status-bar" id="statusBar"></div>
     <div class="input-wrap">
-      <textarea class="ibox" id="ibox" placeholder="Manda sua dúvida aqui..." rows="1" onkeydown="onKey(event)" oninput="resize(this)"></textarea>
-      <button class="sbtn" id="sbtn" onclick="send()">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      <textarea class="input-box" id="inputBox" placeholder="Manda sua dúvida aqui..." rows="1" onkeydown="onKey(event)" oninput="resize(this)"></textarea>
+      <button class="send-btn" id="sendBtn" onclick="send()">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
       </button>
     </div>
-    <div class="hint">Enter para enviar &nbsp;·&nbsp; Shift+Enter para nova linha</div>
+    <div class="input-hint">Enter para enviar &nbsp;·&nbsp; Shift+Enter para nova linha</div>
   </div>
 </div>
-
 <script>
-const SYS = `# PROMPT OFICIAL — ENSINO MÉDICO AFYA | PBL | APG | MODO DIDÁTICO ADAPTATIVO
+var SYS = "Você é a IA oficial da Afyados, consultoria acadêmica de medicina para calouros da faculdade Afya.\n\nSeu nome é IA Afyados e você deve agir de forma nativa como parte da equipe Afyados. Nunca mencione que é Claude, ChatGPT, GPT, OpenAI, Gemini ou qualquer outra IA. Se perguntarem, diga apenas que é a IA desenvolvida pela Afyados. Responda sempre em português brasileiro.\n\nSeu papel: Atue como um professor médico extremamente experiente, dominando os requisitos da graduação em Medicina da AFYA (PADRÃO AFYA - PBL/APG). Priorize o que mais é cobrado em provas e tutoria de APG. Use linguagem clínica. Evite explicações históricas ou acadêmicas excessivas.\n\nEstrutura obrigatória da resposta:\n1. ORIENTAÇÃO INICIAL: Localização geral no organismo e contexto funcional.\n2. ORGANIZAÇÃO MACROESTRUTURAL: Divisões principais e hierarquia estrutural.\n3. FUNCIONAMENTO DINÂMICO: Fluxo sequência fisiológica, conexões, inputs/outputs.\n4. APROFUNDAMENTO PROGRESSIVO: Do geral para o específico.\n5. RESUMO INTEGRATIVO (OBRIGATÓRIO): Pontos-chave cobrados em provas e APG, síntese clínica.\n6. REFERÊNCIAS (OBRIGATÓRIO): Fontes utilizadas com capítulos quando livros.\n\nPreceitos: Ser como um mapa conceitual didático. Encadeamento lógico e cronológico. Foco na pergunta sem divagações. Adaptar-se automaticamente ao nível do aluno.\n\nFontes prioritárias: Moore, Netter, Guyton, Robbins, Junqueira, Silverthorn, Tortora, Langman, Snell, Abbas, Porto, StatPearls (NCBI), MedlinePlus.\n\nUse **negrito** para termos-chave. Use emojis com moderação para organizar seções. Quando relevante, inclua links em markdown: [texto](url). Formate tabelas em markdown quando útil para comparações.";
+var BACKEND = "https://afyados-backend.onrender.com";
+var convs = {}, curId = null, busy = false;
 
-## IDENTIDADE
-Seu nome é "IA Afyados". Você faz parte da equipe Afyados, consultoria acadêmica de medicina para calouros da AFYA. Nunca mencione que é ChatGPT, GPT, OpenAI, Claude, Gemini ou qualquer outra IA. Se perguntarem, diga apenas que é a IA desenvolvida pela Afyados. Responda sempre em português brasileiro.
+function load(){ try{ convs = JSON.parse(localStorage.getItem("afy_c") || "{}"); }catch(e){ convs = {}; } }
+function save(){ try{ localStorage.setItem("afy_c", JSON.stringify(convs)); }catch(e){} }
 
-## CONTEXTO DO ESTUDANTE
-O estudante é da graduação em Medicina pelo método ativo (PBL/APG) da instituição AFYA. Busca entender a matéria, não apenas decorá-la. Quer estudar por meio da IA com respostas organizadas, completas e didáticas.
-
-## SEU PAPEL
-Atue como um professor médico extremamente experiente, dominando os requisitos, objetivos e forma de cobrança da graduação em Medicina da AFYA (PADRÃO AFYA – PBL/APG). Priorize o que mais é cobrado em provas e tutoria de APG. Use linguagem clínica. Mantenha rigor absoluto no tema solicitado. Evite explicações históricas ou acadêmicas excessivas e pouco aplicáveis.
-
-## PRECEITOS DA RESPOSTA
-1. Ser como um MAPA CONCEITUAL DIDÁTICO explicado.
-2. Apresentar densidade de conteúdo.
-3. Explicar em linguagem clínica de graduação médica.
-4. Encadeamento LÓGICO, DIRETO, ORGANIZADO e CRONOLÓGICO, em tópicos graduais de aprofundamento.
-5. Foco na pergunta — não se limitar a tópicos soltos e rasos.
-6. Sem divagações ou curiosidades fora do necessário.
-7. Explicações secundárias apenas quando essenciais para o tema central.
-8. Integração (anatomia, histologia, fisiologia, fisiopatologia, clínica) apenas quando necessária para compreensão plena.
-9. Adaptar-se às necessidades intelectuais do aluno automaticamente — como um livro médico didático.
-10. Funcionar como consulta direta ao livro/artigo científico de referência, sem expandir para assuntos paralelos desnecessários.
-
-## PRINCÍPIOS DA ESTRUTURA NEURODIDÁTICA
-1. Arquitetura cognitiva semelhante à de capítulos de livros médicos clássicos — do macro para o micro.
-2. Sequência de tópicos lógicos que constrói entendimento gradualmente.
-3. Cada tópico aprofunda um nível além do anterior.
-4. O aprofundamento para quando atinge o núcleo da pergunta.
-5. Pergunta específica → reduzir introdução, acelerar o zoom.
-6. Pergunta ampla → expandir as etapas iniciais.
-7. Nunca fazer listas soltas sem encadeamento conceitual.
-8. Nunca realizar micro detalhes antes da contextualização macro.
-
-## ESTRUTURA OBRIGATÓRIA DA RESPOSTA
-
-### 1. ORIENTAÇÃO INICIAL
-Localização geral no organismo + sistema/contexto funcional. Objetivo: ativar mapa mental espacial e funcional.
-
-### 2. ORGANIZAÇÃO MACROESTRUTURAL
-Divisões principais, relações anatômicas/funcionais relevantes, hierarquia estrutural.
-
-### 3. FUNCIONAMENTO DINÂMICO
-Fluxo de informação → sequência fisiológica → conexões principais → inputs/outputs. Objetivo: entender como funciona.
-
-### 4. APROFUNDAMENTO PROGRESSIVO (ZOOM CONTROLADO)
-Do geral para o específico: organização sistêmica → circuitos/mecanismos → microestrutura → mecanismos celulares (apenas quando necessário).
-
-### 5. RESUMO INTEGRATIVO (OBRIGATÓRIO)
-- Encadeamento lógico dos principais conceitos para revisão rápida
-- Pontos-chave mais cobrados em provas e tutoria APG
-- Síntese clínica global do tema
-
-### 6. REFERÊNCIAS (OBRIGATÓRIO)
-Listar as fontes utilizadas. Se livros, indicar capítulo e nome da seção.
-
-## FONTES PRIORITÁRIAS
-Textos: Moore, Netter, Sobotta, Ross, Junqueira, Silverthorn, Tortora, Guyton, Langman, Snell, Angelo Machado, Bogliolo, Robbins, Abbas, Porto, Lehninger, Goodman, Porth, TeachMeAnatomy, Kenhub, OpenStax, StatPearls (NCBI), MedlinePlus, PubMed Central, WHO, NICE, ESC, AHA, ADA.
-
-## PADRÃO VISUAL
-- Títulos progressivos (## → ### → ####)
-- Blocos separados por setas (→), fluxogramas simples, subdivisões claras
-- Leitura escaneável (scan-friendly), semelhante a atlas médicos
-- Use **negrito** para termos-chave e estruturas importantes
-
-## ABNT
-Quando solicitado pelo estudante, auxiliar na formatação de materiais acadêmicos segundo as normas ABNT.`;
-
-
-
-const BACKEND = 'https://afyados-backend.onrender.com';
-let convs = {}, curId = null, busy = false;
-
-function load(){ try{ convs=JSON.parse(localStorage.getItem('afy_c')||'{}'); }catch(e){ convs={}; } }
-function save(){ try{ localStorage.setItem('afy_c',JSON.stringify(convs)); }catch(e){} }
-function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-// ── MARKDOWN ──
 function md(raw){
-  if(!raw) return '';
-  let s = raw;
-  const codeBlocks = [];
+  if(!raw) return "";
+  var s = raw;
+  var codeBlocks = [];
   s = s.replace(/```(\w*)\n?([\s\S]*?)```/g, function(_,lang,code){
-    const i = codeBlocks.length;
-    codeBlocks.push('<pre><code>' + code.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</code></pre>');
-    return '\x00CODE' + i + '\x00';
+    var i = codeBlocks.length;
+    codeBlocks.push("<pre><code>" + code.trim().replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;") + "</code></pre>");
+    return "\x00CODE" + i + "\x00";
   });
-  s = s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  s = s.replace(/`([^`\n]+)`/g,'<code>$1</code>');
+  s = s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  s = s.replace(/`([^`\n]+)`/g,"<code>$1</code>");
   s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function(_,alt,url){
-    return '<figure style="margin:12px 0;"><img src="'+url+'" alt="'+alt+'" style="max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.1);" onerror="this.parentElement.style.display=\'none\'"><figcaption style="font-size:12px;color:#8e8ea0;margin-top:6px;">'+alt+'</figcaption></figure>';
+    return "<figure><img src=\""+url+"\" alt=\""+alt+"\" style=\"max-width:100%;border-radius:10px;\" onerror=\"this.parentElement.style.display=\'none\'\"><figcaption>"+alt+"</figcaption></figure>";
   });
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
-  s = s.replace(/(?<![="'(])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
-  s = s.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
-  s = s.replace(/^### (.+)$/gm,'<h3>$1</h3>');
-  s = s.replace(/^## (.+)$/gm,'<h2>$1</h2>');
-  s = s.replace(/^# (.+)$/gm,'<h1>$1</h1>');
-  s = s.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
-  s = s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
-  s = s.replace(/\*(.+?)\*/g,'<em>$1</em>');
-  s = s.replace(/^[-*]{3,}$/gm,'<hr>');
-  s = s.replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>');
-  s = s.replace(/^[*\-+] (.+)$/gm,'<li>$1</li>');
-  s = s.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, function(m){ return '<ul>'+m+'</ul>'; });
-  s = s.replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
-  s = s.split('\n\n').map(function(p){
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');
+  s = s.replace(/(?<![="'(])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank">$1</a>');
+  s = s.replace(/^#### (.+)$/gm,"<h4>$1</h4>");
+  s = s.replace(/^### (.+)$/gm,"<h3>$1</h3>");
+  s = s.replace(/^## (.+)$/gm,"<h2>$1</h2>");
+  s = s.replace(/^# (.+)$/gm,"<h1>$1</h1>");
+  s = s.replace(/\*\*\*(.+?)\*\*\*/g,"<strong><em>$1</em></strong>");
+  s = s.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");
+  s = s.replace(/\*(.+?)\*/g,"<em>$1</em>");
+  s = s.replace(/^[-*]{3,}$/gm,"<hr>");
+  s = s.replace(/^> (.+)$/gm,"<blockquote>$1</blockquote>");
+  s = s.replace(/^[\*\-\+] (.+)$/gm,"<li>$1</li>");
+  s = s.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, function(m){ return "<ul>"+m+"</ul>"; });
+  s = s.replace(/^\d+\. (.+)$/gm,"<li>$1</li>");
+  s = s.split("\n\n").map(function(p){
     p = p.trim();
-    if(!p) return '';
-    if(/^<(h[1-4]|ul|ol|li|pre|blockquote|hr|table|figure)/.test(p)) return p;
-    return '<p>'+p.replace(/\n/g,'<br>')+'</p>';
-  }).join('\n');
+    if(!p) return "";
+    if(/^<(h[1-4]|ul|ol|pre|blockquote|hr|figure)/.test(p)) return p;
+    return "<p>"+p.replace(/\n/g,"<br>")+"</p>";
+  }).join("\n");
   s = s.replace(/\x00CODE(\d+)\x00/g, function(_,i){ return codeBlocks[parseInt(i)]; });
   return s;
 }
+
+function renderHist(){
+  var list = document.getElementById("histList");
+  var ids = Object.keys(convs).sort(function(a,b){ return b.localeCompare(a); });
+  if(!ids.length){ list.innerHTML = '<div class="no-hist">Suas conversas aparecerão aqui.</div>'; return; }
+  list.innerHTML = ids.map(function(id){
+    var c = convs[id];
+    return '<div class="conv ' + (id===curId?"active":"") + '" onclick="loadConv(\''+id+'\')"><span class="conv-title">'+esc(c.title)+'</span><button class="conv-del" onclick="event.stopPropagation();delConv(\''+id+'\')">✕</button></div>';
+  }).join("");
+}
+
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+function loadConv(id){
+  var c = convs[id]; if(!c) return;
+  curId = id;
+  showMessages();
+  var msgs = document.getElementById("messages");
+  msgs.innerHTML = "";
+  c.messages.forEach(function(m){ renderMsg(m.role, m.content); });
+  msgs.scrollTop = msgs.scrollHeight;
+  renderHist(); closeSidebar();
+}
+
+function delConv(id){ delete convs[id]; save(); if(curId===id) newChat(); else renderHist(); }
+
+function newChat(){
+  curId = null;
+  document.getElementById("welcome").style.display = "flex";
+  var msgs = document.getElementById("messages");
+  msgs.classList.remove("show"); msgs.innerHTML = "";
+  renderHist(); closeSidebar(); hideStatus();
+}
+
+function clearChat(){
+  if(curId){ convs[curId].messages = []; save(); }
+  var msgs = document.getElementById("messages");
+  msgs.innerHTML = ""; msgs.classList.remove("show");
+  document.getElementById("welcome").style.display = "flex";
+  curId = null; renderHist(); hideStatus();
+}
+
+function showMessages(){
+  document.getElementById("welcome").style.display = "none";
+  document.getElementById("messages").classList.add("show");
+}
+
+function showStatus(msg, type){
+  var bar = document.getElementById("statusBar");
+  bar.textContent = msg;
+  bar.className = "status-bar show" + (type==="warn" ? " warn" : "");
+}
+function hideStatus(){ document.getElementById("statusBar").className = "status-bar"; }
+
+function renderMsg(role, text){
+  showMessages();
+  var msgs = document.getElementById("messages");
+  var row = document.createElement("div");
+  row.className = "msg-row " + (role==="user" ? "user" : "bot");
+  var inner = document.createElement("div");
+  inner.className = "msg-inner";
+  if(role === "bot"){
+    inner.innerHTML = '<div class="msg-av">A</div><div class="msg-content"><div class="msg-name">IA Afyados</div><div class="msg-text">' + md(text) + '</div></div>';
+  } else {
+    inner.innerHTML = '<div class="msg-content"><div class="msg-text">' + esc(text) + '</div></div>';
+  }
+  row.appendChild(inner);
+  msgs.appendChild(row);
+  msgs.scrollTop = msgs.scrollHeight;
+  return row;
+}
+
+function addTyping(){
+  showMessages();
+  var msgs = document.getElementById("messages");
+  var row = document.createElement("div");
+  row.className = "msg-row bot"; row.id = "typRow";
+  row.innerHTML = '<div class="msg-inner"><div class="msg-av">A</div><div class="msg-content"><div class="msg-name">IA Afyados</div><div class="msg-text"><div class="typing-dots"><span></span><span></span><span></span></div></div></div></div>';
+  msgs.appendChild(row); msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(function(){
+    if(document.getElementById("typRow")) showStatus("\u23F3 Servidor iniciando, aguarde...", "warn");
+  }, 8000);
+}
+function rmTyping(){ var t = document.getElementById("typRow"); if(t) t.remove(); }
+
+function callBackend(hist, onChunk, onDone, onError){
+  var controller = new AbortController();
+  var warnTimer = setTimeout(function(){
+    if(document.getElementById("typRow")) showStatus("\u23F3 Servidor acordando, aguarde alguns segundos...", "warn");
+  }, 6000);
+  var timeout = setTimeout(function(){ controller.abort(); }, 90000);
+  fetch(BACKEND + "/chat", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({messages: hist}),
+    signal: controller.signal
+  }).then(function(r){
+    clearTimeout(warnTimer); clearTimeout(timeout);
+    if(!r.ok){
+      return r.text().then(function(t){
+        var msg = "Erro no servidor (" + r.status + ").";
+        try{ msg = JSON.parse(t).error || msg; }catch(e){}
+        onError(msg);
+      });
+    }
+    var reader = r.body.getReader();
+    var decoder = new TextDecoder("utf-8");
+    var full = "";
+    function read(){
+      reader.read().then(function(result){
+        if(result.done){
+          if(!full.trim()) onError("Resposta vazia. Tente novamente.");
+          else onDone(full);
+          return;
+        }
+        full += decoder.decode(result.value, {stream: true});
+        onChunk(full);
+        read();
+      }).catch(function(e){ onError(e.message); });
+    }
+    read();
+  }).catch(function(e){
+    clearTimeout(warnTimer); clearTimeout(timeout);
+    onError(e.name === "AbortError" ? "Servidor demorou demais. Tente novamente em instantes." : (e.message || "Erro de conexão."));
+  });
+}
+
+function send(){
+  if(busy) return;
+  var inp = document.getElementById("inputBox");
+  var text = inp.value.trim(); if(!text) return;
+  hideStatus();
+  if(!curId){
+    curId = "c" + Date.now();
+    var title = text.length > 50 ? text.substring(0,50) + "\u2026" : text;
+    convs[curId] = {title: title, messages: []};
+  }
+  inp.value = ""; inp.style.height = "auto";
+  renderMsg("user", text);
+  convs[curId].messages.push({role:"user", content:text});
+  save(); renderHist();
+  busy = true; document.getElementById("sendBtn").disabled = true; addTyping();
+  var hist = convs[curId].messages.map(function(m){
+    return {role: m.role==="bot" ? "assistant" : m.role, content: m.content};
+  });
+  rmTyping();
+  var botRow = renderMsg("bot", "");
+  var bubble = botRow.querySelector(".msg-text");
+  bubble.classList.add("stream-cursor");
+  bubble.innerHTML = "";
+  callBackend(hist,
+    function(full){
+      bubble.innerHTML = md(full);
+      document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+    },
+    function(full){
+      bubble.classList.remove("stream-cursor");
+      bubble.innerHTML = md(full);
+      convs[curId].messages.push({role:"bot", content:full});
+      save(); busy = false;
+      document.getElementById("sendBtn").disabled = false;
+      hideStatus();
+    },
+    function(err){
+      bubble.classList.remove("stream-cursor");
+      bubble.innerHTML = "";
+      botRow.remove();
+      showStatus("\u274C " + err);
+      busy = false;
+      document.getElementById("sendBtn").disabled = false;
+    }
+  );
+}
+
+(function keepAlive(){
+  function ping(){ try{ fetch(BACKEND + "/"); }catch(e){} }
+  ping();
+  setInterval(ping, 9*60*1000);
+})();
+
+function useSug(t){ document.getElementById("inputBox").value = t; send(); }
+function onKey(e){ if(e.key==="Enter" && !e.shiftKey){ e.preventDefault(); send(); } }
+function resize(el){ el.style.height = "auto"; el.style.height = Math.min(el.scrollHeight, 160) + "px"; }
+function toggleSidebar(){ document.getElementById("sidebar").classList.toggle("open"); document.getElementById("sbOverlay").classList.toggle("show"); }
+function closeSidebar(){ document.getElementById("sidebar").classList.remove("open"); document.getElementById("sbOverlay").classList.remove("show"); }
+
+load(); renderHist();
+</script>
+</body>
+</html>
