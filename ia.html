@@ -236,20 +236,28 @@ function save(){ try{ localStorage.setItem("afy_c",JSON.stringify(convs)); }catc
 function md(raw){
   if(!raw) return "";
   var s=raw, blocks=[];
+  // Save code blocks first
   s=s.replace(/```(\w*)\n?([\s\S]*?)```/g,function(_,l,c){
     var i=blocks.length;
     blocks.push('<pre><code>'+c.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</code></pre>');
     return '\x00B'+i+'\x00';
   });
+  // Process headers BEFORE escaping HTML
+  s=s.replace(/^#{4} (.+)$/gm,'\x00H4$1\x00');
+  s=s.replace(/^#{3} (.+)$/gm,'\x00H3$1\x00');
+  s=s.replace(/^#{2} (.+)$/gm,'\x00H2$1\x00');
+  s=s.replace(/^#{1} (.+)$/gm,'\x00H1$1\x00');
+  // Now escape HTML
   s=s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  // Restore headers
+  s=s.replace(/\x00H4(.*?)\x00/g,'<h4>$1</h4>');
+  s=s.replace(/\x00H3(.*?)\x00/g,'<h3>$1</h3>');
+  s=s.replace(/\x00H2(.*?)\x00/g,'<h2>$1</h2>');
+  s=s.replace(/\x00H1(.*?)\x00/g,'<h1>$1</h1>');
   s=s.replace(/`([^`\n]+)`/g,'<code>$1</code>');
   s=s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,'<figure><img src="$2" alt="$1" onerror="this.style.display=\'none\'"><figcaption>$1</figcaption></figure>');
   s=s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
   s=s.replace(/(?<![="'])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
-  s=s.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
-  s=s.replace(/^### (.+)$/gm,'<h3>$1</h3>');
-  s=s.replace(/^## (.+)$/gm,'<h2>$1</h2>');
-  s=s.replace(/^# (.+)$/gm,'<h1>$1</h1>');
   s=s.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
   s=s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
   s=s.replace(/\*(.+?)\*/g,'<em>$1</em>');
@@ -375,7 +383,7 @@ function send(){
   var warnTimer=setTimeout(function(){
     if(document.getElementById('typRow')) showStatus('⏳ Servidor acordando, aguarde alguns segundos...');
   },7000);
-  var timeout=setTimeout(function(){controller.abort();},120000);
+  var timeout=setTimeout(function(){controller.abort();},180000);
 
   fetch(BACKEND+'/chat',{
     method:'POST',
@@ -430,7 +438,14 @@ function send(){
           read();
         }).catch(function(e){
           bubble.classList.remove('stream-cursor');
-          showStatus('❌ '+e.message,'err');
+          if(full.trim()){
+            // Save what we got even if connection dropped
+            convs[curId].messages.push({role:'bot',content:full});
+            save();
+            bubble.innerHTML=md(full);
+          } else {
+            showStatus('❌ Conexão interrompida. Tente novamente.','err');
+          }
           busy=false; document.getElementById('sendBtn').disabled=false;
         });
       }
