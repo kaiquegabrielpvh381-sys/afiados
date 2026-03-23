@@ -296,291 +296,37 @@ function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/
 function md(raw){
   if(!raw) return '';
   let s = raw;
-
-  // 1. Preservar blocos de código primeiro
   const codeBlocks = [];
-  s = s.replace(/```(\w*)\n?([\s\S]*?)```/g, (_,lang,code)=>{
+  s = s.replace(/```(\w*)\n?([\s\S]*?)```/g, function(_,lang,code){
     const i = codeBlocks.length;
-    codeBlocks.push(`<pre><code class="lang-${lang||'text'}">${code.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</code></pre>`);
-    return `\x00CODE${i}\x00`;
+    codeBlocks.push('<pre><code>' + code.trim().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</code></pre>');
+    return '\x00CODE' + i + '\x00';
   });
-
-  // 2. Escapar HTML (exceto blocos preservados)
   s = s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-
-  // 3. Inline code
   s = s.replace(/`([^`\n]+)`/g,'<code>$1</code>');
-
-  // 4. Imagens  ![alt](url)
-  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,(_, alt, url)=>{
-    return `<figure style="margin:12px 0;"><img src="${url}" alt="${alt}" style="max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.1);" onerror="this.parentElement.style.display='none'"><figcaption style="font-size:12px;color:#8e8ea0;margin-top:5px;">${alt}</figcaption></figure>`;
+  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function(_,alt,url){
+    return '<figure style="margin:12px 0;"><img src="'+url+'" alt="'+alt+'" style="max-width:100%;border-radius:10px;border:1px solid rgba(255,255,255,.1);" onerror="this.parentElement.style.display=\'none\'"><figcaption style="font-size:12px;color:#8e8ea0;margin-top:6px;">'+alt+'</figcaption></figure>';
   });
-
-  // 5. Links [texto](url)
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-
-  // 6. URLs soltas (autolink)
-  s = s.replace(/(?<![="'(])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
-
-  // 7. Headers
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  s = s.replace(/(?<![="'(])(https?:\/\/[^\s<>"')\]]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
   s = s.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
   s = s.replace(/^### (.+)$/gm,'<h3>$1</h3>');
   s = s.replace(/^## (.+)$/gm,'<h2>$1</h2>');
   s = s.replace(/^# (.+)$/gm,'<h1>$1</h1>');
-
-  // 8. Bold + italic
   s = s.replace(/\*\*\*(.+?)\*\*\*/g,'<strong><em>$1</em></strong>');
   s = s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
   s = s.replace(/\*(.+?)\*/g,'<em>$1</em>');
-  s = s.replace(/__(.+?)__/g,'<strong>$1</strong>');
-  s = s.replace(/_([^_\n]+)_/g,'<em>$1</em>');
-
-  // 9. HR
   s = s.replace(/^[-*]{3,}$/gm,'<hr>');
-
-  // 10. Blockquote
   s = s.replace(/^> (.+)$/gm,'<blockquote>$1</blockquote>');
-
-  // 11. Tabelas
-  const tableReg = /^(\|.+\|\n)((\|[-:| ]+\|\n))((\|.+\|\n?)+)/gm;
-  s = s.replace(tableReg, (match)=>{
-    const rows = match.trim().split('\n');
-    const head = rows[0].split('|').slice(1,-1).map(c=>`<th>${c.trim()}</th>`).join('');
-    const body = rows.slice(2).map(r=>{
-      const cells = r.split('|').slice(1,-1).map(c=>`<td>${c.trim()}</td>`).join('');
-      return `<tr>${cells}</tr>`;
-    }).join('');
-    return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
-  });
-
-  // 12. Listas não-ordenadas
-  s = s.replace(/^[\*\-\+] (.+)$/gm,'<li>$1</li>');
-  s = s.replace(/(<li>.*<\/li>\n?)+/g, m=>`<ul>${m}</ul>`);
-
-  // 13. Listas ordenadas
+  s = s.replace(/^[*\-+] (.+)$/gm,'<li>$1</li>');
+  s = s.replace(/(<li>[\s\S]*?<\/li>\n?)+/g, function(m){ return '<ul>'+m+'</ul>'; });
   s = s.replace(/^\d+\. (.+)$/gm,'<li>$1</li>');
-
-  // 14. Parágrafos
-  s = s.split('\n\n').map(p=>{
+  s = s.split('\n\n').map(function(p){
     p = p.trim();
     if(!p) return '';
     if(/^<(h[1-4]|ul|ol|li|pre|blockquote|hr|table|figure)/.test(p)) return p;
-    return `<p>${p.replace(/\n/g,'<br>')}</p>`;
+    return '<p>'+p.replace(/\n/g,'<br>')+'</p>';
   }).join('\n');
-
-  // 15. Restaurar blocos de código
-  s = s.replace(/\x00CODE(\d+)\x00/g, (_,i)=>codeBlocks[parseInt(i)]);
-
+  s = s.replace(/\x00CODE(\d+)\x00/g, function(_,i){ return codeBlocks[parseInt(i)]; });
   return s;
 }
-
-
-// ── HISTÓRICO ──
-function renderHist(){
-  var list = document.getElementById('histList');
-  var ids = Object.keys(convs).sort(function(a,b){ return b.localeCompare(a); });
-  if(!ids.length){ list.innerHTML='<div class="no-hist">Suas conversas aparecerão aqui.</div>'; return; }
-  list.innerHTML = ids.map(function(id){
-    var c = convs[id];
-    return '<div class="conv '+(id===curId?'active':'')+'" onclick="loadConv(\''+id+'\')">'+
-      '<span class="conv-name">'+esc(c.title)+'</span>'+
-      '<button class="conv-del" onclick="event.stopPropagation();delConv(\''+id+'\')" title="Excluir">&times;</button>'+
-      '</div>';
-  }).join('');
-}
-
-function loadConv(id){
-  var c = convs[id]; if(!c) return;
-  curId = id;
-  showMsgs();
-  var msgs = document.getElementById('messages');
-  msgs.innerHTML = '';
-  c.messages.forEach(function(m){ renderMsg(m.role, m.content); });
-  msgs.scrollTop = msgs.scrollHeight;
-  renderHist(); closeSidebar();
-}
-
-function delConv(id){ delete convs[id]; save(); if(curId===id) newChat(); else renderHist(); }
-
-function newChat(){
-  curId = null;
-  document.getElementById('welcome').style.display = 'flex';
-  var msgs = document.getElementById('messages');
-  msgs.classList.remove('show'); msgs.innerHTML = '';
-  renderHist(); closeSidebar(); hideStatus();
-}
-
-function clearChat(){
-  if(curId){ convs[curId].messages=[]; save(); }
-  var msgs = document.getElementById('messages');
-  msgs.innerHTML=''; msgs.classList.remove('show');
-  document.getElementById('welcome').style.display='flex';
-  curId=null; renderHist(); hideStatus();
-}
-
-function showMsgs(){
-  document.getElementById('welcome').style.display='none';
-  document.getElementById('messages').classList.add('show');
-}
-
-// ── STATUS ──
-function showStatus(msg, type){
-  var bar = document.getElementById('statusBar');
-  bar.textContent = msg;
-  bar.className = 'status-bar show ' + (type||'error');
-}
-function hideStatus(){ document.getElementById('statusBar').className='status-bar'; }
-
-// ── RENDER MENSAGEM ──
-function renderMsg(role, text){
-  showMsgs();
-  var msgs = document.getElementById('messages');
-  var row = document.createElement('div');
-  row.className = 'msg-row ' + (role==='user'?'user':'bot');
-  var inner = document.createElement('div');
-  inner.className = 'msg-inner';
-  if(role==='bot'){
-    inner.innerHTML =
-      '<div class="av">A</div>'+
-      '<div class="msg-body">'+
-        '<div class="msg-sender">IA Afyados</div>'+
-        '<div class="msg-text">'+md(text)+'</div>'+
-      '</div>';
-  } else {
-    inner.innerHTML =
-      '<div class="msg-body">'+
-        '<div class="msg-text">'+esc(text)+'</div>'+
-      '</div>';
-  }
-  row.appendChild(inner);
-  msgs.appendChild(row);
-  msgs.scrollTop = msgs.scrollHeight;
-  return row;
-}
-
-function addTyping(){
-  showMsgs();
-  var msgs = document.getElementById('messages');
-  var row = document.createElement('div');
-  row.className = 'msg-row bot'; row.id = 'typRow';
-  row.innerHTML =
-    '<div class="msg-inner">'+
-      '<div class="av">A</div>'+
-      '<div class="msg-body">'+
-        '<div class="msg-sender">IA Afyados</div>'+
-        '<div class="msg-text"><div class="typing"><span></span><span></span><span></span></div></div>'+
-      '</div>'+
-    '</div>';
-  msgs.appendChild(row); msgs.scrollTop = msgs.scrollHeight;
-  setTimeout(function(){
-    if(document.getElementById('typRow'))
-      showStatus('Aguarde, o servidor pode estar iniciando...','warn');
-  }, 8000);
-}
-function rmTyping(){ var t=document.getElementById('typRow'); if(t) t.remove(); }
-
-// ── STREAMING ──
-function callStream(hist, onChunk, onDone, onError){
-  var controller = new AbortController();
-  var timeout = setTimeout(function(){ controller.abort(); }, 90000);
-  fetch(BACKEND+'/chat', {
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({messages:hist}),
-    signal:controller.signal
-  }).then(function(r){
-    clearTimeout(timeout);
-    if(!r.ok){
-      return r.text().then(function(t){
-        var msg = 'Erro no servidor ('+r.status+').';
-        try{ msg = JSON.parse(t).error || msg; }catch(e){}
-        onError(msg);
-      });
-    }
-    var reader = r.body.getReader();
-    var decoder = new TextDecoder('utf-8');
-    var full = '';
-    function read(){
-      reader.read().then(function(res){
-        if(res.done){
-          if(!full.trim()) onError('Resposta vazia. Tente novamente.');
-          else onDone(full);
-          return;
-        }
-        full += decoder.decode(res.value, {stream:true});
-        onChunk(full);
-        read();
-      }).catch(function(e){ onError(e.message||'Erro na leitura.'); });
-    }
-    read();
-  }).catch(function(e){
-    clearTimeout(timeout);
-    if(e.name==='AbortError') onError('Servidor demorou demais. Tente novamente em instantes.');
-    else onError(e.message||'Erro de conexão.');
-  });
-}
-
-// ── SEND ──
-function send(){
-  if(busy) return;
-  var inp = document.getElementById('ibox');
-  var text = inp.value.trim(); if(!text) return;
-  hideStatus();
-  if(!curId){
-    curId = 'c'+Date.now();
-    var title = text.length>50 ? text.substring(0,50)+'\u2026' : text;
-    convs[curId] = {title:title, messages:[]};
-  }
-  inp.value=''; inp.style.height='auto';
-  renderMsg('user', text);
-  convs[curId].messages.push({role:'user', content:text});
-  save(); renderHist();
-  busy=true; document.getElementById('sbtn').disabled=true; addTyping();
-  var hist = convs[curId].messages.map(function(m){
-    return {role: m.role==='bot'?'assistant':m.role, content:m.content};
-  });
-
-  rmTyping();
-  var botRow = renderMsg('bot','');
-  var bubble = botRow.querySelector('.msg-text');
-  bubble.classList.add('cursor');
-  bubble.innerHTML = '';
-
-  callStream(hist,
-    function(full){
-      bubble.innerHTML = md(full);
-      document.getElementById('messages').scrollTop = document.getElementById('messages').scrollHeight;
-    },
-    function(full){
-      bubble.classList.remove('cursor');
-      bubble.innerHTML = md(full);
-      convs[curId].messages.push({role:'bot', content:full});
-      save(); renderHist();
-      busy=false; document.getElementById('sbtn').disabled=false; hideStatus();
-    },
-    function(err){
-      bubble.classList.remove('cursor');
-      botRow.remove();
-      showStatus(err, 'error');
-      busy=false; document.getElementById('sbtn').disabled=false;
-    }
-  );
-}
-
-// ── KEEP-ALIVE ──
-(function(){
-  function ping(){ try{ fetch(BACKEND+'/',{method:'GET'}); }catch(e){} }
-  ping();
-  setInterval(ping, 9*60*1000);
-})();
-
-function useSug(t){ document.getElementById('ibox').value=t; send(); }
-function onKey(e){ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); send(); } }
-function resize(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,150)+'px'; }
-function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); document.getElementById('sbOverlay').classList.toggle('show'); }
-function closeSidebar(){ document.getElementById('sidebar').classList.remove('open'); document.getElementById('sbOverlay').classList.remove('show'); }
-
-load(); renderHist();
-</script>
-</body>
-</html>
