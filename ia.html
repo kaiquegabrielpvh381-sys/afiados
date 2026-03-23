@@ -430,14 +430,15 @@ function send(){
               var parsed=JSON.parse(data);
               if(parsed.text){
                 full+=parsed.text;
-                // Show plain text during streaming to avoid trembling
-                // Only render markdown every 50 chars to reduce flicker
-                if(full.length % 50 === 0){
-                  bubble.innerHTML=md(full);
-                } else {
-                  bubble.textContent=full;
+                // Use requestAnimationFrame to render smoothly without trembling
+                if(!bubble._rafPending){
+                  bubble._rafPending=true;
+                  requestAnimationFrame(function(){
+                    bubble._rafPending=false;
+                    bubble.innerHTML=md(full);
+                    document.getElementById('chatFlow').scrollTop=document.getElementById('chatFlow').scrollHeight;
+                  });
                 }
-                document.getElementById('chatFlow').scrollTop=document.getElementById('chatFlow').scrollHeight;
               }
             }catch(e){}
           });
