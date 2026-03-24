@@ -624,28 +624,30 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
       </a>
     </div>
     <div class="reveal" style="position:relative;">
-      <!-- Phone mockup with video -->
+      <!-- Phone mockup with video thumbnail -->
       <div style="
-        max-width:min(280px, 75vw);
+        max-width:min(280px,75vw);
         width:100%;
         margin:0 auto;
         background:#000;
         border-radius:36px;
         padding:10px;
-        box-shadow:0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08), 0 0 60px rgba(214,0,110,0.15);
+        box-shadow:0 40px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.08),0 0 60px rgba(214,0,110,0.15);
         position:relative;
       ">
         <!-- Phone notch -->
         <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);width:60px;height:5px;background:#111;border-radius:10px;z-index:2;"></div>
-        <!-- Video -->
-        <div style="border-radius:28px;overflow:hidden;aspect-ratio:9/16;background:#000;">
-          <iframe
-            src="https://drive.google.com/file/d/1ip8WqqQRVZJIkWLP5i83XAjb6RRIWk0l/preview"
-            style="width:100%;height:100%;border:none;"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
-        </div>
+        <!-- Video clickable area -->
+        <a href="https://drive.google.com/file/d/1ip8WqqQRVZJIkWLP5i83XAjb6RRIWk0l/view" target="_blank" style="text-decoration:none;display:block;border-radius:28px;overflow:hidden;aspect-ratio:9/16;background:linear-gradient(135deg,#1A0B26,#0C0810);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;cursor:pointer;">
+          <!-- Play button -->
+          <div style="width:64px;height:64px;background:#D6006E;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 30px rgba(214,0,110,0.6);transition:transform .2s;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          </div>
+          <div style="text-align:center;padding:0 20px;">
+            <div style="color:white;font-weight:700;font-size:14px;margin-bottom:4px;">Ver demonstração</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:12px;">Clique para assistir</div>
+          </div>
+        </a>
       </div>
       <!-- Glow effect -->
       <div style="position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:200px;height:60px;background:radial-gradient(ellipse,rgba(214,0,110,0.3),transparent 70%);filter:blur(20px);pointer-events:none;"></div>
