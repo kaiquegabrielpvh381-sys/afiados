@@ -264,7 +264,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
 .periodo-tab.active .periodo-lbl{color:rgba(255,255,255,.8);}
 .periodo-content{display:none;}
 .periodo-content.active{display:block;animation:fadeUp .3s ease;}
-.periodo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.periodo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
 .periodo-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px;transition:all .25s;cursor:pointer;}
 .periodo-card:hover{border-color:var(--border-pink);transform:translateY(-4px);box-shadow:0 20px 50px rgba(214,0,110,.1);}
 .periodo-icon{font-size:32px;margin-bottom:16px;}
@@ -286,7 +286,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
     <li><a href="#" onclick="goTo('materias');return false;" >Matérias</a></li>
     <li><a href="#" onclick="goTo('precos');return false;" >Preços</a></li>
     <li><a href="#" onclick="goTo('depoimentos');return false;" >Depoimentos</a></li>
-    <li><a href="ia.html">IA Afyados 🤖</a></li>
+    <li><a href="#" onclick="goTo('precos');return false;">IA Afyados 🤖</a></li>
     <li><a href="https://chat.whatsapp.com/IjYG3J8y7VJFUK4e5FrbdZ" target="_blank" class="nav-btn">Entrar na comunidade</a></li>
   </ul>
 </nav>
@@ -449,11 +449,17 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
         <p>Grupo exclusivo no WhatsApp para alunos do 1º período. Tire dúvidas e troque experiências.</p>
         <span style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;color:var(--pink-light);">Entrar no grupo →</span>
       </a>
-      <a href="apgs.html" class="periodo-card" style="text-decoration:none;color:inherit;">
+      <a href="apgs1.html" class="periodo-card" style="text-decoration:none;color:inherit;">
         <div class="periodo-icon">📋</div>
         <h4>APG's</h4>
-        <p>Roteiros completos para as 8 APGs do 1º período. Acesse e compre individualmente.</p>
-        <span style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;color:var(--pink-light);">Ver APGs disponíveis →</span>
+        <p>Roteiros completos para as APGs do 1º período com objetivos, hipóteses e referências.</p>
+        <span style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;color:var(--pink-light);">Ver APGs →</span>
+      </a>
+      <a href="simulados1.html" class="periodo-card" style="text-decoration:none;color:inherit;background:linear-gradient(135deg,rgba(214,0,110,0.08),rgba(155,0,232,0.04));border-color:var(--border-pink);">
+        <div class="periodo-icon">📝</div>
+        <h4>Simulados e Provas</h4>
+        <p>Simulados completos com gabarito comentado e provas anteriores do 1º período.</p>
+        <span style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;color:var(--pink-light);">Ver simulados →</span>
       </a>
     </div>
   </div>
@@ -476,9 +482,15 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
       <div class="periodo-card" style="opacity:0.6;cursor:default;">
         <div class="periodo-icon">📋</div>
         <h4>APG's</h4>
-        <p>Roteiros completos para as APGs do 2º período. Link em breve!</p>
+        <p>Roteiros completos para as APGs do 2º período. Em breve!</p>
         <span style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;color:var(--muted);">Em breve</span>
       </div>
+      <a href="simulados2.html" class="periodo-card" style="text-decoration:none;color:inherit;background:linear-gradient(135deg,rgba(214,0,110,0.08),rgba(155,0,232,0.04));border-color:var(--border-pink);">
+        <div class="periodo-icon">📝</div>
+        <h4>Simulados e Provas</h4>
+        <p>Simulados completos com gabarito comentado e provas anteriores do 2º período.</p>
+        <span style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:12px;font-weight:700;color:var(--pink-light);">Ver simulados →</span>
+      </a>
     </div>
   </div>
 
@@ -513,7 +525,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
         <li>Referências bibliográficas</li>
         <li>Entrega rápida via Kiwify Cursos</li>
       </ul>
-      <a href="apgs.html" class="btn-ghost" style="width:100%;justify-content:center;text-decoration:none;">1º Período</a>
+      <a href="https://chat.whatsapp.com/IjYG3J8y7VJFUK4e5FrbdZ" target="_blank" class="btn-ghost" style="width:100%;justify-content:center;text-decoration:none;">Quero uma APG</a>
     </div>
     <div class="preco-card hot reveal">
       <div class="p-icon">💎</div>
@@ -606,7 +618,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:64px 56p
       <div class="s-label reveal">Inteligência Artificial</div>
       <h2 class="s-title reveal">Sua tutora de<br>medicina <em style="font-style:italic;background:linear-gradient(135deg,#FF1A7E,#FF6EB4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">particular.</em></h2>
       <p class="s-sub reveal" style="margin-bottom:36px;">Tire dúvidas sobre APGs, SOI, embriologia e qualquer conteúdo da Afya — a qualquer hora do dia ou da noite.</p>
-      <a href="ia.html" class="btn-pink reveal" style="display:inline-flex;align-items:center;gap:10px;font-size:16px;padding:16px 32px;text-decoration:none;">
+      <a href="#" onclick="goTo('precos');return false;" class="btn-pink reveal" style="display:inline-flex;align-items:center;gap:10px;font-size:16px;padding:16px 32px;text-decoration:none;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         Acessar a IA Afyados
       </a>
