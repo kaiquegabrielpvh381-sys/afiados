@@ -124,7 +124,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .dot-disc{background:#D4A8FF;}
 .q-rev-row span{flex:1;font-size:13px;color:var(--light);}
 .q-rev-row small{font-size:12px;color:var(--muted);}
-.system-cite{display:none;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:640px){
   nav,.sticky-bar{padding-left:16px;padding-right:16px;}
@@ -149,6 +148,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
     Voltar aos simulados
   </a>
 </nav>
+
 <div class="sticky-bar">
   <div class="sticky-inner">
     <div class="sticky-top">
@@ -161,6 +161,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
     <div class="q-pills" id="qPills"></div>
   </div>
 </div>
+
 <div class="main">
   <div class="result-screen" id="resultScreen">
     <div class="res-card">
@@ -179,6 +180,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
       <div id="reportContent"></div>
     </div>
   </div>
+
   <div class="q-card" id="qCard">
     <div class="q-card-header">
       <span class="q-tag" id="qTagNum">Questão 1</span>
@@ -206,110 +208,111 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
     </div>
   </div>
 </div>
+
 <script>
 var QS = [
   {n:1,tema:"Classificação dos Nervos Cranianos",tipo:"mc",
-   text:"Assim como o nervo trigêmeo (V par craniano) e o facial (VII par craniano), o nervo vestibulococlear (VIII par craniano) é considerado misto pois possui tanto fibras sensoriais (aferentes) quanto fibras motoras (eferentes) PORQUE o nervo vestibulococlear está associado à audição e ao equilíbrio, transmitindo informações do ouvido interno para o cérebro.",
+   text:"Assim como o nervo trigêmeo (V par craniano) e o facial (VII par craniano), o nervo vestibulococlear (VIII par craniano) é considerado misto pois possui tanto fibras sensoriais (aferentes) quanto fibras motoras (eferentes)\n\nPORQUE\n\nO nervo vestibulococlear (VIII par craniano) está associado à audição e ao equilíbrio, transmitindo informações do ouvido interno para o cérebro.",
    opts:["A primeira asserção é verdadeira e a segunda é falsa.","Ambas as asserções são verdadeiras e a segunda justifica a primeira.","A primeira asserção é falsa e a segunda é verdadeira.","Ambas as asserções são falsas."],
    g:2},
   {n:2,tema:"Vias de Sensibilidade (Dor e Tato)",tipo:"mc",
-   context:"Paciente com lesão no membro superior direito refere dor local e perda de tato discriminativo na ponta do dedo.",
+   context:"Paciente com lesão na extremidade do membro superior direito refere dor local e perda no tato discriminativo na ponta do dedo lesionado.",
    text:"Sobre a lesão e as alterações de sensibilidade, podemos afirmar que:",
-   opts:["A via da dor é a coluna dorsal-lemnisco medial e a do tato é a espinotalâmica.","Ambas as sensibilidades ascendem pelo mesmo trato medular sem cruzar a linha média.","A via da dor cruza no bulbo e a do tato cruza imediatamente na medula.","A via da dor (espinotalâmica) cruza na medula e a via do tato (coluna dorsal) cruza no bulbo."],
+   opts:["A via da dor é a coluna dorsal e a do tato é a espinotalâmica.","A via da dor ascende ipsilateralmente na medula espinal.","Ambas as vias cruzam no mesmo nível anatômico na medula.","A via da dor (espinotalâmica) cruza na medula e a via do tato (coluna dorsal) cruza no bulbo."],
    g:3},
   {n:3,tema:"Sistema Nervoso Autônomo Parassimpático",tipo:"mc",
-   context:"Paciente de 30 anos apresenta bradicardia, constrição pupilar e hipersalivação em momentos de relaxamento.",
-   text:"Qual a origem anatômica das fibras nervosas responsáveis por estes sintomas?",
-   opts:["Tronco cerebral e região sacral da medula.","Regiões torácica e lombar da medula.","Exclusivamente no gânglio celíaco.","Cadeia de gânglios paravertebrais cervicais."],
+   context:"Paciente apresenta bradicardia, constrição das pupilas e aumento da atividade salivar após momentos de relaxamento.",
+   text:"Qual a origem anatômica das fibras nervosas responsáveis por esses sintomas?",
+   opts:["Tronco cerebral e segmento sacral da medula.","Regiões torácica e lombar da medula.","Exclusivamente no gânglio celíaco.","Cadeia de gânglios paravertebrais cervicais."],
    g:0},
   {n:4,tema:"Anatomia do Manguito Rotador",tipo:"mc",
-   context:"Atleta de vôlei diagnosticada com lesão no manguito rotador após saque de alta velocidade.",
+   context:"Jogadora de vôlei diagnosticada com lesão no manguito rotador após saque de alta velocidade.",
    text:"Quais músculos compõem esta estrutura estabilizadora?",
-   opts:["Supraespinhal, infraespinal, redondo menor e subescapular.","Deltoide, redondo maior, supraespinhal e infraespinal.","Subescapular, redondo maior, trapézio e serrátil anterior.","Supraespinhal, redondo menor, bíceps braquial e deltoide."],
+   opts:["Supraespinhal, infraespinal, redondo menor e subescapular.","Deltoide, redondo maior, supraespinhal e infraespinal.","Subescapular, redondo maior, bíceps braquial e deltoide.","Infraespinal, redondo maior, supraespinhal e redondo menor."],
    g:0},
   {n:5,tema:"Junção Neuromuscular (Miastenia Gravis)",tipo:"mc",
    context:"Paciente com fraqueza muscular progressiva e presença de autoanticorpos contra receptores de acetilcolina.",
    text:"Qual a principal dificuldade fisiológica apresentada?",
-   opts:["Produzir acetilcolina no terminal axonal pré-sináptico.","Conduzir o impulso elétrico pelo axônio do neurônio motor.","Transmitir o sinal elétrico via junção neuromuscular.","Reciclar a colina após a ação da acetilcolinesterase."],
+   opts:["Produzir acetilcolina no neurônio motor.","Degradar a acetilcolina na fenda sináptica.","Transmitir o sinal elétrico via junção neuromuscular.","Conduzir o estímulo pelo axônio do nervo motor."],
    g:2},
   {n:6,tema:"Meninges e Pia-Máter",tipo:"mc",
    text:"Qual meninge é altamente vascularizada, penetra nos sulcos cerebrais e forma os ligamentos denticulados na medula?",
-   opts:["Dura-máter.","Pia-máter.","Aracnoide-máter.","Espaço epidural."],
-   g:1},
+   opts:["Dura-máter.","Aracnoide-máter.","Pia-máter.","Espaço subaracnóideo."],
+   g:2},
   {n:7,tema:"Córtex Cerebral e Homúnculo",tipo:"mc",
    text:"Onde se localizam as representações motora e somatossensorial do Homúnculo de Penfield, respetivamente?",
-   opts:["Giro pré-central (frontal) e giro pós-central (parietal).","Giro temporal superior e lobo occipital.","Cerebelo e tronco encefálico.","Corpo caloso e núcleos da base."],
+   opts:["Giro pré-central (frontal) e giro pós-central (parietal).","Giro temporal superior e lobo occipital.","Bulbo e cerebelo.","Corpo caloso e núcleos da base."],
    g:0},
   {n:8,tema:"Histologia e Reparo Ósseo",tipo:"disc",
-   context:"Paciente com fratura transversal no fêmur direito.",
-   text:"A) Caracterize histologicamente as três principais células do tecido ósseo. B) Explique o papel dos osteoblastos e osteoclastos no processo de reparo.",
-   resposta:"A) Osteoblastos: células cuboides sintéticas na superfície. Osteócitos: células achatadas em lacunas (matriz). Osteoclastos: células grandes multinucleadas de reabsorção. B) Os osteoclastos limpam os detritos e a matriz danificada (fase reativa). Os osteoblastos formam o calo ósseo inicial e depositam matriz madura na fase de consolidação e remodelação."},
+   context:"Paciente com fratura transversal no terço médio do fêmur.",
+   text:"A) Caracterize histologicamente as três principais células do tecido ósseo. B) Explique o papel dessas células no processo de reparo após a fratura.",
+   resposta:"A) Osteoblastos: células cuboides sintéticas na superfície. Osteócitos: células achatadas em lacunas da matriz. Osteoclastos: células multinucleadas grandes de reabsorção. B) Osteoclastos limpam detritos (fase reativa). Osteoblastos formam o calo ósseo e depositam matriz (consolidação). Osteócitos detectam estresse mecânico e regulam a remodelação."},
   {n:9,tema:"Articulação do Cotovelo",tipo:"mc",
-   context:"Criança de 4 anos com subluxação da cabeça do rádio após tração longitudinal súbita no braço.",
-   text:"Qual ligamento falhou em manter a cabeça do rádio no lugar?",
-   opts:["Ligamento colateral ulnar.","Ligamento colateral radial.","Ligamento anular do rádio.","Ligamento interósseo."],
+   context:"Criança de 4 anos com sub-luxação na cabeça do rádio após tração longitudinal súbita no braço.",
+   text:"Qual ligamento falhou em manter o rádio no lugar?",
+   opts:["Ligamento colateral radial.","Ligamento colateral ulnar.","Ligamento anular do rádio.","Ligamento interósseo."],
    g:2},
-  {n:10,tema:"Traumas na Coluna e Vias Sensoriais",tipo:"mc",
-   text:"I. Traumas na coluna podem causar perda de percepção sensorial abaixo da lesão PORQUE II. os impulsos ascendem pelo trato espinotalâmico e funículos posteriores para chegar ao encéfalo.",
+  {n:10,tema:"Vias Sensoriais e Traumas",tipo:"mc",
+   text:"I. Traumas na coluna podem afetar a percepção sensorial abaixo da lesão PORQUE II. os impulsos ascendem pelo trato espinotalâmico e funículos posteriores.",
    opts:["A primeira afirmação é falsa e a segunda é verdadeira.","Ambas são verdadeiras e a II justifica a I.","Ambas são verdadeiras mas a II não justifica a I.","A primeira é verdadeira e a segunda é falsa."],
    g:1},
   {n:11,tema:"Sistema e Via Olfatória",tipo:"mc",
    text:"Sobre a anatomia e via neural do olfato, é correto afirmar:",
-   opts:["Receptores no teto das cavidades nasais enviam sinais via nervo olfatório ao bulbo olfatório.","Os sinais são transmitidos via nervo trigémeo diretamente ao tálamo.","Os receptores localizam-se nas glândulas salivares da orofaringe.","A via olfativa integra-se ao nervo vestibulococlear no tronco encefálico."],
+   opts:["Receptores no teto das cavidades nasais enviam sinais via nervo olfatório ao bulbo olfatório.","Os sinais são transmitidos via nervo trigémeo diretamente ao tálamo.","Os receptores localizam-se no fundo das cavidades nasais e enviam sinais ao cerebelo.","A via olfativa integra-se ao nervo vestibulococlear no tronco encefálico."],
    g:0},
   {n:12,tema:"Articulação do Tornozelo",tipo:"mc",
    text:"Sobre a biomecânica do tornozelo, é correto afirmar:",
-   opts:["É do tipo gínglimo, limitando-se a dorsiflexão e flexão plantar, sendo suscetível a inversão.","Permite livre rotação axial devido à frouxidão do ligamento deltoide.","A inversão e eversão ocorrem primariamente na articulação talocrural.","É uma articulação fibrosa do tipo sindesmose puramente motora."],
-   g:0},
+   opts:["Permite livre rotação axial devido à frouxidão do ligamento deltoide.","É sinovial do tipo gínglimo, limitada a dorsiflexão e flexão plantar, sendo suscetível a inversão.","A inversão e eversão ocorrem primariamente na articulação talocrural.","É uma articulação fibrosa puramente motora."],
+   g:1},
   {n:13,tema:"Tronco Encefálico",tipo:"disc",
-   context:"[[IMG_Q13]]",
-   text:"A) Identifique as estruturas 1, 2 e 3. B) Cite duas funções associadas ao bulbo (estrutura 3).",
-   resposta:"A) 1-Mesencéfalo, 2-Ponte, 3-Bulbo. B) O bulbo contém os centros vitais que controlam a respiração e os batimentos cardíacos, além de núcleos de nervos cranianos como o Vago (X) e Hipoglosso (XII)."},
+   context:"Segmento do sistema nervoso entre a medula e o cérebro subdividido em três partes.\n\n[[IMG_Q13]]",
+   text:"A) Identifique as estruturas 1, 2 e 3. B) Descreva as características anatômicas e funções do bulbo (estrutura 3).",
+   resposta:"A) 1-Mesencéfalo, 2-Ponte, 3-Bulbo. B) O bulbo é a porção caudal, contém centros vitais respiratórios e cardiovasculares, pirâmides bulbares e núcleos dos nervos cranianos VII, X e XII."},
   {n:14,tema:"Histologia Muscular",tipo:"mc",
-   context:"Paciente com atrofia muscular e dificuldade em subir escadas.",
+   context:"Paciente com atrofia muscular e fraqueza progressiva para subir escadas.",
    text:"O tecido muscular comprometido (esquelético) caracteriza-se por contração:",
-   opts:["Forte, rápida, voluntária e não contínua.","Fraca, lenta, rítmica e involuntária.","Forte, rápida, rítmica e involuntária.","Lenta, contínua, voluntária e vascularizada."],
+   opts:["Forte, rápida, voluntária e não contínua.","Fraca, lenta, rítmica e involuntária.","Forte, rápida, rítmica e involuntária.","Lenta, contínua e involuntária."],
    g:0},
   {n:15,tema:"Anatomia Comparada da Pelve",tipo:"mc",
-   text:"Qual a principal diferença estrutural da pelve feminina em relação à masculina para favorecer o parto?",
-   opts:["É mais larga e menos profunda.","É mais estreita e mais profunda.","Possui ossos mais pesados e sínfise púbica rígida.","Apresenta um arco púbico agudo e sacro alongado."],
+   text:"Qual a principal diferença estrutural da pelve feminina para favorecer o parto?",
+   opts:["É mais larga e menos profunda.","É mais estreita e mais profunda.","Possui ossos mais pesados e sínfise rígida.","Apresenta o arco púbico agudo e estreito."],
    g:0}
 ];
 
 var SHORT = [
-  "O nervo VIII é puramente sensitivo; nervos mistos são o V, VII, IX e X. [cite: 1052, 1191]",
-  "A dor (espinotalâmica) cruza na medula; o tato fino (coluna dorsal) cruza no bulbo. [cite: 1060, 1061, 1211, 1212]",
-  "O parassimpático tem origem craniossacral (tronco cerebral e segmentos sacrais). [cite: 1071, 1236, 1240]",
-  "O manguito rotador estabiliza o ombro com os músculos supra, infra, redondo menor e subescapular. [cite: 1079, 1258]",
-  "A Miastenia Gravis bloqueia os receptores de ACh na junção neuromuscular, impedindo o sinal. [cite: 1085, 1086, 1276]",
-  "A pia-máter é a meninge interna vascularizada que adere ao tecido nervoso. [cite: 1092, 1093, 1294]",
-  "O motor fica no giro pré-central (lobo frontal) e o sensorial no pós-central (lobo parietal). [cite: 1099, 1318, 1319]",
+  "O nervo vestibulococlear (VIII) é exclusivamente sensitivo, ao contrário do trigêmeo (V) e facial (VII), que são mistos.",
+  "A dor (espinotalâmica) cruza imediatamente na medula; o tato fino (coluna dorsal) cruza no bulbo.",
+  "Fibras parassimpáticas originam-se nos núcleos cranianos do tronco e no segmento sacral da medula.",
+  "O manguito rotador é formado pelos músculos supraespinhal, infraespinal, redondo menor e subescapular.",
+  "A Miastenia Gravis gera anticorpos que impedem a ligação da acetilcolina no receptor da placa motora muscular.",
+  "A pia-máter é a meninge vascularizada que adere intimamente ao tecido nervoso e forma os ligamentos denticulados.",
+  "O homúnculo motor fica no giro pré-central (lobo frontal) e o somatossensorial no giro pós-central (lobo parietal).",
   null,
-  "O ligamento anular envolve a cabeça do rádio e é vulnerável a trações longitudinais em crianças. [cite: 1116, 1117, 1382]",
-  "A interrupção medular corta a comunicação das vias espinotalâmica e funículos posteriores. [cite: 1124, 1414]",
-  "A via olfatória capta estímulos no teto nasal e segue pelo nervo I até o bulbo. [cite: 1130, 1131, 1438]",
-  "A articulação talocrural funciona em dobradiça (gínglimo) para flexão/extensão. [cite: 1137, 1477]",
+  "O ligamento anular mantém a cabeça do rádio na incisura da ulna; trações súbitas causam o 'cotovelo da babá'.",
+  "A interrupção medular impede que impulsos de dor e tato epicrítico atinjam os centros superiores.",
+  "A via olfativa capta estímulos no teto nasal e segue pelo nervo I até o bulbo olfatório.",
+  "A articulação talocrural funciona como dobradiça (gínglimo), restringindo movimentos laterais.",
   null,
-  "O músculo esquelético realiza contrações rápidas, fortes e sob controlo voluntário. [cite: 1152, 1538]",
-  "A pelve feminina é mais larga, ampla e rasa para permitir a passagem do feto. [cite: 1158, 1558]"
+  "O músculo esquelético realiza contrações potentes e voluntárias sob comando do sistema nervoso somático.",
+  "A pelve feminina possui o estreito superior mais largo e o arco púbico mais aberto para facilitar o parto."
 ];
 
 var DEEP = [
-  "A classificação funcional separa nervos sensitivos, motores e mistos. O VIII é puramente aferente. [cite: 1054, 1057, 1191]",
-  "A decussação sensorial ocorre em níveis diferentes conforme a modalidade do estímulo. [cite: 1064, 1065, 1211, 1212]",
-  "O SNA parassimpático atua na conservação de energia e repouso (bradicardia e miose). [cite: 1073, 1074, 1235, 1237]",
-  "Estes músculos mantêm a cabeça do úmero centralizada na cavidade glenoidal. [cite: 1081, 1258]",
-  "Embora a ACh seja produzida, os autoanticorpos bloqueiam a sua ligação no músculo. [cite: 1088, 1089, 1276]",
-  "Pia-máter significa 'mãe carinhosa', refletindo a sua adesão íntima e nutrição do SNC. [cite: 1095, 1294, 1296]",
-  "Wilder Penfield mapeou estas áreas conforme a densidade de inervação de cada parte do corpo. [cite: 1101, 1318, 1319]",
-  "Osteoclastos reabsorvem osso; osteoblastos formam a matriz; osteócitos monitorizam o stress. [cite: 1107, 1113, 1342, 1348, 1352]",
-  "Este trauma é comum em crianças ('cotovelo da babá') porque o ligamento ainda é frouxo. [cite: 1119, 1121, 1382]",
-  "A medula é o cabo de ligação entre cérebro e periferia para dor, tato e propriocepção. [cite: 1126, 1128, 1406, 1417]",
-  "O olfato é o único sentido que atinge o córtex sem passar obrigatoriamente pelo tálamo. [cite: 1132, 1450, 1452]",
-  "Torções ocorrem na subtalar, mas a talocrural sofre o stress mecânico por ser gínglimo. [cite: 1140, 1141, 1477, 1486]",
-  "O tronco encefálico contém centros de controlo cardiovascular e respiratório vitais. [cite: 1144, 1145, 1509, 1516]",
-  "Diferente do liso e cardíaco, o esquelético depende de sinalização voluntária central. [cite: 1154, 1538]",
-  "A pelve masculina é desenhada para suporte de peso; a feminina para a reprodução humana. [cite: 1161, 1162, 1558]"
+  "A classificação funcional separa nervos sensitivos (I, II, VIII), motores (III, IV, VI, XI, XII) e mistos (V, VII, IX, X). O VIII par dedica-se estritamente à audição e equilíbrio.",
+  "A decussação sensorial ocorre em níveis diferentes: a via anterolateral cruza na medula, enquanto o sistema coluna dorsal-lemnisco medial decussa no bulbo.",
+  "O SNA parassimpático é classificado como craniossacral devido à localização dos corpos celulares pré-ganglionares nos núcleos cranianos e medula sacral.",
+  "Este complexo mantém a estabilidade dinâmica da cabeça do úmero na cavidade glenoidal durante movimentos rápidos do braço.",
+  "A falha sináptica ocorre na etapa pós-sináptica: embora a ACh seja produzida, ela não consegue despolarizar a fibra devido ao bloqueio dos receptores.",
+  "Pia-máter significa 'mãe carinhosa', refletindo sua adesão íntima ao SNC para nutrição e proteção contra deslocamentos bruscos.",
+  "Wilder Penfield mapeou a proporção de córtex conforme a precisão e sensibilidade; mãos e lábios possuem maior representação cortical.",
+  "O processo de reparo segue fases cronológicas: inflamação (limpeza por osteoclastos), calo mole (fibrocartilagem), calo duro (mineralização por osteoblastos) e remodelação final.",
+  "A subluxação ocorre porque a cabeça do rádio escorrega para fora do anel ligamentar anular, comum em crianças pela frouxidão estrutural.",
+  "A medula é o cabo de comunicação bidirecional; lesões interrompem tratos ascendentes sensoriais e descendentes motores.",
+  "O olfato é o único sentido cujos sinais atingem o córtex sem relé talâmico obrigatório, partindo diretamente do bulbo olfatório.",
+  "Entorses por inversão são comuns porque a talocrural, por ser gínglimo, não absorve movimentos laterais, sobrecarregando os ligamentos laterais.",
+  "O tronco encefálico conecta o cérebro à medula e abriga os centros de controle cardiovascular e respiratório vitais no bulbo.",
+  "Diferente do músculo liso ou cardíaco, o esquelético depende de sinalização nervosa voluntária central para contrações fortes e rápidas.",
+  "Enquanto a pelve masculina é estreita para suportar carga, a feminina é rasa e ampla para viabilizar a reprodução humana."
 ];
 
 var L = ['a','b','c','d','e'];
