@@ -296,7 +296,7 @@ var QS = [
    opts:["reduz a abertura da pupila através da contração muscular.","aumenta a abertura da pupila através do relaxamento do músculo esfíncter, mediado pelo parassimpático.","promove a midríase imediata através da contração do músculo dilatador da pupila, mediado pelo simpático.","reduz a abertura da pupila através da dilatação muscular (midríase), controlada pelo sistema nervoso somático."],
    g:0},
   {n:15,tema:"Mecanismo de Contração e Junção Neuromuscular",tipo:"disc",
-   context:"Leia a reportagem a seguir:\nBotox: 79% dos pacientes britânicos sofrem efeitos colaterais indesejados da aplicação; entenda. De acordo com os pesquisadores, as reações adversas observadas foram ansiedade, enxaquecas constantes, ataques de pânico e tontura...\n\n[[IMG_Q15]]\n\nO que é o botox? A toxina botulínica funciona como um paralisante na musculatura, por meio da interrupção da ação entre o nervo motor e o músculo. A aplicação faz com que os músculos faciais relaxem e não se contraiam.",
+   context:"Leia a reportagem a seguir:\n\n[[IMG_Q15]]",
    text:"Sobre a comunicação entre o nervo motor e o músculo citada na reportagem acima, responda:\nA. Descreva o processo de estimulação da fibra muscular, destacando os eventos que ocorrem no neurônio motor somático e na placa motora.\nB. Descreva o mecanismo de contração e relaxamento da fibra muscular, destacando o papel do cálcio neste processo.",
    resposta:"A. A estimulação ocorre pela despolarização do terminal axonal do neurônio motor, abertura de canais de cálcio dependentes de voltagem, e a exocitose de acetilcolina (ACh) na fenda sináptica. A ACh se liga ao seu receptor ionotrópico na placa motora, abrindo canais de sódio e despolarizando a fibra muscular.\n\nB. O potencial de ação viaja pelos túbulos T e abre canais de cálcio no retículo sarcoplasmático. O cálcio liberado liga-se à troponina, que desloca o complexo tropomiosina e expõe o sítio de ligação na actina. A cabeça da miosina se liga à actina consumindo ATP, gerando o encurtamento (contração). O relaxamento ocorre quando o cálcio é bombeado de volta ao retículo e o sítio de ligação volta a ser bloqueado pela tropomiosina."}
 ];
@@ -380,9 +380,9 @@ function renderQ(){
     ctx.style.display='block';
     var ctxHtml=q.context.replace(/\n/g,'<br>');
     
-    /* Configuração das imagens para a Prova de 2023.2 */
+    /* Configuração da imagem para a Prova de 2023.2 */
     ctxHtml = ctxHtml.replace('[[IMG_Q10]]', '<img src="imagem_q10.jpg" alt="Fases da Consolidação Óssea" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
-    ctxHtml = ctxHtml.replace('[[IMG_Q15]]', '<img src="imagem_q15.jpg" alt="Reportagem Botox e Junção Neuromuscular" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
+    ctxHtml = ctxHtml.replace('[[IMG_Q15]]', '<img src="image_8c0fb6.png" alt="Reportagem Botox e Junção Neuromuscular" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
     
     ctx.innerHTML=ctxHtml;
   } else {
