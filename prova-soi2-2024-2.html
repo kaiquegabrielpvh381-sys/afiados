@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>N1 SOI II 2024.2 | Afyados</title>
+<title>N1 SOI II 2024.1 | Afyados</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -20,12 +20,12 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .sticky-bar{position:fixed;top:56px;left:0;right:0;z-index:400;background:rgba(12,8,16,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 32px;}
 .sticky-inner{max-width:820px;margin:0 auto;}
 .sticky-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.sticky-aviso{display:flex;align-items:center;gap:8px;font-size:11px;color:#FAAD3F;font-weight:600;margin-bottom:8px;padding:5px 10px;background:rgba(186,113,0,0.1);border-radius:6px;border:1px solid rgba(186,113,0,0.2);}
-.sticky-aviso svg{flex-shrink:0;}
 .sticky-title{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
-.btn-reset{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;}
+.btn-reset{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;padding:4px 8px;border-radius:6px;transition:color .15s;}
+.btn-reset:hover{color:var(--pink-light);}
 .q-pills{display:flex;gap:5px;flex-wrap:wrap;}
-.qp{width:32px;height:32px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .15s;}
+.qp{width:32px;height:32px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .15s;font-family:'Plus Jakarta Sans',sans-serif;}
+.qp:hover{border-color:var(--green-b);color:#5DCAA5;}
 .qp.current{background:var(--pink);border-color:var(--pink);color:#fff;}
 .qp.correct{background:rgba(29,158,117,0.15);border-color:rgba(29,158,117,0.5);color:#5DCAA5;}
 .qp.wrong{background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.4);color:#F09595;}
@@ -41,14 +41,20 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-context{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:20px;padding:14px 18px;background:rgba(255,255,255,0.025);border-left:2px solid rgba(29,158,117,0.5);border-radius:0 10px 10px 0;white-space:pre-line;}
 .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;}
 .q-opts{display:flex;flex-direction:column;gap:9px;}
-.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;width:100%;}
+.q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;}
 .q-opt:hover:not([disabled]){background:rgba(214,0,110,0.06);border-color:rgba(214,0,110,0.3);color:#F4EFFA;}
 .q-opt.selected{background:rgba(214,0,110,0.08);border-color:rgba(214,0,110,0.45);color:#F4EFFA;}
 .q-opt.correct{background:rgba(29,158,117,0.1);border-color:rgba(29,158,117,0.5);color:#C5EDD9;}
 .q-opt.wrong{background:rgba(226,75,74,0.07);border-color:rgba(226,75,74,0.45);color:#F4B8B8;}
 .q-opt[disabled]{cursor:default;}
-.opt-badge{min-width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;color:var(--muted);}
-.disc-area{width:100%;min-height:120px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;font-size:14px;color:#F4EFFA;resize:vertical;}
+.opt-badge{min-width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;color:var(--muted);transition:all .2s;}
+.q-opt.selected .opt-badge{background:var(--pink);border-color:var(--pink);color:#fff;}
+.q-opt.correct .opt-badge{background:rgba(29,158,117,0.25);border-color:rgba(29,158,117,0.6);color:#5DCAA5;}
+.q-opt.wrong .opt-badge{background:rgba(226,75,74,0.2);border-color:rgba(226,75,74,0.5);color:#F09595;}
+.disc-area{width:100%;min-height:120px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;font-size:14px;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;resize:vertical;line-height:1.7;transition:border-color .2s;}
+.disc-area:focus{outline:none;border-color:rgba(155,0,232,0.4);}
+.disc-area[disabled]{opacity:0.6;cursor:default;}
+.disc-label{font-size:12px;color:var(--muted);margin-bottom:8px;}
 .q-feedback{margin:0 28px;padding:16px 18px;border-radius:12px;font-size:14px;line-height:1.8;border:1px solid;display:none;}
 .q-feedback.show{display:block;animation:fadeUp .25s ease;}
 .fb-ok{background:rgba(29,158,117,0.07);border-color:rgba(29,158,117,0.3);color:#C5EDD9;}
@@ -56,20 +62,65 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .fb-disc{background:rgba(155,0,232,0.07);border-color:rgba(155,0,232,0.25);color:#E8D8FF;}
 .fb-label{font-weight:700;display:block;margin-bottom:6px;font-size:14px;}
 .fb-exp{display:block;margin-bottom:14px;}
-.btn-aprofundar{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(155,0,232,0.15),rgba(214,0,110,0.1));border:1px solid rgba(155,0,232,0.35);color:#D4A8FF;padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;margin-top:10px;}
+.btn-aprofundar{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(155,0,232,0.15),rgba(214,0,110,0.1));border:1px solid rgba(155,0,232,0.35);color:#D4A8FF;padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-aprofundar:hover{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));}
+.btn-aprofundar.active{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));border-color:rgba(155,0,232,0.5);}
 .ai-box{margin:12px 28px 0;background:linear-gradient(135deg,rgba(155,0,232,0.07),rgba(214,0,110,0.03));border:1px solid rgba(155,0,232,0.2);border-radius:14px;overflow:hidden;display:none;}
 .ai-box.open{display:block;animation:fadeUp .3s ease;}
+.ai-box-header{padding:11px 16px;border-bottom:1px solid rgba(155,0,232,0.15);display:flex;align-items:center;gap:8px;}
+.ai-box-header span{font-size:11px;font-weight:700;color:#D4A8FF;letter-spacing:.06em;text-transform:uppercase;}
 .ai-content{padding:18px;font-size:14px;line-height:1.9;color:#E8D8FF;white-space:pre-line;}
 .q-nav-bar{padding:18px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
-.btn-prev{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.05);color:var(--light);border:1px solid var(--border);transition:all .2s;}
+.btn-prev{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.05);color:var(--light);border:1px solid var(--border);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
 .btn-prev:hover:not([disabled]){background:rgba(255,255,255,0.09);}
 .btn-prev[disabled]{opacity:0.3;cursor:default;}
 .q-counter{font-size:14px;color:var(--muted);}
 .q-counter strong{color:#F4EFFA;font-weight:700;}
 .nav-right{display:flex;align-items:center;gap:10px;}
-.btn-respond{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--green-l);color:#5DCAA5;border:1px solid var(--green-b);}
-.btn-next{display:flex;align-items:center;gap:7px;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--pink);color:#fff;border:none;}
+.btn-respond{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--green-l);color:#5DCAA5;border:1px solid var(--green-b);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-respond:hover:not([disabled]){background:rgba(29,158,117,0.22);}
+.btn-respond[disabled]{opacity:0.35;cursor:default;}
+.btn-next{display:flex;align-items:center;gap:7px;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--pink);color:#fff;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;box-shadow:0 4px 16px var(--pink-glow);}
+.btn-next:hover{background:var(--pink-bright);transform:translateY(-1px);}
+.result-screen{display:none;animation:fadeUp .35s ease;}
+.result-screen.show{display:block;}
+.res-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:20px;}
+.res-ring{width:108px;height:108px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Playfair Display',serif;font-size:34px;font-weight:900;}
+.res-ring.great{background:rgba(29,158,117,0.12);border:2px solid rgba(29,158,117,0.5);color:#9FE1CB;}
+.res-ring.ok{background:rgba(214,0,110,0.1);border:2px solid rgba(214,0,110,0.3);color:var(--pink-light);}
+.res-ring.bad{background:rgba(226,75,74,0.08);border:2px solid rgba(226,75,74,0.3);color:#F09595;}
+.res-card h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;margin-bottom:6px;}
+.res-card p{color:var(--muted);font-size:14px;margin-bottom:24px;}
+.res-stats{display:flex;gap:12px;max-width:400px;margin:0 auto 28px;}
+.res-stat{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:12px;padding:14px 10px;}
+.res-stat .v{font-size:22px;font-weight:700;}
+.res-stat .l{font-size:11px;color:var(--muted);margin-top:2px;}
+.btn-retry{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:#fff;padding:12px 28px;border-radius:50px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;box-shadow:0 4px 18px var(--pink-glow);}
+.btn-retry:hover{background:var(--pink-bright);}
+.report-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px;}
+.report-card h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
+.report-section{margin-bottom:24px;}
+.report-section h4{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.tema-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.tema-name{font-size:13px;color:var(--light);min-width:180px;flex-shrink:0;}
+.tema-bar-bg{flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;}
+.tema-bar-fill{height:100%;border-radius:99px;transition:width .8s ease;}
+.tema-bar-fill.green{background:linear-gradient(90deg,#1D9E75,#9FE1CB);}
+.tema-bar-fill.red{background:linear-gradient(90deg,#E24B4A,#F09595);}
+.tema-pct{font-size:12px;font-weight:700;min-width:36px;text-align:right;}
+.tema-pct.green{color:#5DCAA5;}
+.tema-pct.red{color:#F09595;}
+.system-cite{display:none;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:640px){
+  nav,.sticky-bar{padding-left:16px;padding-right:16px;}
+  .main{padding:150px 14px 60px;}
+  .q-body,.q-card-header,.q-nav-bar{padding-left:16px;padding-right:16px;}
+  .q-feedback,.ai-box{margin-left:16px;margin-right:16px;}
+  .q-text{font-size:15px;}
+  .q-opt{font-size:14px;padding:12px 14px;}
+  .tema-name{min-width:110px;}
+}
 </style>
 </head>
 <body>
@@ -84,7 +135,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 <div class="sticky-bar">
   <div class="sticky-inner">
     <div class="sticky-top">
-      <span class="sticky-title">N1 SOI II · 2024.2 &nbsp;·&nbsp; Prova e Gabarito</span>
+      <span class="sticky-title">N1 SOI II · 2024.1 &nbsp;·&nbsp; Prova e Gabarito</span>
       <button class="btn-reset" onclick="resetAll()">Resetar</button>
     </div>
     <div class="q-pills" id="qPills"></div>
@@ -93,10 +144,20 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 
 <div class="main">
   <div class="result-screen" id="resultScreen" style="display:none;">
-    <div class="q-card" style="padding:40px; text-align:center;">
+    <div class="res-card">
+      <div class="res-ring" id="resRing">0%</div>
       <h2 id="resTitle">Resultado</h2>
       <p id="resSub"></p>
-      <button class="btn-next" onclick="resetAll()" style="margin-top:20px;">Tentar novamente</button>
+      <div class="res-stats">
+        <div class="res-stat"><div class="v" id="resOk" style="color:#5DCAA5;">0</div><div class="l">Acertos</div></div>
+        <div class="res-stat"><div class="v" id="resErr" style="color:#F09595;">0</div><div class="l">Erros</div></div>
+        <div class="res-stat"><div class="v" id="resDisc" style="color:#D4A8FF;">0</div><div class="l">Discursivas</div></div>
+      </div>
+      <button class="btn-retry" onclick="resetAll()">Tentar novamente</button>
+    </div>
+    <div class="report-card">
+      <h3>Relatório de desempenho</h3>
+      <div id="reportContent"></div>
     </div>
   </div>
 
@@ -114,10 +175,11 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
     </div>
     <div class="q-feedback" id="qFeedback"></div>
     <div class="ai-box" id="aiBox">
+      <div class="ai-box-header"><span>Aprofundamento — SOI II</span></div>
       <div class="ai-content" id="aiContent"></div>
     </div>
     <div class="q-nav-bar">
-      <button class="btn-prev" id="btnPrev" onclick="prevQ()" disabled>Anterior</button>
+      <button class="btn-prev" id="btnPrev" onclick="prevQ()">Anterior</button>
       <span class="q-counter">Questão <strong id="qCounterNum">1</strong> de <strong id="qCounterTotal">15</strong></span>
       <div class="nav-right">
         <button class="btn-respond" id="btnRespond" onclick="submitAnswer()">Responder</button>
@@ -129,107 +191,115 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 
 <script>
 var QS = [
-  {n:1,tema:"Nervos Cranianos e Sentidos Especiais",tipo:"mc",
-   context:"(UNIDEP) Os cinco sentidos especiais (visão, audição, equilíbrio, gustação e olfação) contam com receptores localizados na região da cabeça e nervos cranianos que conduzem os impulsos nervosos até o sistema nervoso central.\n\nSobre os nervos cranianos relacionados com os sentidos especiais, avalie as asserções a seguir e a relação proposta entre elas.\n\nI. O nervo olfatório, ou nervo craniano I, é formado por axônios que conduzem impulsos nervosos do epitélio olfatório até o bulbo olfatório. Assim como os nervos cranianos relacionados com os sentidos da visão, equilíbrio e audição, o nervo craniano I é exclusivamente sensitivo. O único sentido especial conduzido por nervos cranianos mistos é a gustação, associada aos nervos facial, glossofaríngeo e vago.\n\nPORQUE\n\nII. Os nervos cranianos II e VIII são exclusivamente sensitivos. A visão é relacionada com o nervo craniano II, o nervo óptico, formado pelos axônios das células ganglionares da retina. A audição e o equilíbrio são relacionados com o nervo craniano VIII, o nervo vestibulococlear, o qual se divide em ramo coclear (audição) e ramo vestibular (equilíbrio).",
+  {n:1,tema:"Classificação dos Nervos Cranianos",tipo:"mc",
+   context:"Os nervos cranianos são numerados de acordo com sua posição na base do cérebro, do I ao XII e classificados com base em sua função e localização, vale destacar que alguns estão envolvidos nos sentidos especiais. Considerando esse contexto, avalie as seguintes asserções e a relação proposta entre elas.\n\nI. Assim como o nervo trigêmeo (V par craniano) e o facial (VII par craniano), o nervo vestibulococlear (VIII par craniano) é considerado misto pois possui tanto fibras sensoriais (aferentes) quanto fibras motoras (eferentes)\n\nPORQUE\n\nII. O nervo vestibulococlear (VIII par craniano) está associado à audição e ao equilíbrio, transmitindo informações do ouvido interno para o cérebro.",
    text:"A respeito dessas asserções, assinale a opção correta.",
-   opts:["A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.","As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.","As asserções I e II são proposições falsas.","As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I."],
-   g:3},
-  {n:2,tema:"Vias Somatossensoriais (Dor e Tato)",tipo:"mc",
-   context:"Paciente vítima de trauma medular em região torácica apresenta perda de sensibilidade térmica e dolorosa no membro inferior esquerdo e perda de tato discriminativo e propriocepção no membro inferior direito abaixo do nível da lesão.",
-   text:"Com base na neuroanatomia funcional das vias ascendentes, qual a explicação para este quadro clínico?",
-   opts:["A via da dor (espinotalâmica) cruza na medula, afetando o lado oposto à lesão, enquanto a do tato (coluna dorsal) sobe ipsilateralmente e cruza apenas no bulbo.","Ambas as vias cruzam no mesmo nível medular, indicando lesão bilateral.","A via da dor ascende pelo funículo posterior sem cruzar a linha média.","O tato discriminativo realiza a primeira sinapse e decussação no nível da entrada na medula."],
+   opts:["A asserção I é uma proposição verdadeira, e a II é uma proposição falsa.","As asserções I e II são proposições verdadeiras, e a II é uma justificativa correta da I.","A asserção I é uma proposição falsa, e a II é uma proposição verdadeira.","As asserções I e II são proposições verdadeiras, mas a II não é uma justificativa correta da I."],
+   g:2},
+  {n:2,tema:"Vias de Sensibilidade (Dor e Tato)",tipo:"mc",
+   context:"Um paciente do sexo masculino, foi admitido na emergência do hospital após sofrer um acidente de trabalho. Durante suas atividades laborais, ele estava manuseando uma máquina automática de parafusar, utilizada para montar móveis, quando ocorreu um mau funcionamento, resultando em um acidente que causou uma lesão na extremidade do membro superior direito, próxima à falange proximal do primeiro dedo. Ele referia dor no local da lesão e perda no tato discriminativo na ponta do dedo lesionado.",
+   text:"Sobre a lesão e as alterações de sensibilidade, podemos afirmar que:",
+   opts:["A via da dor estimulada pela lesão é conhecida como espinotalâmica e ascende ao encéfalo cruzando na medula espinal e a via do tato é conhecida como coluna dorsal lemnisco medial.","A via da dor é a coluna dorsal e a do tato é a espinotalâmica lateral.","Ambas as vias cruzam no mesmo nível anatômico na medula.","A via da dor ascende ipsilateralmente na medula espinal."],
    g:0},
   {n:3,tema:"Sistema Nervoso Autônomo Parassimpático",tipo:"mc",
-   context:"Uma paciente idosa apresenta quadro de bradicardia severa, miose bilateral e aumento da motilidade intestinal. O médico identifica que estes sintomas são efeitos clássicos do sistema nervoso autônomo em estado de repouso.",
-   text:"Qual o principal nervo craniano responsável pela mediação parassimpática destas funções viscerais torácicas e abdominais?",
-   opts:["Nervo Facial (VII par).","Nervo Vago (X par).","Nervo Glossofaríngeo (IX par).","Nervo Acessório (XI par)."],
-   g:1},
-  {n:4,tema:"Músculos do Manguito Rotador",tipo:"mc",
-   context:"A articulação glenoumeral possui grande amplitude de movimento, o que a torna instável. A estabilidade dinâmica é garantida pelo manguito rotador.",
-   text:"Assinale a alternativa que contém apenas músculos que compõem o manguito rotador:",
-   opts:["Supraespinhal, infraespinal, redondo menor e subescapular.","Deltoide, redondo maior, supraespinhal e trapézio.","Bíceps braquial, subescapular, redondo maior e infraespinal.","Supraespinhal, infraespinal, redondo maior e redondo menor."],
+   context:"Uma paciente, de 30 anos, procurou o médico com queixas de bradicardia (frequência cardíaca abaixo do normal), constrição das pupilas e aumento da atividade salivar. Ela relata que esses sintomas ocorrem frequentemente após momentos de relaxamento e conforto. O médico suspeita que os sintomas estejam relacionados à atividade do sistema nervoso autônomo.\n\nPara determinar a origem das fibras nervosas responsáveis por esses sintomas, ele decide investigar mais a fundo. Qual a origem das fibras nervosas responsáveis pelos sintomas apresentados pela paciente?\n\nI. Fibras Simpáticas originam-se no tronco cerebral e sacral.\nII. Fibras Simpáticas originam-se no tronco cerebral e torácico/lombar.\nIII. Fibras Parassimpáticas originam-se no tronco cerebral.\nIV. Fibras Parassimpáticas originam-se no tronco sacral.\nV. Fibras Simpáticas e Parassimpáticas originam-se exclusivamente no tronco cerebral.",
+   text:"Após avaliar as afirmativas acima, selecione a alternativa correta.",
+   opts:["III e IV estão corretas.","I e II estão corretas.","I, II e V estão corretas.","Apenas a V está correta."],
    g:0},
-  {n:5,tema:"Junção Neuromuscular e Miastenia",tipo:"mc",
-   context:"Paciente apresenta fadiga muscular severa que melhora com o repouso. O diagnóstico é Miastenia Gravis, uma doença autoimune.",
-   text:"Qual o local específico da sinapse neuromuscular afetado pelos autoanticorpos?",
-   opts:["Receptores nicotínicos de acetilcolina na placa motora (pós-sináptico).","Vesículas de acetilcolina no terminal axonal (pré-sináptico).","Canais de cálcio voltagem-dependentes no neurônio motor.","Enzima acetilcolinesterase na fenda sináptica."],
+  {n:4,tema:"Anatomia do Manguito Rotador",tipo:"mc",
+   context:"Jogadora de vôlei, 25 anos, com rotina excessiva de treinos, sentiu fortes dores no ombro após um saque de alta velocidade, o que a levou a procurar atendimento médico logo após a partida. Após investigação, o médico confirmou uma lesão no manguito rotador.",
+   text:"A região da lesão é composta pelos músculos:",
+   opts:["supraespinhal, infraespinal, redondo menor e subescapular.","deltoide, redondo maior e supraespinhal.","subescapular, redondo maior e bíceps braquial.","infraespinal, redondo maior e redondo menor."],
    g:0},
-  {n:6,tema:"Meninges e Proteção do SNC",tipo:"mc",
-   text:"Qual das meninges abaixo é descrita como uma membrana fina, transparente e altamente vascularizada, que adere intimamente à superfície do cérebro e da medula espinal, penetrando em seus sulcos?",
-   opts:["Dura-máter.","Aracnoide-máter.","Pia-máter.","Ependima."],
-   g:2},
-  {n:7,tema:"Homúnculo de Penfield",tipo:"mc",
-   text:"No mapeamento cortical realizado por Penfield, a área responsável pela percepção somatossensorial primária localiza-se em qual região?",
-   opts:["Giro pré-central do lobo frontal.","Giro pós-central do lobo parietal.","Giro temporal superior.","Lobo occipital, próximo ao sulco calcarino."],
-   g:1},
-  {n:8,tema:"Histologia do Tecido Ósseo",tipo:"disc",
-   text:"A) Diferencie morfologicamente osteoblastos de osteoclastos. B) Explique como estas células interagem no processo de consolidação de uma fratura.",
-   resposta:"A) Osteoblastos são células cuboides ou colunares que sintetizam a matriz orgânica (osteoide); osteoclastos são células gigantes multinucleadas, derivadas de monócitos, que reabsorvem o tecido ósseo. B) Após a fratura, os osteoclastos removem a matriz danificada e os detritos. Simultaneamente, os osteoblastos produzem o calo ósseo fibrocartilaginoso e, posteriormente, mineralizam o osso novo para restaurar a integridade estrutural."},
+  {n:5,tema:"Junção Neuromuscular (Miastenia Gravis)",tipo:"mc",
+   context:"Paciente do sexo feminino com 35 anos, comparece ao consultório do neurologista com queixa de fraqueza muscular progressiva. Ela relata que, nos últimos 3 meses, apresenta dificuldades para realizar atividades cotidianas, como subir escadas e até mesmo pentear o cabelo. Diante das suspeitas clínicas, o médico solicita uma série de exames complementares e, em um deles, foi revelada a presença de autoanticorpos contra os receptores de acetilcolina.",
+   text:"Levando em consideração o processo fisiológico, diante do caso acima, marque a alternativa correta referente a dificuldade que a paciente apresenta.",
+   opts:["Transmitir o sinal elétrico via junção neuromuscular.","Produzir acetilcolina no neurônio motor.","Conduzir o estímulo pelo axônio do nervo motor.","Degradar a acetilcolina na fenda sináptica."],
+   g:0},
+  {n:6,tema:"Meninges e Pia-Máter",tipo:"mc",
+   context:"As meninges são revestimentos distintos de tecido conjuntivo que envolvem e protegem a medula espinal e o encéfalo. As meninges espinais recobrem a medula espinal e são contínuas com as meninges encefálicas, que recobrem o encéfalo. Dentre essas estruturas protetoras uma é marcada pela presença de muitos vasos sanguíneos que fornecem oxigênio e nutrientes para a medula espinal e é constituída por finas células pavimentosas a cúbicas em fascículos entrelaçados com fibras de colágeno e algumas delicadas fibras elásticas.",
+   text:"Analise corretamente a descrição apresentada e marque a alternativa correta.",
+   opts:["Pia-máter.","Dura-máter.","Aracnoide-máter.","Ligamento denticulado."],
+   g:0},
+  {n:7,tema:"Córtex Cerebral e Homúnculo",tipo:"mc",
+   context:"O cérebro representa a maior parte do encéfalo, situado nas fossas anterior e média do crânio, e ocupa toda a concavidade da calvária. Pode ser dividido em duas partes: o diencéfalo, que forma a parte central, e o telencéfalo, que forma os hemisférios cerebrais. No lobo parietal há uma organização topográfica que apresenta os graus de representação das diferentes áreas musculares mapeadas por Wilder Penfield, chamada de homúnculo de Penfield.",
+   text:"De acordo com seus conhecimentos e compreendendo a anatomia do sistema nervoso central, marque a alternativa correta referente a localização do homúnculo de Penfield.",
+   opts:["Localiza-se na região motora, no giro pré-central, e na região somatossensorial, na região posterior ao sulco central.","Lobo occipital e giro temporal superior.","Bulbo e cerebelo.","Corpo caloso e núcleos da base."],
+   g:0},
+  {n:8,tema:"Histologia e Reparo Ósseo",tipo:"disc",
+   context:"Paciente, do sexo feminino, com 35 anos, sofreu um acidente de carro resultando em uma fratura no fêmur direito. Ela foi encaminhada para o pronto-socorro com dor intensa, inchaço e incapacidade de mover a perna afetada. O exame radiográfico confirmou uma fratura transversal no terço médio do fêmur direito, comprometendo a integridade da diáfise óssea. O tempo médio de recuperação total para essa paciente pode variar de 3 a 6 meses, período necessário para as células especializadas do tecido ósseo realizarem todas as fases do reparo.",
+   text:"Em relação à histologia do tecido ósseo e o processo de reparo de fraturas:\na) Caracterize histologicamente as células que compõem o tecido ósseo.\nb) Explique o papel dos osteoblastos, osteócitos e osteoclastos durante cada fase do processo de reparo ósseo após uma fratura.",
+   resposta:"a) Osteoblastos: células cuboides ou colunares, com citoplasma basófilo em intensa síntese de matriz orgânica (osteoide). Osteócitos: células achatadas situadas em lacunas na matriz mineralizada, ligadas por canalículos. Osteoclastos: células gigantes, multinucleadas e móveis, responsáveis pela reabsorção da matriz óssea.\n\nb) Fase Inflamatória (Reativa): Osteoclastos removem o tecido ósseo danificado e detritos. Fase de Formação de Calo: Osteoblastos sintetizam colágeno e matriz óssea inicial (calo fibrocartilaginoso e ósseo). Fase de Remodelação: Osteoblastos e osteoclastos trabalham em conjunto para substituir o osso imaturo por osso lamelar maduro, enquanto os osteócitos monitoram o estresse mecânico para orientar a arquitetura final."},
   {n:9,tema:"Articulação do Cotovelo",tipo:"mc",
-   context:"Uma criança sofre uma tração súbita no braço e apresenta dor e limitação de movimento no cotovelo (pronatio dolorosa).",
-   text:"Neste quadro de subluxação da cabeça do rádio, qual estrutura ligamentar é deslocada?",
-   opts:["Ligamento colateral radial.","Ligamento anular do rádio.","Ligamento colateral ulnar.","Ligamento quadrado."],
-   g:1},
-  {n:10,tema:"Trauma Medular e Vias de Condução",tipo:"mc",
-   text:"I. Uma lesão completa da medula espinal em nível T10 resulta em perda total de sensibilidade e motricidade nos membros inferiores\n\nPORQUE\n\nII. A lesão interrompe a continuidade dos tratos corticoespinais e das vias espinotalâmicas e funículos posteriores.",
-   opts:["A primeira afirmação é falsa.","As duas afirmações são verdadeiras e a segunda justifica a primeira.","Ambas são verdadeiras, mas não há relação causal.","A primeira é verdadeira e a segunda é falsa."],
-   g:1},
-  {n:11,tema:"Via Olfatória",tipo:"mc",
-   text:"Sobre a via neural do olfato, assinale a alternativa que indica sua principal característica distintiva em relação aos outros sentidos especiais:",
-   opts:["Os impulsos passam obrigatoriamente pelo núcleo ventral posterior do tálamo.","As informações olfatórias chegam ao córtex cerebral sem passar necessariamente por um relé talâmico inicial.","Os receptores olfatórios são células epiteliais não neurais.","A via olfatória decussa totalmente no tronco encefálico."],
-   g:1},
+   context:"Uma mãe e seu filho de 4 anos estavam visitando uma loja de brinquedos, e a criança não queria ir embora. Quando a criança teve um acesso de raiva e resistiu à sua mãe, esta puxou o braço do menino para conduzi-lo para fora da loja. Imediatamente após o puxão, o menino gritou de dor e exibiu uma saliência proeminente na lateral do cotovelo. A mãe, em pânico, levou o menino ao médico. O médico examinou o cotovelo do menino e concluiu que ele tinha uma sub-luxação na cabeça do rádio.",
+   text:"Marque a alternativa correta referente ao ligamento que falhou em manter a cabeça do rádio no lugar quando a mãe puxou o menino pelo braço.",
+   opts:["Ligamento anular do rádio.","Ligamento colateral radial.","Ligamento colateral ulnar.","Ligamento interósseo."],
+   g:0},
+  {n:10,tema:"Vias Sensoriais e Traumas",tipo:"mc",
+   context:"A coluna vertebral é uma estrutura anatômica crucial para o suporte e a proteção do sistema nervoso central, composta por vértebras que se empilham em uma formação flexível e resistente. Traumas em regiões específicas da coluna vertebral podem resultar em diferentes tipos de lesões, levando a condições como tetraplegia ou paraplegia. Analise as asserções abaixo e sua relação:\n\nI. Traumas na coluna vertebral podem afetar a capacidade de percepção sensorial periférica do indivíduo abaixo do nível da lesão se a medula for comprometida.\n\nPORQUE\n\nII. Impulsos nervosos provenientes de receptores sensitivos ascendem na medula espinal em direção ao encéfalo pelo trato espinotalâmico e os tratos dos funículos posteriores.",
+   text:"Marque a alternativa correta.",
+   opts:["I e II são proposições verdadeiras, e a II é uma justificativa correta da I.","A primeira afirmação é falsa e a segunda é verdadeira.","Ambas as asserções são verdadeiras, mas a II não é uma justificativa correta da I.","A primeira é verdadeira e a segunda é falsa."],
+   g:0},
+  {n:11,tema:"Sistema e Via Olfatória",tipo:"mc",
+   context:"O sistema olfatório é responsável pela detecção e processamento dos odores. Consiste em várias estruturas especializadas que captam os estímulos químicos do ambiente e os transformam em sinais elétricos que são interpretados pelo cérebro.",
+   text:"Assinale a afirmação que descreve corretamente o sistema olfatório e sua via neural?",
+   opts:["O sistema olfatório é composto por receptores especializados localizados no teto das cavidades nasais. A via neural envolve a transmissão dos sinais olfativos através do nervo olfatório até o bulbo olfatório no cérebro sem relé talâmico inicial.","Os receptores estão no fundo das cavidades e viajam via nervo trigémeo.","As papilas gustativas enviam sinais diretamente ao bulbo olfatório.","O nervo vestibulococlear é o principal condutor da via olfativa."],
+   g:0},
   {n:12,tema:"Articulação do Tornozelo",tipo:"mc",
-   text:"A articulação talocrural (tornozelo) é classificada como uma articulação sinovial do tipo:",
-   opts:["Gínglimo (dobradiça), permitindo flexão e extensão.","Esferoide, permitindo todos os eixos de movimento.","Selar, permitindo oposição.","Plana, permitindo apenas deslizamento."],
+   context:"A articulação do tornozelo é uma das estruturas mais importantes do corpo humano, desempenhando um papel crucial na locomoção e estabilidade sendo composta por três ossos principais: a tíbia, a fíbula e o tálus. Sua estabilidade é mantida por ligamentos fortes que conectam os ossos entre si. Os ligamentos laterais, localizados no lado de fora do tornozelo, são especialmente importantes na prevenção de lesões por inversão, que ocorrem quando o pé vira para dentro de forma abrupta, estressando esses ligamentos.",
+   text:"Sobre essa articulação podemos afirmar que:",
+   opts:["a articulação do tornozelo é uma articulação sinovial do tipo gínglimo, limitando-a principalmente os movimentos de dorsiflexão e flexão plantar, o que a torna suscetível a lesões por inversão.","Permite livre rotação axial devido à frouxidão do ligamento deltoide.","A inversão e eversão ocorrem primariamente na articulação talocrural.","É uma articulação fibrosa puramente motora."],
    g:0},
   {n:13,tema:"Tronco Encefálico",tipo:"disc",
-   context:"A figura abaixo representa o tronco encefálico humano em vista anterior.\n\n[[IMG_Q13]]",
-   text:"A) Nomeie as estruturas 1, 2 e 3. B) Explique a importância funcional do Bulbo (estrutura 3) para a manutenção da vida.",
-   resposta:"A) 1-Mesencéfalo, 2-Ponte, 3-Bulbo (Medula Oblonga). B) O bulbo contém os centros vitais que controlam funções involuntárias essenciais, como o centro respiratório (ritmo da respiração) e o centro cardiovascular (frequência cardíaca e pressão arterial), além de núcleos de reflexos como deglutição e vômito."},
-  {n:14,tema:"Fisiologia do Músculo Esquelético",tipo:"mc",
-   text:"Sobre as propriedades do tecido muscular estriado esquelético, é correto afirmar que sua contração é:",
-   opts:["Forte, rápida, voluntária e descontínua.","Fraca, lenta e involuntária.","Forte, rítmica e mediada por hormônios.","Lenta, contínua e dependente de gânglios entéricos."],
+   context:"A estrutura abaixo corresponde ao segmento do sistema nervoso entre a medula espinal e o cérebro, e subdivide-se, em três partes. Cada segmento apresenta estruturas e funções bem definidas. Analise a imagem abaixo e responda o que se pede.\n\n[[IMG_Q13]]",
+   text:"A) Identifique as estruturas representadas pelos números 1, 2 e 3, respectivamente.\nB) Descreva as características anatômicas da estrutura apontada pelo número 3.\nC) Descreva a função das estruturas 1 e 2, respectivamente.",
+   resposta:"A) 1-Mesencéfalo, 2-Ponte, 3-Bulbo (Medula Oblonga).\n\nB) O Bulbo é a porção caudal do tronco, em forma de cone truncado. Contém as pirâmides (vias motoras), as olivas, núcleos de nervos cranianos (VII, X, XII) e o centro respiratório e cardiovascular vital.\n\nC) Mesencéfalo (1): coordena reflexos visuais e auditivos (colículos) e abriga núcleos motores. Ponte (2): conecta o córtex ao cerebelo, participa do controle da respiração e contém núcleos de nervos cranianos como o Trigêmeo (V)."},
+  {n:14,tema:"Histologia Muscular",tipo:"mc",
+   context:"Paciente, sexo masculino, 40 anos, apresenta-se ao consultório médico com queixa de fraqueza muscular progressiva há 6 meses. Relata dificuldade para subir escadas, levantar objetos pesados e realizar atividades cotidianas. Ao exame físico, observa-se atrofia muscular e dificuldade de marcha.",
+   text:"O tecido muscular comprometido é caracterizado por apresentar contração:",
+   opts:["forte, rápida, voluntária e não contínua.","fraca, lenta, rítmica e involuntária.","forte, rápida, rítmica e involuntária.","lenta, contínua e involuntária."],
    g:0},
-  {n:15,tema:"Anatomia da Pelve",tipo:"mc",
-   text:"Ao analisar o dimorfismo sexual da pelve óssea, qual característica é típica da pelve feminina?",
-   opts:["Estreito superior mais largo e arredondado e arco púbico mais aberto (>90º).","Ossos mais pesados e sínfise púbica mais estreita.","Ângulo subpúbico agudo e sacro longo e estreito.","Pelve maior profunda e estreito superior em forma de coração."],
+  {n:15,tema:"Anatomia Comparada da Pelve",tipo:"mc",
+   context:"A pelve óssea, formada pelo anel completo dos ossos do quadril, sínfise púbica, sacro e cóccix, é uma estrutura profunda semelhante a uma bacia, oferecendo suporte forte e estável para a coluna vertebral e órgãos pélvicos. Ao comparar a pelve masculina e feminina, destacam-se diferenças notáveis em sua estrutura e função. Nas mulheres a estrutura da pelve é projetada para favorecer a gestação e o parto. Já nos homens, esse conjunto de ossos do quadril tem como principal objetivo suportar mais peso.",
+   text:"Sobre a diferença entre a pelve masculina e feminina, marque a alternativa correta.",
+   opts:["A pelve feminina é mais larga e menos profunda.","A pelve masculina é projetada para favorecer o parto.","A pelve feminina é mais estreita e profunda.","A pelve masculina apresenta o arco púbico mais aberto."],
    g:0}
 ];
 
 var SHORT = [
-  "A alternativa correta é a D. As asserções I e II são verdadeiras, mas a II não explica a classificação funcional da I. Os nervos I, II e VIII são puramente sensitivos, enquanto a gustação depende de nervos mistos (VII, IX e X).",
-  "A alternativa correta é a A. O trato espinotalâmico (dor) cruza na medula, afetando o lado oposto. O sistema coluna dorsal (tato fino) sobe do mesmo lado e cruza apenas no bulbo.",
-  "A alternativa correta é a B. O nervo vago (X par) é o principal condutor das fibras parassimpáticas para as vísceras torácicas e a maior parte das abdominais.",
-  "A alternativa correta é a A. O manguito é formado pelos músculos supraespinhal, infraespinal, redondo menor e subescapular.",
-  "A alternativa correta é a A. Na Miastenia Gravis, os anticorpos destroem os receptores nicotínicos na placa motora, impedindo a despolarização muscular.",
-  "A alternativa correta é a C. A pia-máter adere intimamente ao tecido nervoso e fornece nutrição profunda via vasos sanguíneos.",
-  "A alternativa correta é a B. O homúnculo sensorial situa-se no giro pós-central do lobo parietal.",
+  "A alternativa correta é a C, pois a asserção I é falsa e a ll é verdadeira. Segundo Guyton e Hall (2021) e Machado e Haertel (2013), o nervo vestibulococlear (VIII par) é exclusivamente sensitivo, transmitindo informações de audição e equilíbrio do ouvido interno para o encéfalo. Nervos mistos são o trigêmeo (V), o facial (VII), o glossofaríngeo (IX) e o vago (X).",
+  "A alternativa correta é a D. A via da dor estimulada pela lesão é conhecida como espinotalâmica e ascende ao encéfalo cruzando na medula espinal. A via do tato epicrítico e propriocepção é conhecida como coluna dorsal-lemnisco medial, ascendendo ipsilateralmente até o bulbo.",
+  "A alternativa correta é a A. As afirmativas III e IV estão corretas. As fibras parassimpáticas têm origem craniossacral (tronco cerebral e segmentos sacrais da medula). Bradicardia, miose e aumento da salivação são efeitos colinérgicos típicos do parassimpático.",
+  "A alternativa correta é a A. O manguito rotador é formado pelos músculos supraespinhal, infraespinal, redondo menor e subescapular. Eles estabilizam a cabeça do úmero na cavidade glenoidal durante movimentos amplos do ombro.",
+  "A alternativa correta é a A. Transmitir o sinal elétrico via junção neuromuscular. Na Miastenia Gravis, os autoanticorpos bloqueiam os receptores nicotínicos de acetilcolina na placa motora, impedindo a despolarização da fibra muscular.",
+  "A alternativa correta é a A. Pia-máter. É a meninge mais interna, transparente e vascularizada, que adere intimamente à superfície do SNC e penetra nos sulcos cerebrais, além de formar os ligamentos denticulados.",
+  "A alternativa correta é a A. O homúnculo motor localiza-se no giro pré-central (frontal) e o somatossensorial localiza-se no giro pós-central (parietal). As áreas com maior sensibilidade possuem maior representação cortical.",
   null,
-  "A alternativa correta é a B. O ligamento anular falha ao permitir que a cabeça do rádio escape da sua posição na incisura radial da ulna.",
-  "A alternativa correta é a B. A interrupção dos tratos ascendentes e descendentes na medula impede a comunicação entre o cérebro e os membros inferiores.",
-  "A alternativa correta é a B. O olfato projeta-se diretamente para o córtex piriforme e sistema límbico sem o relé talâmico obrigatório.",
-  "A alternativa correta é a A. A talocrural funciona como dobradiça, permitindo movimentos de flexão plantar e dorsiflexão.",
+  "A alternativa correta é a A. Ligamento anular do rádio. Ele circunda a cabeça do rádio, mantendo-a na incisura radial da ulna. Em crianças, a tração brusca pode causar o deslizamento da cabeça do rádio para fora desse anel ligamentar.",
+  "A alternativa correta é a A. I e II são proposições verdadeiras e a II é uma justificativa correta da I. A percepção sensorial é perdida abaixo da lesão porque as vias ascendentes (trato espinotalâmico e funículos posteriores) são seccionadas.",
+  "A alternativa correta é a A. O sistema olfatório capta estímulos químicos no epitélio olfatório do teto nasal. A via neural segue pelo nervo olfatório (I) até o bulbo, atingindo o córtex sem o relé talâmico inicial obrigatório.",
+  "A alternativa correta é a A. A articulação talocrural é sinovial gínglimo, restringindo movimentos laterais. Entorses por inversão ocorrem quando o limite de estabilidade ligamentar lateral é ultrapassado abruptamente.",
   null,
-  "A alternativa correta é a A. O músculo esquelético é projetado para gerar força rápida e potência sob comando voluntário do SNC.",
-  "A alternativa correta é a A. A pelve feminina é estruturalmente adaptada (mais ampla e rasa) para o processo do parto."
+  "A alternativa correta é a A. O tecido muscular esquelético caracteriza-se por apresentar contração forte, rápida, voluntária e não contínua, dependendo da inervação motora somática.",
+  "A alternativa correta é a A. A pelve feminina é estruturalmente mais larga e rasa para acomodar a gestação e o parto, enquanto a masculina é mais estreita para suporte de carga pesada."
 ];
 
 var DEEP = [
-  "A classificação funcional dos nervos cranianos separa os puramente sensitivos (I, II, VIII) dos motores (III, IV, VI, XI, XII) e mistos (V, VII, IX, X). A asserção I afirma corretamente que o VIII é sensitivo. A asserção II descreve corretamente a anatomia destes nervos, mas não constitui a justificativa biológica para a classificação apresentada.",
-  "A dor e a temperatura utilizam a via anterolateral, que decussa (cruza) no segmento medular de entrada. O tato epicrítico e a propriocepção consciente utilizam o sistema coluna dorsal-lemnisco medial, que ascende ipsilateralmente até os núcleos grácil e cuneiforme no bulbo, onde ocorre a decussação.",
-  "O sistema parassimpático tem origem craniossacral. O nervo vago (X) fornece inervação para o coração, pulmões e trato digestivo até o flexura esplênica do cólon. Sintomas de repouso como bradicardia e aumento da motilidade são típicos da eferência vagal.",
-  "O manguito rotador garante a estabilidade dinâmica do ombro. O supraespinhal inicia a abdução; infraespinal e redondo menor fazem rotação externa; subescapular faz rotação interna. Juntos, mantêm a cabeça do úmero pressionada contra a cavidade glenoidal.",
-  "Na Miastenia Gravis, a falha é pós-sináptica. Embora a ACh seja liberada em quantidades normais, o número de receptores disponíveis na membrana muscular é reduzido pela ação dos anticorpos, impedindo que o potencial de placa atinja o limiar de disparo.",
-  "A pia-máter é a meninge interna que acompanha todas as irregularidades do parênquima cerebral. É essencial para a barreira hematoencefálica e fornece suporte vascular para a nutrição do tecido nervoso subjacente.",
-  "Wilder Penfield mapeou as áreas do giro pós-central. A extensão da área cortical dedicada a cada parte do corpo no homúnculo somatossensorial é diretamente proporcional à sensibilidade e densidade de receptores daquela região, e não ao seu tamanho físico.",
-  "Osteoblastos (derivados de células osteoprogenitoras) são responsáveis pela formação da matriz; osteoclastos (linhagem monocítica) pela reabsorção. No reparo ósseo, estas células agem em equilíbrio para substituir o calo provisório por osso lamelar maduro.",
-  "O ligamento anular é um anel fibroso que circunda a cabeça do rádio. Em crianças pequenas, a cabeça do rádio é mais estreita que o colo, facilitando o seu deslizamento para fora do anel sob tração brusca, resultando em dor intensa e incapacidade de supinação.",
-  "A medula espinal é o cabo de comunicação bidirecional. Lesões cortam os tratos ascendentes (que levam sensibilidade ao cérebro) e descendentes (que levam ordens motoras aos músculos), resultando em paraplegia e anestesia abaixo do metâmero lesionado.",
-  "A via olfativa é filogeneticamente a mais antiga. Os axônios dos neurônios receptores atravessam a lâmina cribriforme e fazem sinapse no bulbo olfatório. Daí, seguem para o córtex olfatório primário sem passar pelo tálamo, o que é único entre os sentidos.",
-  "A articulação talocrural é um gínglimo que permite flexão e extensão. Os movimentos de inversão e eversão, responsáveis pelas entorses comuns, ocorrem primordialmente nas articulações subtalar e transversa do tarso.",
-  "O tronco encefálico conecta o cérebro à medula. O bulbo situa-se caudalmente e abriga os centros vitais que controlam a ventilação e a hemodinâmica. Lesões bulbos são frequentemente fatais por paragem cardiorrespiratória.",
-  "O músculo esquelético é estriado e organizado em sarcômeros. A sua contração é rápida e voluntária, mediada por neurônios motores somáticos cujos corpos celulares estão no corno anterior da medula ou núcleos de nervos cranianos.",
-  "A pelve feminina possui dimorfismo sexual evidente para o parto: o estreito superior é mais largo, o ângulo subpúbico é maior que 90º e as espinhas isquiáticas são menos proeminentes, aumentando o espaço do canal de parto."
+  "O conteúdo exige o domínio da classificação funcional dos 12 pares de nervos cranianos. Conforme Machado e Haertel (2013), são mistos o V, VII, IX e X. O VIII par é estritamente sensitivo, responsável pela audição e equilíbrio. A asserção I falha ao classificá-lo como misto. A asserção II descreve corretamente sua anatomia e função aferente.",
+  "A neuroanatomia separa as sensibilidades. A via anterolateral (dor) decussa na medula logo após a entrada. O sistema coluna dorsal-lemnisco medial (tato fino) ascende ipsilateralmente e decussa apenas no bulbo. Uma lesão transversal interrompe ambas, mas em lesões parciais, os déficits são diferentes conforme o lado.",
+  "O sistema parassimpático utiliza a via craniossacral. O nervo vago (X) é o principal eferente para vísceras torácicas e abdominais. Bradicardia e miose (via nervo oculomotor) são respostas típicas de conservação de energia. A pegadinha é confundir a origem craniossacral do parassimpático com a toracolombar do simpático.",
+  "O manguito rotador protege a articulação glenoumeral. O supraespinhal inicia a abdução; infraespinal e redondo menor fazem rotação externa; subescapular faz rotação interna. O deltoide e o redondo maior não fazem parte do manguito.",
+  "A Miastenia Gravis é uma falha pós-sináptica. Os autoanticorpos destroem os receptores nicotínicos de acetilcolina na placa motora. Embora a ACh seja liberada normalmente, não há receptores suficientes para gerar o potencial de placa terminal e a contração.",
+  "A pia-máter é a única meninge que penetra nos sulcos cerebrais. É rica em vasos sanguíneos responsáveis pela nutrição profunda do SNC. Na medula, forma os ligamentos denticulados laterais que garantem a estabilidade e proteção contra deslocamentos mecânicos.",
+  "O homúnculo de Penfield é um mapa topográfico cortical. A área motora primária (giro pré-central) e sensorial primária (giro pós-central) organizam-se de forma que a área ocupada no córtex é proporcional à precisão motora ou sensibilidade da região do corpo.",
+  "Osteoblastos (cuboides) sintetizam matriz orgânica; osteócitos (em lacunas) monitoram estresse mecânico; osteoclastos (multinucleados) reabsorvem osso. No reparo, os osteoclastos limpam a lesão, enquanto osteoblastos formam o calo inicial que será remodelado em osso lamelar.",
+  "O ligamento anular é um anel fibroso que mantém a articulação radioulnar proximal. Em pediatria, a cabeça do rádio é proporcionalmente menor, o que facilita o deslizamento para fora do anel ligamentar sob tração súbita com o cotovelo estendido.",
+  "A medula espinal é a via principal de condução entre cérebro e periferia. O trato espinotalâmico lateral conduz dor e temperatura. Os funículos posteriores conduzem tato fino e propriocepção. Lesões transversais causam interrupção total destes cabos sensoriais.",
+  "A via olfatória é filogeneticamente a mais antiga. Os axônios do nervo I atravessam a lâmina cribriforme para sinapsar no bulbo olfatório. É a única via sensorial que projeta informações diretamente para o córtex (piriforme) sem passar obrigatoriamente pelo tálamo.",
+  "A talocrural (tíbia/fíbula/tálus) é um gínglimo focado em flexão/extensão. Movimentos laterais (inversão/eversão) ocorrem primordialmente na articulação subtalar. Entorses estressam os ligamentos colaterais laterais (talofibular anterior e calcaneofibular).",
+  "O bulbo (medula oblonga) é vital, contendo os centros de controle cardiovascular e respiratório. Nele, as fibras motoras da via corticoespinal cruzam a linha média (decussação das pirâmides). Lesões no bulbo são frequentemente fatais.",
+  "O músculo esquelético é estriado e de controle voluntário. Diferente do liso ou cardíaco, ele é projetado para respostas rápidas e força potente, dependendo da integridade da unidade motora somática (neurônio motor + fibras inervadas).",
+  "O dimorfismo sexual pélvico reflete adaptações biológicas funcionais. A pelve feminina possui ossos mais leves, o estreito superior é mais largo e o arco subpúbico é obtuso (>90º), aumentando o espaço interno para viabilizar o parto."
 ];
 
 var L = ['a','b','c','d','e'];
@@ -279,6 +349,7 @@ function renderQ(){
     ta.className='disc-area'; ta.id='discInput';
     ta.placeholder='Escreva sua resposta aqui...';
     if(done){ ta.disabled=true; ta.value=discAnswered[cur]||''; }
+    wrap.innerHTML='<p class="disc-label">Questão discursiva — escreva sua resposta antes de ver o gabarito</p>';
     wrap.appendChild(ta);
   } else {
     q.opts.forEach(function(o,i){
