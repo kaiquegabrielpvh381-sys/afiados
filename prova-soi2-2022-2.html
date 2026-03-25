@@ -10,7 +10,6 @@
 html{scroll-behavior:smooth;}
 body{background:#0C0810;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;min-height:100vh;}
 :root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.22);--card:#1A1226;--border:rgba(255,255,255,0.07);--muted:#9080A8;--light:#D8CEEA;--green:#1D9E75;--green-l:rgba(29,158,117,0.12);--green-b:rgba(29,158,117,0.3);}
-
 nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(12,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
 .logo-mark{width:30px;height:30px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:7px;display:flex;align-items:center;justify-content:center;}
@@ -18,7 +17,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:16px;letter-spacing:.05em;color:#fff;}
 .back-btn{display:flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:50px;border:1px solid var(--border);transition:all .2s;}
 .back-btn:hover{border-color:var(--pink);color:var(--pink-light);}
-
 .sticky-bar{position:fixed;top:56px;left:0;right:0;z-index:400;background:rgba(12,8,16,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:12px 32px;}
 .sticky-inner{max-width:820px;margin:0 auto;}
 .sticky-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
@@ -34,9 +32,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .qp.correct{background:rgba(29,158,117,0.15);border-color:rgba(29,158,117,0.5);color:#5DCAA5;}
 .qp.wrong{background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.4);color:#F09595;}
 .qp.disc{background:rgba(155,0,232,0.15);border-color:rgba(155,0,232,0.4);color:#D4A8FF;}
-
 .main{max-width:820px;margin:0 auto;padding:160px 32px 80px;}
-
 .q-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
 .q-card-header{padding:18px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
 .q-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);}
@@ -46,7 +42,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-body{padding:28px;}
 .q-context{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:20px;padding:14px 18px;background:rgba(255,255,255,0.025);border-left:2px solid rgba(29,158,117,0.5);border-radius:0 10px 10px 0;white-space:pre-line;}
 .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;}
-
 .q-opts{display:flex;flex-direction:column;gap:9px;}
 .q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;text-align:left;font-size:15px;cursor:pointer;transition:all .2s;color:var(--light);display:flex;align-items:flex-start;gap:12px;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;}
 .q-opt:hover:not([disabled]){background:rgba(214,0,110,0.06);border-color:rgba(214,0,110,0.3);color:#F4EFFA;}
@@ -58,13 +53,10 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .q-opt.selected .opt-badge{background:var(--pink);border-color:var(--pink);color:#fff;}
 .q-opt.correct .opt-badge{background:rgba(29,158,117,0.25);border-color:rgba(29,158,117,0.6);color:#5DCAA5;}
 .q-opt.wrong .opt-badge{background:rgba(226,75,74,0.2);border-color:rgba(226,75,74,0.5);color:#F09595;}
-
-/* Discursiva */
 .disc-area{width:100%;min-height:120px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;font-size:14px;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;resize:vertical;line-height:1.7;transition:border-color .2s;}
 .disc-area:focus{outline:none;border-color:rgba(155,0,232,0.4);}
 .disc-area[disabled]{opacity:0.6;cursor:default;}
 .disc-label{font-size:12px;color:var(--muted);margin-bottom:8px;}
-
 .q-feedback{margin:0 28px;padding:16px 18px;border-radius:12px;font-size:14px;line-height:1.8;border:1px solid;display:none;}
 .q-feedback.show{display:block;animation:fadeUp .25s ease;}
 .fb-ok{background:rgba(29,158,117,0.07);border-color:rgba(29,158,117,0.3);color:#C5EDD9;}
@@ -72,17 +64,14 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .fb-disc{background:rgba(155,0,232,0.07);border-color:rgba(155,0,232,0.25);color:#E8D8FF;}
 .fb-label{font-weight:700;display:block;margin-bottom:6px;font-size:14px;}
 .fb-exp{display:block;margin-bottom:14px;}
-
 .btn-aprofundar{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,rgba(155,0,232,0.15),rgba(214,0,110,0.1));border:1px solid rgba(155,0,232,0.35);color:#D4A8FF;padding:8px 16px;border-radius:50px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
 .btn-aprofundar:hover{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));}
 .btn-aprofundar.active{background:linear-gradient(135deg,rgba(155,0,232,0.25),rgba(214,0,110,0.18));border-color:rgba(155,0,232,0.5);}
-
 .ai-box{margin:12px 28px 0;background:linear-gradient(135deg,rgba(155,0,232,0.07),rgba(214,0,110,0.03));border:1px solid rgba(155,0,232,0.2);border-radius:14px;overflow:hidden;display:none;}
 .ai-box.open{display:block;animation:fadeUp .3s ease;}
 .ai-box-header{padding:11px 16px;border-bottom:1px solid rgba(155,0,232,0.15);display:flex;align-items:center;gap:8px;}
 .ai-box-header span{font-size:11px;font-weight:700;color:#D4A8FF;letter-spacing:.06em;text-transform:uppercase;}
 .ai-content{padding:18px;font-size:14px;line-height:1.9;color:#E8D8FF;white-space:pre-line;}
-
 .q-nav-bar{padding:18px 28px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;margin-top:20px;}
 .btn-prev{display:flex;align-items:center;gap:7px;padding:10px 20px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:rgba(255,255,255,0.05);color:var(--light);border:1px solid var(--border);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
 .btn-prev:hover:not([disabled]){background:rgba(255,255,255,0.09);}
@@ -95,7 +84,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .btn-respond[disabled]{opacity:0.35;cursor:default;}
 .btn-next{display:flex;align-items:center;gap:7px;padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;background:var(--pink);color:#fff;border:none;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;box-shadow:0 4px 16px var(--pink-glow);}
 .btn-next:hover{background:var(--pink-bright);transform:translateY(-1px);}
-
 .result-screen{display:none;animation:fadeUp .35s ease;}
 .result-screen.show{display:block;}
 .res-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:20px;}
@@ -111,7 +99,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .res-stat .l{font-size:11px;color:var(--muted);margin-top:2px;}
 .btn-retry{display:inline-flex;align-items:center;gap:8px;background:var(--pink);color:#fff;padding:12px 28px;border-radius:50px;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;box-shadow:0 4px 18px var(--pink-glow);}
 .btn-retry:hover{background:var(--pink-bright);}
-
 .report-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px;margin-bottom:20px;}
 .report-card h3{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;margin-bottom:20px;display:flex;align-items:center;gap:10px;}
 .report-section{margin-bottom:24px;}
@@ -141,7 +128,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .dot-disc{background:#D4A8FF;}
 .q-rev-row span{flex:1;font-size:13px;color:var(--light);}
 .q-rev-row small{font-size:12px;color:var(--muted);}
-
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:640px){
   nav,.sticky-bar{padding-left:16px;padding-right:16px;}
@@ -170,7 +156,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 
 <div class="sticky-bar">
   <div class="sticky-inner">
-    <div class="sticky-aviso" style="display:none;"></div>
     <div class="sticky-top">
       <span class="sticky-title">N1 SOI II · 2022.2 &nbsp;·&nbsp; Prova e Gabarito</span>
       <button class="btn-reset" onclick="resetAll()">
@@ -199,10 +184,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
       </button>
     </div>
     <div class="report-card">
-      <h3>
-        <svg width="18" height="18" fill="none" stroke="#D4A8FF" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/></svg>
-        Relatório de desempenho
-      </h3>
+      <h3>Relatório de desempenho</h3>
       <div id="reportContent"></div>
     </div>
   </div>
@@ -222,22 +204,16 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
     <div class="q-feedback" id="qFeedback"></div>
     <div class="ai-box" id="aiBox" style="display:none;">
       <div class="ai-box-header">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#D4A8FF" stroke-width="2.5"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="m9 12 2 2 4-4"/></svg>
         <span>Aprofundamento — SOI II</span>
       </div>
       <div class="ai-content" id="aiContent"></div>
     </div>
     <div class="q-nav-bar">
-      <button class="btn-prev" id="btnPrev" onclick="prevQ()">
-        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        Anterior
-      </button>
+      <button class="btn-prev" id="btnPrev" onclick="prevQ()">Anterior</button>
       <span class="q-counter">Questão <strong id="qCounterNum">1</strong> de <strong id="qCounterTotal">15</strong></span>
       <div class="nav-right">
         <button class="btn-respond" id="btnRespond" onclick="submitAnswer()">Responder</button>
-        <button class="btn-next" id="btnNext" onclick="nextQ()">
-          Próxima <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
+        <button class="btn-next" id="btnNext" onclick="nextQ()">Próxima</button>
       </div>
     </div>
   </div>
@@ -247,15 +223,15 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 var QS = [
   {n:1,tema:"Neuroanatomia do Sistema Nervoso Autônomo",tipo:"mc",
    context:"Homem, 35 anos, casado, motorista, nega uso de álcool, apresenta história de trauma por acidente automobilístico há 30 dias. Encontra-se em bom estado geral, lúcido, orientado, coerente, com mucosas úmidas e coradas. Desde a reintrodução da dieta oral, vem apresentando disfagia (dificuldade de engolir alimentos e líquidos) e disfonia (dificuldade na emissão da voz). Ao exame neurológico foi constatada lesão dos nervos vago e glossofaríngeo.",
-   text:"Esse paciente teve comprometimento funcional de parte do sistema nervoso autônomo:",
+   text:"Esse paciente teve comprometimento funcional de parte do sistema nervoso autônomo",
    opts:["parassimpático, especificamente da região craniana.","simpático, especificamente da região cervical.","simpático, especificamente da região craniana.","parassimpático, especificamente da região cervical."],
    g:0},
   {n:2,tema:"Eixo Hipotálamo-Hipófise-Adrenal e Corticoterapia",tipo:"disc",
    context:"Mulher, 38 anos, após fazer uso por um tempo prolongado de corticoide para tratamento de uma alergia crônica, apresentou elevação dos níveis de glicemia e engordou sete quilos. O médico solicitou dosagem de ACTH, e o resultado apresentou níveis baixos quando comparado aos valores de referência.",
-   text:"A) Relacione a hiperglicemia e a elevação de peso com uso de corticoide. \nB) Explique os baixos níveis de ACTH da paciente.",
-   resposta:"A) O uso prolongado de corticoide eleva os níveis de cortisol no sangue, aumentando sua ação nos tecidos alvo. A ocorrência de hiperglicemia e aumento de peso se dão pelo aumento da lipólise, gliconeogênese hepática e do antagonismo periférico à ação da insulina. \n\nB) A mulher terá níveis baixos de ACTH e CRH, pois o medicamento suprime por feedback negativo a adeno-hipófise e o hipotálamo."},
+   text:"A) Relacione a hiperglicemia e a elevação de peso com uso de corticoide.\nB) Explique os baixos níveis de ACTH da paciente.",
+   resposta:"A) O uso prolongado de corticoide eleva os níveis de cortisol no sangue, aumentando sua ação nos tecidos alvo. A ocorrência de hiperglicemia e aumento de peso se dão pelo aumento da lipólise, gliconeogênese hepática e do antagonismo periférico à ação da insulina.\n\nB) A mulher terá níveis baixos de ACTH e CRH, pois o medicamento suprime por feedback negativo a adeno-hipófise e o hipotálamo."},
   {n:3,tema:"Fisiologia Pancreática e Insulina",tipo:"mc",
-   context:"Recentemente uma empresa de tecnologia lançou no Brasil um dispositivo que desempenhará a função de pâncreas artificial, projetado para pessoas com diabetes tipo 1. Ele faz a monitorização constante dos níveis de insulina, liberando o hormônio conforme às necessidades do paciente. (Fonte: Biernath, A. Quase um pâncreas: nova tecnologia promete ajudar os diabéticos...).\n\nO uso do dispositivo por pacientes portadores da diabetes poderá:\nI. Induzir a glicogenólise durante períodos de jejum.\nII. Contribuir com a manutenção dos níveis glicêmicos.\nIII. Estimular a glicogênese hepática.\nIV. Suprimir o processo de lipogênese pós-refeição.",
+   context:"Recentemente uma empresa de tecnologia lançou no Brasil um dispositivo que desempenhará a função de pâncreas artificial, projetado para pessoas com diabetes tipo 1. Ele faz a monitorização constante dos níveis de insulina, liberando o hormônio conforme às necessidades do paciente.\n\nO uso do dispositivo por pacientes portadores da diabetes poderá:\nI. Induzir a glicogenólise durante períodos de jejum.\nII. Contribuir com a manutenção dos níveis glicêmicos.\nIII. Estimular a glicogênese hepática.\nIV. Suprimir o processo de lipogênese pós-refeição.",
    text:"Estão corretas apenas as assertivas:",
    opts:["II e IV.","II e III.","I e IV.","I e III."],
    g:1},
@@ -265,7 +241,7 @@ var QS = [
    opts:["Os neurônios de segunda ordem recebem as terminações nervosas dos neurônios motores que penetram na medula pela raiz dorsal.","Na coluna anterior observam-se dois grupos importantes de neurônios sensoriais, o ventromedial e o dorsolateral.","Na coluna posterior, predominam grupos de neurônios de segunda ordem pertecentes às vias motoras.","As colunas anteriores e posteriores são também chamadas, respectivamente, de cornos ventral e dorsal, que contém, respectivamente, neurônios motores e sensoriais."],
    g:3},
   {n:5,tema:"Fisiopatologia do Parkinson e Núcleos da Base",tipo:"mc",
-   context:"\"O Parkinsonismo é um distúrbio que se torna cada vez mais comum com a idade. Caracteriza-se por tremor, hipocinesia (diminuição dos movimentos), rigidez, além de marcha e postura anormais. As manifestações motoras da doença de Parkinson parecem resultar de padrões alterados de inibição e excitação nos circuitos dos núcleos da base e de suas conexões com as vias diretas e indiretas em decorrência da depleção de dopamina no sistema nigroestriatal dopaminérgico.\"\n(GREENBERG, David A.; AMINOFF, Michael J.; SIMON, Roger P. Neurologia Clínica. Porto Alegre: AMGH, 2014.)",
+   context:"\"O Parkinsonismo é um distúrbio que se torna cada vez mais comum com a idade. Caracteriza-se por tremor, hipocinesia (diminuição dos movimentos), rigidez, além de marcha e postura anormais. As manifestações motoras da doença de Parkinson parecem resultar de padrões alterados de inibição e excitação nos circuitos dos núcleos da base e de suas conexões com as vias diretas e indiretas em decorrência da depleção de dopamina no sistema nigroestriatal dopaminérgico.\"\n",
    text:"De acordo com o enunciado, os movimentos são coordenados pelos núcleos da base através da captação da dopamina:",
    opts:["pelos receptores D2 do núcleo estriado contribui para a inibição do globo pálido lateral e, consequentemente, estimula a atividade talâmica a favor do movimento na via indireta.","pelos receptores D1 do núcleo estriado contribui para a atividade gabaérgica do globo pálido medial, liberando a atividade talâmica a favor do movimento na via direta.","pelos receptores D1 do núcleo estriado contribui para a atividade glutamatérgica do globo pálido lateral, inibindo a atividade talâmica a favor do movimento na via direta.","pelos receptores D2 do núcleo estriado contribui para a excitação do globo pálido medial, inibindo a atividade talâmica e, consequentemente, facilitando o movimento na via indireta."],
    g:1},
@@ -312,7 +288,7 @@ var QS = [
   {n:14,tema:"Neuroanatomia Sensitiva (Via Coluna Dorsal-Lemnisco Medial)",tipo:"disc",
    context:"Uma paciente de 70 anos vem a seu consultório para exame físico de rotina. A paciente relata que está tendo um formigamento nos pés e nos dedos. Você realiza um exame neurológico completo e acha que ela apresenta redução na sensibilidade vibratória no hálux (popularmente como \"dedão do pé\") e no tornozelo em ambos os lados.",
    text:"Descreva a via sensitiva responsável pela transmissão da informação para o sistema nervo central, abordando seus receptores, tratos e região de percepção cortical.",
-   resposta:"A sensação em questão, vibração, é transmitida através da via coluna dorsal-lemniscal medial. A sensação é detectada por um corpúsculo de Pacini, que é inervado por um neurônio sensorial, cujo corpo está no gânglio da raiz dorsal. O axônio desse neurônio entra na medula através do corno dorsal e ascende na coluna posterior da medula espinal até a porção inferior do bulbo, onde faz sinapse no núcleo grácil (porque vem da parte inferior do corpo). A partir daí, o neurônio de segunda ordem envia seus axônios através da linha média para ascender no lemnisco medial contralateral até o núcleo VPL do tálamo. A partir do tálamo, a informação é retransmitida para o córtex sensitivo, onde é processada."},
+   resposta:"A sensação em questão, vibração, é transmitida através da via coluna dorsal-lemniscal medial. A sensação é detectada por um corpúsculo de Pacini, que é inervado por um neurônio sensorial, cujo corpo está no gânglio da raiz dorsal. O axônio desse neurônio entra na medula através do corno dorsal e ascende na coluna posterior da medula espinal até a porção inferior do bulbo, onde faz sinapse no núcleo grácil. A partir daí, o neurônio de segunda ordem envia seus axônios através da linha média para ascender no lemnisco medial contralateral até o núcleo VPL do tálamo. A partir do tálamo, a informação é retransmitida para o córtex sensitivo, onde é processada."},
   {n:15,tema:"Embriologia e Anatomia do Hipotálamo",tipo:"mc",
    context:"O diencéfalo consiste em uma fina placa do teto e uma espessa placa alar nas quais se desenvolvem o tálamo e o hipotálamo. Ela participa da formação da glândula hipófise, que também se desenvolve da bolsa de Rathke. A bolsa de Rathke forma a adeno-hipófise, o lobo intermediário e a porção tubular, e o diencéfalo compõe o lobo posterior, a neuro-hipófise, que contém neuróglia e recebe fibras nervosas do hipotálamo.",
    text:"Em face do exposto, é correto afirmar que sobre o hipotálamo",
@@ -321,23 +297,285 @@ var QS = [
 ];
 
 var SHORT = [
-`A alternativa correta é a A, pois os nervos glossofaríngeo (IX) e vago (X) são componentes fundamentais da divisão parassimpática do sistema nervoso autônomo, especificamente de sua porção craniana. Estes nervos emergem do sulco lateral posterior do bulbo e são responsáveis pela inervação autônoma de estruturas relacionadas à deglutição e fonação, justificando a disfagia e disfonia apresentadas pelo paciente após a lesão nervosa traumática.`,
+`A alternativa correta é a A, pois os nervos glossofaríngeo (IX) e vago (X) são componentes fundamentais da divisão parassimpática do sistema nervoso autônomo, especificamente de sua porção craniana.`,
 null,
-`A alternativa correta é a B, pois a insulina é um hormônio anabólico que atua mantendo a homeostase glicêmica ao facilitar a entrada de glicose nas células e estimular a glicogênese hepática (formação de glicogênio). Em pacientes com diabetes tipo 1, o pâncreas artificial supre a carência hormonal, garantindo que o excesso de glicose pós-prandial seja convertido em reserva energética no fígado, em vez de permanecer na circulação.`,
-`A alternativa correta é a D, que identifica corretamente a organização do "H" medular, onde as colunas anteriores (cornos ventrais) contêm os corpos celulares dos neurônios motores e as colunas posteriores (cornos dorsais) contêm os corpos celulares dos neurônios sensoriais ou de associação. Essa organização reflete a especialização funcional da medula, onde a informação motora sai pela raiz ventral e a sensorial entra pela raiz dorsal.`,
-`A alternativa correta é a B, pois na via direta dos núcleos da base, a dopamina liga-se aos receptores D1 no estriado, o que estimula a atividade gabaérgica (inibitória) sobre o globo pálido medial. Essa inibição do globo pálido resulta na desinibição do tálamo, liberando a atividade talâmica para estimular o córtex motor e favorecer o movimento.`,
-`A alternativa correta é a B, fundamentada no diagnóstico de hiperparatireoidismo, onde a síntese excessiva de paratormônio (PTH) causa a tríade clássica observada no caso: hipercalcemia (por reabsorção óssea e renal), fosfatúria (por inibição da reabsorção de fosfato no túbulo proximal) e nefrolitíase (pedras renais). A osteopenia é a consequência direta da retirada contínua de cálcio da matriz óssea pelo excesso de PTH.`,
-`A alternativa correta é a B, pois o líquido cefalorraquidiano (LCE) é produzido primariamente pelos plexos corioides, que são estruturas especializadas localizadas nos ventrículos laterais e no teto do terceiro e quarto ventrículos. Esta produção é contínua e garante o preenchimento das cavidades ventriculares e do espaço subaracnóideo para proteção mecânica e biológica do SNC.`,
-`A alternativa correta é a C, pois tanto o hipotálamo quanto a hipófise originam-se do folheto embrionário ectoderma. A hipófise possui uma origem dual: a adeno-hipófise deriva de uma evaginação do ectoderma do teto do estomodeu (bolsa de Rathke), enquanto a neuro-hipófise deriva do neuroectoderma do assoalho do diencéfalo.`,
-`A alternativa correta é a C, visto que o único parâmetro laboratorial que se encontra abaixo dos valores de referência fornecidos no enunciado é o IGF-1 (101 ng/mL, sendo o normal acima de 110). O IGF-1 (fator de crescimento semelhante à insulina tipo 1) é o principal mediador das ações do hormônio de crescimento (GH), e sua redução após cirurgia transesfenoidal indica uma deficiência deste hormônio.`,
-`A alternativa correta é a C, que valida as afirmações I e IV. A afirmação I descreve corretamente a retina (7) como o local de transdução luminosa pelos fotorreceptores, enquanto a afirmação IV identifica as radiações ópticas (5) como a via que conduz a informação dos núcleos geniculados laterais do tálamo até o córtex visual primário no lobo occipital.`,
-`A alternativa correta é a C, pois a perda de audição associada a zumbidos e vertigem é característica de comprometimento do VIII par craniano, o nervo vestibulococlear. Este nervo possui dois ramos distintos: o coclear, responsável pela audição, e o vestibular, responsável pelo equilíbrio. A paresia facial ipsilateral sugere que a lesão possa estar localizada no ângulo pontocerebelar, afetando também o nervo facial (VII par).`,
-`A alternativa correta é a C, pois a epiderme contém melanócitos que produzem e transferem a melanina para os queratinócitos, exercendo a função vital de proteger o DNA celular contra os danos causados pelos raios ultravioletas. A epiderme é um epitélio estratificado pavimentoso queratinizado, sendo a camada mais superficial da pele.`,
-`A alternativa correta é a C, validando as proposições II e IV. A meningocele (II) é definida como a protrusão apenas das meninges e líquido através de um defeito ósseo, enquanto a mielomeningocele (IV) envolve tanto as meninges quanto o tecido da medula espinal, sendo este último o defeito mais grave associado à espinha bífida cística.`,
+`A alternativa correta é a B, pois a insulina é um hormônio anabólico que atua mantendo a homeostase glicêmica ao facilitar a entrada de glicose nas células e estimular a glicogênese hepática (formação de glicogênio).`,
+`A alternativa correta é a D, que identifica corretamente a organização do "H" medular, onde as colunas anteriores contêm os corpos celulares dos neurônios motores e as colunas posteriores contêm os corpos celulares dos neurônios sensoriais.`,
+`A alternativa correta é a B, pois na via direta dos núcleos da base, a dopamina liga-se aos receptores D1 no estriado, o que estimula a atividade gabaérgica (inibitória) sobre o globo pálido medial.`,
+`A alternativa correta é a B, fundamentada no diagnóstico de hiperparatireoidismo, onde a síntese excessiva de paratormônio (PTH) causa a tríade clássica observada no caso.`,
+`A alternativa correta é a B, pois o líquido cefalorraquidiano (LCE) é produzido primariamente pelos plexos corioides, localizados nos ventrículos.`,
+`A alternativa correta é a C, pois tanto o hipotálamo quanto a hipófise originam-se do folheto embrionário ectoderma.`,
+`A alternativa correta é a C, visto que o único parâmetro laboratorial que se encontra abaixo dos valores de referência fornecidos no enunciado é o IGF-1, indicando deficiência de GH.`,
+`A alternativa correta é a C, que valida as afirmações I e IV. A afirmação I descreve corretamente a retina, enquanto a IV identifica as radiações ópticas.`,
+`A alternativa correta é a C, pois a perda de audição associada a zumbidos e vertigem é característica de comprometimento do nervo vestibulococlear.`,
+`A alternativa correta é a C, pois a epiderme contém melanócitos que produzem e transferem a melanina para os queratinócitos.`,
+`A alternativa correta é a C, validando as proposições II e IV. A meningocele é a protrusão apenas das meninges, enquanto a mielomeningocele envolve as meninges e a medula.`,
 null,
-`A alternativa correta é a A, que descreve o hipotálamo como uma estrutura originada da placa alar do diencéfalo que se diferencia em diversos núcleos. Estes núcleos são responsáveis pela regulação de funções viscerais essenciais, incluindo o ciclo sono-vigília, a digestão, a termorregulação e o controle do comportamento emocional.`
+`A alternativa correta é a A, que descreve o hipotálamo como uma estrutura originada da placa alar do diencéfalo que se diferencia em diversos núcleos reguladores de funções viscerais e emocionais.`
 ];
 
 var DEEP = [
-`O conteúdo teórico central desta questão envolve a organização anatômica do sistema nervoso autônomo (SNA), que se divide em simpático (toracolombar) e parassimpático (craniossacral). O raciocínio clínico baseia-se na identificação dos pares de nervos cranianos lesionados: o glossofaríngeo e o vago são os principais efetores do reflexo de deglutição e do controle motor da laringe e faringe. Como ambos possuem fibras eferentes viscerais gerais pertencentes ao sistema parassimpático e originam-se em núcleos no tronco encefálico (região craniana), a lesão caracteriza um comprometimento desta divisão específica. As outras alternativas estão incorretas porque o sistema simpático não possui origem craniana, mas sim nos segmentos medulares de T1 a L2, e a região cervical, embora contenha gânglios simpáticos, não é o local de emergência original dos nervos vago e glossofaríngeo no contexto da classificação craniossacral do parassimpático. A principal pegadinha da banca reside na confusão entre a localização anatômica da lesão (que poderia ser cervical pelo trauma) e a classificação funcional/anatômica do sistema nervoso autônomo afetado, que é classicamente definido como parassimpático craniano para estes nervos.`,
-`Esta questão aborda a fisiologia endócrina e os efeitos farmacológicos dos glicocorticoides sintéticos, que possuem ação análoga ao cortisol endógeno. O raciocínio clínico exige a compreensão de que o cortisol é um hormônio hiperglicemiante e catabólico em certos tecidos, mas lipogênico em outros, promovendo o acúmulo de gordura central e resistência à insulina. A hiperglicemia é resultado direto do estímulo à produção de nova glicose pelo fígado e da menor eficiência da insulina em colocar essa glicose para dentro das células musculares e adiposas. Quanto ao eixo hormonal, o corpo não diferencia o corticoide exógeno do endógeno; assim, a presença constante da droga no sangue sinaliza aos centros superiores que não há necessidade de produzir
+`O conteúdo teórico central desta questão envolve a organização anatômica do sistema nervoso autônomo (SNA), que se divide em simpático (toracolombar) e parassimpático (craniossacral). O raciocínio clínico baseia-se na identificação dos pares de nervos cranianos lesionados: o glossofaríngeo e o vago são os principais efetores do reflexo de deglutição e do controle motor da laringe e faringe. Como ambos possuem fibras eferentes viscerais gerais pertencentes ao sistema parassimpático e originam-se em núcleos no tronco encefálico (região craniana), a lesão caracteriza um comprometimento desta divisão específica.`,
+`Esta questão aborda a fisiologia endócrina e os efeitos farmacológicos dos glicocorticoides sintéticos. A hiperglicemia é resultado direto do estímulo à produção de nova glicose pelo fígado e da menor eficiência da insulina em colocar essa glicose para dentro das células musculares e adiposas. Quanto ao eixo hormonal, o corpo não diferencia o corticoide exógeno do endógeno; assim, a presença constante da droga no sangue sinaliza aos centros superiores que não há necessidade de produzir mais cortisol. Isso resulta na supressão do eixo hipotálamo-hipófise, levando à queda do ACTH.`,
+`O tema central é a função metabólica da insulina, essencial para o tratamento do Diabetes Mellitus tipo 1. O raciocínio da questão exige diferenciar processos estimulados pela insulina daqueles inibidos por ela. A insulina promove a manutenção dos níveis glicêmicos (II) e estimula a glicogênese (III), que é o armazenamento de glicose na forma de glicogênio. A afirmação I está incorreta porque a glicogenólise é estimulada pelo glucagon.`,
+`A questão explora a neuroanatomia funcional da medula espinal. A coluna anterior é predominantemente motora, enquanto a posterior recebe aferências sensoriais de neurônios cujos corpos estão nos gânglios da raiz dorsal. A alternativa A está errada porque inverte a função dos neurônios. A alternativa B está incorreta ao atribuir função sensorial à coluna anterior.`,
+`O Parkinson é caracterizado pela depleção de dopamina, o que desequilibra as vias direta (pró-cinética) e indireta (anti-cinética). Na via direta, a dopamina via receptores D1 "desliga" o freio exercido pelo globo pálido medial sobre o tálamo. Sem dopamina, esse freio fica hiperativo, inibindo o tálamo e causando a bradicinesia.`,
+`Esta questão integra fisiologia endócrina com clínica médica. O PTH atua nos ossos estimulando osteoclastos, nos rins aumentando a reabsorção de cálcio e excreção de fosfato. Excesso de vitamina D também causaria hipercalcemia, mas geralmente com hiperfosfatemia. Ingesta excessiva de cálcio sozinha raramente explicaria uma desmineralização óssea progressiva.`,
+`A alternativa A está errada porque a punção lombar não pode ser feita em qualquer segmento devido ao risco de lesão medular. A alternativa C está incorreta porque as granulações aracnoideas são sítios de reabsorção (drenagem) do líquor, e não de produção. A alternativa D erra ao afirmar que o sangue circula nos ventrículos.`,
+`A hipófise possui uma origem dual: a adeno-hipófise deriva de uma evaginação do ectoderma do teto do estomodeu (bolsa de Rathke), enquanto a neuro-hipófise deriva do neuroectoderma do assoalho do diencéfalo. Ambas partem do ectoderma. A pegadinha está em associar erroneamente o hipotálamo ao mesoderma.`,
+`O TSH e o T4 livre estão dentro da normalidade, descartando hipotireoidismo central severo. O cortisol matinal também está dentro da faixa de referência, o que afasta insuficiência adrenal aguda. A sintomatologia de náuseas e hipotensão postural pode ocorrer em várias deficiências, mas o dado objetivo é a queda do IGF-1, indicando deficiência de GH.`,
+`A afirmação II está errada porque o número 3 representa o quiasma óptico, que promove o cruzamento das fibras das hemirretinas nasais (que formam o nervo óptico), e não do trato óptico. A afirmação III está incorreta porque o cruzamento ocorre no quiasma óptico, e não nos núcleos talâmicos.`,
+`O nervo vestibulococlear possui dois ramos distintos: o coclear, responsável pela audição, e o vestibular, responsável pelo equilíbrio. A paresia facial ipsilateral sugere que a lesão possa estar localizada no ângulo pontocerebelar, afetando também o nervo facial. A cadeia ossicular fica no ouvido médio e sua fratura não explicaria a vertigem.`,
+`A alternativa A está errada porque os corpúsculos de Meissner e a maioria dos receptores nervosos complexos localizam-se na derme. A alternativa B está incorreta na classificação do epitélio: ele é estratificado e não pseudoestratificado. A alternativa D erra ao dizer que é vascularizada; a epiderme é um tecido avascular.`,
+`A proposição I está errada porque o aqueduto de Sylvius conecta o terceiro ao quarto ventrículo, e não os laterais ao terceiro. A proposição III está incorreta porque os plexos coroides são dobras da pia-máter, e não da dura-máter, e são revestidos por epitélio simples cúbico ou colunar baixo.`,
+`A via responsável pela sensibilidade vibratória é a Coluna Dorsal-Lemnisco Medial. A informação é captada por corpúsculos de Pacini, cujos axônios entram pela raiz dorsal da medula e ascendem pelo fascículo grácil. No bulbo, fazem sinapse no núcleo grácil, decussam formando o lemnisco medial, seguem até o núcleo ventral póstero-lateral do tálamo e terminam no córtex somatossensorial primário.`,
+`O hipotálamo não regula diretamente a contração da musculatura estriada esquelética, que é uma função de áreas motoras do córtex, cerebelo e núcleos da base. O hipotálamo exerce ação direta sobre a hipófise, mas sua ação sobre glândulas periféricas é indireta, mediada pela hipófise. A pegadinha reside em discernir regulação direta versus indireta.`
+];
+
+var L = ['a','b','c','d','e'];
+var cur = 0, sel = null, answered = {}, discAnswered = {};
+
+function buildPills(){
+  var w = document.getElementById('qPills'); w.innerHTML = '';
+  for(var i=0;i<QS.length;i++){
+    var b = document.createElement('button');
+    b.className='qp'; b.id='qp'+i; b.textContent=i+1;
+    (function(idx){ b.onclick = function(){ goTo(idx); }; })(i);
+    w.appendChild(b);
+  }
+}
+function syncPills(){
+  for(var i=0;i<QS.length;i++){
+    var p=document.getElementById('qp'+i); if(!p) continue;
+    p.className='qp';
+    if(i===cur) p.classList.add('current');
+    var q=QS[i];
+    if(q.tipo==='disc'){
+      if(discAnswered[i]) p.classList.add('disc');
+    } else {
+      if(answered[i]!==undefined) p.classList.add(answered[i]===q.g?'correct':'wrong');
+    }
+  }
+}
+
+function renderQ(){
+  var q=QS[cur];
+  sel=(answered[cur]!==undefined)?answered[cur]:null;
+  var done = q.tipo==='disc' ? !!discAnswered[cur] : answered[cur]!==undefined;
+
+  document.getElementById('qTagNum').textContent='Questão '+q.n;
+  document.getElementById('qTagTema').textContent=q.tema;
+  document.getElementById('qCounterNum').textContent=q.n;
+
+  var discTag = document.getElementById('qTagDisc');
+  discTag.style.display = q.tipo==='disc' ? 'inline-flex' : 'none';
+
+  var ctx=document.getElementById('qContext');
+  if(q.context){
+    ctx.style.display='block';
+    var ctxHtml=q.context.replace(/\n/g,'<br>');
+    ctxHtml = ctxHtml.replace('[[IMG_Q10]]', '<img src="imagem_q10.jpg" alt="Via Visual" style="max-width:100%; border-radius:8px; display:block; margin:16px auto; border:1px solid rgba(255,255,255,0.1);">');
+    ctx.innerHTML=ctxHtml;
+  } else {
+    ctx.style.display='none';
+  }
+
+  document.getElementById('qText').innerHTML = q.text ? q.text.replace(/\n/g,'<br>') : '';
+  
+  var wrap=document.getElementById('qOpts'); wrap.innerHTML='';
+  if(q.tipo==='disc'){
+    var ta=document.createElement('textarea');
+    ta.className='disc-area'; ta.id='discInput';
+    ta.placeholder='Escreva sua resposta aqui...';
+    ta.rows=6;
+    if(done){ ta.disabled=true; ta.value=discAnswered[cur]||''; }
+    wrap.innerHTML='<p class="disc-label">Questão discursiva — escreva sua resposta antes de ver o gabarito</p>';
+    wrap.appendChild(ta);
+  } else {
+    q.opts.forEach(function(o,i){
+      var btn=document.createElement('button'); btn.className='q-opt';
+      if(done){btn.setAttribute('disabled','');if(i===q.g)btn.classList.add('correct');else if(i===sel&&i!==q.g)btn.classList.add('wrong');}
+      else if(sel===i){btn.classList.add('selected');}
+      btn.innerHTML='<span class="opt-badge">'+L[i]+'</span><span>'+o+'</span>';
+      if(!done){(function(idx){btn.onclick=function(){selectOpt(idx);};})(i);}
+      wrap.appendChild(btn);
+    });
+  }
+
+  var fb=document.getElementById('qFeedback');
+  var aiBox=document.getElementById('aiBox');
+  if(done){
+    if(q.tipo==='disc'){
+      fb.className='q-feedback show fb-disc';
+      fb.innerHTML='<span class="fb-label">📋 Gabarito comentado</span>'
+        +'<span class="fb-exp">'+q.resposta.replace(/\n/g,'<br>')+'</span>'
+        +'<button class="btn-aprofundar" id="btnAI" onclick="toggleAI('+cur+')">✦ Aprofundar com IA</button>';
+    } else {
+      var ok=sel===q.g;
+      fb.className='q-feedback show '+(ok?'fb-ok':'fb-err');
+      fb.innerHTML='<span class="fb-label">'+(ok?'✓ Correto!':'✗ Incorreto — Gabarito: '+L[q.g].toUpperCase())+'</span>'
+        +'<span class="fb-exp">'+SHORT[cur]+'</span>'
+        +'<button class="btn-aprofundar" id="btnAI" onclick="toggleAI('+cur+')">✦ Aprofundar com IA</button>';
+    }
+    aiBox.style.display='none';
+    aiBox.classList.remove('open');
+    document.getElementById('aiContent').textContent='';
+  } else {
+    fb.className='q-feedback'; fb.innerHTML='';
+    aiBox.style.display='none'; aiBox.classList.remove('open');
+  }
+
+  document.getElementById('btnPrev').disabled=(cur===0);
+  var btnN=document.getElementById('btnNext');
+  if(cur===QS.length-1){btnN.innerHTML='Ver resultado <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';}
+  else{btnN.innerHTML='Próxima <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';}
+
+  var btnR=document.getElementById('btnRespond');
+  if(done){btnR.style.display='none';}
+  else{
+    btnR.style.display='flex';
+    if(q.tipo==='disc') btnR.disabled=false;
+    else btnR.disabled=(sel===null);
+  }
+  syncPills();
+}
+
+function toggleAI(qIdx){
+  var aiBox=document.getElementById('aiBox');
+  var btnAI=document.getElementById('btnAI');
+  if(aiBox.classList.contains('open')){
+    aiBox.classList.remove('open');
+    if(btnAI) btnAI.classList.remove('active');
+  } else {
+    document.getElementById('aiContent').textContent=DEEP[qIdx];
+    aiBox.style.display='block';
+    aiBox.classList.add('open');
+    if(btnAI) btnAI.classList.add('active');
+  }
+}
+
+function selectOpt(i){
+  if(answered[cur]!==undefined) return;
+  sel=i; document.getElementById('btnRespond').disabled=false;
+  var opts=document.querySelectorAll('.q-opt');
+  opts.forEach(function(o,idx){
+    o.className='q-opt'+(idx===i?' selected':'');
+    if(!o.classList.contains('selected')){(function(ii){o.onclick=function(){selectOpt(ii);};})(idx);}
+  });
+}
+
+function submitAnswer(){
+  var q=QS[cur];
+  if(q.tipo==='disc'){
+    var ta=document.getElementById('discInput');
+    var val=ta?ta.value.trim():'';
+    discAnswered[cur]=val||'(sem resposta)';
+  } else {
+    if(sel===null||answered[cur]!==undefined) return;
+    answered[cur]=sel;
+  }
+  renderQ();
+}
+
+function prevQ(){if(cur>0){cur--;renderQ();window.scrollTo({top:0,behavior:'smooth'});}}
+function nextQ(){if(cur===QS.length-1){showResult();return;}cur++;renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+function goTo(i){cur=i;renderQ();window.scrollTo({top:0,behavior:'smooth'});}
+
+function showResult(){
+  document.getElementById('qCard').style.display='none';
+  var rs=document.getElementById('resultScreen'); rs.classList.add('show');
+  var mcQs=QS.filter(function(q){return q.tipo==='mc';});
+  var correct=mcQs.filter(function(q,i){
+    var idx=QS.indexOf(q);
+    return answered[idx]===q.g;
+  }).length;
+  var wrong=mcQs.filter(function(q){
+    var idx=QS.indexOf(q);
+    return answered[idx]!==undefined&&answered[idx]!==q.g;
+  }).length;
+  var discCount=Object.keys(discAnswered).length;
+  var pct=mcQs.length>0?Math.round((correct/mcQs.length)*100):0;
+  var ring=document.getElementById('resRing');
+  ring.textContent=pct+'%';
+  ring.className='res-ring '+(pct>=70?'great':pct>=50?'ok':'bad');
+  document.getElementById('resTitle').textContent=pct>=70?'Parabéns!':pct>=50?'Quase lá!':'Continue praticando!';
+  document.getElementById('resSub').textContent='Você acertou '+correct+' de '+mcQs.length+' questões de múltipla escolha ('+pct+'%)';
+  document.getElementById('resOk').textContent=correct;
+  document.getElementById('resErr').textContent=wrong;
+  document.getElementById('resDisc').textContent=discCount;
+  buildReport(correct,wrong);
+  rs.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function buildReport(correct,wrong){
+  var temaStats={};
+  QS.forEach(function(q,i){
+    if(!temaStats[q.tema]) temaStats[q.tema]={total:0,correct:0,wrong:0,disc:0};
+    var t=temaStats[q.tema]; t.total++;
+    if(q.tipo==='disc'){t.disc++;}
+    else if(answered[i]===q.g){t.correct++;}
+    else if(answered[i]!==undefined){t.wrong++;}
+  });
+  var sorted=Object.keys(temaStats).sort(function(a,b){return temaStats[b].wrong-temaStats[a].wrong;});
+  var barsHtml='';
+  sorted.forEach(function(tema){
+    var s=temaStats[tema];
+    if(s.disc===s.total){
+      barsHtml+='<div class="tema-row"><span class="tema-name">'+tema+'</span>'
+        +'<div class="tema-bar-bg"><div class="tema-bar-fill purple" style="width:100%"></div></div>'
+        +'<span class="tema-pct purple">Disc.</span></div>';
+    } else {
+      var pct=s.total>0?Math.round((s.correct/s.total)*100):0;
+      var good=pct>=50;
+      barsHtml+='<div class="tema-row"><span class="tema-name">'+tema+'</span>'
+        +'<div class="tema-bar-bg"><div class="tema-bar-fill '+(good?'green':'red')+'" style="width:'+pct+'%"></div></div>'
+        +'<span class="tema-pct '+(good?'green':'red')+'">'+pct+'%</span></div>';
+    }
+  });
+  var mcWrong=QS.filter(function(q,i){return q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g;});
+  var worstTema=sorted.find(function(t){return temaStats[t].wrong>0;})||sorted[0]||'—';
+  var wrongListHtml='';
+  QS.forEach(function(q,i){
+    if(q.tipo==='mc'&&answered[i]!==undefined&&answered[i]!==q.g){
+      wrongListHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
+        +'<div class="rev-dot dot-err"></div>'
+        +'<span>Q'+q.n+' — '+q.tema+'</span>'
+        +'<small>Resp: '+L[answered[i]].toUpperCase()+' · Gabarito: '+L[q.g].toUpperCase()+'</small></div>';
+    }
+    if(q.tipo==='disc'&&discAnswered[i]){
+      wrongListHtml+='<div class="q-rev-row" onclick="goToQ('+i+')">'
+        +'<div class="rev-dot dot-disc"></div>'
+        +'<span>Q'+q.n+' — '+q.tema+'</span>'
+        +'<small>Discursiva — revisar gabarito</small></div>';
+    }
+  });
+  if(!wrongListHtml) wrongListHtml='<div style="font-size:13px;color:var(--muted);padding:8px 0;">Nenhum erro nas múltipla escolha! 🎉</div>';
+  var mcCount=QS.filter(function(q){return q.tipo==='mc';}).length;
+  var pct=mcCount>0?Math.round((correct/mcCount)*100):0;
+  var msg=pct>=70?'Ótimo domínio geral!':pct>=50?'Foque nos pontos fracos.':'Revise antes da prova.';
+  document.getElementById('reportContent').innerHTML=
+    '<div class="report-section"><h4>Desempenho por tema</h4>'+barsHtml+'</div>'
+    +'<div class="report-section"><h4>Insights</h4><div class="insight-grid">'
+      +'<div class="insight-box"><div class="ib-label">Ponto mais fraco</div><div class="ib-val">'+worstTema+'</div><div class="ib-sub">Mais erros nesse tema</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC acertadas</div><div class="ib-val">'+correct+'/'+mcCount+'</div><div class="ib-sub">'+msg+'</div></div>'
+      +'<div class="insight-box"><div class="ib-label">MC erradas</div><div class=\"ib-val\" style=\"color:#F09595;\">'+wrong+'</div><div class=\"ib-sub\">Múltipla escolha</div></div>'
+      +'<div class=\"insight-box\"><div class=\"ib-label\">Discursivas</div><div class=\"ib-val\" style=\"color:#D4A8FF;\">'+Object.keys(discAnswered).length+'</div><div class=\"ib-sub\">Questões abertas</div></div>'
+    +'</div></div>'
+    +'<div class=\"report-section\"><h4>Revisão por questão</h4><div class=\"q-review-list\">'+wrongListHtml+'</div></div>';
+}
+
+function goToQ(i){
+  document.getElementById('qCard').style.display='block';
+  document.getElementById('resultScreen').classList.remove('show');
+  cur=i; renderQ(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function resetAll(){
+  answered={}; discAnswered={}; sel=null; cur=0;
+  document.getElementById('resultScreen').classList.remove('show');
+  document.getElementById('qCard').style.display='block';
+  renderQ(); window.scrollTo({top:0,behavior:'smooth'});
+}
+buildPills(); renderQ();
+</script>
+</body>
+</html>
