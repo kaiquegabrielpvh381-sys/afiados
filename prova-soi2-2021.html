@@ -12,7 +12,6 @@
     body{background:#0C0810;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;min-height:100vh;}
     :root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.22);--card:#1A1226;--border:rgba(255,255,255,0.07);--muted:#9080A8;--light:#D8CEEA;--green:#1D9E75;--green-l:rgba(29,158,117,0.12);--green-b:rgba(29,158,117,0.3);}
 
-    /* --- NAVEGAÇÃO E LAYOUT --- */
     nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(12,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
     .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
     .logo-mark{width:30px;height:30px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:7px;display:flex;align-items:center;justify-content:center;}
@@ -34,7 +33,6 @@
     .qp.wrong{background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.4);color:#F09595;}
     .main{max-width:820px;margin:0 auto;padding:160px 32px 80px;}
 
-    /* --- CARTÃO DA QUESTÃO --- */
     .q-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
     .q-card-header{padding:18px 28px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
     .q-tag{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);}
@@ -42,13 +40,12 @@
     .q-tag-tema{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
     .q-body{padding:28px;}
     
-    .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;margin-bottom:24px;font-weight:500;}
+    .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;font-weight:500;}
     
     .img-embutida {width: 100%; max-width: 560px; border-radius: 10px; margin: 20px auto; display: block; border: 1px solid rgba(255,255,255,0.1); background: #fff; padding: 10px;}
-    .linha-corte {position: relative; width: 100%; border-bottom: 2px dashed #555; margin: 35px 0;}
+    .linha-corte {position: relative; width: 100%; border-bottom: 2px dashed #555; margin: 35px 0 25px 0;}
     .linha-corte::after {content: "\2702"; position: absolute; top: -14px; left: 5%; background-color: var(--card); padding: 0 15px; color: #888; font-size: 22px;}
 
-    /* --- OPÇÕES DE RESPOSTA E ELIMINAÇÃO --- */
     .q-opts{display:flex;flex-direction:column;gap:9px;}
     .q-opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:8px 12px;text-align:left;font-size:15px;transition:all .2s;color:var(--light);display:flex;align-items:stretch;justify-content:space-between;font-family:'Plus Jakarta Sans',sans-serif;width:100%;line-height:1.6;}
     .opt-content {display:flex;align-items:flex-start;gap:12px;flex:1;cursor:pointer;padding:6px;}
@@ -68,7 +65,6 @@
     .q-opt.correct .opt-badge{background:rgba(29,158,117,0.25);border-color:rgba(29,158,117,0.6);color:#5DCAA5;}
     .q-opt.wrong .opt-badge{background:rgba(226,75,74,0.2);border-color:rgba(226,75,74,0.5);color:#F09595;}
 
-    /* --- FEEDBACK E NAVEGAÇÃO --- */
     .q-feedback{margin:0 28px;padding:16px 18px;border-radius:12px;font-size:14px;line-height:1.8;border:1px solid;display:none;}
     .q-feedback.show{display:block;animation:fadeUp .25s ease;}
     .fb-ok{background:rgba(29,158,117,0.07);border-color:rgba(29,158,117,0.3);color:#C5EDD9;}
@@ -95,7 +91,6 @@
     .q-counter strong{color:#F4EFFA;font-weight:700;}
     .nav-right{display:flex;align-items:center;gap:10px;}
 
-    /* --- RESULTADOS E RELATÓRIO --- */
     .result-screen{display:none;animation:fadeUp .35s ease;}
     .result-screen.show{display:block;}
     .res-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px 32px;text-align:center;margin-bottom:20px;}
@@ -207,6 +202,9 @@
 
     <div class="q-body">
       <div class="q-text" id="qText"></div>
+      
+      <div class="linha-corte"></div>
+      
       <div class="q-opts" id="qOpts"></div>
     </div>
 
@@ -235,11 +233,14 @@
 </div>
 
 <script>
+// BANCO DE QUESTÕES LIMPO (Sem tags da tesoura)
 const QS = [
   {
     n: 1, 
     tema: "Tronco Encefálico", 
-    text: `<div class="linha-corte"></div>Sobre o TRONCO ENCEFÁLICO, marque a alternativa que preenche corretamente a coluna "B".`,
+    text: `Sobre o TRONCO ENCEFÁLICO, marque a alternativa que preenche corretamente a coluna "B".
+    <br><br>
+    `,
     opts: [
       "1 – Tecto do mesencéfalo; 2 – Sulco lateral; 3 – Véu medular superior; 4 – Sulco bulbo-pontino.",
       "1 – Tecto do mesencéfalo; 2 – Sulco basilar; 3 – Véu medular inferior; 4 – Sulco bulbo-pontino.",
@@ -255,7 +256,6 @@ const QS = [
     tema: "Medula Espinhal", 
     text: `A Medula Espinhal ou Espinal é um cordão cilíndrico, composto de células nervosas, localizada no canal vertebral. Sua função é estabelecer a comunicação entre o corpo e o sistema nervoso, e agir também nos reflexos, protegendo o corpo em situações de emergência, em que é preciso uma resposta rápida.
 <br><br>
-<div class="linha-corte"></div>
 Sobre a MEDULA ESPINHAL, marque a alternativa correta:`,
     opts: [
       "A medula espinhal apresenta segmentos medulares, que dão origem a 31 pares de nervos espinhais, sendo 8 cervicais, 12 torácicos, 05 lombares, 05 sacrais e 01 coccígeo.",
@@ -272,7 +272,6 @@ Sobre a MEDULA ESPINHAL, marque a alternativa correta:`,
     tema: "Cerebelo", 
     text: `O cerebelo é responsável por todo o equilíbrio e postura corporal, recebendo impulsos sensitivos das estruturas locomotoras mais importantes, como: músculos, tendões, articulações, órgãos relacionados com o equilíbrio e olhos.
 <br><br>
-<div class="linha-corte"></div>
 Sobre o CEREBELO, marque a alternativa correta:`,
     opts: [
       "Na organização interna do cerebelo a substancia cinzenta está disposta em uma fina camada periférica, o córtex cerebelar, e por um centro de substancia branca, o centro medular do cerebelo.",
@@ -299,7 +298,6 @@ IV. Os efetuadores do sistema nervoso somático são os músculos estriados esqu
 
 V. Os gânglios são aglomerados de corpos de neurônios dentro do neuroeixo, enquanto que, os núcleos são aglomerados de corpos de neurônios fora do neuroeixo.
 <br><br>
-<div class="linha-corte"></div>
 É CORRETO o que se afirma em:`,
     opts: [
       "III, IV e V.",
@@ -316,7 +314,6 @@ V. Os gânglios são aglomerados de corpos de neurônios dentro do neuroeixo, en
     tema: "Líquor (LCR)", 
     text: `O líquido cerebrorraquidiano (LCR), ou líquor, é importante para o metabolismo do sistema nervoso central (SNC) e protege contra traumatismos. No SNC, o LCR veicula nos ventrículos, canal central da medula e espaço subaracnóideo.
 <br><br>
-<div class="linha-corte"></div>
 Ele é produzido pelo(a):`,
     opts: [
       "Plexo coroide.",
@@ -331,7 +328,7 @@ Ele é produzido pelo(a):`,
   {
     n: 6, 
     tema: "Medula — Organização", 
-    text: `<div class="linha-corte"></div>A respeito da medula, marque a alternativa CORRETA:`,
+    text: `A respeito da medula, marque a alternativa CORRETA:`,
     opts: [
       "A substância branca é central e em formato de borboleta ou “H” e a cinzenta é externa.",
       "Possui apenas duas meninges: pia-máter e dura-máter.",
@@ -345,7 +342,7 @@ Ele é produzido pelo(a):`,
   {
     n: 7, 
     tema: "Espinha Bífida", 
-    text: `<div class="linha-corte"></div>A espinha bífida em que, fenotipicamente, é caracterizada por um tufo em sua região e usualmente não causa sintomas clínicos é a:`,
+    text: `A espinha bífida em que, fenotipicamente, é caracterizada por um tufo em sua região e usualmente não causa sintomas clínicos é a:`,
     opts: [
       "Espinha bífida cística com meningomielocele.",
       "Espinha bífida com mielosquise.",
@@ -359,7 +356,7 @@ Ele é produzido pelo(a):`,
   {
     n: 8, 
     tema: "Constituintes do Olho", 
-    text: `<div class="linha-corte"></div>É originário de uma evaginação do diencéfalo, pigmentar e com várias camadas, responsável pela fotorrecepção. Essas afirmações referem-se a qual constituinte do olho?`,
+    text: `É originário de uma evaginação do diencéfalo, pigmentar e com várias camadas, responsável pela fotorrecepção. Essas afirmações referem-se a qual constituinte do olho?`,
     opts: [
       "Retina.",
       "Esclera.",
@@ -379,7 +376,6 @@ I. Divisão do sistema nervoso estimulada;
 II. Neurotransmissor liberado na sinapse neuroefetuadora;
 III. Efeito sobre a frequência cardíaca.
 <br><br>
-<div class="linha-corte"></div>
 Qual das alternativas apresenta corretamente o que ocorre em uma pessoa em situação de estresse?`,
     opts: [
       "I – Simpática; II – Acetilcolina; III – Diminuição.",
@@ -396,7 +392,6 @@ Qual das alternativas apresenta corretamente o que ocorre em uma pessoa em situa
     tema: "Bomba Na+/K+ ATPase", 
     text: `Nas células animais, o potencial de membrana desempenha um papel vital em inúmeros processos fisiológicos, tais como a sinalização elétrica em células excitáveis, contração muscular, função cerebral, percepção sensorial, secreção de neurotransmissores, geração pós-sináptica de potenciais de ação, sinalização celular, secreção hormonal, entre outros. Cerca de um terço do suprimento celular de ATP é gasto na bomba de Na+/K+ ATPase e a inibição da bomba de Na+/K+ ATPase despolariza a membrana celular.
 <br><br>
-<div class="linha-corte"></div>
 Analise as asserções a seguir:
 
 Aumento da concentração extracelular de K+ (hipercalemia) e/ou aumento da concentração intracelular de Na+ estimulam a bomba de Na+/K+ ATPase.
@@ -421,7 +416,6 @@ Acerca dessas asserções assinale a opção CORRETA:`,
     tema: "Metabolismo Cerebral", 
     text: `O uso de energia do cérebro está entre os mais altos de qualquer órgão do corpo, mas infelizmente o armazenamento de glicogênio no cérebro é mínimo e, assim, a glicólise anaeróbica não é fonte significativa de energia.
 <br><br>
-<div class="linha-corte"></div>
 Considerando esta informação sobre o metabolismo cerebral, qual das seguintes afirmações está correta?`,
     opts: [
       "A oferta de glicose aos neurônios é vitalmente dependente da insulina.",
@@ -436,7 +430,7 @@ Considerando esta informação sobre o metabolismo cerebral, qual das seguintes 
   {
     n: 12, 
     tema: "Somatossensorial", 
-    text: `<div class="linha-corte"></div>Qual é o sistema que transmite informações somatossensoriais com o mais alto grau de fidelidade temporal e espacial?`,
+    text: `Qual é o sistema que transmite informações somatossensoriais com o mais alto grau de fidelidade temporal e espacial?`,
     opts: [
       "Sistema da coluna dorsal-lemnisco medial.",
       "Sistema anterolateral.",
@@ -450,7 +444,7 @@ Considerando esta informação sobre o metabolismo cerebral, qual das seguintes 
   {
     n: 13, 
     tema: "Córtex Motor", 
-    text: `<div class="linha-corte"></div>Qual dos seguintes aspectos é característico do córtex motor suplementar?`,
+    text: `Qual dos seguintes aspectos é característico do córtex motor suplementar?`,
     opts: [
       "Funciona totalmente independente do córtex pré-motor e motor primário.",
       "Como no córtex pré-motor, a estimulação do córtex motor suplementar leva a movimento distinto de músculos individuais.",
@@ -466,7 +460,6 @@ Considerando esta informação sobre o metabolismo cerebral, qual das seguintes 
     tema: "Doença de Parkinson", 
     text: `Uma ampla variedade de neurotransmissores foi identificada nos corpos celulares e terminações sinápticas aferentes dos núcleos da base.
 <br><br>
-<div class="linha-corte"></div>
 A deficiência de qual dos seguintes neurotransmissores associa-se tipicamente à doença de Parkinson?`,
     opts: [
       "GABA (ácido gama-aminobutírico)",
@@ -481,7 +474,7 @@ A deficiência de qual dos seguintes neurotransmissores associa-se tipicamente �
   {
     n: 15, 
     tema: "Potencial de Ação", 
-    text: `<div class="linha-corte"></div>Um fármaco bloqueia completamente os canais de Na+ dos nervos. Qual dos seguintes efeitos sobre o potencial de ação seria provavelmente produzido?`,
+    text: `Um fármaco bloqueia completamente os canais de Na+ dos nervos. Qual dos seguintes efeitos sobre o potencial de ação seria provavelmente produzido?`,
     opts: [
       "Encurtamento do período refratário absoluto.",
       "Bloqueio da ocorrência dos potenciais de ação.",
@@ -494,6 +487,7 @@ A deficiência de qual dos seguintes neurotransmissores associa-se tipicamente �
   }
 ];
 
+// MOTOR DO SIMULADO
 const L = ['a','b','c','d','e'];
 let cur = 0, sel = null, answered = {}, eliminated = {};
 
