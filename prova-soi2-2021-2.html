@@ -60,14 +60,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 .opt-badge{min-width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;color:var(--muted);transition:all .2s;}
 .btn-discard{position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: none; border: none; font-size: 16px; cursor: pointer; padding: 5px; opacity: 0.3; transition: opacity 0.2s;}
 .btn-discard:hover{opacity: 1;}
-.q-opt.selected .opt-badge{background:var(--pink);border-color:var(--pink);color:#fff;}
-.q-opt.correct .opt-badge{background:rgba(29,158,117,0.25);border-color:rgba(29,158,117,0.6);color:#5DCAA5;}
-.q-opt.wrong .opt-badge{background:rgba(226,75,74,0.2);border-color:rgba(226,75,74,0.5);color:#F09595;}
-
-.disc-area{width:100%;min-height:120px;background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;font-size:14px;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;resize:vertical;line-height:1.7;transition:border-color .2s;}
-.disc-area:focus{outline:none;border-color:rgba(155,0,232,0.4);}
-.disc-area[disabled]{opacity:0.6;cursor:default;}
-.disc-label{font-size:12px;color:var(--muted);margin-bottom:8px;}
 
 .q-feedback{margin:0 28px;padding:16px 18px;border-radius:12px;font-size:14px;line-height:1.8;border:1px solid;display:none;}
 .q-feedback.show{display:block;animation:fadeUp .25s ease;}
@@ -273,8 +265,8 @@ var QS = [
     g: 2
   },
   {
-    n: 3, tema: "Vascularização Cerebral", tipo: "mc",
-    context: "Homem., 67 anos, diabético, hipertenso, tabagista e dislipidêmico, após um AVEI (Acidente Vascular Encefálico Isquêmico) apresentou o seguinte quadro:\n\nAlterações de campo visual.\nRebaixamento do nível de consciência.\nDéficit sensitivo.",
+    n: 3, tema: "Acidente Vascular Encefálico", tipo: "mc",
+    context: "Homem., 67 anos, diabético, hipertenso, tabagista e dislipidêmico, após um AVEI (Acidente Vascular Encefálico Isquêmico) apresentou o seguinte quadro:\nAlterações de campo visual.\nRebaixamento do nível de consciência.\nDéficit sensitivo.",
     text: "Sobre o caso acima, identifique qual artéria foi obstruída:",
     opts: ["artéria cerebral posterior.", "artéria cerebral anterior.", "artéria basilar.", "arteria vertebral."],
     g: 0
@@ -319,7 +311,7 @@ var QS = [
     g: 2
   },
   {
-    n: 8, tema: "Biomecânica do Joelho", tipo: "mc",
+    n: 8, tema: "Biomecânica e Estruturas do Joelho", tipo: "mc",
     context: "A articulação do joelho é classificada como sinovial do tipo dobradiça modificada e apresenta estruturas que garantem sua estabilidade e funcionalidade. Acerca das características estruturais e funcionais do joelho, avalie as asserções a seguir: I. O joelho é formado pelos ossos fêmur, tíbia e patela, sendo estabilizado pelos ligamentos cruzados e colaterais. II. A patela é um osso sesamoide que melhora a eficiência do músculo quadríceps femoral, aumentando o braço de alavanca do tendão patelar durante a extensão. III. O ligamento cruzado posterior (LCP) impede a translação posterior da tíbia em relação ao fêmur e é mais resistente que о ligamento cruzado anterior (LCA). IV. Os meniscos são estruturas que atuam na distribuição de carga e produção da lubrificação da articulação do joelho.",
     text: "É correto o que se afirma em:",
     opts: ["I, II, III e IV.", "I e II apenas.", "II e III apenas.", "I, II e III apenas."],
@@ -362,7 +354,7 @@ var QS = [
     g: 1
   },
   {
-    n: 12, tema: "Tecido Muscular", tipo: "mc",
+    n: 12, tema: "Histologia Muscular", tipo: "mc",
     context: "A fibra muscular esquelética é preenchida por miofibrilas organizadas em sarcômeros.",
     text: "Sobre essa fibra, é correto afirmar:",
     opts: [
@@ -374,83 +366,101 @@ var QS = [
     g: 0
   },
   {
-    n: 13, tema: "Junção Neuromuscular", tipo: "disc",
+    n: 13, tema: "Neurotransmissores", tipo: "mc",
+    context: "Sobre os neurotransmissores, assinale a única alternativa correta:",
+    text: "Marque a alternativa correta:",
+    opts: [
+      "O GABA é o principal neurotransmissor inibitório do SNC.",
+      "A glicina é um importante neurotransmissor excitatório.",
+      "O glutamato e o aspartato possuem efeito predominantemente inibitório.",
+      "A acetilcolina possui apenas efeitos excitatórios em todas as sinapses."
+    ],
+    g: 0
+  },
+  {
+    n: 14, tema: "Junção Neuromuscular", tipo: "disc",
     context: "A toxina botulínica atua como paralisante na musculatura estriada esquelética.",
     text: "Explique o processo de estimulação da fibra muscular, destacando os eventos na placa motora e por que o Botox causa paralisia.",
-    resposta: "A estimulação normal ocorre pela exocitose de acetilcolina (ACh) após a entrada de Ca2+ no terminal axonal. A ACh liga-se aos receptores nicotínicos, causando despolarização da fibra. O Botox causa paralisia porque interrompe a exocitose de ACh, impedindo a comunicação entre o nervo e o músculo. Eventos detalhados: 1. Despolarização do terminal abre canais de Ca2+. 2. Influxo de Ca2+ dispara fusão de vesículas. 3. ACh liga-se a receptores ionotrópicos. O Botox cliva proteínas SNARE."
+    resposta: "A estimulação normal ocorre pela exocitose de acetilcolina (ACh) após a entrada de Ca2+ no terminal axonal. A ACh liga-se aos receptores nicotínicos, causando despolarização da fibra. O Botox causa paralisia porque interrompe a exocitose de ACh, impedindo a comunicação entre o nervo e o músculo. Eventos: 1. Despolarização do terminal abre canais de Ca2+. 2. Influxo de Ca2+ dispara a fusão de vesículas. 3. ACh liga-se a receptores ionotrópicos, gerando o potencial de placa motora. O Botox cliva proteínas SNARE, fundamentais para a ancoragem das vesículas."
   },
   {
-    n: 14, tema: "Consolidação Óssea", tipo: "disc",
+    n: 15, tema: "Consolidação Óssea", tipo: "disc",
     context: "Descreva a sequência cronológica da consolidação óssea após uma fratura transversal e identifique o papel dos osteoclastos e osteoblastos nesse processo.",
-    text: "Forneça a descrição detalhada do processo.",
-    resposta: "A sequência é: Hematoma -> Calo Mole -> Calo Duro -> Remodelação Óssea. Os osteoclastos limpam os detritos e o osso danificado na fase inflamatória e na remodelação final. Os osteoblastos sintetizam a nova matriz orgânica e mineralizam o calo ósseo para formar osso primário e depois lamelar maduro."
-  },
-  {
-    n: 15, tema: "Vias de Sensibilidade", tipo: "mc",
-    context: "Um paciente refere perda de sensibilidade vibratória no hálux e no tornozelo.",
-    text: "Sobre a via responsável por transmitir essa informação:",
-    opts: [
-      "A decussação ocorre imediatamente ao entrar na medula espinal.",
-      "A informação é detectada por corpúsculos de Pacini e ascende pela via coluna dorsal-lemnisco medial.",
-      "O neurônio de segunda ordem localiza-se no núcleo ventral póstero-lateral do tálamo.",
-      "O tato grosseiro e a dor seguem essa mesma via."
-    ],
-    g: 1
+    text: "Forneça a descrição cronológica e funcional.",
+    resposta: "A sequência é: Hematoma -> Calo Mole -> Calo Duro -> Remodelação Óssea. Os osteoclastos limpam os detritos e o osso danificado no hematoma e lapidam irregularidades na remodelação. Os osteoblastos sintetizam a nova matriz e mineralizam o calo para formar osso primário e depois osso lamelar maduro."
   }
 ];
 
 var SHORT = [
-  "A alternativa correta é a A. A Doença de Huntington atinge os núcleos da base (caudado e putâmen), apresentando expansão de repetição CAG e redução de GABA.",
-  "A alternativa correta é a C. Os nervos espinais resultam da união das raízes dorsal (sensitiva) e ventral (motora), que se ligam aos sulcos lateral posterior e lateral anterior.",
-  "A alternativa correta é a A. A oclusão da artéria cerebral posterior (ACP) pode ocasionar cegueira cortical e alterações visuais por lesão dos lobos occipitais.",
-  "A alternativa correta é a D. Todas as afirmações estão correctas descrevendo as funções do plexo coroide, aqueduto cerebral e granulações aracnóideas.",
+  "A alternativa correta é a A. A Doença de Huntington atinge os núcleos da base (caudado e putâmen), ocorrendo expansão de CAG e redução de GABA.",
+  "A alternativa correta é a C. Os nervos espinais resultam da união das raízes dorsal (sensitiva) e ventral (motora), que se ligam nos sulcos lateral posterior e lateral anterior.",
+  "A alternativa correta é a A. A oclusão da artéria cerebral posterior pode ocasionar cegueira cortical e agnosia visual por lesão bilateral dos lobos occipitais.",
+  "A alternativa correta é a D. As afirmações descrevem corretamente as funções do plexo coroide, aqueduto cerebral e reabsorção liquórica via granulações aracnóideas.",
   null,
-  "A alternativa correta é a B. O território de um dermátomo permite determinar clinicamente os nervos espinais acometidos pela reativação do vírus.",
-  "A alternativa correta é a C. O GABA é o principal neurotransmissor inibitório do SNC, utilizado em cerca de um terço das sinapses encefálicas.",
-  "A alternativa correta é a D. As asserções I, II e III são verdadeiras, descrevendo a anatomia e biomecânica do joelho. A IV está incorreta pois a lubrificação é papel da membrana sinovial.",
-  "A alternativa correta é a B. A anosmia aponta para o Nervo I e os sintomas auditivos/equilíbrio apontam para o Nervo VIII. A asserção II justifica a I.",
-  "A alternativa correta é a B. A dopamina estimula a via direta (D1) e inibe a via indireta (D2), facilitando o movimento voluntário.",
-  "A alternativa correta é a B. O líquor é secretado pelos plexos corioides localizados nos ventrículos cerebrais.",
-  "A alternativa correta é a A. O sarcômero é composto por filamentos grossos e finos. Núcleos periféricos e tríades são típicos do músculo esquelético.",
+  "A alternativa correta é a B. Pela observação do dermátomo, é possível determinar os nervos espinais acometidos pela reativação viral latente no gânglio sensorial.",
+  "A alternativa correta é a C. O GABA é o neurotransmissor inibitório mais comum no SNC, utilizado em cerca de um terço das sinapses encefálicas.",
+  "A alternativa correta é a D. As afirmações I, II e III descrevem a anatomia e biomecânica do joelho; a IV erra ao atribuir lubrificação aos meniscos.",
+  "A alternativa correta é a B. A perda de olfato é cardinal no Nervo I, e zumbido/vertigem indicam disfunção no Nervo VIII. A asserção II fundamenta a I.",
+  "A alternativa correta é a B. A dopamina via D1 inibe o globo pálido medial, o que desibe o tálamo e facilita o movimento voluntário.",
+  "A alternativa correta é a B. O líquor é secretado pelos plexos corioides presentes nos ventrículos cerebrais.",
+  "A alternativa correta é a A. O sarcômero é a unidade funcional muscular composta por filamentos de actina e miosina.",
+  "A alternativa correta é a A. O GABA é o mediador inibitório dominante no encéfalo. Glutamato e aspartato possuem efeito excitatório.",
   null,
-  null,
-  "A alternativa correta é a B. Vibração e propriocepção consciente ascendem pela via coluna dorsal-lemnisco medial, detectadas por receptores como corpúsculos de Pacini."
+  null
 ];
 
 var DEEP = [
-  "A Doença de Huntington atinge núcleos da base como o caudado e o putâmen.  A patologia relaciona a expansão da trinca CAG com a degeneração neuronal tardia. Neuroquimicamente, há redução acentuada de GABA, o que desorganiza a modulação motora.",
-  "A medula espinal liga-se às raízes dorsal (sensitiva) e ventral (motora) nos sulcos lateral posterior e lateral anterior.  Radículas combinam-se para formar as raízes que se unem imediatamente após o gânglio espinal (situado na raiz dorsal) para formar o nervo espinal.",
-  "O fluxo sanguíneo aos hemisférios é fornecido pelas artérias anteriores e posteriores via Polígono de Willis. 
+  "A Doença de Huntington é marcada pela atrofia dos núcleos da base (caudado e putâmen). 
+
+[Image of basal ganglia anatomy]
+ Bioquimicamente, ocorre queda drástica de GABA e acetilcolina, resultando em movimentos involuntários (coreia). A expansão da trinca CAG acima de 35 repetições associa-se ao início dos sintomas.",
+  "O nervo espinal típico resulta da união da raiz dorsal (sensitiva/aferente) com a raiz ventral (motora/eferente).  A raiz dorsal liga-se ao sulco lateral posterior e a ventral ao sulco lateral anterior. O gânglio sensorial situa-se na raiz dorsal e abriga corpos de neurónios sensitivos.",
+  "A artéria cerebral posterior (ACP) irriga os lobos occipitais e a face inferior do lobo temporal. 
 
 [Image of the Circle of Willis]
- A oclusão da ACP provoca síndromes vasculares específicas, como a cegueira cortical bilateral nos lobos occipitais.",
-  "O plexo coroide produz o LCR para nutrição e proteção. O aqueduto liga o 3° ao 4° ventrículo no mesencéfalo. 
+ Sua oclusão pode causar cegueira cortical e afetar o tálamo, justificando rebaixamento de consciência e déficits sensitivos.",
+  "O líquor é produzido nos plexos corioides (dobras vascularizadas da pia-máter) por filtração plasmática. O aqueduto liga o 3° ao 4° ventrículo no mesencéfalo. 
 
-[Image of the ventricular system in the human brain]
- A reabsorção final ocorre nas granulações aracnóideas para os seios venosos.",
-  "O sistema de recompensa envolve o núcleo accumbens e a dopamina.  A sinapse (A) envolve despolarização terminal e entrada de Ca2+ para libertar vesículas na fenda sináptica. Os neurotransmissores (B) como serotonina e dopamina alteram a permeabilidade da membrana pós-sináptica.",
-  "O herpes-zoster manifesta-se em dermátomos por reativação viral latente no gânglio sensorial. 
+[Image of the ventricular system of the brain]
+ A reabsorção final ocorre nas vilosidades aracnóideas para o seio sagital superior.",
+  "O chocolate ativa o sistema de recompensa (núcleo accumbens, amígdala e córtex pré-frontal) via dopamina. 
+
+[Image of the reward pathway in the brain]
+ A sinapse envolve a chegada do potencial de ação ao terminal pré-sináptico (A), entrada de Ca2+ e exocitose de vesículas com neurotransmissores (como serotonina e dopamina) na fenda sináptica.",
+  "O herpes-zoster manifesta-se em um dermátomo devido à reativação viral latente no gânglio sensorial (raiz dorsal). 
 
 [Image of human dermatomes map]
- Os gânglios são formados por corpos celulares na raiz dorsal da medula e não propagam impulsos motores.",
-  "GABA é o mediador inibitório mais comum do encéfalo, enquanto Glicina é inibitória principalmente na medula espinal (abre canais de Cl-). A Dopamina modula respostas emocionais e adição. A Acetilcolina pode ser excitatória (nicotínicos) ou inibitória (muscarínicos acoplados a proteína G abrindo canais de K+).",
-  "O LCA impede a translação anterior e o LCP impede a posterior (sendo este mais resistente). A patela funciona como uma polia biológica aumentando o braço de alavanca. 
+ Os gânglios são formados por corpos celulares de neurónios sensitivos e não interferem na via motora.",
+  "GABA é o inibitório encefálico mais comum, enquanto a glicina atua inibindo principalmente na medula espinal. Acetilcolina é versátil: excitatória em junções neuromusculares (nicotínicos) e inibitória no coração (muscarínicos via proteína G que abre canais de K+).",
+  "O LCA impede a anteriorização tibial e o LCP impede a posteriorização (sendo mecanicamente mais resistente). 
 
-[Image of human knee joint anatomy]
- O líquido sinovial, e não os meniscos, é responsável pela lubrificação via membrana sinovial.",
-  "O Nervo VIII integra ramos coclear (audição/zumbido) e vestibular (equilíbrio).  A lesão do Nervo I causa anosmia. A alteração do paladar é frequentemente decorrente da perda do componente olfativo retronasal.",
-  "Dopamina via receptores D1 estimula a via direta, inibindo o globo pálido medial para desibir o tálamo e facilitar o movimento.  Na via indireta, a dopamina via D2 inibe a inibição, também facilitando o movimento. No Parkinson, a depleção de dopamina rompe este equilíbrio.",
-  "O LCR flui dos ventrículos laterais -> forames interventriculares -> 3° ventrículo -> aqueduto -> 4° ventrículo -> espaço subaracnóideo. A reabsorção ocorre nas granulações aracnóideas.  A obstrução em qualquer ponto causa hidrocefalia.",
-  "No músculo esquelético, os núcleos são múltiplos e periféricos. A tríade (um túbulo T e duas cisternas) propaga o potencial, enquanto a díade é cardíaca.  A banda A contém miosina e a banda I apenas actina.",
-  "O acoplamento excitação-contração inicia com a libertação de ACh na fenda sináptica. 
+[Image of knee anatomy showing ligaments]
+ A patela aumenta o braço de alavanca do quadríceps. Meniscos auxiliam na carga e lubrificação por dissipação, mas o fluido é produzido pela membrana sinovial.",
+  "O Nervo VIII possui ramos coclear (audição/zumbido) e vestibular (equilíbrio/vertigem). 
+
+[Image of the vestibulocochlear nerve and inner ear]
+ Lesão no Nervo I causa anosmia. A alteração de paladar costuma ser consequência da perda do componente olfativo retronasal.",
+  "Dopamina via D1 ativa o estriado para inibir o globo pálido medial; esta inibição de um inibidor resulta na desinibição do tálamo e facilitação motora (via direta). 
+
+[Image of basal ganglia motor pathways]
+ No Parkinson, a morte de neurónios na substância negra rompe esta modulação.",
+  "O líquor flui: Ventrículos Laterais -> Forames Interventriculares -> 3° Ventrículo -> Aqueduto -> 4° Ventrículo -> Espaço subaracnóideo. 
+
+[Image of cerebrospinal fluid circulation]
+ A obstrução em qualquer ponto gera hidrocefalia (dilatação ventricular).",
+  "O sarcômero é delimitado por linhas Z e contém filamentos de actina e miosina. 
+
+[Image of the sarcomere structure]
+ Fibras esqueléticas possuem núcleos periféricos e tríades (um túbulo T e duas cisternas), enquanto díades são cardíacas.",
+  "A acetilcolina é o mediador inibitório no coração (receptores muscarínicos) e excitatório no encéfalo e junção neuromuscular (nicotínicos). Glutamato e aspartato são os principais excitatórios do SNC.",
+  "A contração inicia com a despolarização do terminal axonal abrindo canais de Ca2+. O influxo de Ca2+ causa a fusão de vesículas com ACh. 
 
 [Image of the neuromuscular junction]
- O Botox cliva proteínas SNARE essenciais para ancorar e fundir vesículas; sem ACh, não há potencial de placa motora nem contração muscular.",
-  "O reparo ósseo segue: 1. Hematoma (inflamatória com limpeza por osteoclastos). 2. Calo Mole (fibrocartilaginoso). 3. Calo Duro (mineralização por osteoblastos). 4. Remodelação (osteoclastos reabsorvem excesso e osteoblastos depositam osso maduro). 
+ O Botox cliva as proteínas SNARE, impedindo a exocitose da ACh e causando paralisia flácida prolongada.",
+  "As fases da consolidação óssea são: 1. Hematoma (limpeza por osteoclastos). 2. Calo Mole (fibrocartilaginoso). 3. Calo Duro (mineralização por osteoblastos). 4. Remodelação (osteoclastos lapidam e osteoblastos depositam osso maduro). 
 
-[Image of the stages of bone fracture healing]
-",
-  "A via coluna dorsal (fascículos grácil e cuneiforme) conduz tato epicrítico e vibração. O 1° neurónio entra e sobe ipsilateralmente até o bulbo.  A decussação ocorre no bulbo, formando o lemnisco medial até o tálamo (3° neurónio)."
+[Image of bone fracture healing stages]
+"
 ];
 
 var L = ['a','b','c','d'];
