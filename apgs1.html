@@ -58,9 +58,18 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
 .btn-pink:hover{background:var(--pink-bright);transform:translateY(-2px);}
 .btn-ghost{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--light);padding:14px 28px;border-radius:50px;font-size:15px;font-weight:500;text-decoration:none;border:1px solid var(--border);transition:all .25s;}
 .btn-ghost:hover{border-color:var(--border-pink);color:var(--pink-light);}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.apg-card:nth-child(1){animation-delay:.05s}.apg-card:nth-child(2){animation-delay:.1s}.apg-card:nth-child(3){animation-delay:.15s}.apg-card:nth-child(4){animation-delay:.2s}.apg-card:nth-child(5){animation-delay:.25s}.apg-card:nth-child(6){animation-delay:.3s}.apg-card:nth-child(7){animation-delay:.35s}.apg-card:nth-child(8){animation-delay:.4s}
+
+/* Delays para animação dos cards */
+.apg-card:nth-child(1){animation-delay:.05s}.apg-card:nth-child(2){animation-delay:.1s}
+.apg-card:nth-child(3){animation-delay:.15s}.apg-card:nth-child(4){animation-delay:.2s}
+.apg-card:nth-child(5){animation-delay:.25s}.apg-card:nth-child(6){animation-delay:.3s}
+.apg-card:nth-child(7){animation-delay:.35s}.apg-card:nth-child(8){animation-delay:.4s}
+.apg-card:nth-child(9){animation-delay:.45s}.apg-card:nth-child(10){animation-delay:.5s}
+.apg-card:nth-child(11){animation-delay:.55s}
+
 @media(max-width:1100px){.apgs-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:768px){nav{padding:0 20px;}.hero{padding:110px 24px 60px;}.hero-stats{gap:24px;}.apgs-section,.cta-bottom{padding-left:24px;padding-right:24px;}.apgs-grid{grid-template-columns:1fr;}.cta-box{padding:36px 24px;}}
 </style>
@@ -85,7 +94,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
     <h1>APGs do <em>1º Período</em></h1>
     <p class="hero-sub">Roteiros completos elaborados pela equipe Afyados — com objetivos de aprendizagem, hipóteses, discussão guiada e referências bibliográficas.</p>
     <div class="hero-stats">
-      <div class="hstat"><div class="hstat-n">8</div><div class="hstat-l">APGs disponíveis</div></div>
+      <div class="hstat"><div class="hstat-n">11</div><div class="hstat-l">APGs disponíveis</div></div>
       <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Padrão Afya</div></div>
       <div class="hstat"><div class="hstat-n">Kiwify</div><div class="hstat-l">Entrega imediata</div></div>
     </div>
@@ -102,13 +111,62 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
 <section class="apgs-section">
   <div class="apgs-grid">
     <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 01</div><div class="apg-emoji">🧬</div></div><h3 class="apg-titulo">Células</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer a célula eucarionte animal</li><li>Entender a estrutura do DNA e cromossomos</li><li>Descrever a síntese proteica e a organização estrutural das proteínas</li><li>Estudar a estrutura e organização da membrana plasmática</li></ul><a href="https://pay.kiwify.com.br/Z15MOht" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 01</a></div>
-    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 02</div><div class="apg-emoji">🫀</div></div><h3 class="apg-titulo">Coração</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Detalhar a anatomia do coração, destacando a circulação sistêmica, coronária e inervação</li><li>Estudar a histologia cardíaca</li></ul><a href="https://pay.kiwify.com.br/0Ppa1kO" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 02</a></div>
-    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 03</div><div class="apg-emoji">🧪</div></div><h3 class="apg-titulo">Embriologia Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer as semanas do desenvolvimento embrionário</li><li>Estudar a embriogênese do coração</li><li>Diferenciar circulação fetal e neonatal</li><li>Conhecer as principais malformações cardíacas congênitas</li></ul><a href="https://pay.kiwify.com.br/qrVHoKY" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 03</a></div>
-    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 04</div><div class="apg-emoji">⚡</div></div><h3 class="apg-titulo">Fisiologia Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Entender o potencial de ação cardíaco</li><li>Discutir o sistema de condução elétrica do coração</li><li>Compreender o acoplamento excitação-contração do músculo cardíaco</li><li>Rever a histologia cardíaca</li></ul><a href="https://pay.kiwify.com.br/sGUaiKa" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 04</a></div>
-    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 05</div><div class="apg-emoji">📈</div></div><h3 class="apg-titulo">ECG e Frequência Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer as fases do ciclo cardíaco correlacionando com o ECG</li><li>Explicar a Frequência Cardíaca e Débito Cardíaco</li><li>Discutir os ajustes do coração ao exercício físico</li></ul><a href="https://pay.kiwify.com.br/uaK6OFu" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 05</a></div>
-    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 06</div><div class="apg-emoji">🦵</div></div><h3 class="apg-titulo">Membros Inferiores</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer a histologia dos vasos sanguíneos</li><li>Discutir a fisiologia dos vasos destacando pressão, fluxo e resistência vascular</li><li>Descrever a anatomia dos vasos dos membros inferiores</li><li>Abordar a saúde do trabalhador e EPI</li></ul><a href="https://pay.kiwify.com.br/RaJzqTj" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 06</a></div>
-    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 07</div><div class="apg-emoji">💪</div></div><h3 class="apg-titulo">Membros Superiores</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Estudar a anatomia dos vasos dos membros superiores</li><li>Conhecer os sinais vitais</li><li>Entender os mecanismos fisiológicos da pressão arterial</li></ul><a href="https://pay.kiwify.com.br/ev99vpO" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 07</a></div>
-    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 08</div><div class="apg-emoji">🔵</div></div><h3 class="apg-titulo">Sistema Linfático</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Estudar a anatomia e histologia do sistema linfático</li><li>Explicar o processo de formação da linfa e sua circulação</li></ul><a href="https://pay.kiwify.com.br/L1GHP26" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 08</a></div>
+    
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 02</div><div class="apg-emoji">🫀</div></div><h3 class="apg-titulo">Coração</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Detalhar a anatomia do coração (circulação sistêmica, coronária e inervação)</li><li>Estudar a histologia cardíaca</li></ul><a href="https://pay.kiwify.com.br/0Ppa1kO" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 02</a></div>
+    
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 03</div><div class="apg-emoji">🧪</div></div><h3 class="apg-titulo">Embriologia Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Conhecer as semanas do desenvolvimento embrionário</li><li>Estudar a embriogênese do coração</li><li>Diferenciar circulação fetal e neonatal</li><li>Principais malformações cardíacas congênitas</li></ul><a href="https://pay.kiwify.com.br/qrVHoKY" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 03</a></div>
+    
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 04</div><div class="apg-emoji">⚡</div></div><h3 class="apg-titulo">Fisiologia Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Entender o potencial de ação cardíaco</li><li>Discutir o sistema de condução elétrica</li><li>Acoplamento excitação-contração do músculo cardíaco</li><li>Rever a histologia cardíaca</li></ul><a href="https://pay.kiwify.com.br/sGUaiKa" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 04</a></div>
+    
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 05</div><div class="apg-emoji">📈</div></div><h3 class="apg-titulo">ECG e Frequência Cardíaca</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Fases do ciclo cardíaco correlacionando com o ECG</li><li>Frequência Cardíaca, Débito Cardíaco e determinantes</li><li>Ajustes do coração ao exercício físico</li></ul><a href="https://pay.kiwify.com.br/uaK6OFu" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 05</a></div>
+    
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 06</div><div class="apg-emoji">🦵</div></div><h3 class="apg-titulo">Membros Inferiores</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Histologia dos vasos sanguíneos</li><li>Fisiologia: pressão, fluxo e resistência vascular</li><li>Anatomia dos vasos e retorno venoso dos MMII</li><li>Saúde do trabalhador e EPI/EPC</li></ul><a href="https://pay.kiwify.com.br/RaJzqTj" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 06</a></div>
+    
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 07</div><div class="apg-emoji">💪</div></div><h3 class="apg-titulo">Membros Superiores</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Anatomia dos vasos dos membros superiores</li><li>Conhecer os sinais vitais (FC, FR, PA, pulso e temp)</li><li>Mecanismos fisiológicos de controle da pressão</li></ul><a href="https://pay.kiwify.com.br/ev99vpO" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 07</a></div>
+    
+    <div class="apg-card"><div class="apg-header"><div class="apg-badge">APG 08</div><div class="apg-emoji">🔵</div></div><h3 class="apg-titulo">Sistema Linfático</h3><div class="apg-obj-label">Objetivos de aprendizagem</div><ul class="apg-obj"><li>Anatomia e histologia do sistema linfático</li><li>Formação da linfa (Forças de Starling) e circulação</li></ul><a href="https://pay.kiwify.com.br/L1GHP26" target="_blank" class="apg-btn"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 08</a></div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 09</div><div class="apg-emoji">🩸</div></div>
+      <h3 class="apg-titulo">Hematopoiese</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Processo de produção das linhagens celulares</li>
+        <li>Estrutura e função das células sanguíneas</li>
+        <li>Composição do sangue e do plasma</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/NR5sJFi" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 09
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 10</div><div class="apg-emoji">🔬</div></div>
+      <h3 class="apg-titulo">Hemoglobina</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Estrutura de aminoácidos e níveis de cadeias</li>
+        <li>Organização funcional da hemoglobina</li>
+        <li>Tipos e variantes de hemoglobina</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/J4XibXu" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 10
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 12</div><div class="apg-emoji">🩹</div></div>
+      <h3 class="apg-titulo">Hemostasia</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Hemostasia primária, secundária e terciária</li>
+        <li>Mecanismos de controle e fatores de coagulação</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/osF9Szn" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 12
+      </a>
+    </div>
+
   </div>
 </section>
 
