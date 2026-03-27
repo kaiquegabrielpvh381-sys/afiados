@@ -40,9 +40,10 @@
     .q-tag-tema{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
     .q-body{padding:28px;}
     
-    .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;font-weight:500;}
+    /* white-space: pre-line garante que os "Enters" do seu código funcionem automaticamente */
+    .q-text{font-size:16px;line-height:1.8;color:#F4EFFA;font-weight:500;white-space:pre-line;}
     
-    .img-embutida {width: 100%; max-width: 560px; border-radius: 10px; margin: 20px auto; display: block; border: 1px solid rgba(255,255,255,0.1); background: #fff; padding: 10px;}
+    .q-img{width:100%;max-width:560px;border-radius:10px;margin:24px auto 0;display:block;border:1px solid rgba(255,255,255,0.1);background:#fff;padding:10px;}
     .linha-corte {position: relative; width: 100%; border-bottom: 2px dashed #555; margin: 35px 0 25px 0;}
     .linha-corte::after {content: "\2702"; position: absolute; top: -14px; left: 5%; background-color: var(--card); padding: 0 15px; color: #888; font-size: 22px;}
 
@@ -203,6 +204,8 @@
     <div class="q-body">
       <div class="q-text" id="qText"></div>
       
+      <img class="q-img" id="qImg" style="display:none;" alt="Imagem da questão">
+      
       <div class="linha-corte"></div>
       
       <div class="q-opts" id="qOpts"></div>
@@ -233,14 +236,15 @@
 </div>
 
 <script>
-// BANCO DE QUESTÕES LIMPO (Sem tags da tesoura)
+// Caso você tenha o código da imagem da Questão 1, cole-o dentro das aspas abaixo:
+const IMG_Q1 = ""; 
+
 const QS = [
   {
     n: 1, 
     tema: "Tronco Encefálico", 
-    text: `Sobre o TRONCO ENCEFÁLICO, marque a alternativa que preenche corretamente a coluna "B".
-    <br><br>
-    `,
+    text: `Sobre o TRONCO ENCEFÁLICO, marque a alternativa que preenche corretamente a coluna "B".`,
+    img: true, // Avisa o sistema que essa questão tem imagem (puxa da variável IMG_Q1 acima)
     opts: [
       "1 – Tecto do mesencéfalo; 2 – Sulco lateral; 3 – Véu medular superior; 4 – Sulco bulbo-pontino.",
       "1 – Tecto do mesencéfalo; 2 – Sulco basilar; 3 – Véu medular inferior; 4 – Sulco bulbo-pontino.",
@@ -255,7 +259,7 @@ const QS = [
     n: 2, 
     tema: "Medula Espinhal", 
     text: `A Medula Espinhal ou Espinal é um cordão cilíndrico, composto de células nervosas, localizada no canal vertebral. Sua função é estabelecer a comunicação entre o corpo e o sistema nervoso, e agir também nos reflexos, protegendo o corpo em situações de emergência, em que é preciso uma resposta rápida.
-<br><br>
+
 Sobre a MEDULA ESPINHAL, marque a alternativa correta:`,
     opts: [
       "A medula espinhal apresenta segmentos medulares, que dão origem a 31 pares de nervos espinhais, sendo 8 cervicais, 12 torácicos, 05 lombares, 05 sacrais e 01 coccígeo.",
@@ -271,7 +275,7 @@ Sobre a MEDULA ESPINHAL, marque a alternativa correta:`,
     n: 3, 
     tema: "Cerebelo", 
     text: `O cerebelo é responsável por todo o equilíbrio e postura corporal, recebendo impulsos sensitivos das estruturas locomotoras mais importantes, como: músculos, tendões, articulações, órgãos relacionados com o equilíbrio e olhos.
-<br><br>
+
 Sobre o CEREBELO, marque a alternativa correta:`,
     opts: [
       "Na organização interna do cerebelo a substancia cinzenta está disposta em uma fina camada periférica, o córtex cerebelar, e por um centro de substancia branca, o centro medular do cerebelo.",
@@ -297,7 +301,7 @@ III. Os receptores localizados na pele são denominados de exteroceptores e est�
 IV. Os efetuadores do sistema nervoso somático são os músculos estriados esqueléticos, enquanto que os efetuadores do sistema nervoso visceral são os músculos: liso, cardíaco e glândulas.
 
 V. Os gânglios são aglomerados de corpos de neurônios dentro do neuroeixo, enquanto que, os núcleos são aglomerados de corpos de neurônios fora do neuroeixo.
-<br><br>
+
 É CORRETO o que se afirma em:`,
     opts: [
       "III, IV e V.",
@@ -313,7 +317,7 @@ V. Os gânglios são aglomerados de corpos de neurônios dentro do neuroeixo, en
     n: 5, 
     tema: "Líquor (LCR)", 
     text: `O líquido cerebrorraquidiano (LCR), ou líquor, é importante para o metabolismo do sistema nervoso central (SNC) e protege contra traumatismos. No SNC, o LCR veicula nos ventrículos, canal central da medula e espaço subaracnóideo.
-<br><br>
+
 Ele é produzido pelo(a):`,
     opts: [
       "Plexo coroide.",
@@ -351,7 +355,7 @@ Ele é produzido pelo(a):`,
     ], 
     g: 3,
     exp_curta: "A espinha bífida oculta é a forma mais leve da doença, caracterizada geralmente por um tufo de pelos na região lombar e ausência de sintomas neurológicos significativos.",
-    exp_longa: "A espinha bífida é uma malformação congênita decorrente da falha no fechamento do tubo neural durante o desenvolvimento embrionário. A forma oculta é a mais leve, na qual há apenas um defeito ósseo, geralmente assintomático, podendo apresentar sinais cutâneos como um tufo de pelos. As formas mais graves incluem a meningocele, em que há protrusão das meninges, e a mielomeningocele, na qual há envolvimento da medula espinhal, levando a déficits neurológicos importantes. A mielosquise representa uma forma ainda mais grave. Essa classificação é frequentemente cobrada em provas, sendo essencial reconhecer a forma oculta como a menos sintomática."
+    exp_longa: "A espinha bífida é uma malformação congênita decorrente da falha no fechamento do tubo neural durante o desenvolvimento embrionário. A forma oculta é a mais leve, naற்றில் qual há apenas um defeito ósseo, geralmente assintomático, podendo apresentar sinais cutâneos como um tufo de pelos. As formas mais graves incluem a meningocele, em que há protrusão das meninges, e a mielomeningocele, na qual há envolvimento da medula espinhal, levando a déficits neurológicos importantes. A mielosquise representa uma forma ainda mais grave. Essa classificação é frequentemente cobrada em provas, sendo essencial reconhecer a forma oculta como a menos sintomática."
   },
   {
     n: 8, 
@@ -375,7 +379,7 @@ Ele é produzido pelo(a):`,
 I. Divisão do sistema nervoso estimulada;
 II. Neurotransmissor liberado na sinapse neuroefetuadora;
 III. Efeito sobre a frequência cardíaca.
-<br><br>
+
 Qual das alternativas apresenta corretamente o que ocorre em uma pessoa em situação de estresse?`,
     opts: [
       "I – Simpática; II – Acetilcolina; III – Diminuição.",
@@ -391,7 +395,7 @@ Qual das alternativas apresenta corretamente o que ocorre em uma pessoa em situa
     n: 10, 
     tema: "Bomba Na+/K+ ATPase", 
     text: `Nas células animais, o potencial de membrana desempenha um papel vital em inúmeros processos fisiológicos, tais como a sinalização elétrica em células excitáveis, contração muscular, função cerebral, percepção sensorial, secreção de neurotransmissores, geração pós-sináptica de potenciais de ação, sinalização celular, secreção hormonal, entre outros. Cerca de um terço do suprimento celular de ATP é gasto na bomba de Na+/K+ ATPase e a inibição da bomba de Na+/K+ ATPase despolariza a membrana celular.
-<br><br>
+
 Analise as asserções a seguir:
 
 Aumento da concentração extracelular de K+ (hipercalemia) e/ou aumento da concentração intracelular de Na+ estimulam a bomba de Na+/K+ ATPase.
@@ -415,7 +419,7 @@ Acerca dessas asserções assinale a opção CORRETA:`,
     n: 11, 
     tema: "Metabolismo Cerebral", 
     text: `O uso de energia do cérebro está entre os mais altos de qualquer órgão do corpo, mas infelizmente o armazenamento de glicogênio no cérebro é mínimo e, assim, a glicólise anaeróbica não é fonte significativa de energia.
-<br><br>
+
 Considerando esta informação sobre o metabolismo cerebral, qual das seguintes afirmações está correta?`,
     opts: [
       "A oferta de glicose aos neurônios é vitalmente dependente da insulina.",
@@ -459,7 +463,7 @@ Considerando esta informação sobre o metabolismo cerebral, qual das seguintes 
     n: 14, 
     tema: "Doença de Parkinson", 
     text: `Uma ampla variedade de neurotransmissores foi identificada nos corpos celulares e terminações sinápticas aferentes dos núcleos da base.
-<br><br>
+
 A deficiência de qual dos seguintes neurotransmissores associa-se tipicamente à doença de Parkinson?`,
     opts: [
       "GABA (ácido gama-aminobutírico)",
@@ -487,7 +491,6 @@ A deficiência de qual dos seguintes neurotransmissores associa-se tipicamente �
   }
 ];
 
-// MOTOR DO SIMULADO
 const L = ['a','b','c','d','e'];
 let cur = 0, sel = null, answered = {}, eliminated = {};
 
@@ -531,7 +534,18 @@ function renderQ() {
   document.getElementById('qTagTema').textContent = q.tema;
   document.getElementById('qCounterNum').textContent = q.n;
 
-  document.getElementById('qText').innerHTML = q.text;
+  // Renderiza o texto puro respeitando as quebras de linha
+  document.getElementById('qText').textContent = q.text;
+
+  // Renderiza a imagem, caso exista
+  const imgEl = document.getElementById('qImg');
+  if (q.img && IMG_Q1) {
+    imgEl.src = IMG_Q1;
+    imgEl.style.display = 'block';
+  } else {
+    imgEl.src = '';
+    imgEl.style.display = 'none';
+  }
 
   const wrap = document.getElementById('qOpts');
   wrap.innerHTML = '';
