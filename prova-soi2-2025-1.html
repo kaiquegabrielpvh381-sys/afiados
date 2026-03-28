@@ -1,42 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Results and Report</title>
+    <title>SOI II - N1 2025.1 | Afyados</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #FF5722;
+            --background-color: #f4f4f4;
+            --font-color: #333;
+        }
+        body { background-color: var(--background-color); font-family: Arial, sans-serif; }
+        .header { background: var(--primary-color); padding: 10px; color: white; text-align: center; }
+        .navbar { display: flex; justify-content: space-between; }
+        .btn { background: var(--secondary-color); color: white; border: none; padding: 10px; cursor: pointer; }
+        .sticky-header { position: sticky; top: 0; background: white; }
+        .pill { margin: 5px; padding: 8px; border: 1px solid #ccc; }
+        .quiz-main { margin: 20px; }
+        .results { padding: 15px; }
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
-    <h1>Results and Report</h1>
-
-    <div id="results">
-        <h2>Relatório Detalhado</h2>
-        <h3>Summary</h3>
-        <p>Detailed summary of performance results.</p>
-
-        <h3>Weak Areas Identification</h3>
-        <p>Identification of weak areas based on performance analysis.</p>
-
-        <h3>Theme Breakdown</h3>
-        <p>Comprehensive breakdown of themes</p>
-
-        <h3>Performance Analysis</h3>
-        <p>In-depth performance analysis of results.
-
-        <h3>Recommendations</h3>
-        <p>Personalized recommendations for improvement.</p>
+    <div class="header">
+        <h1>Quiz Afyados</h1>
     </div>
-
+    <div class="navbar">
+        <button class="btn" onclick="goto('home')">Voltar</button>
+        <img src="logo.png" alt="Logo" />
+    </div>
+    <div class="sticky-header">
+        <div class="pills" id="pills"></div>
+    </div>
+    <div class="quiz-main" id="quiz-area">
+        <!-- Questions will be rendered here -->
+    </div>
+    <div class="results hidden" id="results">
+        <h2>Resultados</h2>
+        <div class="res-hero">Resultado: <span id="percentage"></span>%</div>
+        <div class="res-stats">
+            Corretas: <span id="correct-count"></span><br>
+            Incorretas: <span id="incorrect-count"></span><br>
+            Discursivas: <span id="discursive-count"></span>
+        </div>
+        <div class="theme-performance">
+            <div class="performance-bar">Desempenho: <span id="performance-bars"></span></div>
+        </div>
+        <div class="insights">
+            <p>Ponto Forte: <span id="strong-point"></span></p>
+            <p>Ponto Fraco: <span id="weak-point"></span></p>
+        </div>
+        <div class="detailed-report">
+            <h3>Relatório Detalhado</h3>
+            <div id="summary"></div>
+            <div id="recommendations"></div>
+            <h4>Erros:</h4>
+            <div id="review-items"></div>
+        </div>
+        <button class="btn" onclick="resetQuiz()">Tentar Novamente</button>
+    </div>
     <script>
-        function showResults() {
-            // Enhanced showResults function
-            document.getElementById('results').style.display = 'block';
-        }
+        const questions = [
+            'Anatomia do Joelho', 'Nervos Cranianos', 'Bioquímica Neural',
+            'Anatomia da Medula Espinal', 'Fisiologia Auditiva', 'Neuroanatomia da Memória',
+            'Histologia Muscular', 'Neuroanatomia Cortical', 'Vias Somestésicas',
+            'Tronco Encefálico', 'Líquor', 'Histologia Óssea',
+            'Neurotransmissores', 'Fisiologia Muscular', 'Núcleos da Base'
+        ];
 
         function getTier(score) {
-            if(score >= 90) return '⭐️⭐️⭐️⭐️⭐️';
-            if(score >= 75) return '⭐️⭐️⭐️⭐️';
-            if(score >= 50) return '⭐️⭐️⭐️';
-            return '⭐️';
+            if (score >= 90) return '⭐⭐⭐⭐⭐';
+            else if (score >= 75) return '⭐⭐⭐⭐';
+            else if (score >= 50) return '⭐⭐⭐';
+            return '⭐⭐';
+        }
+
+        function boot() {
+            // Initialize quiz
+        }
+
+        function buildPills() {
+            // Create pills for questions
+        }
+
+        function goto(section) {
+            // Navigate to different sections
+        }
+
+        function prev() {
+            // Go to previous question
+        }
+
+        function nextQ() {
+            // Go to next question
+        }
+
+        function renderQ() {
+            // Render current question
+        }
+
+        function renderBottom() {
+            // Render bottom navigation
+        }
+
+        function pickOpt(option) {
+            // Handle option selection
+        }
+
+        function doAnswer() {
+            // Handle answer submission
+        }
+
+        function toggleDeep() {
+            // Toggle deep insights
+        }
+
+        function showResults() {
+            // Show results at the end
+        }
+
+        function revisit() {
+            // Revisit answers
+        }
+
+        function resetQuiz() {
+            // Reset the quiz
         }
     </script>
 </body>
