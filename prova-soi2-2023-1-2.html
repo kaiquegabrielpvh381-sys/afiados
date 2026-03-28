@@ -1,674 +1,704 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <link rel="icon" type="image/png" href="favicon.png">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz N1 SOI II - 2023.1 (2) | Afyados</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* --- DESIGN SYSTEM AFYADOS (PREMIUM DARK/PINK) --- */
-:root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.22);--bg:#0C0810;--card:#1A1226;--border:rgba(255,255,255,0.07);--border-pink:rgba(214,0,110,0.3);--text:#F4EFFA;--muted:#9080A8;--light:#D8CEEA;}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6; padding-top: 68px;}
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz N1 SOI II - 2023.1 (2) | Afyados</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. IDENTIDADE VISUAL AFYADOS --- */
+        :root {
+            --pink: #D6006E;
+            --pink-bright: #FF1A7E;
+            --pink-light: #FF6EB4;
+            --pink-glow: rgba(214, 0, 110, 0.22);
+            --bg: #0C0810;
+            --card: #1A1226;
+            --border: rgba(255, 255, 255, 0.07);
+            --border-pink: rgba(214, 0, 110, 0.3);
+            --text: #F4EFFA;
+            --muted: #9080A8;
+            --light: #D8CEEA;
+            --green: #1D9E75;
+            --red: #E24B4A;
+        }
 
-/* NAV BASE */
-nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(12,8,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-.logo-mark{width:36px;height:36px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:9px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px var(--pink-glow);}
-.logo-mark svg{width:18px;height:18px;fill:white;}
-.logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;letter-spacing:.06em;color:#FFF;}
-.back-btn{display:flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 18px;border-radius:50px;border:1px solid var(--border);transition:all .2s;}
-.back-btn:hover{border-color:var(--border-pink);color:var(--pink-light);}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+            padding-top: 68px;
+            padding-bottom: 100px;
+        }
 
-/* HERO */
-.hero{padding:100px 48px 40px;text-align:center;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 30%,rgba(214,0,110,0.1),transparent 70%);}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:900;line-height:1.1;margin-bottom:12px;position:relative;}
-.hero h1 em{font-style:italic;background:linear-gradient(135deg,var(--pink-bright),var(--pink-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+        /* NAVBAR (Glassmorphism) */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 500; height: 68px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 48px; background: rgba(12, 8, 16, 0.88);
+            backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+        }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-mark {
+            width: 36px; height: 36px; border-radius: 9px;
+            background: linear-gradient(135deg, var(--pink), #9B00E8);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 18px var(--pink-glow);
+        }
+        .logo-mark svg { width: 18px; height: 18px; fill: white; }
+        .logo-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 18px; letter-spacing: .06em; color: #FFF; }
+        .back-btn {
+            display: flex; align-items: center; gap: 8px; color: var(--muted);
+            text-decoration: none; font-size: 14px; font-weight: 500;
+            padding: 8px 18px; border-radius: 50px; border: 1px solid var(--border);
+            transition: all .2s;
+        }
+        .back-btn:hover { border-color: var(--border-pink); color: var(--pink-light); }
 
-/* --- MECÂNICA DO QUIZ: ESTILIZAÇÃO AFYADOS --- */
+        /* HEADER PILLS */
+        .quiz-pills-header {
+            position: sticky; top: 68px; background: rgba(12, 8, 16, 0.92);
+            backdrop-filter: blur(10px); padding: 16px 48px;
+            border-bottom: 1px solid var(--border); z-index: 400;
+            display: flex; justify-content: center; gap: 8px; overflow-x: auto;
+        }
+        .pill {
+            min-width: 34px; height: 34px; border-radius: 50%;
+            background: var(--card); border: 1px solid var(--border);
+            color: var(--muted); font-size: 13px; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.2s; flex-shrink: 0;
+        }
+        .pill:hover { border-color: var(--muted); color: var(--text); }
+        .pill.active { background: var(--pink); color: white; border-color: var(--pink); box-shadow: 0 0 10px var(--pink-glow); }
+        .pill.correct { background: rgba(29, 158, 117, 0.2); border-color: var(--green); color: var(--green); }
+        .pill.wrong { background: rgba(226, 75, 74, 0.2); border-color: var(--red); color: var(--red); }
 
-/* STICKY HEADER COM AS PILLS (BOLINHAS) DE NAVEGAÇÃO */
-.quiz-pills-header {
-    position: sticky;
-    top: 68px; /* Altura da navbar fixa */
-    background: rgba(12,8,16,0.92);
-    backdrop-filter: blur(10px);
-    padding: 16px 48px;
-    border-bottom: 1px solid var(--border);
-    z-index: 400;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    overflow-x: auto;
-}
-.pill {
-    min-width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: var(--card);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 13px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s;
-    flex-shrink: 0;
-}
-.pill:hover { border-color: var(--muted); color: var(--text); }
+        /* QUIZ AREA & CARD */
+        .quiz-area { max-width: 860px; margin: 0 auto; padding: 40px 48px; animation: fadeUp .4s ease; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(16px) } to { opacity: 1; transform: translateY(0) } }
+        
+        .q-card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 24px; padding: 40px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .q-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+        .q-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: #FFF; }
+        .q-tema { font-size: 11px; font-weight: 700; color: var(--pink-light); text-transform: uppercase; letter-spacing: 1px; background: rgba(214,0,110,0.1); padding: 4px 10px; border-radius: 100px; }
 
-/* ESTADOS DAS PILLS: ATIVA, CORRETA, ERRADA */
-.pill.active { background: var(--pink); color: white; border-color: var(--pink); box-shadow: 0 0 10px var(--pink-glow); }
-.pill.answered-correct { background: rgba(29, 158, 117, 0.2); border-color: rgba(29, 158, 117, 0.4); color: #5DCAA5; }
-.pill.answered-wrong { background: rgba(244, 67, 54, 0.2); border-color: rgba(244, 67, 54, 0.4); color: #FF7070; }
-.pill.answered-discursive { background: rgba(250, 173, 63, 0.15); border-color: rgba(250, 173, 63, 0.4); color: #FAAD3F; } /* Amarelo das adaptadas */
+        /* --- 2. ESTRUTURA DO HTML E CSS (PRE-LINE E LINHA CORTE) --- */
+        .q-text {
+            font-size: 15px; color: var(--light); line-height: 1.7;
+            margin-bottom: 24px;
+            white-space: pre-line; /* Mágica para quebras de linha nativas */
+        }
+        .q-img-container { margin-bottom: 24px; text-align: center; }
+        .q-img-container img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border); }
+        
+        .linha-corte {
+            display: flex; align-items: center; justify-content: center;
+            color: var(--muted); font-size: 14px; margin: 30px 0;
+            opacity: 0.5;
+        }
+        .linha-corte::before, .linha-corte::after {
+            content: ''; flex: 1; border-bottom: 1px dashed var(--muted); margin: 0 15px;
+        }
 
-/* ÁREA PRINCIPAL DAS QUESTÕES */
-.quiz-area {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 40px 48px 120px; /* Padding bottom compensando a bottom nav */
-    animation: fadeUp .4s ease;
-}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+        /* OPÇÕES & ELIMINAÇÃO */
+        .options-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+        .option-wrapper {
+            display: flex; align-items: stretch; gap: 10px;
+        }
+        .btn-eliminate {
+            width: 40px; background: transparent; border: 1px solid var(--border);
+            border-radius: 12px; color: var(--muted); cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; transition: all 0.2s;
+        }
+        .btn-eliminate:hover { background: rgba(255,255,255,0.05); color: var(--text); }
+        .btn-eliminate.active { background: rgba(226, 75, 74, 0.15); border-color: var(--red); color: var(--red); }
+        
+        .option-item {
+            flex: 1; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border);
+            border-radius: 12px; padding: 16px 20px; font-size: 14px; color: var(--light);
+            display: flex; align-items: flex-start; gap: 14px; cursor: pointer; transition: all 0.2s;
+        }
+        .option-item:hover:not(.disabled) { background: rgba(214, 0, 110, 0.04); border-color: rgba(214, 0, 110, 0.3); color: var(--text); }
+        .option-item.selected { border-color: var(--pink); background: rgba(214,0,110,0.1); }
+        .option-item.eliminated { opacity: 0.3; text-decoration: line-through; pointer-events: none; }
+        .option-item.disabled { pointer-events: none; }
 
-/* CARD DA QUESTÃO */
-.q-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 40px;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-}
-.q-header { margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
-.q-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; color: #FFF; }
-.q-title span { color: var(--pink-light); }
-.q-text { font-size: 15px; color: var(--light); line-height: 1.7; margin-bottom: 32px; }
-.q-text p { margin-bottom: 12px; }
+        /* Estados de Correção */
+        .option-item.correct { background: rgba(29, 158, 117, 0.1); border-color: var(--green); color: var(--green); }
+        .option-item.wrong { background: rgba(226, 75, 74, 0.1); border-color: var(--red); color: var(--red); }
+        
+        .alt-letter {
+            width: 26px; height: 26px; background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px; font-weight: 700; font-size: 12px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .option-item.selected .alt-letter { background: var(--pink); color: #fff; }
 
-/* OPÇÕES OBJETIVAS */
-.options-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
-.option-item {
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 16px 20px;
-    font-size: 14px;
-    color: var(--light);
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.option-item:hover:not(.correct):not(.wrong) {
-    background: rgba(214,0,110,0.04);
-    border-color: rgba(214,0,110,0.3);
-    color: var(--text);
-}
-.alt-letter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background: rgba(255,255,255,0.05);
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 12px;
-    color: var(--muted);
-    flex-shrink: 0;
-}
+        /* EXPLICAÇÃO */
+        .explanation-box {
+            background: linear-gradient(135deg, rgba(214, 0, 110, .05), rgba(155, 0, 232, .03));
+            border: 1px solid var(--border-pink); border-radius: 16px;
+            padding: 24px; margin-top: 30px; border-left: 4px solid var(--pink);
+            display: none; animation: fadeUp 0.4s ease;
+        }
+        .exp-title { font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--pink-light); margin-bottom: 12px; }
+        .exp-short { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+        .exp-long { font-size: 14px; color: var(--light); line-height: 1.6; white-space: pre-line; }
 
-/* ESTADOS DAS OPÇÕES NO GABARITO */
-.option-item.correct { background: rgba(29, 158, 117, 0.1); border-color: rgba(29,158,117,0.4); color: #5DCAA5; }
-.option-item.wrong { background: rgba(244, 67, 54, 0.1); border-color: rgba(244, 67, 54, 0.4); color: #FF7070; }
-.option-item.correct .alt-letter, .option-item.wrong .alt-letter { background: rgba(0,0,0,0.15); color: currentColor; }
-.option-item:disabled { cursor: default; }
+        /* BOTTOM BAR */
+        .bottom-bar {
+            position: fixed; bottom: 0; width: 100%; z-index: 500; height: 80px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 48px; background: rgba(12, 8, 16, 0.95);
+            border-top: 1px solid var(--border);
+        }
+        .btn-nav {
+            background: transparent; border: none; color: var(--muted);
+            font-size: 14px; font-weight: 600; cursor: pointer; transition: color 0.2s;
+        }
+        .btn-nav:hover { color: #fff; }
+        .btn-action {
+            background: var(--pink); color: #fff; border: none; padding: 14px 32px;
+            border-radius: 100px; font-size: 15px; font-weight: 700; cursor: pointer;
+            box-shadow: 0 4px 15px var(--pink-glow); transition: all 0.2s ease;
+        }
+        .btn-action:hover:not(:disabled) { background: var(--pink-bright); transform: translateY(-2px); }
+        .btn-action:disabled { background: #333; color: #777; box-shadow: none; cursor: not-allowed; }
 
-/* TEXTAREA DISCURSIVA */
-.discursive-textarea {
-    width: 100%;
-    height: 140px;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-radius: 12px;
-    padding: 12px;
-    font-family: inherit;
-    font-size: 14px;
-    line-height: 1.5;
-    resize: vertical;
-    margin-bottom: 12px;
-}
-.discursive-textarea:disabled { color: var(--muted); background: var(--bg); }
-
-/* BOTÃO PINK (Geral/Ver Gabarito Discursiva) */
-.btn-pink {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--pink);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.25s;
-    box-shadow: 0 4px 20px var(--pink-glow);
-    border: none;
-    cursor: pointer;
-}
-.btn-pink:hover { background: var(--pink-bright); transform: translateY(-2px); }
-
-/* BLOCO DE COMENTÁRIO PBL (GABARITO) */
-.explanation-box {
-    background: linear-gradient(135deg, rgba(214,0,110,.05), rgba(155,0,232,.03));
-    border: 1px solid var(--border-pink);
-    border-radius: 18px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-    margin-top: 20px;
-    display: none; /* Oculto por padrão, aparece no gabarito */
-}
-.explanation-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--pink); }
-.exp-title { font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--pink-light); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-.exp-title svg { width: 14px; height: 14px; fill: currentColor; }
-.exp-text { font-size: 14px; color: var(--light); line-height: 1.6; }
-.exp-text ul { padding-left: 20px; margin-bottom: 16px; list-style-type: disc; }
-.exp-text li { margin-bottom: 8px; }
-.exp-text strong { color: var(--text); font-weight: 600; }
-.exp-resumo { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
-.exp-resumo strong { color: #FAAD3F; /* Amarelo adaptadas */ }
-
-/* BOTTOM NAVIGATION BASE AFYADOS */
-.bottom-nav {
-    position: fixed;
-    bottom: 0; width: 100%; z-index: 500; height: 72px;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 48px;
-    background: rgba(12,8,16,0.9);
-    backdrop-filter: blur(15px);
-    border-top: 1px solid var(--border);
-}
-.btn-muted {
-    display: inline-flex; align-items: center; gap: 8px;
-    color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 600;
-    padding: 8px 18px; border-radius: 50px; border: 1px solid var(--border);
-    background: transparent; cursor: pointer; transition: all .2s;
-}
-.btn-muted:hover { border-color: var(--muted); color: var(--text); }
-.btn-muted:disabled { opacity: 0.3; cursor: default; }
-
-/* SEÇÃO DE RESULTADOS (Oculta por padrão) */
-.results-container {
-    display: none; /* Oculta até o quiz acabar */
-    max-width: 600px;
-    margin: 40px auto 100px;
-    padding: 40px;
-    background: var(--card);
-    border-radius: 24px;
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    text-align: center;
-}
-.results-container::before {
-    content:''; position:absolute; inset:0; border-radius: 24px;
-    background:radial-gradient(circle at 50% 10%, rgba(214,0,110,0.15), transparent 60%); z-index: -1;
-}
-#result-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; color: #FFF; margin-bottom: 5px; }
-#result-perc { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; line-height: 1; margin: 15px 0 25px; }
-.res-stats { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
-.stat-tag { font-size: 12px; font-weight: 700; padding: 6px 16px; border-radius: 100px; letter-spacing: 0.05em; border: 1px solid var(--border); }
-
-@media(max-width:768px){
-  nav, .quiz-pills-header, .bottom-nav{padding:0 20px;}
-  .quiz-pills-header {top: 68px; }
-  .q-card{padding: 30px;}
-}
-</style>
+        /* RELATÓRIO FINAL */
+        .results-container { display: none; max-width: 600px; margin: 40px auto; padding: 40px; background: var(--card); border-radius: 24px; border: 1px solid var(--border); box-shadow: 0 12px 40px rgba(0,0,0,0.3); text-align: center; }
+        .res-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin-bottom: 10px; }
+        .res-perc { font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900; color: var(--pink); margin: 20px 0; }
+        .theme-bar-container { margin-bottom: 20px; text-align: left; }
+        .theme-name { font-size: 13px; font-weight: 600; color: var(--light); display: flex; justify-content: space-between; margin-bottom: 6px; }
+        .theme-progress-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        .theme-progress-fill { height: 100%; background: var(--pink); border-radius: 4px; transition: width 1s ease; }
+    </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="logo">
-    <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
-    <span class="logo-name">AFYADOS</span>
-  </a>
-  <a href="index.html" class="back-btn">← Voltar</a>
-</nav>
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
+            <span class="logo-name">AFYADOS</span>
+        </a>
+        <a href="#" class="back-btn">← Voltar</a>
+    </nav>
 
-<div class="hero">
-  <h1>Gabarito • N1 SOI II <em>2023.1 (2)</em></h1>
-</div>
+    <div class="quiz-pills-header" id="pills-nav"></div>
 
-<div class="quiz-pills-header" id="pills-container">
+    <div class="quiz-area" id="quiz-container">
+        </div>
+
+    <div class="results-container" id="results-area">
+        <h2 class="res-title">Desempenho</h2>
+        <div class="res-perc" id="res-perc">0%</div>
+        <div id="theme-stats"></div>
+        <button class="btn-action" style="width: 100%; margin-top: 20px;" onclick="location.reload()">Refazer Simulado</button>
     </div>
 
-<div class="quiz-area" id="quiz-area">
+    <div class="bottom-bar" id="bottom-bar">
+        <button class="btn-nav" id="btn-prev" onclick="goPrev()">← Anterior</button>
+        <button class="btn-action" id="btn-main" onclick="handleMainAction()" disabled>Responder</button>
     </div>
-
-<div class="bottom-nav">
-    <button onclick="prev()" class="btn-muted" id="btn-prev">← Anterior</button>
-    <button onclick="nextQ()" class="btn-pink" id="btn-next">Próxima →</button>
-</div>
-
-<div class="results-container" id="results-area">
-    <h2 id="result-title">Seu Resultado</h2>
-    <div id="result-perc">0%</div>
-    <div class="res-stats">
-        <span class="stat-tag" style="background: rgba(29, 158, 117, 0.15); color: #5DCAA5;">Corretas: <strong id="correctCount">0</strong></span>
-        <span class="stat-tag" style="background: rgba(244, 67, 54, 0.15); color: #FF7070;">Incorretas: <strong id="incorrectCount">0</strong></span>
-        <span class="stat-tag" style="background: rgba(250, 173, 63, 0.1); color: #FAAD3F;">Discursivas: <strong id="discursiveCount">0</strong></span>
-    </div>
-    <button class="btn-pink" style="width: 100%; margin-top: 10px;" onclick="resetQuiz()">Refazer Simulado →</button>
-</div>
 
 <script>
-    // --- O BANCO DE DADOS INTEGRAL DAS 15 QUESTÕES ---
-    const quizData = [
-            {
-                id: 1, type: "objective", answer: 1, // B
-                title: "1ª QUESTÃO",
-                text: "Denominam-se nervos cranianos todos aqueles nervos que fazem conexão com o encéfalo. Existem 12 pares de nervos cranianos. Com base nos aspectos morfofuncionais que caracterizam os nervos cranianos correlacionados especificamente aos sentidos especiais, analise as assertivas a seguir:<br><br>I - O primeiro par de nervos cranianos é responsável pela condução dos impulsos olfatórios em direção aos bulbos olfatórios, sendo classificado como exclusivamente sensitivo.<br>II - O nervo vestíbulo-coclear (VIII) responde pela condução tanto da informação auditiva quanto da informação referente ao equilíbrio.<br>III - O nervo óptico é considerado um nervo misto, já que conduz a informação visual até o quiasma óptico e também permite ajustes motores no diâmetro pupilar.<br>IV- Os impulsos gustativos provenientes dos 2/3 anteriores da língua se projetam via nervo glossofaríngeo (XI), enquanto o 1/3 posterior é inervado pelo nervo facial (VII).<br><br>Podemos afirmar que estão corretas as assertivas:",
-                options: ["A) I e III.", "B) I e II.", "C) II e IV.", "D) III e IV.", "E) I, II e IV."],
-                explanation: "NC I (Olfatório): Exclusivamente sensitivo especial (AVE). Axônios cruzam a lâmina cribriforme do etmoide. NC VIII (Vestibulococlear): Exclusivamente sensitivo especial (ASE). Componente vestibular integra equilíbrio; componente coclear integra audição.<br><br>NC II (Óptico): Exclusivamente sensitivo. A regulação motora pupilar (miose) em resposta à luz não é função motora do II par, mas sim do NC III (Oculomotor). Gustação: 2/3 anteriores da língua (Facial VII); 1/3 posterior (Glossofaríngeo IX).",
-                resumo: "NC I e VIII são exclusivamente sensitivos. NC II não é misto (motor pupilar é NC III). Gustação: 2/3 anteriores = VII; 1/3 posterior = IX."
-            },
-            {
-                id: 2, type: "objective", answer: 2, // C
-                title: "2ª QUESTÃO",
-                text: "Considere a anatomia do pescoço. De acordo com a imagem esquemática e seus conhecimentos, avalie as afirmações a seguir:<br><br>I - O nervo vago origina-se de um núcleo no bulbo, para formar um único nervo, que emerge do crânio pelo forame jugular, percorre o pescoço e o tórax, terminando no abdome.<br>II - O plexo faríngeo é formado por ramos dos IX, X e XI nervos cranianos, além de ramos do tronco simpático.<br>III - Uma lesão afetando o plexo faríngeo irá causar paresia ou paralisa dos músculos constritores ipsilaterais, que podem eventualmente se tornar atróficos.",
-                options: ["A) I e II.", "B) I e III.", "C) II e III.", "D) Apenas a II.", "E) I, II e III."],
-                explanation: "Origem do NC X: O NC X não se origina de “um núcleo”, mas de múltiplos núcleos bulbares: Núcleo Ambíguo, Núcleo Dorsal do Vago, Núcleo do Trato Solitário e Núcleo do Trato Espinal do Trigêmeo.<br><br>Plexo Faríngeo: Formado primariamente por NC IX (sensitivo), NC X (motor principal) e raízes simpáticas cervicais. O NC XI (raiz craniana) une-se ao Vago. Lesões geram paresia flácida ipsilateral e disfagia.",
-                resumo: "Vago (X) tem origem em múltiplos núcleos no bulbo, não um. Plexo faríngeo (IX, X, XI, simpático) controla a faringe; sua lesão gera paralisia ipsilateral e disfagia."
-            },
-            {
-                id: 3, type: "objective", answer: 0, // A
-                title: "3ª QUESTÃO",
-                text: "A tireoide é uma das maiores glândulas endócrinas, localizada em uma região na base do pescoço, relacionada com o controle do metabolismo e produção de três hormônios. Qual das seguintes alternativas descreve corretamente os tipos de células e as vias bioquímicas que produzem os hormônios da referida glândula?",
-                options: [
-                    "A) As células foliculares da tireoide produzem hormônios tireoidianos, como a tri-iodotironina (T3) e Tiroxina (T4), por meio da captação de iodo e sua subsequente incorporação na tirosina para formar monoiodotirosina (MIT) e di-iodotirosina (DIT), que são combinados para formar T3 e T4.",
-                    "B) As células parafoliculares produzem T3 e T4 ativos no citoplasma através da clivagem enzimática do colesterol mediada pela tirosina quinase.",
-                    "C) As células foliculares são responsáveis pela produção exclusiva de calcitonina.",
-                    "D) A síntese ocorre nas células parafoliculares por meio da oxidação de ácidos graxos.",
-                    "E) O iodo absorvido atua como mensageiro secundário no núcleo, estimulando transcrição direta de TSH."
-                ],
-                explanation: "Células foliculares internalizam iodeto pelo simportador Na+/I- (NIS). A enzima tireoide peroxidase (TPO) oxida o iodeto e o liga à tireoglobulina, formando MIT e DIT. A TPO catalisa o acoplamento: DIT + DIT = T4; MIT + DIT = T3.<br><br>Células Parafoliculares (Células C): Produzem calcitonina, hormônio peptídico que inibe osteoclastos, sem relação com a tirosina.",
-                resumo: "Iodo captado pelas foliculares é oxidado pela TPO e acoplado à tireoglobulina no coloide, formando MIT/DIT, gerando T3/T4. Parafoliculares produzem calcitonina."
-            },
-            {
-                id: 4, type: "objective", answer: 2, // C
-                title: "4ª QUESTÃO",
-                text: "Um homem de 40 anos de idade se acidentou e sofreu uma lesão da coluna em C5, com transecção da metade esquerda da medula espinal. Sobre este caso, selecione a alternativa que apresente corretamente o lado do corpo que esse paciente não sentirá a sensação de dor e de temperatura.",
-                options: [
-                    "A) Lado esquerdo para a sensação de dor e de temperatura.",
-                    "B) Lado direito para a propriocepção consciente e lado esquerdo para dor.",
-                    "C) Lado direito para a sensação de dor e de temperatura.",
-                    "D) Ambos os lados para a sensação de dor e temperatura, preservando o tato epicrítico.",
-                    "E) Lado esquerdo para a sensação de temperatura e preservação bilateral da dor."
-                ],
-                explanation: "Síndrome de Brown-Séquard (Hemissecção Medular): nociceptores e termorreceptores (Trato Espinotalâmico Lateral) entram no corno dorsal e cruzam imediatamente via comissura branca anterior para o lado oposto da medula.<br><br>Lesão à esquerda interrompe as fibras que já cruzaram vindas do lado direito. Perda motora e proprioceptiva consciente será ipsilateral (esquerda).",
-                resumo: "Fibras de dor/temperatura (Espinotalâmico) cruzam na medula espinal logo após entrarem. Lesão medular à esquerda resulta em perda termoalgésica à direita."
-            },
-            {
-                id: 5, type: "objective", answer: 0, // A
-                title: "5ª QUESTÃO",
-                text: "O hipotálamo sintetiza, pelo menos, nove hormônios diferentes, e a hipófise secreta sete. Ambas as estruturas são originadas da primeira vesícula encefálica. Juntas, desempenham funções importantes na regulação. Com base na embriogênese e na fisiologia, aponte a alternativa correta.",
-                options: [
-                    "A) O prosencéfalo dá origem ao diencéfalo, que possibilita a formação do hipotálamo, responsável pela produção do hormônio antidiurético (ADH).",
-                    "B) O rombencéfalo dá origem ao telencéfalo, que forma a adeno-hipófise secretora exclusiva de somatostatina.",
-                    "C) A neuro-hipófise tem origem ectodérmica oral a partir da bolsa de Rathke.",
-                    "D) O mesencéfalo origina a neuroectoderme precursora do hipotálamo.",
-                    "E) A adeno-hipófise origina-se da crista neural e produz ocitocina e vasopressina."
-                ],
-                explanation: "O diencéfalo (derivado do prosencéfalo) origina o hipotálamo e a neuro-hipófise. O hipotálamo produz ADH e Ocitocina, estocados na neuro-hipófise.<br><br>A adeno-hipófise tem origem separada na ectoderme oral (Bolsa de Rathke, no estomodeu).",
-                resumo: "Diencéfalo (origem prosencéfalo) gera o hipotálamo e a neuro-hipófise. Hipotálamo produz ADH/Ocitocina. Adeno-hipófise deriva do ectoderma oral (Bolsa de Rathke)."
-            },
-            {
-                id: 6, type: "discursive",
-                title: "6ª QUESTÃO (Discursiva)",
-                text: "Durante uma cirurgia de mais de 12 horas, um residente acabou desmaiando durante o procedimento (situação 1). O médico pediu que conduzissem o aluno para a emergência. 15 minutos após o início de um soro glicosado intravenoso, o aluno despertou (situação 2) e reportou não ter se alimentado adequadamente.<br><br>A) Cite duas vias metabólicas ativadas pelo hormônio pancreático envolvido na situação 1.<br>B) Na situação 2, identifique o hormônio pancreático e a respectiva célula secretora.",
-                explanation: "Situação 1 (Jejum/Hipoglicemia): Ativação do **Glucagon** pelas células alfa pancreáticas. Vias metabólicas acionadas: Glicogenólise hepática, Gliconeogênese, Oxidação de ácidos graxos, Cetogênese.<br><br>Situação 2 (Soro Glicosado/Hiperglicemia): A glicose entra na célula beta, gerando ATP celular, fechando canais de potássio, despolarizando a membrana e induzindo liberação exocitótica de **Insulina**.",
-                resumo: "Jejum/Hipoglicemia (Situ 1) eleva glucagon (alfa), acionando gliconeogênese hepática. Soro Glicosado (Situ 2) induz liberação de insulina pelas células beta."
-            },
-            {
-                id: 7, type: "objective", answer: 3, // D
-                title: "7ª QUESTÃO",
-                text: "No ouvido interno a energia mecânica do som é convertida em sinais elétricos complexos. Estruturas sensoriais têm diferentes tons e frequências através da vibração de um líquido. Assinale a alternativa que traz corretamente o nome da estrutura responsável por esta função, sua origem embrionária e classificação histológica.",
-                options: [
-                    "A) Sáculo é a estrutura, deriva do mesoderma, epitélio estratificado pavimentoso.",
-                    "B) Canais semicirculares, derivam do endoderma, terminações nervosas livres dispersas.",
-                    "C) Mácula acústica, deriva da crista neural, epitélio pseudoestratificado de transição.",
-                    "D) Cóclea é a estrutura, que deriva do ectoderma, e as células sensoriais formam um epitélio simples colunar ciliado.",
-                    "E) Utrículo deriva do ectoderma superficial, epitélio cúbico simples produtora de endolinfa."
-                ],
-                explanation: "No Órgão de Corti, contido na cóclea, estereocílios apicais das células ciliadas flexionam contra a membrana tectória, abrindo mecanicamente canais de K+, despolarizando o receptor.<br><br>Todo o labirinto embrionariamente deriva do **ectoderma de superfície** (placoide ótico). O tecido sensitivo (células pilosas) forma epitélio colunar simples ciliado modificado.",
-                resumo: "Conversão sonora = Cóclea (Órgão de Corti). Origem = Ectoderma superficial (placoide ótico). Histologia = Epitélio colunar simples ciliado."
-            },
-            {
-                id: 8, type: "objective", answer: 0, // A
-                title: "8ª QUESTÃO",
-                text: "Paciente submetido a uma retirada total da tireoide, neoplasia. No pós-operatório apresentou formigamento nas extremidades e espasmos musculares. O residente levantou a hipótese de alteração nos níveis de cálcio e de paratormônio (PTH). Analisando esse caso, marque a alternativa verdadeira.",
-                options: [
-                    "A) Os sintomas apresentados pelo paciente acontecem pela hipocalcemia, que normalmente é percebida pelas paratireoides; e neste caso está disfuncional, não promovendo um controle adequada do cálcio pelo PTH.",
-                    "B) Os sintomas apresentados acontecem pela hipercalcemia reativa, decorrente do pico de liberação de PTH pelas paratireoides remanescentes estressadas.",
-                    "C) A clínica apresentada sugere crise tireotóxica induzida por liberação maciça de T3 e T4 durante a ressecção do tecido glandular.",
-                    "D) Os espasmos ocorrem devido à hipercalemia secundária provocada pela lesão isquêmica inadvertida do nervo laríngeo recorrente.",
-                    "E) O quadro é compatível com hipocalcemia primária mediada pelo excesso de calcitonina circulante secretada pelas células tumorais residuais."
-                ],
-                explanation: "O principal risco na tireoidectomia total é o hipoparatireoidismo iatrogênico secundário à excisão ou isquemia das paratireoides (localizadas na cápsula posterior).<br><br>A queda acentuada do PTH inibe a mobilização de cálcio ósseo e a reabsorção renal, gerando hipocalcemia plasmática. A hipocalcemia reduz o limiar do potencial de ação celular, gerando hiperexcitabilidade neuromuscular (formigamentos, espasmos).",
-                resumo: "Lesão nas paratireoides = Zera PTH = Inibe reabsorção cálcio = Hipocalcemia plasmática rápida. Cálcio baixo causa hiperexcitabilidade nervosa (tetania e espasmos)."
-            },
-            {
-                id: 9, type: "discursive",
-                title: "9ª QUESTÃO (Discursiva)",
-                text: "O líquido cerebrospinal (LCS) é um líquido claro, que protege o encéfalo. Sobre o LCS, faça o que se pede:<br><br>A) Identifique os locais do SNC onde é produzido o LCS.<br>B) Descreva os processos de produção, circulação e reabsorção do LCS.",
-                explanation: "Locais de Produção: Plexos corioideos dos ventrículos (laterais, 3º e 4º), formados por células ependimárias cuboides especializadas unidas por *tight junctions*.<br><br>Circulação e Reabsorção: Flui unidirecionalmente (Pressão) dos Ventrículos Laterais -> Forames de Monro -> 3º Ventrículo -> Aqueduto Cerebral (Sylvius) -> 4º Ventrículo -> Forames de Magendie/Luschka -> Espaço Subaracnóideo -> Granulações Aracnoideas (Vilosidades) no Seio Sagital Superior.",
-                resumo: "Produção: Plexos coroides (células ependimárias). Fluxo: Ventrículos, sai pelos forames do 4º para Espaço Subaracnóideo. Reabsorção: Granulações aracnoideas para sistema venoso dural."
-            },
-            {
-                id: 10, type: "objective", answer: 2, // C
-                title: "10ª QUESTÃO",
-                text: "Considere a anatomia endócrina posterior à tireoide: Estrutura 'A' secreta o hormônio 1, e as estruturas 'B' secretam o hormônio 2. Ambos possuem efeitos no osso. Assinale a alternativa correta.",
-                options: [
-                    "A) O hormônio 1 corresponde ao paratormônio, que estimula a atividade osteoblástica.",
-                    "B) O hormônio 2 corresponde à calcitonina, secretada pelas paratireoides.",
-                    "C) O hormônio 2 corresponde ao paratormônio, secretado pelas paratireoides, que aumenta a atividade dos osteoclastos, promovendo a liberação de Ca2+ e fosfato no sangue.",
-                    "D) O hormônio 2 atua nos rins aumentando de forma acentuada as taxas de eliminação de cálcio e magnésio.",
-                    "E) Ambos os hormônios são sintetizados unicamente pelas células foliculares da tireoide."
-                ],
-                explanation: "A queda do cálcio sérico estimula as paratireoides a secretarem **Paratormônio (PTH)**.<br><br>O PTH age nos receptores dos osteoblastos, inibindo sua síntese de osteoprotegerina (OPG) e estimulando expressão do ligante RANKL. O RANKL ativa osteoclastos ativos, degradando a matriz e lançando Ca2+ e Fosfato (PO4) no sangue. O PTH é potente fosfatúrico renal.",
-                resumo: "Paratireoides (B) secretam Paratormônio (PTH) quando cálcio sérico cai, estimulando atividade osteoclástica no osso (liberando cálcio e fosfato)."
-            },
-            {
-                id: 11, type: "objective", answer: 0, // A
-                title: "11ª QUESTÃO",
-                text: "Homem, 35 anos, acidente automobilístico Lombar. Médico observou que o paciente não fazia movimentos voluntários com a perna direita e não apresentava sensibilidade profunda do mesmo lado nem sensibilidade superficial na perna esquerda. Afirma-se:",
-                options: [
-                    "A) a lesão foi do lado direito, afetando os tratos corticoespinal e tratos do sistema coluna dorsal lemnisco medial do lado direito.",
-                    "B) a lesão foi do lado esquerdo, afetando os tratos espinotalâmico lateral e anterior ipsilaterais.",
-                    "C) a lesão acometeu o corno anterior da medula bilateralmente na altura de L3.",
-                    "D) a lesão foi transversal completa, porém manifestou sintomas assimétricos devido ao comprometimento vestibuloespinal.",
-                    "E) a lesão ocorreu no trato espinotalâmico lateral direito antes de sua decussação."
-                ],
-                explanation: "Quadro clássico de Hemissecção Medular (Síndrome de Brown-Séquard).<br><br>- **Perda motora ipsilateral (perna direita):** Corte do Trato Corticospinal Lateral já decussado no bulbo.<br>- **Perda sensibilidade profunda/epicrítica ipsilateral (perna direita):** Corte do Sistema Coluna Dorsal (fascículos grácil/cuneiforme), que viaja ipsilateral.<br>- **Perda termoalgésica contralateral (perna esquerda):** Corte do Trato Espinotalâmico cruzado vindo do lado esquerdo.",
-                resumo: "Hemissecção medular direita cortou: Trato corticospinal (paralisia ipsilateral), Coluna Dorsal (propriocepção profunda ipsilateral) e Trato Espinotalâmico vindo da perna esquerda (perda termoalgésica)."
-            },
-            {
-                id: 12, type: "objective", answer: 3, // D
-                title: "12ª QUESTÃO",
-                text: "Sobre as funções específicas do tegumento, analise as afirmativas a seguir:<br><br>I - A epiderme é formada por um epitélio pseudoestratificado pavimentoso queratinizado.<br>II - As células da camada basal são células-tronco adultas, responsáveis pela renovação da pele.<br>III - A pele contém diversos receptores sensoriais amielínicos na derme, sendo os mais numerosos as terminações nervosas livres.<br>IV - As glândulas sudoríparas écrinas produzem uma secreção rica em cloreto de sódio para termorregulação.",
-                options: ["A) I, II e III.", "B) I e IV.", "C) III e IV.", "D) II, III e IV.", "E) I, III e IV."],
-                explanation: "A epiderme é um epitélio **estratificado pavimentoso queratinizado** (não pseudoestratificado). <br><br>As células-tronco epidérmicas adultas na camada germinativa basal empurram os queratinócitos para cima (renovação ~28 dias). A inervação dermo-epidérmica amielínica constitui-se majoritariamente de terminações nervosas livres (dor, temperatura, tato protopático).",
-                resumo: "Epiderme é estratificada. Renovação ocorre na camada germinativa basal. Pele possui abundantes fibras nervosas livres e usa sudorese salina para termorregular."
-            },
-            {
-                id: 13, type: "objective", answer: 3, // D
-                title: "13ª QUESTÃO",
-                text: "Os olhos funcionam como órgãos de conversão seletiva do estímulo luminoso em sinais elétricos. Em relação a essa estrutura e seu funcionamento é correto afirmar que:",
-                options: [
-                    "A) a córnea é a lente fotossensível primária, dotada de receptores ciliares.",
-                    "B) o cristalino atua na conversão direta dos fótons em potenciais de ação graduados.",
-                    "C) a esclera converte seletivamente frequências de luz visível.",
-                    "D) a retina é uma fina camada de tecido nervoso que converte a imagem em impulsos elétricos.",
-                    "E) o humor vítreo é o principal meio gelatinoso responsável por iniciar a despolarização dos fotorreceptores."
-                ],
-                explanation: "Córnea (maior poder refrativo fixo) e cristalino (lente biconvexa interna variável por acomodação) são tecidos dióptricos apenas refrativos, não possuem fotossensibilidade.<br><br>A conversão do estímulo fotoquímico em sinal nervoso elétrico é atribuição exclusiva dos fotorreceptores (bastonetes e cones) na camada sensorial da **Retina**.",
-                resumo: "Córnea e Cristalino apenas refratam/direcionam a luz. A transdução (luz -> sinal elétrico) ocorre fotorreceptores localizados na Retina."
-            },
-            {
-                id: 14, type: "objective", answer: 2, // C
-                title: "14ª QUESTÃO",
-                text: "Escolar, 8 anos, baixo crescimento pôndero-estatural. O médico percebeu alteração de um hormônio importante. Marque a alternativa que representa uma explicação correta dada pelo médico.",
-                options: [
-                    "A) O hormônio do crescimento (GH) possui atuação restrita ao fechamento das epífises ósseas fetais.",
-                    "B) A baixa estatura diagnosticada é consequência da ausência completa de receptores de osteocalcina.",
-                    "C) O hormônio do crescimento é indispensável durante o período de desenvolvimento estatural, e sem ele a altura esperada não poderá ser alcançada.",
-                    "D) O tratamento fisiológico primário exige a reposição precoce de testosterona para mimetizar IGF-1.",
-                    "E) O GH, produzido pela glândula tireoide sob estímulo direta do tronco encefálico, é essencial apenas para massa magra."
-                ],
-                explanation: "O GH (Hormônio do Crescimento), sintetizado na adeno-hipófise, atua promovendo anabolismo proteico primário e liberando somatomedinas hepáticas e parácrinas locais (majoritariamente IGF-1).<br><br>O IGF-1 estimula intensamente as placas cartilaginosas epifisárias abertas na infância, garantindo a deposição da matriz cartilaginosa e condrócitos nas epífises, expandindo-as diafisariamente antes do fechamento pelos esteroides sexuais.",
-                resumo: "Hormônio do Crescimento (GH) hipofisário gera IGF-1. Sem GH, não há estímulo endócrino adequado para alongamento ósseo longitudinal nas placas cartilaginosas epifisárias abertas."
-            },
-            {
-                id: 15, type: "objective", answer: 2, // C
-                title: "15ª QUESTÃO",
-                text: "Paciente, masculino, 45 anos, diagnóstico com duas hérnias de disco na região lombar que comprimindo a área da medula constituída por substância branca. Sobre a área medular comprimida:<br><br>I- É composta por fibras nervosas mielinizadas em tratos ascendentes e descendentes.<br>II- É dividida em três colunas (funículos): posterior, lateral e anterior.<br>III- Está localizada no centro, lembra a letra H ou uma borboleta, constituída de corpos de neurônios.<br>IV- É subdividida em regiões chamadas de cornos.",
-                options: ["A) I e III.", "B) II e IV.", "C) I e II.", "D) III e IV.", "E) I, II e IV."],
-                explanation: "O enunciado solicita interpretação clínica focada exclusivamente em afirmações corretas sobre o parênquima comprimido no texto (Substância Branca medular).<br><br>Substância Branca: Localizada na periferia medular, composta por fibras nervosas mielinizadas verticalmente em fascículos compactados, estructurada morfologicamente em funículosLongitudinais (Anteriores, Laterais e Posteriores) contendo tratos nervosos longitudinais.<br><br>Afirmações III e IV descrevem a substância cinzenta central (formato de H, contendo cornos e corpos celulares).",
-                resumo: "Substância Branca é periférica, composta por axônios mielinizados formando tratos em funículos (anterior, lateral, posterior). Substância Cinzenta é o centro em formato de “H” com cornos e corpos celulares."
-            }
-        ];
+    // --- 3. O BANCO DE DADOS (ARRAY QS EXATO) ---
+    const QS = [
+        {
+            n: 1, 
+            tema: "Neuroanatomia", 
+            text: `Denominam-se nervos cranianos todos aqueles nervos que fazem conexão com o encéfalo. Existem 12 pares de nervos cranianos. Com base nos aspectos morfofuncionais que caracterizam os nervos cranianos correlacionados especificamente aos sentidos especiais, analise as assertivas a seguir:
 
-    let currentIndex = 0;
-    let userAnswers = {}; // Store user choices/inputs
+I - O primeiro par de nervos cranianos é responsável pela condução dos impulsos olfatórios em direção aos bulbos olfatórios, sendo classificado como exclusivamente sensitivo.
+II - O nervo vestíbulo-coclear (VIII) responde pela condução tanto da informação auditiva quanto da informação referente ao equilíbrio.
+III - O nervo óptico é considerado um nervo misto, já que conduz a informação visual até o quiasma óptico e também permite ajustes motores no diâmetro pupilar.
+IV- Os impulsos gustativos provenientes dos 2/3 anteriores da língua se projetam via nervo glossofaríngeo (XI), enquanto o 1/3 posterior é inervado pelo nervo facial (VII).`,
+            img: false,
+            opts: [
+                "I e III.",
+                "I e II.",
+                "II e IV.",
+                "III e IV.",
+                "I, II e IV."
+            ], 
+            g: 1, 
+            exp_curta: "Apenas I e II estão corretas.",
+            exp_longa: `NC I (Olfatório): Exclusivamente sensitivo especial. NC VIII (Vestibulococlear): Exclusivamente sensitivo especial.
+NC II (Óptico): Exclusivamente sensitivo. A regulação motora pupilar (miose) é função do NC III (Oculomotor).
+Gustação: A assertiva IV inverte as inervações. O NC VII inerva os 2/3 anteriores; o NC IX inerva o 1/3 posterior.`
+        },
+        {
+            n: 2, 
+            tema: "Neuroanatomia", 
+            text: `Considere a anatomia do pescoço. De acordo com a inervação e seus conhecimentos, avalie as afirmações a seguir:
 
-    // --- Core Functions for Interactive Quiz and Branded Design ---
-    function boot() {
+I - O nervo vago origina-se de um núcleo no bulbo, para formar um único nervo, que emerge do crânio pelo forame jugular, percorre o pescoço e o tórax, terminando no abdome.
+II - O plexo faríngeo é formado por ramos dos IX, X e XI nervos cranianos, além de ramos do tronco simpático.
+III - Uma lesão afetando o plexo faríngeo irá causar paresia ou paralisa dos músculos constritores ipsilaterais, que podem eventualmente se tornar atróficos.`,
+            img: true,
+            img_url: "image_2ce027.png", // Imagem fornecida nos arquivos
+            opts: [
+                "I e II.",
+                "I e III.",
+                "II e III.",
+                "Apenas a II.",
+                "I, II e III."
+            ], 
+            g: 2, 
+            exp_curta: "Apenas II e III estão corretas.",
+            exp_longa: `O NC X não se origina de apenas 'um núcleo', mas de múltiplos núcleos bulbares (Núcleo Ambíguo, Dorsal do Vago, Trato Solitário). O Plexo Faríngeo é formado por NC IX, X, XI e cadeia simpática. Lesões neste plexo geram paresia flácida ipsilateral dos constritores da faringe, causando disfagia.`
+        },
+        {
+            n: 3, 
+            tema: "Sistema Endócrino", 
+            text: `A tireoide é uma das maiores glândulas endócrinas, localizada em uma região na base do pescoço, relacionada com o controle do metabolismo e produção de três hormônios. Qual das seguintes alternativas descreve corretamente os tipos de células e as vias bioquímicas que produzem os hormônios da referida glândula?`,
+            img: false,
+            opts: [
+                "As células foliculares da tireoide produzem hormônios tireoidianos (T3 e T4), por meio da captação de iodo e sua subsequente incorporação na tirosina para formar MIT e DIT, que são combinados para formar T3 e T4.",
+                "As células parafoliculares produzem T3 e T4 ativos no citoplasma através da clivagem enzimática do colesterol mediada pela tirosina quinase.",
+                "As células foliculares são responsáveis pela produção exclusiva de calcitonina.",
+                "A síntese ocorre nas células parafoliculares por meio da oxidação de ácidos graxos.",
+                "O iodo absorvido atua como mensageiro secundário no núcleo, estimulando transcrição direta de TSH."
+            ], 
+            g: 0, 
+            exp_curta: "As células foliculares produzem T3 e T4 via incorporação do iodo (TPO).",
+            exp_longa: `Células foliculares internalizam iodeto pelo simportador Na+/I- (NIS). A tireoide peroxidase (TPO) oxida o iodeto e liga-o à tireoglobulina, formando MIT e DIT. O acoplamento gera T3 e T4.
+Células Parafoliculares (Células C) produzem calcitonina, hormônio peptídico que inibe osteoclastos, sem relação com iodo.`
+        },
+        {
+            n: 4, 
+            tema: "Neuroanatomia", 
+            text: `Um homem de 40 anos de idade se acidentou e sofreu uma lesão da coluna em C5, com transecção da metade esquerda da medula espinal. Sobre este caso, selecione a alternativa que apresente corretamente o lado do corpo que esse paciente não sentirá a sensação de dor e de temperatura.`,
+            img: false,
+            opts: [
+                "Lado esquerdo para a sensação de dor e de temperatura.",
+                "Lado direito para a propriocepção consciente e lado esquerdo para dor.",
+                "Lado direito para a sensação de dor e de temperatura.",
+                "Ambos os lados para a sensação de dor e temperatura.",
+                "Lado esquerdo para a sensação de temperatura e preservação bilateral da dor."
+            ], 
+            g: 2, 
+            exp_curta: "A perda termoalgésica é contralateral (lado direito).",
+            exp_longa: `Trata-se da Síndrome de Brown-Séquard (Hemissecção Medular). As fibras de dor e temperatura (Trato Espinotalâmico Lateral) entram no corno dorsal e cruzam imediatamente via comissura branca anterior. Logo, uma lesão à esquerda interrompe as fibras que já cruzaram vindas do lado direito do corpo.`
+        },
+        {
+            n: 5, 
+            tema: "Embriologia", 
+            text: `O hipotálamo sintetiza, pelo menos, nove hormônios diferentes, e a hipófise secreta sete. Ambas as estruturas são originadas da primeira vesícula encefálica. Com base na embriogênese e na fisiologia, aponte a alternativa correta.`,
+            img: false,
+            opts: [
+                "O prosencéfalo dá origem ao diencéfalo, que possibilita a formação do hipotálamo, responsável pela produção do hormônio antidiurético (ADH).",
+                "O rombencéfalo dá origem ao telencéfalo, que forma a adeno-hipófise secretora exclusiva de somatostatina.",
+                "A neuro-hipófise tem origem ectodérmica oral a partir da bolsa de Rathke.",
+                "O mesencéfalo origina a neuroectoderme precursora do hipotálamo.",
+                "A adeno-hipófise origina-se da crista neural e produz ocitocina."
+            ], 
+            g: 0, 
+            exp_curta: "O prosencéfalo origina o diencéfalo (hipotálamo).",
+            exp_longa: `O diencéfalo (derivado do prosencéfalo) origina o hipotálamo e a neuro-hipófise. O hipotálamo produz ADH e Ocitocina, que são estocados e secretados pela neuro-hipófise. A adeno-hipófise tem origem separada na ectoderme oral (Bolsa de Rathke).`
+        },
+        {
+            n: 6, 
+            tema: "Metabolismo", 
+            text: `Durante uma cirurgia de mais de 12 horas, um residente acabou desmaiando durante o procedimento (situação 1). O médico pediu que conduzissem o aluno para a emergência. 15 minutos após o início de um soro glicosado intravenoso, o aluno despertou (situação 2) e reportou não ter se alimentado adequadamente.
+Assinale a alternativa que descreve as vias metabólicas ativadas pelo hormônio na situação 1 e a célula secretora do hormônio da situação 2, respectivamente:`,
+            img: false,
+            opts: [
+                "Glicólise e Glicogênese / Células alfa.",
+                "Glicogenólise e Gliconeogênese / Células beta.",
+                "Lipogênese e Glicólise / Células delta.",
+                "Gliconeogênese e Lipólise / Células acinares.",
+                "Glicogenólise e Glicólise / Células beta."
+            ], 
+            g: 1, 
+            exp_curta: "No jejum ativa-se glicogenólise/gliconeogênese (glucagon); com soro, a célula beta secreta insulina.",
+            exp_longa: `Situação 1 (Jejum/Hipoglicemia): Ativação do Glucagon pelas células alfa pancreáticas. Vias metabólicas acionadas: Glicogenólise hepática, Gliconeogênese, Oxidação de ácidos graxos, Cetogênese.
+Situação 2 (Hiperglicemia): A glicose entra na célula beta, gerando ATP celular, despolarizando a membrana e induzindo liberação exocitótica de Insulina.`
+        },
+        {
+            n: 7, 
+            tema: "Embriologia", 
+            text: `No ouvido interno a energia mecânica do som é convertida em sinais elétricos complexos. Estruturas sensoriais têm diferentes tons e frequências através da vibração de um líquido. Assinale a alternativa que traz corretamente o nome da estrutura responsável por esta função, sua origem embrionária e classificação histológica.`,
+            img: false,
+            opts: [
+                "Sáculo é a estrutura, deriva do mesoderma, epitélio estratificado pavimentoso.",
+                "Canais semicirculares, derivam do endoderma, terminações nervosas livres dispersas.",
+                "Mácula acústica, deriva da crista neural, epitélio pseudoestratificado de transição.",
+                "Cóclea é a estrutura, que deriva do ectoderma, e as células sensoriais formam um epitélio simples colunar ciliado.",
+                "Utrículo deriva do ectoderma superficial, epitélio cúbico simples."
+            ], 
+            g: 3, 
+            exp_curta: "A cóclea transduz o som, origina-se do ectoderma.",
+            exp_longa: `No Órgão de Corti, contido na cóclea, estereocílios apicais das células ciliadas flexionam contra a membrana tectória, gerando a transdução auditiva. Todo o labirinto embrionariamente deriva do ectoderma de superfície (placoide ótico). O tecido sensitivo forma epitélio colunar simples ciliado modificado.`
+        },
+        {
+            n: 8, 
+            tema: "Sistema Endócrino", 
+            text: `Paciente submetido a uma retirada total da tireoide por neoplasia. No pós-operatório apresentou formigamento nas extremidades e espasmos musculares. O residente levantou a hipótese de alteração nos níveis de cálcio e de paratormônio (PTH). Analisando esse caso, marque a alternativa verdadeira.`,
+            img: false,
+            opts: [
+                "Os sintomas apresentados pelo paciente acontecem pela hipocalcemia, devido a disfunção das paratireoides, não promovendo controle adequado do cálcio pelo PTH.",
+                "Os sintomas acontecem pela hipercalcemia reativa, decorrente do pico de liberação de PTH.",
+                "A clínica sugere crise tireotóxica induzida por liberação maciça de T3 e T4.",
+                "Os espasmos ocorrem devido à hipercalemia provocada por isquemia do nervo laríngeo.",
+                "O quadro é compatível com hipocalcemia primária mediada por calcitonina."
+            ], 
+            g: 0, 
+            exp_curta: "Hipoparatireoidismo iatrogênico causa hipocalcemia e tetania.",
+            exp_longa: `O principal risco na tireoidectomia total é o hipoparatireoidismo iatrogênico. A queda acentuada do PTH inibe a mobilização de cálcio ósseo e a reabsorção renal, gerando hipocalcemia. A hipocalcemia reduz o limiar do potencial de ação celular, gerando hiperexcitabilidade neuromuscular (tetania, formigamentos, espasmos).`
+        },
+        {
+            n: 9, 
+            tema: "Neuroanatomia", 
+            text: `O líquido cerebrospinal (LCS) é um líquido claro que protege o encéfalo. Assinale a alternativa que indica corretamente os locais de produção, circulação e reabsorção do LCS, respectivamente:`,
+            img: false,
+            opts: [
+                "Plexos coroides / Forames de Monro e Magendie / Granulações aracnoideas.",
+                "Vilosidades aracnoideas / Espaço epidural / Plexos coroides.",
+                "Células da glia / Canal central da medula / Seio reto.",
+                "Piamáter / Ventrículos / Espaço subaracnóideo.",
+                "Granulações aracnoideas / Ventrículos / Plexos coroides."
+            ], 
+            g: 0, 
+            exp_curta: "Produzido nos plexos coroides e reabsorvido nas granulações.",
+            exp_longa: `Produção: Plexos corioideos dos ventrículos (laterais, 3º e 4º), formados por células ependimárias.
+Circulação: Flui unidirecionalmente dos Ventrículos Laterais -> Forames de Monro -> 3º Ventrículo -> Aqueduto Cerebral -> 4º Ventrículo -> Forames de Magendie/Luschka -> Espaço Subaracnóideo.
+Reabsorção: Ocorre nas granulações aracnoideas drenando para o seio sagital superior (venoso).`
+        },
+        {
+            n: 10, 
+            tema: "Sistema Endócrino", 
+            text: `Considere a anatomia endócrina posterior à tireoide: Estrutura 'A' secreta o hormônio 1, e as estruturas 'B' (paratireoides) secretam o hormônio 2. Ambos possuem efeitos no osso. Assinale a alternativa correta.`,
+            img: false,
+            opts: [
+                "O hormônio 1 corresponde ao paratormônio, que estimula a atividade osteoblástica.",
+                "O hormônio 2 corresponde à calcitonina, secretada pelas paratireoides.",
+                "O hormônio 2 corresponde ao paratormônio, secretado pelas paratireoides, que aumenta a atividade dos osteoclastos, promovendo a liberação de Ca2+ e fosfato no sangue.",
+                "O hormônio 2 atua nos rins aumentando de forma acentuada as taxas de eliminação de cálcio e magnésio.",
+                "Ambos os hormônios são sintetizados unicamente pelas células foliculares da tireoide."
+            ], 
+            g: 2, 
+            exp_curta: "As paratireoides (B) secretam o Paratormônio (2) que aumenta a calcemia.",
+            exp_longa: `A queda do cálcio sérico estimula as paratireoides a secretarem Paratormônio (PTH). O PTH age nos receptores dos osteoblastos, estimulando a expressão do ligante RANKL. Isso ativa os osteoclastos, que degradam a matriz e lançam Ca2+ e Fosfato no sangue.`
+        },
+        {
+            n: 11, 
+            tema: "Neuroanatomia", 
+            text: `Homem, 35 anos, acidente automobilístico Lombar. O médico observou que o paciente não fazia movimentos voluntários com a perna direita e não apresentava sensibilidade profunda do mesmo lado, nem sensibilidade superficial na perna esquerda. Afirma-se:`,
+            img: false,
+            opts: [
+                "A lesão foi do lado direito, afetando os tratos corticoespinal e tratos do sistema coluna dorsal lemnisco medial do lado direito.",
+                "A lesão foi do lado esquerdo, afetando os tratos espinotalâmico lateral e anterior ipsilaterais.",
+                "A lesão acometeu o corno anterior da medula bilateralmente na altura de L3.",
+                "A lesão foi transversal completa, manifestando sintomas assimétricos devido ao comprometimento vestibuloespinal.",
+                "A lesão ocorreu no trato espinotalâmico lateral direito antes de sua decussação."
+            ], 
+            g: 0, 
+            exp_curta: "A hemissecção à direita corta o trato corticospinal (paralisia ipsilateral).",
+            exp_longa: `Quadro clássico de Hemissecção Medular (Brown-Séquard) à direita.
+- Perda motora ipsilateral: Trato Corticospinal Lateral.
+- Perda sensibilidade profunda ipsilateral: Sistema Coluna Dorsal.
+- Perda termoalgésica contralateral: Trato Espinotalâmico cruzado vindo do lado esquerdo.`
+        },
+        {
+            n: 12, 
+            tema: "Sistema Tegumentar", 
+            text: `Sobre as funções específicas do tegumento, analise as afirmativas a seguir:
+
+I - A epiderme é formada por um epitélio pseudoestratificado pavimentoso queratinizado.
+II - As células da camada basal são células-tronco adultas, responsáveis pela renovação da pele.
+III - A pele contém diversos receptores sensoriais amielínicos, sendo os mais numerosos as terminações nervosas livres.
+IV - As glândulas sudoríparas écrinas produzem uma secreção rica em cloreto de sódio.`,
+            img: false,
+            opts: [
+                "I, II e III.",
+                "I e IV.",
+                "III e IV.",
+                "II, III e IV.",
+                "I, III e IV."
+            ], 
+            g: 3, 
+            exp_curta: "A afirmativa I está errada (epiderme é estratificada).",
+            exp_longa: `A epiderme é um epitélio ESTRATIFICADO pavimentoso queratinizado (a afirmação I está incorreta). As células-tronco epidérmicas estão na camada germinativa basal. A inervação constitui-se majoritariamente de terminações nervosas livres (dor/temperatura).`
+        },
+        {
+            n: 13, 
+            tema: "Fisiologia Sensorial", 
+            text: `Os olhos funcionam como órgãos de conversão seletiva do estímulo luminoso em sinais elétricos. Em relação a essa estrutura e seu funcionamento é correto afirmar que:`,
+            img: false,
+            opts: [
+                "A córnea é a lente fotossensível primária, dotada de receptores ciliares.",
+                "O cristalino atua na conversão direta dos fótons em potenciais de ação graduados.",
+                "A esclera converte seletivamente frequências de luz visível.",
+                "A retina é uma fina camada de tecido nervoso que converte a imagem em impulsos elétricos.",
+                "O humor vítreo inicia a despolarização dos fotorreceptores."
+            ], 
+            g: 3, 
+            exp_curta: "Apenas a retina possui células fotorreceptoras para transdução.",
+            exp_longa: `Córnea e cristalino são tecidos dióptricos apenas refrativos (focam a luz), não possuem fotossensibilidade. A conversão do estímulo fotoquímico em sinal nervoso (transdução) é atribuição exclusiva dos fotorreceptores localizados na Retina.`
+        },
+        {
+            n: 14, 
+            tema: "Sistema Endócrino", 
+            text: `Escolar, 8 anos, baixo crescimento pôndero-estatural. O médico percebeu alteração de um hormônio importante. Marque a alternativa que representa uma explicação correta dada pelo médico.`,
+            img: false,
+            opts: [
+                "O hormônio do crescimento (GH) possui atuação restrita ao fechamento das epífises ósseas fetais.",
+                "A baixa estatura é consequência da ausência completa de receptores de osteocalcina.",
+                "O hormônio do crescimento é indispensável durante o período de desenvolvimento estatural, e sem ele a altura esperada não poderá ser alcançada.",
+                "O tratamento exige a reposição precoce de testosterona para mimetizar IGF-1.",
+                "O GH é essencial apenas para ganho de massa magra."
+            ], 
+            g: 2, 
+            exp_curta: "O GH é vital para o crescimento longitudinal via IGF-1.",
+            exp_longa: `O GH (Hormônio do Crescimento) atua liberando somatomedinas hepáticas (IGF-1). O IGF-1 estimula intensamente as placas cartilaginosas epifisárias abertas na infância, garantindo o alongamento longitudinal dos ossos antes do fechamento pelos esteroides sexuais.`
+        },
+        {
+            n: 15, 
+            tema: "Neuroanatomia", 
+            text: `Paciente diagnosticado com hérnias de disco na lombar comprimindo a área da medula constituída por substância branca. Sobre a área medular comprimida:
+
+I- É composta por fibras nervosas mielinizadas em tratos ascendentes e descendentes.
+II- É dividida em três colunas (funículos): posterior, lateral e anterior.
+III- Lembra a letra H ou uma borboleta, constituída de corpos de neurônios.
+IV- É subdividida em regiões chamadas de cornos.`,
+            img: false,
+            opts: [
+                "A) I e III.",
+                "B) II e IV.",
+                "C) I e II.",
+                "D) III e IV.",
+                "E) I, II e IV."
+            ], 
+            g: 2, 
+            exp_curta: "Substância branca é periférica, composta por funículos mielinizados.",
+            exp_longa: `O enunciado foca na Substância Branca medular. Ela é localizada na periferia, composta por fibras nervosas mielinizadas agrupadas em funículos contendo tratos nervosos longitudinais (I e II corretas). As afirmações III e IV descrevem a substância cinzenta central.`
+        }
+    ];
+
+    // --- 4. FUNCIONALIDADES ATUAIS E MOTOR ---
+    let currIdx = 0;
+    let userAnswers = {}; // { 0: 2, 1: 0 } etc.
+    let eliminated = {}; // { 0: [1, 3], 1: [] } etc.
+    let tempSelection = null;
+
+    const elPills = document.getElementById('pills-nav');
+    const elQuiz = document.getElementById('quiz-container');
+    const btnMain = document.getElementById('btn-main');
+    const btnPrev = document.getElementById('btn-prev');
+    const resContainer = document.getElementById('results-area');
+
+    function initQuiz() {
+        QS.forEach((q, i) => eliminated[i] = []);
         buildPills();
-        renderQ();
-        updateNavigation();
-        document.getElementById('quiz-area').style.display = 'block';
-        document.querySelector('.quiz-pills-header').style.display = 'flex';
-        document.getElementById('results-area').style.display = 'none';
-        document.querySelector('.bottom-nav').style.display = 'flex';
+        renderQuestion();
     }
 
-    // Builds the pills navigation bar
     function buildPills() {
-        const container = document.getElementById('pills-container');
-        container.innerHTML = '';
-        quizData.forEach((q, index) => {
+        elPills.innerHTML = '';
+        QS.forEach((q, idx) => {
             const pill = document.createElement('div');
-            pill.className = 'pill';
-            pill.textContent = index + 1;
-            pill.onclick = () => goto(index);
-            container.appendChild(pill);
-        });
-        syncPills();
-    }
-
-    // Synchronizes the style of navigation pills with current question status
-    function syncPills() {
-        const pills = document.querySelectorAll('.pill');
-        pills.forEach((pill, index) => {
-            pill.className = 'pill'; // Reset standard style
-            if (index === currentIndex) pill.classList.add('active'); // Current question focus
+            pill.className = `pill ${idx === currIdx ? 'active' : ''}`;
+            pill.innerText = q.n;
+            pill.onclick = () => jumpTo(idx);
             
-            // Apply status colors based on stored answers
-            if (userAnswers[index] !== undefined) {
-                const q = quizData[index];
-                if (q.type === 'objective') {
-                    if (userAnswers[index] === q.answer) pill.classList.add('answered-correct');
-                    else pill.classList.add('answered-wrong');
-                } else {
-                    pill.classList.add('answered-discursive'); // Brownish-yellow for adapted/discursive
-                }
+            if (userAnswers[idx] !== undefined) {
+                pill.classList.add(userAnswers[idx] === q.g ? 'correct' : 'wrong');
             }
+            elPills.appendChild(pill);
         });
-        
-        // Auto scroll active pill into view on narrow screens
-        const activePill = document.querySelector('.pill.active');
-        if(activePill) activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        const activePill = elPills.querySelector('.active');
+        if (activePill) activePill.scrollIntoView({ behavior: 'smooth', inline: 'center' });
     }
 
-    function goto(index) {
-        currentIndex = index;
-        renderQ();
-        updateNavigation();
+    function jumpTo(idx) {
+        currIdx = idx;
+        tempSelection = null;
+        buildPills();
+        renderQuestion();
+    }
+    
+    function goPrev() { if(currIdx > 0) jumpTo(currIdx - 1); }
+    function goNext() { 
+        if(currIdx < QS.length - 1) jumpTo(currIdx + 1); 
+        else showResults(); 
     }
 
-    function prev() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            renderQ();
-            updateNavigation();
+    function renderQuestion() {
+        const q = QS[currIdx];
+        const ans = userAnswers[currIdx];
+        const isAnswered = ans !== undefined;
+
+        let html = `
+            <div class="q-header">
+                <div class="q-title">Questão ${q.n.toString().padStart(2, '0')}</div>
+                <div class="q-tema">${q.tema}</div>
+            </div>
+            <div class="q-text">${q.text}</div>
+        `;
+
+        if (q.img) {
+            html += `<div class="q-img-container"><img src="${q.img_url}" alt="Imagem da Questão"></div>`;
         }
-    }
 
-    function nextQ() {
-        if (currentIndex < quizData.length - 1) {
-            currentIndex++;
-            renderQ();
-            updateNavigation();
-        } else {
-            showResults(); // Finalize Quiz button pressed
-        }
-    }
+        // --- LINHA DE CORTE ---
+        html += `<div class="linha-corte">✂️</div>`;
 
-    // Updates Bottom Navigation Button states (colors, labels)
-    function updateNavigation() {
-        syncPills();
-        const btnNext = document.getElementById('btn-next');
-        const btnPrev = document.getElementById('btn-prev');
-        
-        // Hide previous on first question
-        btnPrev.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
-        
-        // Change color/text for last question (finalize quiz)
-        if (currentIndex === quizData.length - 1) {
-            btnNext.textContent = 'Finalizar Gabarito →';
-            btnNext.style.background = 'linear-gradient(135deg, #1D9E75, #5DCAA5)'; // Branded Greenish style for completion
-            btnNext.style.boxShadow = '0 0 15px rgba(29, 158, 117, 0.2)';
-        } else {
-            btnNext.textContent = 'Próxima →';
-            btnNext.style.background = 'var(--pink)'; // Restoration standard Pink base style
-            btnNext.style.boxShadow = '0 4px 20px var(--pink-glow)';
-        }
-    }
-
-    // Renders the current question card (Objective or Discursive) with Afyados styling
-    function renderQ() {
-        const q = quizData[currentIndex];
-        const container = document.getElementById('quiz-area');
-        const isAnswered = userAnswers[currentIndex] !== undefined;
-        
-        // --- 1. Restoration of Branded q-card structure from designing turns ---
-        let html = `<div class="q-card">`;
-        html += `<div class="q-header"><div class="q-title">Questão <span>${q.id.toString().padStart(2, '0')}</span></div></div>`;
-        html += `<div class="q-text">${q.text}</div>`;
-        
-        // --- 2. Restoration of Option styling from designed "Hub" and Provas pages turns ---
-        if (q.type === 'objective') {
-            html += `<ul class="options-list">`;
-            q.options.forEach((opt, optIndex) => {
-                let itemClass = 'option-item';
-                let letterClass = 'alt-letter';
-                
-                // --- Restoration specific colored glowing borders from designed Hub turns ---
-                if (isAnswered) {
-                    if (optIndex === q.answer) itemClass += ' correct';
-                    else if (optIndex === userAnswers[currentIndex]) itemClass += ' wrong';
-                }
-
-                html += `<li class="${itemClass}" onclick="pickOpt(${optIndex})" ${isAnswered ? 'style="cursor:default;"' : ''}>
-                            <div class="${letterClass}">${String.fromCharCode(65 + optIndex)}</div>
-                            <div>${opt.substring(3)}</div> </li>`;
-            });
-            html += `</ul>`;
-        } else {
-            // --- 3. Restoration specific TextArea dark input styling from designed APG turns ---
-            let savedText = userAnswers[currentIndex] || "";
-            html += `<textarea class="discursive-textarea" id="disc-input" placeholder="Digite seu raciocínio aqui..." ${isAnswered ? 'disabled' : ''}>${savedText}</textarea>`;
+        // OPÇÕES COM FERRAMENTA DE ELIMINAÇÃO
+        html += `<ul class="options-list">`;
+        q.opts.forEach((optText, optIdx) => {
+            let itemClass = 'option-item';
+            let btnXClass = 'btn-eliminate';
             
-            // --- Restoration of standard btn-pink base style from designing hub turns ---
-            if (!isAnswered) {
-                html += `<button class="btn-pink" style="text-align:center; display:block; width:100%; margin-bottom: 20px;" onclick="doDiscursive()">Ver Resposta e Comentários →</button>`;
+            const isEliminated = eliminated[currIdx].includes(optIdx);
+            if (isEliminated) {
+                itemClass += ' eliminated';
+                btnXClass += ' active';
             }
-        }
 
-        // --- 4. Restoration specific styled block Discussion APG from previous turn of this file, integrated into designing structure ---
+            if (isAnswered) {
+                itemClass += ' disabled';
+                if (optIdx === q.g) itemClass += ' correct';
+                else if (optIdx === ans) itemClass += ' wrong';
+            } else if (tempSelection === optIdx && !isEliminated) {
+                itemClass += ' selected';
+            }
+
+            html += `
+                <div class="option-wrapper">
+                    <button class="${btnXClass}" onclick="toggleEliminate(${optIdx})" title="Eliminar alternativa" ${isAnswered ? 'disabled' : ''}>X</button>
+                    <li class="${itemClass}" onclick="selectOption(${optIdx}, ${isEliminated})">
+                        <div class="alt-letter">${String.fromCharCode(65 + optIdx)}</div>
+                        <div>${optText}</div>
+                    </li>
+                </div>
+            `;
+        });
+        html += `</ul>`;
+
+        // EXPLICAÇÃO
         if (isAnswered) {
-            html += `<div class="explanation-box" style="display:block;">
-                        <div class="exp-title">
-                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                            Discussão APG
-                        </div>
-                        <div class="exp-text">${q.explanation}</div>
-                        <div class="exp-resumo">
-                            <strong>Resumo Ultra-direto</strong>
-                            ${q.resumo}
-                        </div>
-                     </div>`;
+            html += `
+                <div class="explanation-box" style="display:block;">
+                    <div class="exp-title">Gabarito e Comentários</div>
+                    <div class="exp-short">${q.exp_curta}</div>
+                    <div class="exp-long">${q.exp_longa}</div>
+                </div>
+            `;
         }
-        html += `</div>`; // Close standard card
 
-        container.innerHTML = html;
-        window.scrollTo(0, 0); // Scroll restoration to top on question change
+        elQuiz.innerHTML = html;
+        updateBottomBar(isAnswered);
+        window.scrollTo(0, 0);
     }
 
-    function pickOpt(optIndex) {
-        if (userAnswers[currentIndex] !== undefined) return; // Prevent restoration multi-picking after gabarito
-        userAnswers[currentIndex] = optIndex;
-        renderQ();
-        syncPills();
+    // Ferramenta Eliminar
+    function toggleEliminate(optIdx) {
+        if (userAnswers[currIdx] !== undefined) return;
+        const arr = eliminated[currIdx];
+        if (arr.includes(optIdx)) {
+            arr.splice(arr.indexOf(optIdx), 1);
+        } else {
+            arr.push(optIdx);
+            if (tempSelection === optIdx) tempSelection = null; // Remove selecao se eliminar
+        }
+        renderQuestion();
     }
 
-    function doDiscursive() {
-        const val = document.getElementById('disc-input').value;
-        userAnswers[currentIndex] = val; // Store even empty as "viewed gabarito"
-        renderQ();
-        syncPills();
+    function selectOption(idx, isEliminated) {
+        if(userAnswers[currIdx] !== undefined || isEliminated) return;
+        tempSelection = idx;
+        renderQuestion();
     }
 
-    // Displays the results container integrated into restoration designed Hub aesthetic grid structure turns
-    function showResults() {
-        document.getElementById('quiz-area').style.display = 'none';
-        document.querySelector('.quiz-pills-header').style.display = 'none';
-        document.querySelector('.bottom-nav').style.display = 'none';
+    function updateBottomBar(isAnswered) {
+        btnPrev.style.opacity = currIdx === 0 ? '0' : '1';
+        btnPrev.style.pointerEvents = currIdx === 0 ? 'none' : 'auto';
+
+        if (!isAnswered) {
+            btnMain.innerText = 'Responder';
+            btnMain.style.background = 'var(--pink)';
+            btnMain.disabled = tempSelection === null;
+        } else {
+            btnMain.disabled = false;
+            if(currIdx === QS.length - 1) {
+                btnMain.innerText = 'Ver Desempenho';
+                btnMain.style.background = 'var(--green)';
+            } else {
+                btnMain.innerText = 'Próxima Questão →';
+                btnMain.style.background = 'var(--card)';
+                btnMain.style.border = '1px solid var(--pink)';
+            }
+        }
+    }
+
+    function handleMainAction() {
+        const isAnswered = userAnswers[currIdx] !== undefined;
         
-        // Full standard card restoration integrated hubturns turns aesthetic turns
-        const resultsArea = document.getElementById('results-area');
-        resultsArea.style.display = 'block';
+        if (!isAnswered) {
+            userAnswers[currIdx] = tempSelection;
+            tempSelection = null;
+            buildPills();
+            renderQuestion();
+        } else {
+            goNext();
+        }
+    }
+
+    // RELATÓRIO FINAL POR TEMAS
+    function showResults() {
+        document.getElementById('pills-nav').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('bottom-bar').style.display = 'none';
+        
+        resContainer.style.display = 'block';
 
         let correct = 0;
-        let wrong = 0;
-        let discursive = 0;
-        let totalObj = 0;
+        let statsByTheme = {};
 
-        quizData.forEach((q, index) => {
-            if (q.type === 'objective') {
-                totalObj++;
-                if (userAnswers[index] === q.answer) correct++;
-                else if (userAnswers[index] !== undefined) wrong++;
-            } else {
-                if (userAnswers[index] !== undefined) discursive++; // restoration blue logic
+        QS.forEach((q, i) => {
+            if (!statsByTheme[q.tema]) statsByTheme[q.tema] = { total: 0, hits: 0 };
+            statsByTheme[q.tema].total++;
+
+            if (userAnswers[i] === q.g) {
+                correct++;
+                statsByTheme[q.tema].hits++;
             }
         });
 
-        document.getElementById('correctCount').innerText = correct;
-        document.getElementById('incorrectCount').innerText = wrong;
-        document.getElementById('discursiveCount').innerText = discursive;
+        const perc = Math.round((correct / QS.length) * 100);
+        document.getElementById('res-perc').innerText = perc + '%';
         
-        const perc = totalObj > 0 ? Math.round((correct / totalObj) * 100) : 0;
-        const circle = document.getElementById('result-perc');
-        circle.innerText = perc + '%';
-        
-        // restoration standard green/wrong colors turns restoration turns aesthetic grid structure
-        if(perc >= 70) circle.style.color = '#5DCAA5';
-        else if(perc >= 50) circle.style.color = '#FAAD3F';
-        else circle.style.color = '#FF7070';
-        
+        let statsHtml = '';
+        for (const [tema, data] of Object.entries(statsByTheme)) {
+            const themePerc = Math.round((data.hits / data.total) * 100);
+            statsHtml += `
+                <div class="theme-bar-container">
+                    <div class="theme-name">
+                        <span>${tema}</span>
+                        <span>${data.hits}/${data.total} (${themePerc}%)</span>
+                    </div>
+                    <div class="theme-progress-bg">
+                        <div class="theme-progress-fill" style="width: ${themePerc}%; background: ${themePerc >= 70 ? 'var(--green)' : themePerc >= 40 ? '#FAAD3F' : 'var(--red)'}"></div>
+                    </div>
+                </div>
+            `;
+        }
+        document.getElementById('theme-stats').innerHTML = statsHtml;
         window.scrollTo(0, 0);
     }
 
-    function resetQuiz() {
-        currentIndex = 0;
-        userAnswers = {};
-        window.scrollTo(0, 0);
-        boot();
-    }
-
-    // Init Restoration base designing base turns aesthetic hubturns designing base grid structureturns design base aesthetic
-    boot();
+    initQuiz();
 </script>
 </body>
 </html>
