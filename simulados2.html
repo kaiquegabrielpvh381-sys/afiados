@@ -28,7 +28,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 
 .content{max-width:1100px;margin:0 auto;padding:0 24px 80px;}
 
-/* TABS */
 .tabs{display:flex;gap:6px;margin-bottom:32px;flex-wrap:wrap;}
 .tab{padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;white-space:nowrap;}
 .tab:hover{border-color:rgba(214,0,110,0.3);color:var(--light);}
@@ -40,7 +39,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 .section-label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;margin-top:40px;}
 .section-label:first-child{margin-top:0;}
 
-/* SIM CARDS (paid) */
 .sim-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;margin-bottom:20px;display:flex;gap:32px;align-items:center;flex-wrap:wrap;}
 .sim-card.promo-special{border-color:var(--border-pink);background:linear-gradient(135deg,rgba(214,0,110,0.08),rgba(155,0,232,0.06));}
 .sim-badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--pink);padding:4px 10px;border-radius:6px;letter-spacing:0.03em;}
@@ -55,7 +53,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 .btn-pink{display:inline-block;background:linear-gradient(135deg,var(--pink),var(--pink-bright));color:#fff;font-size:14px;font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;transition:opacity .2s;}
 .btn-pink:hover{opacity:.85;}
 
-/* PROVA CARDS */
 .provas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
 .prova-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;text-decoration:none;color:var(--text);transition:all .25s;display:flex;flex-direction:column;gap:8px;}
 .prova-card:hover{border-color:var(--pink);transform:translateY(-2px);box-shadow:0 8px 32px rgba(214,0,110,0.08);}
@@ -70,7 +67,6 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 .pc-tag.incompleto{color:#F09595;background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.3);}
 .pc-arrow{font-size:12px;font-weight:700;color:var(--pink-bright);margin-top:auto;}
 
-/* EMPTY STATE */
 .empty-state{text-align:center;padding:60px 20px;color:var(--muted);}
 .empty-state .es-icon{font-size:40px;margin-bottom:16px;opacity:0.5;}
 .empty-state h3{font-size:18px;font-weight:700;color:var(--light);margin-bottom:8px;}
@@ -257,10 +253,66 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 
   <!-- ═══════════ IESC ═══════════ -->
   <div class="tab-panel" id="panel-iesc">
-    <div class="empty-state">
-      <div class="es-icon">🏥</div>
-      <h3>IESC — Em breve</h3>
-      <p>As provas de Integração Ensino, Serviço e Comunidade serão adicionadas em breve.</p>
+
+    <div class="section-label">Provas Oficiais (N1)</div>
+    <div class="provas-grid">
+
+      <a href="prova-iesc2-2025-2.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 IESC II — 2025.2</div>
+        <div class="pc-sub">Integração Ensino Serviço Comunidade · 2º sem 2025</div>
+        <div class="pc-tags"><span class="pc-tag">10 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-iesc2-2025-1.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 IESC II — 2025.1</div>
+        <div class="pc-sub">Integração Ensino Serviço Comunidade · 1º sem 2025</div>
+        <div class="pc-tags"><span class="pc-tag">10 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-iesc2-2024-2.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 IESC II — 2024.2</div>
+        <div class="pc-sub">Integração Ensino Serviço Comunidade · 2º sem 2024</div>
+        <div class="pc-tags"><span class="pc-tag">10 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-iesc2-2024-1.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 IESC II — 2024.1</div>
+        <div class="pc-sub">Integração Ensino Serviço Comunidade · 1º sem 2024</div>
+        <div class="pc-tags"><span class="pc-tag">10 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-iesc2-2023-2.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 IESC II — 2023.2</div>
+        <div class="pc-sub">Integração Ensino Serviço Comunidade · 2º sem 2023</div>
+        <div class="pc-tags"><span class="pc-tag">10 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-iesc2-2023-1.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 IESC II — 2023.1</div>
+        <div class="pc-sub">Integração Ensino Serviço Comunidade · 1º sem 2023</div>
+        <div class="pc-tags"><span class="pc-tag">10 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-iesc2-2022-1.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 IESC II — 2022.1</div>
+        <div class="pc-sub">Integração Ensino Serviço Comunidade · 1º sem 2022</div>
+        <div class="pc-tags"><span class="pc-tag">10 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
     </div>
   </div>
 
