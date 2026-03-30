@@ -7,534 +7,89 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root {
-  --pink: #D6006E;
-  --pink-bright: #FF1A7E;
-  --pink-light: #FF6EB4;
-  --pink-glow: rgba(214,0,110,0.22);
-  --pink-soft: rgba(214,0,110,0.08);
-  --purple: #9B00E8;
-  --gold: #F5A623;
-  --green: #5DCAA5;
-  --bg: #0C0810;
-  --card: #12101C;
-  --card-elevated: #1A1628;
-  --border: rgba(255,255,255,0.06);
-  --border-pink: rgba(214,0,110,0.25);
-  --text: #F4EFFA;
-  --muted: #9080A8;
-  --light: #D8CEEA;
-  --dim: #6B5F80;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
-  --radius: 20px;
-  --radius-sm: 14px;
-  --radius-xs: 8px;
-}
+:root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.22);--bg:#0C0810;--card:#1A1226;--border:rgba(255,255,255,0.07);--border-pink:rgba(214,0,110,0.3);--text:#F4EFFA;--muted:#9080A8;--light:#D8CEEA;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;}
 
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(12,8,16,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-mark{width:42px;height:42px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(214,0,110,0.25);overflow:hidden;}
+.logo-mark img{width:26px;height:26px;object-fit:contain;}
+.logo-name{font-size:17px;font-weight:800;color:var(--text);letter-spacing:0.02em;}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;font-weight:600;text-decoration:none;transition:color .2s;}
+.back-btn:hover{color:var(--text);}
 
-/* ─── NAV ─── */
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 500;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 48px;
-  background: rgba(12,8,16,0.82);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  border-bottom: 1px solid var(--border);
-}
+.hero{text-align:center;padding:120px 24px 40px;max-width:700px;margin:0 auto;}
+.s-label{font-size:12px;font-weight:700;color:var(--pink-bright);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;line-height:1.15;margin-bottom:12px;}
+.hero h1 em{font-style:italic;color:var(--pink-bright);}
+.hero p{color:var(--muted);font-size:15px;max-width:480px;margin:0 auto;}
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-.logo-mark { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; }
-.logo-mark img { width: 24px; height: 24px; object-fit: contain; }
-.logo-name {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: 0.06em;
-}
+.content{max-width:1100px;margin:0 auto;padding:0 24px 80px;}
 
-.back-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: var(--radius-xs);
-  border: 1px solid transparent;
-  transition: all .25s ease;
-}
-.back-btn:hover {
-  color: var(--text);
-  border-color: var(--border);
-  background: rgba(255,255,255,0.03);
-}
+/* TABS */
+.tabs{display:flex;gap:6px;margin-bottom:32px;flex-wrap:wrap;}
+.tab{padding:10px 22px;border-radius:50px;font-size:14px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:transparent;color:var(--muted);font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;white-space:nowrap;}
+.tab:hover{border-color:rgba(214,0,110,0.3);color:var(--light);}
+.tab.active{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 4px 16px var(--pink-glow);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeUp .3s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* ─── HERO ─── */
-.hero {
-  text-align: center;
-  padding: 140px 24px 56px;
-  max-width: 680px;
-  margin: 0 auto;
-  position: relative;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 500px;
-  height: 300px;
-  background: radial-gradient(ellipse, rgba(214,0,110,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
+.section-label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;margin-top:40px;}
+.section-label:first-child{margin-top:0;}
 
-.s-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--pink-bright);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-  position: relative;
-}
-.s-label::before, .s-label::after {
-  content: '';
-  width: 24px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--pink-bright));
-}
-.s-label::after {
-  background: linear-gradient(90deg, var(--pink-bright), transparent);
-}
+/* SIM CARDS (paid) */
+.sim-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;margin-bottom:20px;display:flex;gap:32px;align-items:center;flex-wrap:wrap;}
+.sim-card.promo-special{border-color:var(--border-pink);background:linear-gradient(135deg,rgba(214,0,110,0.08),rgba(155,0,232,0.06));}
+.sim-badge{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:var(--pink);padding:4px 10px;border-radius:6px;letter-spacing:0.03em;}
+.sim-card h3{font-size:20px;font-weight:800;margin:8px 0 6px;}
+.sim-card p{color:var(--muted);font-size:14px;line-height:1.6;max-width:500px;}
+.sim-features{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.sim-feat{font-size:12px;font-weight:600;color:var(--light);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:5px 12px;border-radius:8px;}
+.sim-price-box{text-align:center;min-width:180px;margin-left:auto;}
+.sim-price{font-size:36px;font-weight:800;color:var(--pink-bright);}
+.sim-price sub{font-size:18px;font-weight:700;}
+.sim-period{font-size:12px;color:var(--muted);margin:4px 0 14px;}
+.btn-pink{display:inline-block;background:linear-gradient(135deg,var(--pink),var(--pink-bright));color:#fff;font-size:14px;font-weight:700;padding:14px 28px;border-radius:12px;text-decoration:none;transition:opacity .2s;}
+.btn-pink:hover{opacity:.85;}
 
-.hero h1 {
-  font-family: var(--font-display);
-  font-size: 46px;
-  font-weight: 900;
-  line-height: 1.12;
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
-}
-.hero h1 em {
-  font-style: italic;
-  background: linear-gradient(135deg, var(--pink-bright), var(--pink-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero p {
-  color: var(--muted);
-  font-size: 15px;
-  max-width: 440px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
+/* PROVA CARDS */
+.provas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
+.prova-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;text-decoration:none;color:var(--text);transition:all .25s;display:flex;flex-direction:column;gap:8px;}
+.prova-card:hover{border-color:var(--pink);transform:translateY(-2px);box-shadow:0 8px 32px rgba(214,0,110,0.08);}
+.pc-top{display:flex;align-items:center;justify-content:space-between;}
+.pc-icon{font-size:18px;}
+.pc-badge{font-size:10px;font-weight:700;color:#5DCAA5;background:rgba(93,202,165,0.1);border:1px solid rgba(93,202,165,0.2);padding:2px 7px;border-radius:5px;}
+.pc-title{font-size:14px;font-weight:800;color:var(--text);}
+.pc-sub{font-size:11px;color:var(--muted);line-height:1.4;}
+.pc-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.pc-tag{font-size:10px;font-weight:600;color:var(--light);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:2px 7px;border-radius:5px;}
+.pc-tag.adaptada{color:#FAAD3F;background:rgba(250,173,63,0.1);border-color:rgba(250,173,63,0.3);}
+.pc-tag.incompleto{color:#F09595;background:rgba(226,75,74,0.1);border-color:rgba(226,75,74,0.3);}
+.pc-arrow{font-size:12px;font-weight:700;color:var(--pink-bright);margin-top:auto;}
 
-/* ─── CONTENT ─── */
-.content {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 0 24px 100px;
-}
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:60px 20px;color:var(--muted);}
+.empty-state .es-icon{font-size:40px;margin-bottom:16px;opacity:0.5;}
+.empty-state h3{font-size:18px;font-weight:700;color:var(--light);margin-bottom:8px;}
+.empty-state p{font-size:14px;max-width:360px;margin:0 auto;}
 
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  margin-top: 56px;
+@media(max-width:768px){
+  nav{padding:0 16px;}
+  .hero h1{font-size:30px;}
+  .sim-card{flex-direction:column;align-items:stretch;}
+  .sim-price-box{margin-left:0;text-align:left;}
+  .tabs{gap:4px;}
+  .tab{padding:8px 16px;font-size:13px;}
 }
-.section-label::before {
-  content: '';
-  width: 3px;
-  height: 18px;
-  background: linear-gradient(180deg, var(--pink), var(--pink-bright));
-  border-radius: 3px;
+@media(max-width:480px){
+  .provas-grid{grid-template-columns:1fr 1fr;}
+  .pc-title{font-size:13px;}
 }
-
-/* ─── SIM CARDS (Paid) ─── */
-.sim-card {
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 36px 40px;
-  margin-bottom: 20px;
-  display: flex;
-  gap: 36px;
-  align-items: center;
-  flex-wrap: wrap;
-  overflow: hidden;
-  transition: border-color 0.4s ease, transform 0.3s ease, box-shadow 0.4s ease;
-}
-.sim-card:hover {
-  border-color: rgba(255,255,255,0.1);
-  transform: translateY(-2px);
-  box-shadow: 0 16px 48px -16px rgba(0,0,0,0.5);
-}
-
-/* Glow orb on hover */
-.sim-card::after {
-  content: '';
-  position: absolute;
-  top: -100px;
-  right: -60px;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--pink-soft) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-.sim-card:hover::after { opacity: 1; }
-
-/* Featured card */
-.sim-card.promo-special {
-  border-color: var(--border-pink);
-  background: linear-gradient(145deg, rgba(214,0,110,0.06) 0%, rgba(155,0,232,0.04) 50%, var(--card) 100%);
-}
-.sim-card.promo-special::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--pink), var(--purple), var(--pink-bright));
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-.sim-card.promo-special:hover {
-  border-color: rgba(214,0,110,0.4);
-  box-shadow: 0 20px 60px -20px rgba(214,0,110,0.18);
-}
-
-.sim-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #fff;
-  padding: 5px 14px;
-  border-radius: 100px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.badge-launch {
-  background: linear-gradient(135deg, var(--pink), var(--purple));
-  box-shadow: 0 2px 12px rgba(214,0,110,0.3);
-}
-.badge-offer {
-  background: var(--pink);
-}
-
-.sim-card h3 {
-  font-family: var(--font-display);
-  font-size: 26px;
-  font-weight: 900;
-  margin: 12px 0 8px;
-  line-height: 1.2;
-  color: var(--text);
-}
-.sim-card h3 .accent {
-  background: linear-gradient(135deg, var(--pink-bright), var(--pink-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.sim-card p {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.7;
-  max-width: 500px;
-}
-.sim-card p strong {
-  color: var(--light);
-  font-weight: 600;
-}
-
-.sim-features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 16px;
-}
-.sim-feat {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--muted);
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 7px 14px;
-  border-radius: var(--radius-xs);
-  transition: all 0.25s ease;
-}
-.sim-feat:hover {
-  border-color: rgba(214,0,110,0.2);
-  color: var(--light);
-  background: rgba(214,0,110,0.04);
-}
-.sim-feat-icon {
-  font-size: 13px;
-  line-height: 1;
-}
-
-.sim-price-box {
-  text-align: center;
-  min-width: 200px;
-  margin-left: auto;
-  position: relative;
-  z-index: 2;
-}
-.sim-price {
-  font-family: var(--font-display);
-  font-size: 42px;
-  font-weight: 900;
-  line-height: 1;
-  background: linear-gradient(135deg, var(--pink-bright), var(--pink));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.sim-price sub {
-  font-size: 20px;
-  font-weight: 700;
-  vertical-align: super;
-}
-.sim-period {
-  font-size: 12px;
-  color: var(--dim);
-  margin: 6px 0 18px;
-  font-weight: 500;
-}
-
-.btn-pink {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, var(--pink), var(--pink-bright));
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 14px 28px;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  overflow: hidden;
-  transition: transform 0.25s ease, box-shadow 0.35s ease;
-}
-.btn-pink::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent, rgba(255,255,255,0.12));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.btn-pink:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 32px -6px rgba(214,0,110,0.45);
-}
-.btn-pink:hover::before { opacity: 1; }
-.btn-arrow {
-  transition: transform 0.3s ease;
-  font-size: 16px;
-}
-.btn-pink:hover .btn-arrow { transform: translateX(3px); }
-
-/* ─── PROVAS GRID ─── */
-.provas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
-  gap: 14px;
-}
-
-.prova-card {
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 22px 24px;
-  text-decoration: none;
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-.prova-card::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--pink), var(--pink-bright));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-.prova-card:hover {
-  border-color: rgba(214,0,110,0.3);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 36px -12px rgba(214,0,110,0.12);
-}
-.prova-card:hover::before {
-  transform: scaleX(1);
-}
-
-.pc-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.pc-icon { font-size: 20px; opacity: 0.8; }
-.pc-badge {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--green);
-  background: rgba(93,202,165,0.08);
-  border: 1px solid rgba(93,202,165,0.18);
-  padding: 3px 10px;
-  border-radius: 100px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.pc-title {
-  font-size: 16px;
-  font-weight: 800;
-  color: var(--text);
-  letter-spacing: -0.01em;
-}
-.pc-sub {
-  font-size: 12px;
-  color: var(--dim);
-  line-height: 1.5;
-}
-
-.pc-tags {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-.pc-tag {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--muted);
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  padding: 3px 10px;
-  border-radius: 6px;
-}
-.pc-tag.adaptada {
-  color: #FAAD3F;
-  background: rgba(250,173,63,0.08);
-  border-color: rgba(250,173,63,0.2);
-}
-.pc-tag.incompleto {
-  color: #F09595;
-  background: rgba(226,75,74,0.08);
-  border-color: rgba(226,75,74,0.2);
-}
-
-.pc-arrow {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--pink-bright);
-  margin-top: auto;
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  transition: gap 0.3s ease;
-}
-.prova-card:hover .pc-arrow { gap: 8px; }
-
-/* ─── FOOTER SPACER ─── */
-.footer-space { height: 40px; }
-
-/* ─── ANIMATIONS ─── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.hero { animation: fadeUp 0.7s ease both; }
-.sim-card:nth-child(1) { animation: fadeUp 0.6s ease 0.1s both; }
-.sim-card:nth-child(2) { animation: fadeUp 0.6s ease 0.2s both; }
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 700px) {
-  nav { padding: 0 20px; }
-  .hero { padding: 120px 20px 40px; }
-  .hero h1 { font-size: 32px; }
-  .content { padding: 0 16px 80px; }
-
-  .sim-card {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 28px 24px 32px;
-    gap: 24px;
-  }
-  .sim-price-box {
-    margin-left: 0;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    text-align: left;
-  }
-  .sim-price { font-size: 34px; }
-  .sim-card h3 { font-size: 22px; }
-
-  .provas-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 400px) {
-  .sim-price-box {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
+@media(max-width:360px){
+  .provas-grid{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -542,10 +97,10 @@ nav {
 
 <nav>
   <a href="index.html" class="logo">
-    <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAABZklEQR4nO2ayRaCMAxFg///z3UVDw5I08zw7sqNtHm5hUolAgAAAAC4KVvEIGOMsfK9bdvc5/fwHkDDanASQgLQdNI7hNIGMJ4hhAUQsZ5XaGEAkZ8FoQFUtKCNAUQ+FoQHUM2CVgYQ2VuQEkAlC9oZQGRrgVkA0klVscAkgIg9u9eYpkugowXqADK6bzm2+U0wM5AVVAFYFKtdBto5uDwGoy3QjLccgGWRmTdDt41QFwuWAvAoLssCcQCS4jtYUOq3QIYFogA6POOlc3Q3oPr2eDqADt1nJHMNuQdUtmAqgE7dZ2bnXOopsCfKgtMAOnafmZl76cPR9OPxzt1nzmpwN0DbRW8LDgO4QveZf7W4GmDVPYvrHIXwM4Ardf+MrwCsirdeu14WlN0IRfEWQNXuW173s0YYwB+qd9/y+vtaYQBRn+5bjsM1396AV5JaCzLe6LqeDksKyjrUqPD/AgAAAAD05QmqJdARPLlg+gAAAABJRU5ErkJggg==" alt="Afyados"></div>
+    <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAABZklEQVR4nO2ayRaCMAxFg///z3UVDw5I08zw7sqNtHm5hUolAgAAAAC4KVvEIGOMsfK9bdvc5/fwHkDDanASQgLQdNI7hNIGMJ4hhAUQsZ5XaGEAkZ8FoQFUtKCNAUQ+FoQHUM2CVgYQ2VuQEkAlC9oZQGRrgVkA0klVscAkgIg9u9eYpkugowXqADK6bzm2+U0wM5AVVAFYFKtdBto5uDwGoy3QjLccgGWRmTdDt41QFwuWAvAoLssCcQCS4jtYUOq3QIYFogA6POOlc3Q3oPr2eDqADt1nJHMNuQdUtmAqgE7dZ2bnXOopsCfKgtMAOnafmZl76cPR9OPxzt1nzmpwN0DbRW8LDgO4QveZf7W4GmDVPYvrHIXwM4Ardf+MrwCsirdeu14WlN0IRfEWQNXuW173s0YYwB+qd9/y+vtaYQBRn+5bjsM1396AV5JaCzLe6LqeDksKyjrUqPD/AgAAAAD05QmqJdARPLlg+gAAAABJRU5ErkJggg==" alt="Afyados"></div>
     <span class="logo-name">AFYADOS</span>
   </a>
-  <a href="index.html" class="back-btn">← Voltar ao site</a>
+  <a href="index.html" class="back-btn">Voltar ao site</a>
 </nav>
 
 <div class="hero">
@@ -556,201 +111,178 @@ nav {
 
 <div class="content">
 
-  <!-- ═══ SIMULADOS PAGOS ═══ -->
-  <div class="section-label">Simulados pagos</div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('soi')">SOI</button>
+    <button class="tab" onclick="switchTab('ham')">HAM</button>
+    <button class="tab" onclick="switchTab('iesc')">IESC</button>
+    <button class="tab" onclick="switchTab('mcm')">MCM</button>
+  </div>
 
-  <div class="sim-card promo-special">
-    <div>
-      <span class="sim-badge badge-launch">🚀 Lançamento</span>
-      <h3>Simulado <span class="accent">AFYANDO A N1</span></h3>
-      <p>Já está no ar o nosso simulado completo para a N1 (SOI II). São <strong>80 questões com vídeos comentados detalhados</strong> para te ajudar a entender o raciocínio e revisar de forma estratégica.</p>
-      <div class="sim-features">
-        <div class="sim-feat"><span class="sim-feat-icon">🧠</span> Neuro + Sistema Ósseo-muscular</div>
-        <div class="sim-feat"><span class="sim-feat-icon">🎯</span> 80 questões focadas na prova</div>
-        <div class="sim-feat"><span class="sim-feat-icon">▶️</span> Resoluções em vídeo passo a passo</div>
+  <!-- ═══════════ SOI ═══════════ -->
+  <div class="tab-panel active" id="panel-soi">
+
+    <div class="section-label">Simulados pagos</div>
+
+    <div class="sim-card promo-special">
+      <div>
+        <span class="sim-badge" style="background: linear-gradient(90deg, var(--pink), #9B00E8);">🔥 Lançamento</span>
+        <h3 style="color: #fff; font-size: 24px; margin-top: 8px;">Simulado AFYANDO A N1</h3>
+        <p>Já está no ar o nosso simulado completo para a N1 (SOI II). São <strong>80 questões com vídeos comentados detalhados</strong> para te ajudar a entender o raciocínio e revisar de forma estratégica.</p>
+        <div class="sim-features" style="margin-bottom: 16px;">
+          <div class="sim-feat">Cobertura de Neuro + Sistema Ósseo-muscular</div>
+          <div class="sim-feat">80 questões estratégicas focadas na prova</div>
+          <div class="sim-feat">Resoluções em vídeo passo a passo</div>
+        </div>
+      </div>
+      <div class="sim-price-box">
+        <div class="sim-price" style="color:#fff;">R$&nbsp;79<sub>,90</sub></div>
+        <div class="sim-period">pagamento único</div>
+        <a href="https://pay.kiwify.com.br/ZtqnuTa" target="_blank" class="btn-pink" style="padding: 16px 24px; font-size: 15px; box-shadow: 0 4px 20px var(--pink-glow);">Garantir meu acesso</a>
       </div>
     </div>
-    <div class="sim-price-box">
-      <div class="sim-price">R$&nbsp;79<sub>,90</sub></div>
-      <div class="sim-period">pagamento único</div>
-      <a href="https://pay.kiwify.com.br/ZtqnuTa" target="_blank" class="btn-pink">
-        Garantir meu acesso
-        <span class="btn-arrow">→</span>
+
+    <div class="sim-card">
+      <div>
+        <span class="sim-badge">Oferta especial</span>
+        <h3>Simulado de Neuro — Oficial</h3>
+        <p>Simulado completo com 60 questões baseadas em provas anteriores e no manual do professor. Gabarito comentado alternativa por alternativa.</p>
+        <div class="sim-features">
+          <div class="sim-feat">60 questões elaboradas</div>
+          <div class="sim-feat">Foco no que realmente cai</div>
+          <div class="sim-feat">Raciocínio aplicado</div>
+          <div class="sim-feat">Gabarito comentado com imagens didáticas</div>
+        </div>
+      </div>
+      <div class="sim-price-box">
+        <div class="sim-price">R$&nbsp;65<sub>,00</sub></div>
+        <div class="sim-period">pagamento único</div>
+        <a href="https://pay.kiwify.com.br/y6E8qIC" target="_blank" class="btn-pink">Comprar agora</a>
+      </div>
+    </div>
+
+    <div class="section-label">Provas Oficiais (N1)</div>
+    <div class="provas-grid">
+
+      <a href="prova-soi2-2025-2.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2025.2</div>
+        <div class="pc-sub">Afya · 2º semestre 2025</div>
+        <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
       </a>
-    </div>
-  </div>
 
-  <div class="sim-card">
-    <div>
-      <span class="sim-badge badge-offer">✦ Oferta especial</span>
-      <h3>Simulado de Neuro — <span class="accent">Oficial</span></h3>
-      <p>Simulado completo com <strong>60 questões</strong> baseadas em provas anteriores e no manual do professor. Gabarito comentado alternativa por alternativa.</p>
-      <div class="sim-features">
-        <div class="sim-feat"><span class="sim-feat-icon">📝</span> 60 questões elaboradas</div>
-        <div class="sim-feat"><span class="sim-feat-icon">🎯</span> Foco no que realmente cai</div>
-        <div class="sim-feat"><span class="sim-feat-icon">💡</span> Raciocínio aplicado</div>
-        <div class="sim-feat"><span class="sim-feat-icon">🖼️</span> Gabarito com imagens didáticas</div>
-      </div>
-    </div>
-    <div class="sim-price-box">
-      <div class="sim-price">R$&nbsp;65<sub>,00</sub></div>
-      <div class="sim-period">pagamento único</div>
-      <a href="https://pay.kiwify.com.br/y6E8qIC" target="_blank" class="btn-pink">
-        Comprar agora
-        <span class="btn-arrow">→</span>
+      <a href="prova-soi2-2025-1.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2025.1</div>
+        <div class="pc-sub">Afya · 1º semestre 2025</div>
+        <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
       </a>
+
+      <a href="prova-soi2-2024-2.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2024.2</div>
+        <div class="pc-sub">Afya · 2º semestre 2024</div>
+        <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-soi2-2024-1.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2024.1</div>
+        <div class="pc-sub">Afya · 1º semestre 2024</div>
+        <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-soi2-2023-2.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2023.2</div>
+        <div class="pc-sub">Afya · 2º semestre 2023</div>
+        <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag adaptada">Adaptada</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-soi2-2023-1.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2023.1</div>
+        <div class="pc-sub">Afya · 1º semestre 2023</div>
+        <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag adaptada">Adaptada</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-soi2-2022-2.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2022.2</div>
+        <div class="pc-sub">Afya · 2º semestre 2022</div>
+        <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">MC + Discursiva</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-soi2-2022-1.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2022.1</div>
+        <div class="pc-sub">Afya · 1º semestre 2022</div>
+        <div class="pc-tags"><span class="pc-tag">6 questões</span><span class="pc-tag incompleto">Incompleto</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-soi2-2021-2.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2021.2</div>
+        <div class="pc-sub">Afya · 2º semestre 2021</div>
+        <div class="pc-tags"><span class="pc-tag">7 questões</span><span class="pc-tag incompleto">Incompleto</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
+      <a href="prova-soi2-2021.html" class="prova-card">
+        <div class="pc-top"><div class="pc-icon">📋</div><span class="pc-badge">Grátis</span></div>
+        <div class="pc-title">N1 SOI II — 2021.1</div>
+        <div class="pc-sub">Afya · 1º semestre 2021</div>
+        <div class="pc-tags"><span class="pc-tag">15 questões</span><span class="pc-tag">Com Gabarito</span></div>
+        <div class="pc-arrow">Acessar →</div>
+      </a>
+
     </div>
   </div>
 
-  <!-- ═══ PROVAS OFICIAIS ═══ -->
-  <div class="section-label">Provas Oficiais (N1)</div>
-
-  <div class="provas-grid">
-
-    <a href="prova-soi2-2025-2.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2025.2</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 2º semestre 2025</div>
-      <div class="pc-tags">
-        <span class="pc-tag">15 questões</span>
-        <span class="pc-tag">MC + Discursiva</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2025-1.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2025.1</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 1º semestre 2025</div>
-      <div class="pc-tags">
-        <span class="pc-tag">15 questões</span>
-        <span class="pc-tag">MC + Discursiva</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2024-2.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2024.2</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 2º semestre 2024</div>
-      <div class="pc-tags">
-        <span class="pc-tag">15 questões</span>
-        <span class="pc-tag">MC + Discursiva</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2024-1.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2024.1</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 1º semestre 2024</div>
-      <div class="pc-tags">
-        <span class="pc-tag">15 questões</span>
-        <span class="pc-tag">MC + Discursiva</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2023-2.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2023.2</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 2º semestre 2023</div>
-      <div class="pc-tags">
-        <span class="pc-tag">15 questões</span>
-        <span class="pc-tag adaptada">Adaptada</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2023-1.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2023.1</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 1º semestre 2023</div>
-      <div class="pc-tags">
-        <span class="pc-tag">15 questões</span>
-        <span class="pc-tag adaptada">Adaptada</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2022-2.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2022.2</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 2º semestre 2022</div>
-      <div class="pc-tags">
-        <span class="pc-tag">15 questões</span>
-        <span class="pc-tag">MC + Discursiva</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2022-1.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2022.1</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 1º semestre 2022</div>
-      <div class="pc-tags">
-        <span class="pc-tag">6 questões</span>
-        <span class="pc-tag incompleto">Incompleto</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2021-2.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2021.2</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 2º semestre 2021</div>
-      <div class="pc-tags">
-        <span class="pc-tag">7 questões</span>
-        <span class="pc-tag incompleto">Incompleto</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
-    <a href="prova-soi2-2021.html" class="prova-card">
-      <div class="pc-top">
-        <div class="pc-icon">📋</div>
-        <span class="pc-badge">Grátis</span>
-      </div>
-      <div class="pc-title">N1 SOI II — 2021.1</div>
-      <div class="pc-sub">Sistema Orgânico Integrado II · Afya · 1º semestre 2021</div>
-      <div class="pc-tags">
-        <span class="pc-tag">15 questões</span>
-        <span class="pc-tag">Com Gabarito</span>
-      </div>
-      <div class="pc-arrow">Acessar →</div>
-    </a>
-
+  <!-- ═══════════ HAM ═══════════ -->
+  <div class="tab-panel" id="panel-ham">
+    <div class="empty-state">
+      <div class="es-icon">🧬</div>
+      <h3>HAM — Em breve</h3>
+      <p>As provas de Habilidades e Atitudes em Medicina serão adicionadas em breve.</p>
+    </div>
   </div>
 
-  <div class="footer-space"></div>
+  <!-- ═══════════ IESC ═══════════ -->
+  <div class="tab-panel" id="panel-iesc">
+    <div class="empty-state">
+      <div class="es-icon">🏥</div>
+      <h3>IESC — Em breve</h3>
+      <p>As provas de Integração Ensino, Serviço e Comunidade serão adicionadas em breve.</p>
+    </div>
+  </div>
+
+  <!-- ═══════════ MCM ═══════════ -->
+  <div class="tab-panel" id="panel-mcm">
+    <div class="empty-state">
+      <div class="es-icon">🔬</div>
+      <h3>MCM — Em breve</h3>
+      <p>As provas de Mecanismos Celulares e Moleculares serão adicionadas em breve.</p>
+    </div>
+  </div>
+
 </div>
+
+<script>
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('panel-'+id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+</script>
 
 </body>
 </html>
