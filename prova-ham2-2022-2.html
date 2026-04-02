@@ -118,18 +118,18 @@ function resetAll(){answered={};sel=null;cur=0;eliminated={};document.getElement
 buildPills();renderQ();
 var hlOn=false; function toggleHL(){hlOn=!hlOn;document.querySelectorAll('.hl-toggle').forEach(function(b){b.classList.toggle('active',hlOn);});document.body.classList.toggle('hl-active',hlOn);} document.addEventListener('mouseup',hlHandle);document.addEventListener('touchend',hlHandle); function hlHandle(e){if(!hlOn)return;var s=window.getSelection();if(!s||s.isCollapsed||!s.rangeCount)return;var r=s.getRangeAt(0);var p=r.commonAncestorContainer;if(p.nodeType===3)p=p.parentNode;var qb=p.closest?p.closest('.q-body'):null;if(!qb){var sc=r.startContainer;if(sc.nodeType===3)sc=sc.parentNode;qb=sc.closest?sc.closest('.q-body'):null;}if(!qb)return;if(e.target&&e.target.closest&&e.target.closest('mark.hl'))return;var t=s.toString().trim();if(!t||t.length<2)return;try{var m=document.createElement('mark');m.className='hl';m.title='Clique para remover';r.surroundContents(m);}catch(ex){try{var f=r.extractContents();var m2=document.createElement('mark');m2.className='hl';m2.title='Clique para remover';m2.appendChild(f);r.insertNode(m2);}catch(ex2){}}s.removeAllRanges();} document.addEventListener('click',function(e){if(!hlOn)return;var m=e.target.closest?e.target.closest('mark.hl'):null;if(!m)return;var p=m.parentNode;while(m.firstChild)p.insertBefore(m.firstChild,m);p.removeChild(m);p.normalize();});
 </script>
-  <script>
+<script>
 const PROVA_ID = 'ham2-2022-2';
+const PERIODO = 2;
+const CONTENT_TYPE = 'prova_antiga';
 const STORAGE_KEY = 'afyados_prova_' + PROVA_ID;
 
+// ── localStorage ──
 function saveLocal() {
   const state = { answered: answered, cur: cur, eliminated: {} };
-  for (const k in eliminated) {
-    state.eliminated[k] = Array.from(eliminated[k]);
-  }
+  for (const k in eliminated) state.eliminated[k] = Array.from(eliminated[k]);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
-
 function loadLocal() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
@@ -140,9 +140,7 @@ function loadLocal() {
       cur = state.cur || 0;
       eliminated = {};
       if (state.eliminated) {
-        for (const k in state.eliminated) {
-          eliminated[k] = new Set(state.eliminated[k]);
-        }
+        for (const k in state.eliminated) eliminated[k] = new Set(state.eliminated[k]);
       }
       return true;
     }
@@ -150,25 +148,7 @@ function loadLocal() {
   return false;
 }
 
-const _origSubmit = submitAnswer;
-submitAnswer = function() {
-  _origSubmit();
-  saveLocal();
-};
-
-const _origReset = resetAll;
-resetAll = function() {
-  localStorage.removeItem(STORAGE_KEY);
-  _origReset();
-};
-
-if (loadLocal()) {
-  renderQ();
-  if (Object.keys(answered).length === QS.length) {
-    setTimeout(showResult, 100);
-  }
-}
-    // ── SUPABASE TRACKING ──
+// ── Supabase ──
 const _sbScript = document.createElement('script');
 _sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
 _sbScript.onload = function() {
@@ -179,18 +159,6 @@ _sbScript.onload = function() {
 };
 document.head.appendChild(_sbScript);
 
-const PERIODO = 2;                   // 1 ou 2
-const CONTENT_TYPE = 'prova_antiga';  // 'apg' | 'simulado' | 'prova_antiga' | 'banco_questoes'
-
-const _submitLocal = submitAnswer;
-submitAnswer = function() {
-  const idx = cur;
-  _submitLocal();
-  if (answered[idx] !== undefined && window.sb) {
-    saveToSupabase(idx);
-  }
-};
-
 async function saveToSupabase(i) {
   try {
     const { data: { user } } = await sb.auth.getUser();
@@ -200,20 +168,14 @@ async function saveToSupabase(i) {
     const userAns = isDisc ? (answered[i] || '').substring(0, 500) : L[answered[i]];
     const correctAns = isDisc ? 'discursiva' : L[q.g];
     const isCorrect = isDisc ? null : (answered[i] === q.g);
-
     await sb.from('question_responses').upsert({
       user_id: user.id,
       question_id: PROVA_ID + '-q' + String(q.n).padStart(2, '0'),
-      periodo: PERIODO,
-      content_type: CONTENT_TYPE,
-      user_answer: userAns,
-      correct_answer: correctAns,
-      is_correct: isCorrect,
-      time_spent_seconds: 0,
-      topic: q.tema,
-      difficulty: 'media'
+      periodo: PERIODO, content_type: CONTENT_TYPE,
+      user_answer: userAns, correct_answer: correctAns,
+      is_correct: isCorrect, time_spent_seconds: 0,
+      topic: q.tema, difficulty: 'media'
     }, { onConflict: 'user_id,question_id' });
-
     if (!isDisc && isCorrect !== null) {
       const { data: row } = await sb.from('user_progress')
         .select('*').eq('user_id', user.id).eq('periodo', PERIODO).single();
@@ -238,6 +200,27 @@ async function saveToSupabase(i) {
       }
     }
   } catch (e) { console.warn('Supabase:', e); }
+}
+
+// ── Interceptar uma vez só ──
+const _origSubmit = submitAnswer;
+submitAnswer = function() {
+  const idx = cur;
+  _origSubmit();
+  saveLocal();
+  if (answered[idx] !== undefined && window.sb) saveToSupabase(idx);
+};
+
+const _origReset = resetAll;
+resetAll = function() {
+  localStorage.removeItem(STORAGE_KEY);
+  _origReset();
+};
+
+// ── Restaurar estado ──
+if (loadLocal()) {
+  renderQ();
+  if (Object.keys(answered).length === QS.length) setTimeout(showResult, 100);
 }
 </script>
 </body>
