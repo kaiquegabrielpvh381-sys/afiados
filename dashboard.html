@@ -319,6 +319,9 @@ function buildFilters() {
   const bar = document.getElementById('filterBar');
   bar.innerHTML = '';
 
+  // Só mostra filtros se tiver 2+ tipos distintos
+  if (types.length < 2) return;
+
   const allChip = document.createElement('button');
   allChip.className = 'filter-chip active';
   allChip.textContent = 'Todos';
