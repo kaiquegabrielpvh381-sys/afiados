@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu Desempenho | Afyados</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --pink: #D6006E;
+  --pink-bright: #FF1A7E;
+  --pink-light: #FF6EB4;
+  --pink-glow: rgba(214,0,110,0.22);
+  --pink-soft: rgba(214,0,110,0.12);
+  --bg: #0C0810;
+  --card: #1A1226;
+  --card-hover: #221832;
+  --border: rgba(255,255,255,0.07);
+  --border-pink: rgba(214,0,110,0.3);
+  --text: #F4EFFA;
+  --muted: #9080A8;
+  --light: #D8CEEA;
+  --green: #00D68F;
+  --red: #FF4D6A;
+  --yellow: #FFB800;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body); line-height: 1.6; min-height: 100vh; }
+
+body::before {
+  content: '';
+  position: fixed; top: -40%; right: -20%;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, rgba(214,0,110,0.05) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Auth loading ── */
+.auth-loading { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
+.auth-loading .spinner { width: 32px; height: 32px; border: 3px solid rgba(214,0,110,0.2); border-top-color: var(--pink); border-radius: 50%; animation: spin .7s linear infinite; }
+.auth-loading p { color: var(--muted); font-size: 14px; }
+
+/* ── Nav (same as simulados) ── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 500; height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(12,8,16,0.88); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-mark { width: 42px; height: 42px; background: linear-gradient(135deg, var(--pink), #9B00E8); border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(214,0,110,0.25); overflow: hidden; }
+.logo-mark img { width: 26px; height: 26px; object-fit: contain; }
+.logo-name { font-size: 17px; font-weight: 800; color: var(--text); letter-spacing: 0.02em; }
+.nav-right { display: flex; align-items: center; gap: 14px; }
+.user-pill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 50px; padding: 6px 14px 6px 10px; font-size: 13px; color: var(--light); font-weight: 500; }
+.user-pill .avatar { width: 24px; height: 24px; background: linear-gradient(135deg, var(--pink), #9B00E8); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #fff; font-weight: 700; }
+.back-btn { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 13px; font-weight: 600; text-decoration: none; transition: color .2s; }
+.back-btn:hover { color: var(--text); }
+.btn-logout { background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--font-body); transition: all .2s; }
+.btn-logout:hover { border-color: var(--border-pink); color: var(--pink-light); }
+
+/* ── Container ── */
+.container { max-width: 1100px; margin: 0 auto; padding: 100px 24px 80px; position: relative; z-index: 1; }
+
+.page-header { text-align: center; margin-bottom: 8px; animation: fadeUp 0.4s ease; }
+.page-header .s-label { font-size: 12px; font-weight: 700; color: var(--pink-bright); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+.page-header h1 { font-family: var(--font-display); font-size: 42px; font-weight: 900; line-height: 1.15; margin-bottom: 6px; }
+.page-header h1 em { font-style: italic; color: var(--pink-bright); }
+.page-header p { color: var(--muted); font-size: 15px; max-width: 480px; margin: 0 auto; }
+
+/* ── Filters ── */
+.filter-bar { display: flex; gap: 6px; margin: 28px 0 28px; flex-wrap: wrap; animation: fadeUp 0.4s ease; }
+.filter-chip {
+  padding: 10px 22px; border-radius: 50px; font-size: 14px; font-weight: 700;
+  cursor: pointer; border: 1.5px solid var(--border); background: transparent;
+  color: var(--muted); font-family: var(--font-body); transition: all .2s; white-space: nowrap;
+}
+.filter-chip:hover { border-color: var(--border-pink); color: var(--light); }
+.filter-chip.active { background: var(--pink); border-color: var(--pink); color: #fff; box-shadow: 0 4px 16px var(--pink-glow); }
+
+/* ── KPI Grid ── */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 28px; }
+.kpi-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+  padding: 24px; position: relative; overflow: hidden; transition: all .3s;
+  animation: fadeUp 0.5s ease both;
+}
+.kpi-card:nth-child(1) { animation-delay: .05s; }
+.kpi-card:nth-child(2) { animation-delay: .1s; }
+.kpi-card:nth-child(3) { animation-delay: .15s; }
+.kpi-card:nth-child(4) { animation-delay: .2s; }
+.kpi-card:hover { border-color: var(--border-pink); transform: translateY(-2px); }
+.kpi-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--pink), transparent); opacity: 0; transition: opacity .3s;
+}
+.kpi-card:hover::after { opacity: 1; }
+.kpi-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-bottom: 10px; }
+.kpi-value { font-family: var(--font-display); font-size: 2.1rem; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+.kpi-sub { font-size: 13px; color: var(--muted); }
+.kpi-value.green { color: var(--green); }
+.kpi-value.pink { color: var(--pink-bright); }
+.kpi-value.yellow { color: var(--yellow); }
+
+/* ── Section Grid ── */
+.section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 20px;
+  padding: 28px; animation: fadeUp 0.5s ease both;
+}
+.card-title {
+  font-family: var(--font-display); font-size: 18px; font-weight: 700;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+}
+.card-title .icon {
+  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  background: var(--pink-soft); border-radius: 8px; font-size: 15px;
+}
+.full-width { grid-column: 1 / -1; }
+
+/* ── Topics ── */
+.topic-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.topic-name { width: 140px; font-size: 12px; color: var(--muted); text-align: right; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.topic-bar-bg { flex: 1; height: 26px; background: rgba(214,0,110,0.06); border-radius: 6px; overflow: hidden; }
+.topic-bar-fill { height: 100%; border-radius: 6px; transition: width 1s ease; }
+.topic-bar-fill.high { background: linear-gradient(90deg, var(--green), #00b87a); }
+.topic-bar-fill.mid { background: linear-gradient(90deg, var(--yellow), #e0a300); }
+.topic-bar-fill.low { background: linear-gradient(90deg, var(--red), #d6365a); }
+.topic-pct { width: 48px; font-size: 13px; font-weight: 700; text-align: right; flex-shrink: 0; }
+.topic-count { width: 56px; font-size: 11px; color: var(--muted); flex-shrink: 0; }
+
+/* ── Wrong Questions ── */
+.wrong-list { max-height: 400px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--pink) var(--bg); }
+.wrong-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+  border-radius: var(--radius-sm); border: 1px solid transparent; transition: all .2s; margin-bottom: 4px;
+}
+.wrong-item:hover { background: var(--card-hover); border-color: var(--border); }
+.wrong-badge { width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+.wrong-info { flex: 1; min-width: 0; }
+.wrong-question-id { font-size: 13px; font-weight: 700; margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wrong-meta { font-size: 11px; color: var(--muted); }
+.wrong-answers { text-align: right; flex-shrink: 0; }
+.wrong-your { font-size: 13px; color: var(--red); font-weight: 700; }
+.wrong-correct { font-size: 11px; color: var(--green); }
+
+/* ── Chart ── */
+.chart-container { position: relative; height: 280px; }
+
+/* ── Empty ── */
+.empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
+.empty-state .es-icon { font-size: 40px; margin-bottom: 16px; opacity: 0.5; }
+.empty-state h3 { font-size: 18px; font-weight: 700; color: var(--light); margin-bottom: 8px; }
+.empty-state p { font-size: 14px; max-width: 360px; margin: 0 auto; }
+
+/* ── Animations ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  nav { padding: 0 16px; }
+  .container { padding: 88px 16px 48px; }
+  .section-grid { grid-template-columns: 1fr; }
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  .page-header h1 { font-size: 30px; }
+  .topic-name { width: 90px; font-size: 11px; }
+  .filter-chip { padding: 8px 16px; font-size: 13px; }
+}
+@media (max-width: 480px) {
+  .kpi-grid { grid-template-columns: 1fr; }
+  .nav-right .user-pill { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="auth-loading" id="auth-loading">
+  <div class="spinner"></div>
+  <p>Carregando desempenho...</p>
+</div>
+
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAABZklEQVR4nO2ayRaCMAxFg///z3UVDw5I08zw7sqNtHm5hUolAgAAAAC4KVvEIGOMsfK9bdvc5/fwHkDDanASQgLQdNI7hNIGMJ4hhAUQsZ5XaGEAkZ8FoQFUtKCNAUQ+FoQHUM2CVgYQ2VuQEkAlC9oZQGRrgVkA0klVscAkgIg9u9eYpkugowXqADK6bzm2+U0wM5AVVAFYFKtdBto5uDwGoy3QjLccgGWRmTdDt41QFwuWAvAoLssCcQCS4jtYUOq3QIYFogA6POOlc3Q3oPr2eDqADt1nJHMNuQdUtmAqgE7dZ2bnXOopsCfKgtMAOnafmZl76cPR9OPxzt1nzmpwN0DbRW8LDgO4QveZf7W4GmDVPYvrHIXwM4Ardf+MrwCsirdeu14WlN0IRfEWQNXuW173s0YYwB+qd9/y+vtaYQBRn+5bjsM1396AV5JaCzLe6LqeDksKyjrUqPD/AgAAAAD05QmqJdARPLlg+gAAAABJRU5ErkJggg==" alt="Afyados"></div>
+    <span class="logo-name">AFYADOS</span>
+  </a>
+  <div class="nav-right">
+    <div class="user-pill" id="user-pill" style="display:none;">
+      <div class="avatar" id="user-avatar"></div>
+      <span id="user-name"></span>
+    </div>
+    <button class="btn-logout" id="btn-logout" style="display:none;" onclick="handleLogout()">Sair</button>
+    <a href="simulados2.html" class="back-btn">← Voltar</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="page-header">
+    <div class="s-label">Dashboard</div>
+    <h1>Meu <em>Desempenho</em></h1>
+    <p>Acompanhe sua evolução nos estudos e identifique pontos de melhoria.</p>
+  </div>
+
+  <div class="filter-bar" id="filterBar"></div>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Acerto Geral</div>
+      <div class="kpi-value green" id="kpiAccuracy">—</div>
+      <div class="kpi-sub" id="kpiAccuracySub"></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Total de Questões</div>
+      <div class="kpi-value pink" id="kpiTotal">—</div>
+      <div class="kpi-sub" id="kpiTotalSub"></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Acertos</div>
+      <div class="kpi-value green" id="kpiCorrect">—</div>
+      <div class="kpi-sub" id="kpiCorrectSub"></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Último Estudo</div>
+      <div class="kpi-value yellow" id="kpiLastStudy">—</div>
+      <div class="kpi-sub" id="kpiLastStudySub"></div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card" style="animation-delay:.25s">
+      <div class="card-title"><span class="icon">📈</span> Evolução de Acerto</div>
+      <div class="chart-container"><canvas id="evolutionChart"></canvas></div>
+    </div>
+    <div class="card" style="animation-delay:.3s">
+      <div class="card-title"><span class="icon">🎯</span> Acerto por Tema</div>
+      <div id="topicsContainer"></div>
+    </div>
+  </div>
+
+  <div class="section-grid">
+    <div class="card full-width" style="animation-delay:.35s">
+      <div class="card-title">
+        <span class="icon">❌</span> Questões Erradas
+        <span style="margin-left:auto;font-family:var(--font-body);font-size:12px;color:var(--muted);font-weight:400;" id="wrongCount"></span>
+      </div>
+      <div class="wrong-list" id="wrongList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const sb = supabase.createClient(
+  'https://mmqfqlbojsbuuodfbilh.supabase.co',
+  'sb_publishable_fZp0two05vv3IPxqNnFL_w_agbTPZYH'
+);
+
+let currentUser = null;
+let allResponses = [];
+let evolutionChart = null;
+let activePeriodo = 'todos';
+
+// ── Auth (herda sessão, sem tela de login) ──
+(async () => {
+  const { data: { user } } = await sb.auth.getUser();
+  const loader = document.getElementById('auth-loading');
+
+  if (!user) {
+    window.location.href = 'login.html?redirect=dashboard.html';
+    return;
+  }
+
+  currentUser = user;
+
+  const name = user.user_metadata?.full_name || user.email.split('@')[0];
+  const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+  document.getElementById('user-avatar').textContent = initials;
+  document.getElementById('user-name').textContent = name.split(' ')[0];
+  document.getElementById('user-pill').style.display = 'flex';
+  document.getElementById('btn-logout').style.display = 'block';
+
+  await loadData();
+
+  loader.style.opacity = '0';
+  loader.style.transition = 'opacity .3s';
+  setTimeout(() => loader.remove(), 300);
+})();
+
+async function handleLogout() {
+  await sb.auth.signOut();
+  window.location.href = 'index.html';
+}
+
+// ── Data ──
+async function loadData() {
+  const { data, error } = await sb.from('question_responses')
+    .select('*')
+    .eq('user_id', currentUser.id)
+    .order('created_at', { ascending: true });
+
+  if (error) { console.error('Erro:', error); return; }
+  allResponses = data || [];
+  buildFilters();
+  renderAll();
+}
+
+function buildFilters() {
+  const periodos = [...new Set(allResponses.map(r => r.periodo).filter(Boolean))].sort();
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = '';
+
+  const allChip = document.createElement('button');
+  allChip.className = 'filter-chip active';
+  allChip.textContent = 'Todos';
+  allChip.onclick = () => { activePeriodo = 'todos'; updateChips(); renderAll(); };
+  bar.appendChild(allChip);
+
+  periodos.forEach(p => {
+    const chip = document.createElement('button');
+    chip.className = 'filter-chip';
+    chip.textContent = p;
+    chip.onclick = () => { activePeriodo = p; updateChips(); renderAll(); };
+    bar.appendChild(chip);
+  });
+}
+
+function updateChips() {
+  document.querySelectorAll('.filter-chip').forEach(c => {
+    c.classList.toggle('active', c.textContent === (activePeriodo === 'todos' ? 'Todos' : activePeriodo));
+  });
+}
+
+function filtered() {
+  return activePeriodo === 'todos' ? allResponses : allResponses.filter(r => r.periodo === activePeriodo);
+}
+
+function renderAll() {
+  const d = filtered();
+  renderKPIs(d);
+  renderTopics(d);
+  renderWrong(d);
+  renderEvolution(d);
+}
+
+// ── KPIs ──
+function renderKPIs(data) {
+  const total = data.length;
+  const correct = data.filter(r => r.is_correct).length;
+  const pct = total > 0 ? ((correct / total) * 100).toFixed(1) : 0;
+
+  document.getElementById('kpiAccuracy').textContent = total > 0 ? pct + '%' : '—';
+  document.getElementById('kpiAccuracySub').textContent = total > 0 ? `${correct} de ${total} questões` : 'Sem dados';
+  document.getElementById('kpiTotal').textContent = total > 0 ? total : '—';
+  document.getElementById('kpiTotalSub').textContent = total > 0 ? `${correct} corretas` : '';
+  document.getElementById('kpiCorrect').textContent = total > 0 ? correct : '—';
+  document.getElementById('kpiCorrectSub').textContent = total > 0 ? `${total - correct} erros` : '';
+
+  const dates = data.map(r => new Date(r.created_at)).filter(d => !isNaN(d));
+  if (dates.length > 0) {
+    const last = new Date(Math.max(...dates));
+    const diffDays = Math.floor((new Date() - last) / 86400000);
+    document.getElementById('kpiLastStudy').textContent = diffDays === 0 ? 'Hoje' : diffDays === 1 ? 'Ontem' : diffDays + 'd atrás';
+    document.getElementById('kpiLastStudySub').textContent = last.toLocaleDateString('pt-BR');
+  } else {
+    document.getElementById('kpiLastStudy').textContent = '—';
+    document.getElementById('kpiLastStudySub').textContent = '';
+  }
+}
+
+// ── Topics ──
+function renderTopics(data) {
+  const c = document.getElementById('topicsContainer');
+  if (!data.length) {
+    c.innerHTML = '<div class="empty-state"><div class="es-icon">📚</div><h3>Nenhum dado</h3><p>Resolva questões para ver seus temas.</p></div>';
+    return;
+  }
+
+  const map = {};
+  data.forEach(r => {
+    const t = r.topic || 'Sem tema';
+    if (!map[t]) map[t] = { total: 0, correct: 0 };
+    map[t].total++;
+    if (r.is_correct) map[t].correct++;
+  });
+
+  const sorted = Object.entries(map)
+    .map(([name, v]) => ({ name, ...v, pct: v.correct / v.total * 100 }))
+    .sort((a, b) => b.total - a.total);
+
+  c.innerHTML = sorted.map(t => {
+    const cls = t.pct >= 70 ? 'high' : t.pct >= 50 ? 'mid' : 'low';
+    const color = cls === 'high' ? 'var(--green)' : cls === 'mid' ? 'var(--yellow)' : 'var(--red)';
+    return `<div class="topic-row">
+      <span class="topic-name" title="${t.name}">${t.name}</span>
+      <div class="topic-bar-bg"><div class="topic-bar-fill ${cls}" style="width:${t.pct}%"></div></div>
+      <span class="topic-pct" style="color:${color}">${t.pct.toFixed(0)}%</span>
+      <span class="topic-count">${t.correct}/${t.total}</span>
+    </div>`;
+  }).join('');
+}
+
+// ── Wrong Questions ──
+function renderWrong(data) {
+  const c = document.getElementById('wrongList');
+  const wrong = data.filter(r => !r.is_correct).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+  document.getElementById('wrongCount').textContent = wrong.length > 0 ? wrong.length + ' questões' : '';
+
+  if (!wrong.length) {
+    c.innerHTML = '<div class="empty-state"><div class="es-icon">🎉</div><h3>Nenhum erro!</h3><p>Continue assim!</p></div>';
+    return;
+  }
+
+  c.innerHTML = wrong.map(r => {
+    const date = new Date(r.created_at).toLocaleDateString('pt-BR');
+    return `<div class="wrong-item">
+      <div class="wrong-badge"></div>
+      <div class="wrong-info">
+        <div class="wrong-question-id">Questão ${r.question_id}</div>
+        <div class="wrong-meta">${r.topic || 'Sem tema'}${r.difficulty ? ' · ' + r.difficulty : ''} · ${date}</div>
+      </div>
+      <div class="wrong-answers">
+        <div class="wrong-your">${r.user_answer || '—'}</div>
+        <div class="wrong-correct">✓ ${r.correct_answer || '—'}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── Evolution Chart ──
+function renderEvolution(data) {
+  if (!data.length) { if (evolutionChart) { evolutionChart.destroy(); evolutionChart = null; } return; }
+
+  const dateMap = {};
+  data.forEach(r => {
+    const d = new Date(r.created_at).toLocaleDateString('pt-BR');
+    if (!dateMap[d]) dateMap[d] = { total: 0, correct: 0 };
+    dateMap[d].total++;
+    if (r.is_correct) dateMap[d].correct++;
+  });
+
+  const entries = Object.entries(dateMap).sort((a, b) => {
+    const [da, ma, ya] = a[0].split('/').map(Number);
+    const [db, mb, yb] = b[0].split('/').map(Number);
+    return new Date(ya, ma - 1, da) - new Date(yb, mb - 1, db);
+  });
+
+  const labels = entries.map(e => e[0]);
+  const pcts = entries.map(e => (e[1].correct / e[1].total * 100).toFixed(1));
+  const totals = entries.map(e => e[1].total);
+
+  const ctx = document.getElementById('evolutionChart').getContext('2d');
+  if (evolutionChart) evolutionChart.destroy();
+
+  evolutionChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: '% Acerto',
+          data: pcts,
+          borderColor: '#D6006E',
+          backgroundColor: 'rgba(214,0,110,0.08)',
+          borderWidth: 2.5,
+          pointBackgroundColor: '#D6006E',
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          tension: 0.35,
+          fill: true,
+          yAxisID: 'y',
+        },
+        {
+          label: 'Questões',
+          data: totals,
+          borderColor: 'rgba(144,128,168,0.5)',
+          borderWidth: 1.5,
+          borderDash: [5, 5],
+          pointRadius: 3,
+          pointBackgroundColor: '#9080A8',
+          tension: 0.35,
+          fill: false,
+          yAxisID: 'y1',
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: {
+          labels: { color: '#9080A8', font: { family: "'Plus Jakarta Sans'", size: 11 }, boxWidth: 12, padding: 16 }
+        },
+        tooltip: {
+          backgroundColor: '#1A1226',
+          borderColor: 'rgba(214,0,110,0.3)',
+          borderWidth: 1,
+          titleFont: { family: "'Plus Jakarta Sans'", weight: '600' },
+          bodyFont: { family: "'Plus Jakarta Sans'" },
+          padding: 12,
+          cornerRadius: 10,
+          callbacks: {
+            label: c => c.datasetIndex === 0 ? ` Acerto: ${c.raw}%` : ` Questões: ${c.raw}`
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: '#6B5F80', font: { family: "'Plus Jakarta Sans'", size: 10 }, maxRotation: 45 },
+          grid: { color: 'rgba(214,0,110,0.05)' },
+        },
+        y: {
+          position: 'left', min: 0, max: 100,
+          ticks: { color: '#D6006E', font: { family: "'Plus Jakarta Sans'", size: 10 }, callback: v => v + '%' },
+          grid: { color: 'rgba(214,0,110,0.05)' },
+        },
+        y1: {
+          position: 'right', min: 0,
+          ticks: { color: '#6B5F80', font: { family: "'Plus Jakarta Sans'", size: 10 }, stepSize: 1 },
+          grid: { drawOnChartArea: false },
+        }
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>
