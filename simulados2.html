@@ -89,6 +89,17 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 }
 </style>
 <style>
+.dash-banner{display:flex;align-items:center;gap:20px;background:linear-gradient(135deg,rgba(214,0,110,0.10),rgba(155,0,232,0.07));border:1.5px solid rgba(214,0,110,0.25);border-radius:18px;padding:22px 28px;margin-bottom:32px;text-decoration:none;color:var(--text);transition:all .3s;animation:fadeUp .4s ease;}
+.dash-banner:hover{border-color:var(--pink);transform:translateY(-2px);box-shadow:0 8px 40px rgba(214,0,110,0.15);}
+.dash-banner-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:rgba(214,0,110,0.12);border-radius:14px;color:var(--pink-bright);flex-shrink:0;}
+.dash-banner-text{flex:1;min-width:0;}
+.dash-banner-title{display:block;font-size:16px;font-weight:800;color:var(--text);margin-bottom:2px;}
+.dash-banner-sub{display:block;font-size:13px;color:var(--muted);line-height:1.4;}
+.dash-banner-arrow{font-size:22px;font-weight:700;color:var(--pink-bright);flex-shrink:0;transition:transform .2s;}
+.dash-banner:hover .dash-banner-arrow{transform:translateX(4px);}
+@media(max-width:480px){.dash-banner{padding:16px 18px;gap:14px;}.dash-banner-icon{width:42px;height:42px;}.dash-banner-title{font-size:14px;}.dash-banner-sub{font-size:12px;}}
+</style>
+<style>
 .auth-loading{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
 .auth-loading .spinner{width:32px;height:32px;border:3px solid rgba(214,0,110,0.2);border-top-color:var(--pink);border-radius:50%;animation:authSpin .7s linear infinite;}
 @keyframes authSpin{to{transform:rotate(360deg)}}
@@ -129,6 +140,18 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 </div>
 
 <div class="content">
+
+  <!-- ═══════════ DASHBOARD BANNER ═══════════ -->
+  <a href="dashboard.html" class="dash-banner" id="dash-banner" style="display:none;">
+    <div class="dash-banner-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-2-2-4 4"/><circle cx="18" cy="9" r="1.5"/></svg>
+    </div>
+    <div class="dash-banner-text">
+      <span class="dash-banner-title">Meu Desempenho</span>
+      <span class="dash-banner-sub">Veja sua evolução, acertos por tema e questões erradas</span>
+    </div>
+    <span class="dash-banner-arrow">→</span>
+  </a>
 
   <div class="tabs">
     <button class="tab active" onclick="switchTab('soi')">SOI</button>
@@ -501,6 +524,7 @@ const sb = supabase.createClient(
   document.getElementById('user-name').textContent = name.split(' ')[0];
   document.getElementById('user-pill').style.display = 'flex';
   document.getElementById('btn-logout').style.display = 'block';
+  document.getElementById('dash-banner').style.display = 'flex';
 
   loader.style.opacity = '0';
   loader.style.transition = 'opacity .3s';
