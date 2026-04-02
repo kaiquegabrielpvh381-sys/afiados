@@ -61,18 +61,41 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
   .sim-price-box{text-align:left;}
 }
 </style>
+<style>
+.auth-loading{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
+.auth-loading .spinner{width:32px;height:32px;border:3px solid rgba(214,0,110,0.2);border-top-color:var(--pink);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.auth-loading p{color:var(--muted);font-size:14px;}
+.user-nav{display:flex;align-items:center;gap:14px;}
+.user-pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:50px;padding:6px 14px 6px 10px;font-size:13px;color:var(--light);font-weight:500;}
+.user-pill .avatar{width:24px;height:24px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-weight:700;}
+.btn-logout{background:none;border:1px solid var(--border);color:var(--muted);padding:6px 14px;border-radius:50px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s;}
+.btn-logout:hover{border-color:var(--border-pink);color:var(--pink-light);}
+</style>
 </head>
 <body>
+
+<div class="auth-loading" id="auth-loading">
+  <div class="spinner"></div>
+  <p>Verificando acesso...</p>
+</div>
 
 <nav>
   <a href="index.html" class="logo">
     <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 19h4l2-4h8l2 4h4L12 2zm0 5l3 6H9l3-6z"/></svg></div>
     <span class="logo-name">AFYADOS</span>
   </a>
-  <a href="index.html" class="back-btn">
-    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-    Voltar ao site
-  </a>
+  <div class="user-nav">
+    <div class="user-pill" id="user-pill" style="display:none;">
+      <div class="avatar" id="user-avatar"></div>
+      <span id="user-name"></span>
+    </div>
+    <button class="btn-logout" id="btn-logout" style="display:none;" onclick="handleLogout()">Sair</button>
+    <a href="index.html" class="back-btn">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Voltar
+    </a>
+  </div>
 </nav>
 
 <div class="hero">
@@ -109,5 +132,40 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
   </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const sb = supabase.createClient(
+  'https://mmqfqlbojsbuuodfbilh.supabase.co',
+  'sb_publishable_fZp0two05vv3IPxqNnFL_w_agbTPZYH'
+);
+
+(async () => {
+  const { data: { user } } = await sb.auth.getUser();
+  const loader = document.getElementById('auth-loading');
+
+  if (!user) {
+    window.location.href = 'login.html?redirect=simulados1.html';
+    return;
+  }
+
+  // Mostra info do usuário na nav
+  const name = user.user_metadata?.full_name || user.email.split('@')[0];
+  const initials = name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+  document.getElementById('user-avatar').textContent = initials;
+  document.getElementById('user-name').textContent = name.split(' ')[0];
+  document.getElementById('user-pill').style.display = 'flex';
+  document.getElementById('btn-logout').style.display = 'block';
+
+  // Remove loader
+  loader.style.opacity = '0';
+  loader.style.transition = 'opacity .3s';
+  setTimeout(() => loader.remove(), 300);
+})();
+
+async function handleLogout() {
+  await sb.auth.signOut();
+  window.location.href = 'index.html';
+}
+</script>
 </body>
 </html>
