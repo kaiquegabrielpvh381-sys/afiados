@@ -213,10 +213,10 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
           <div class="sim-feat">Resoluções comentadas</div>
         </div>
       </div>
-      <div class="sim-price-box">
+      <div class="sim-price-box" id="multi-n1-box">
         <div class="sim-price">R$&nbsp;79<sub>,90</sub></div>
         <div class="sim-period">pagamento único</div>
-        <a href="https://pay.kiwify.com.br/xZUbBUv" target="_blank" class="btn-pink" style="padding: 16px 24px; font-size: 15px; box-shadow: 0 4px 20px var(--pink-glow);">Garantir meu acesso</a>
+        <a href="https://pay.kiwify.com.br/xZUbBUv" target="_blank" id="multi-n1-btn" class="btn-pink" style="padding: 16px 24px; font-size: 15px; box-shadow: 0 4px 20px var(--pink-glow);">Garantir meu acesso</a>
       </div>
     </div>
 
@@ -566,6 +566,24 @@ const sb = supabase.createClient(
   loader.style.opacity = '0';
   loader.style.transition = 'opacity .3s';
   setTimeout(() => loader.remove(), 300);
+
+  // Verificar se já comprou o combo — trocar botão do Multi N1
+  try {
+    const token = JSON.parse(localStorage.getItem('sb-mmqfqlbojsbuuodfbilh-auth-token'))?.access_token;
+    if (token) {
+      const accRes = await fetch('https://afyados-backend.onrender.com/api/access/check', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      });
+      const accData = await accRes.json();
+      if (accData.has_access) {
+        const box = document.getElementById('multi-n1-box');
+        if (box) {
+          box.innerHTML = '<div class="sim-period" style="font-size:13px;margin-bottom:14px;color:#5DCAA5;"><strong>✓ Acesso liberado</strong></div>'
+            + '<a href="https://dashboard.kiwify.com.br/members-area/91fde877-40da-4bad-9b52-e5e1aa594d3e?tab=courses&course=f4f7cafc-806b-4adb-9c38-8edb2c464d80" target="_blank" class="btn-pink" style="padding: 16px 24px; font-size: 15px; box-shadow: 0 4px 20px var(--pink-glow);">Acessar materiais</a>';
+        }
+      }
+    }
+  } catch(e) {}
 })();
 
 async function handleLogout() {
