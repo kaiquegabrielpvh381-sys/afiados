@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudar | Afyados</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0C0810;color:#F4EFFA;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.6;min-height:100vh;}
+:root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.22);--card:#1A1226;--border:rgba(255,255,255,0.07);--muted:#9080A8;--light:#D8CEEA;--green:#1D9E75;--green-bg:rgba(29,158,117,0.12);--orange:#F39C12;--orange-bg:rgba(243,156,18,0.12);--red:#E24B4A;--red-bg:rgba(226,75,74,0.10);--blue:#3498DB;--blue-bg:rgba(52,152,219,0.12);}
+nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(12,8,16,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-mark{width:42px;height:42px;background:linear-gradient(135deg,var(--pink),#9B00E8);border-radius:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(214,0,110,0.25);overflow:hidden;}
+.logo-name{font-family:'Playfair Display',serif;font-weight:900;font-size:20px;letter-spacing:0.06em;color:#fff;}
+.back-btn{display:flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;padding:6px 14px;border-radius:50px;border:1px solid var(--border);transition:all .2s;}
+.back-btn:hover{border-color:var(--pink);color:var(--pink-light);}
+
+.app{max-width:720px;margin:0 auto;padding:72px 16px 40px;}
+.deck-info{text-align:right;font-size:13px;color:var(--muted);}
+.deck-info strong{color:#F4EFFA;}
+.progress-container{background:var(--card);border-radius:100px;height:6px;margin:16px 0;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--pink),#ff4da6);border-radius:100px;transition:width .5s;}
+.stats-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.stat-chip{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;}
+.stat-chip .dot{width:7px;height:7px;border-radius:50%;background:currentColor;}
+.stat-chip.new{background:var(--blue-bg);color:var(--blue);}
+.stat-chip.learning{background:var(--orange-bg);color:var(--orange);}
+.stat-chip.review{background:var(--green-bg);color:var(--green);}
+
+/* Tag selector */
+.tag-section{margin-bottom:24px;text-align:center;}
+.tag-section h2{font-family:'Playfair Display',serif;font-weight:900;font-size:22px;margin-bottom:4px;}
+.tag-section .sub{color:var(--muted);font-size:13px;margin-bottom:16px;}
+.tag-grid{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:16px;}
+.tag-btn{padding:6px 14px;border-radius:100px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.tag-btn:hover{border-color:rgba(214,0,110,0.3);color:var(--pink-light);}
+.tag-btn.active{background:var(--pink);border-color:var(--pink);color:#fff;box-shadow:0 2px 12px var(--pink-glow);}
+.sel-links{display:flex;gap:12px;justify-content:center;margin-bottom:12px;}
+.sel-link{background:none;border:none;color:var(--pink-light);font-size:12px;font-weight:600;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;text-decoration:underline;text-underline-offset:3px;}
+.start-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border:none;border-radius:100px;background:var(--pink);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 18px var(--pink-glow);transition:all .2s;margin-top:8px;}
+.start-btn:hover{background:var(--pink-bright);}
+.start-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+/* Basic card */
+.card-container{perspective:1200px;margin-bottom:20px;min-height:300px;}
+.card{position:relative;width:100%;min-height:300px;cursor:pointer;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1);}
+.card.flipped{transform:rotateY(180deg);}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:20px;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;}
+.card-face.back{transform:rotateY(180deg);}
+.card-label{padding:14px 20px 0;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--muted);}
+.card-label.answer{color:var(--pink);}
+.card-body{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 24px;text-align:center;}
+.card-body h2{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;line-height:1.5;}
+.card-body .ans{font-size:15px;line-height:1.7;color:var(--light);max-width:560px;}
+.card-body .ans strong{color:#F4EFFA;}
+.card-body img{max-width:100%;max-height:260px;object-fit:contain;border-radius:8px;margin:8px 0;}
+.card-footer{padding:10px 20px;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
+.card-tag{background:rgba(214,0,110,0.10);color:var(--pink);padding:3px 10px;border-radius:100px;font-weight:600;font-size:10px;}
+
+/* IO card */
+.io-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:20px;cursor:pointer;}
+.io-card-header{padding:14px 20px 0;font-size:10px;text-transform:uppercase;letter-spacing:.12em;font-weight:700;color:var(--muted);}
+.io-card-header.answer{color:var(--pink);}
+.io-wrapper{position:relative;width:100%;padding:16px;}
+.io-wrapper img.base-img{width:100%;display:block;border-radius:8px;}
+.io-wrapper .mask-overlay{position:absolute;top:16px;left:16px;right:16px;bottom:16px;}
+.io-wrapper .mask-overlay img{width:100%;height:100%;object-fit:contain;}
+.io-footer{padding:10px 20px;border-top:1px solid rgba(255,255,255,0.04);display:flex;justify-content:space-between;font-size:11px;color:var(--muted);}
+
+/* Buttons */
+.show-btn{width:100%;padding:16px;border:none;border-radius:12px;background:linear-gradient(135deg,var(--pink),#b8005c);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:20px;box-shadow:0 4px 18px var(--pink-glow);transition:all .2s;}
+.show-btn:hover{background:var(--pink-bright);}
+.answer-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;}
+.answer-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px;border:1px solid rgba(255,255,255,0.06);border-radius:12px;background:var(--card);color:#F4EFFA;cursor:pointer;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif;}
+.answer-btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.12);}
+.answer-btn .bl{font-weight:700;font-size:14px;}
+.answer-btn .bi{font-size:11px;color:var(--muted);}
+.answer-btn.again .bl{color:var(--red);}.answer-btn.hard .bl{color:var(--orange);}.answer-btn.good .bl{color:var(--green);}.answer-btn.easy .bl{color:var(--blue);}
+.answer-btn.again:hover{border-color:var(--red);}.answer-btn.hard:hover{border-color:var(--orange);}.answer-btn.good:hover{border-color:var(--green);}.answer-btn.easy:hover{border-color:var(--blue);}
+.shortcuts{text-align:center;font-size:11px;color:var(--muted);margin-top:8px;}
+.shortcuts kbd{display:inline-block;padding:2px 7px;border-radius:4px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);font-size:10px;margin:0 1px;}
+
+/* Complete */
+.complete{text-align:center;padding:60px 20px;}
+.complete .emoji{font-size:3rem;margin-bottom:16px;}
+.complete h2{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:8px;}
+.complete p{color:var(--muted);margin-bottom:28px;}
+.res-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:320px;margin:0 auto 28px;}
+.res-item{background:var(--card);border-radius:12px;padding:14px;}
+.res-item .v{font-size:22px;font-weight:700;}
+.res-item .l{font-size:11px;color:var(--muted);margin-top:2px;}
+.res-item.again .v{color:var(--red);}.res-item.hard .v{color:var(--orange);}.res-item.good .v{color:var(--green);}.res-item.easy .v{color:var(--blue);}
+.restart-btn{padding:14px 32px;border:1px solid var(--pink);border-radius:100px;background:transparent;color:var(--pink);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s;}
+.restart-btn:hover{background:var(--pink);color:white;}
+
+.hidden{display:none!important;}
+.loading{text-align:center;padding:60px;color:var(--muted);}
+@media(max-width:480px){nav{padding:0 16px;}.app{padding:64px 12px 32px;}.card{min-height:240px;}.card-face{min-height:240px;}.card-container{min-height:240px;}.answer-btn{padding:12px 6px;}.answer-btn .bl{font-size:12px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGHADoKpv1yBqL+viUYcLcKakFicD6Q9ArFIEtBxopAiQLZIOYWuA2EkQtg2IXV5SUAJkB4DYRSFBzkB2CpCtkY7ETkJiJxcUgdT3ANk2uTmlyQh3M/Ck5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKbWPz9HbOBQAAABZklEQVR4nO2ayRaCMAxFg///z3UVDw5I08zw7sqNtHm5hUolAgAAAAC4KVvEIGOMsfK9bdvc5/fwHkDDanASQgLQdNI7hNIGMJ4hhAUQsZ5XaGEAkZ8FoQFUtKCNAUQ+FoQHUM2CVgYQ2VuQEkAlC9oZQGRrgVkA0klVscAkgIg9u9eYpkugowXqADK6bzm2+U0wM5AVVAFYFKtdBto5uDwGoy3QjLccgGWRmTdDt41QFwuWAvAoLssCcQCS4jtYUOq3QIYFogA6POOlc3Q3oPr2eDqADt1nJHMNuQdUtmAqgE7dZ2bnXOopsCfKgtMAOnafmZl76cPR9OPxzt1nzmpwN0DbRW8LDgO4QveZf7W4GmDVPYvrHIXwM4Ardf+MrwCsirdeu14WlN0IRfEWQNXuW173s0YYwB+qd9/y+vtaYQBRn+5bjsM1396AV5JaCzLe6LqeDksKyjrUqPD/AgAAAAD05QmqJdARPLlg+gAAAABJRU5ErkJggg==" style="width:26px;height:26px;object-fit:contain;"></div>
+    <span class="logo-name">AFYADOS</span>
+  </a>
+  <a href="flashcards.html" class="back-btn">
+    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Flashcards
+  </a>
+</nav>
+
+<div class="app">
+  <div id="content"><div class="loading">Carregando...</div></div>
+</div>
+
+<script>
+var API_BASE = "https://afyados-backend.onrender.com";
+
+function getToken() {
+  try { var r = localStorage.getItem("sb-mmqfqlbojsbuuodfbilh-auth-token"); if (r) { return JSON.parse(r).access_token; } } catch(e) {} return null;
+}
+function getDeckId() { var p = new URLSearchParams(window.location.search); return p.get("deck"); }
+
+// FSRS-5
+var FSRS = (function() {
+  var w=[.4072,1.1829,3.1262,15.4722,7.2102,.5316,1.0651,.0092,1.5247,.1059,1.0033,2.1214,.0234,.3167,.2803,2.2148,.1362,2.8214,.6667];
+  var D=-.5,F=19/81;
+  function cl(v,n,x){return Math.min(Math.max(v,n),x);}
+  function mr(i,c){return w[7]*i+(1-w[7])*c;}
+  function review(card,rating){
+    var now=new Date(),el=card.last_review?Math.max(0,(now-new Date(card.last_review))/864e5):0;
+    var nc=Object.assign({},card);
+    if(card.state==="new"){nc.difficulty=cl(w[4]-Math.exp(w[5]*(rating-1))+1,1,10);nc.stability=Math.max(w[rating-1],.1);nc.state=rating===1?"learning":"review";}
+    else{var r=Math.pow(1+F*el/card.stability,D);nc.difficulty=cl(mr(w[4],card.difficulty-w[6]*(rating-3)),1,10);if(rating===1){nc.stability=Math.max(.1,w[11]*Math.pow(card.difficulty,-w[12])*(Math.pow(card.stability+1,w[13])-1)*Math.exp((1-r)*w[14]));nc.state="learning";nc.lapses=(card.lapses||0)+1;}else{var hp=rating===2?w[15]:1,eb=rating===4?w[16]:1;nc.stability=card.stability*(1+Math.exp(w[8])*(11-card.difficulty)*Math.pow(card.stability,-w[9])*(Math.exp((1-r)*w[10])-1)*hp*eb);nc.state="review";}}
+    nc.interval_days=Math.max(1,Math.round(nc.stability*F));nc.reps=(card.reps||0)+1;nc.last_review=now.toISOString();nc.due=new Date(now.getTime()+nc.interval_days*864e5).toISOString();
+    if(rating===1){nc.interval_days=0;nc.due=new Date(now.getTime()+6e4).toISOString();}
+    else if(rating===2&&card.state==="new"){nc.interval_days=1;nc.due=new Date(now.getTime()+6e5).toISOString();}
+    return nc;
+  }
+  function preview(card){var ivs={};[1,2,3,4].forEach(function(r){var res=review(card,r);if(r===1)ivs[r]="1 min";else if(res.interval_days===0)ivs[r]="< 1 min";else if(res.interval_days===1)ivs[r]="1 dia";else if(res.interval_days<30)ivs[r]=res.interval_days+" dias";else if(res.interval_days<365)ivs[r]=Math.round(res.interval_days/30)+" meses";else ivs[r]=(res.interval_days/365).toFixed(1)+" anos";});return ivs;}
+  return{review:review,preview:preview};
+})();
+
+var deckData=null,allCards=[],cards=[],queue=[],curIdx=0,reviewed=0,isFlipped=false,results={1:0,2:0,3:0,4:0},selectedTags=new Set(),pendingReviews=[];
+
+async function init() {
+  var token=getToken(),deckId=getDeckId();
+  if(!token){document.getElementById("content").innerHTML='<div class="loading">Faça login para estudar.</div>';return;}
+  if(!deckId){window.location.href="flashcards.html";return;}
+
+  try {
+    var res=await fetch(API_BASE+"/api/decks/"+deckId+"/cards",{headers:{"Authorization":"Bearer "+token}});
+    if(res.status===403){document.getElementById("content").innerHTML='<div class="loading">Assinatura necessária para este deck.</div>';return;}
+    if(!res.ok) throw new Error("Erro "+res.status);
+    var data=await res.json();
+    deckData=data.deck;allCards=data.cards;
+
+    // Load saved reviews
+    var revRes=await fetch(API_BASE+"/api/reviews/"+deckId,{headers:{"Authorization":"Bearer "+token}});
+    var revData=await revRes.json();
+    var reviewMap={};
+    (revData.reviews||[]).forEach(function(r){reviewMap[r.card_id]=r;});
+
+    // Merge review state into cards
+    allCards.forEach(function(c){
+      var r=reviewMap[c.id];
+      if(r){c.state=r.state;c.stability=r.stability;c.difficulty=r.difficulty;c.interval_days=r.interval_days;c.reps=r.reps;c.lapses=r.lapses||0;c.due=r.due;c.last_review=r.last_review;}
+      else{c.state="new";c.stability=0;c.difficulty=0;c.interval_days=0;c.reps=0;c.lapses=0;c.due=null;c.last_review=null;}
+    });
+
+    showTagSelector();
+  } catch(e) {
+    document.getElementById("content").innerHTML='<div class="loading">Erro ao carregar: '+e.message+'</div>';
+  }
+}
+
+function showTagSelector() {
+  var tags={};allCards.forEach(function(c){var t=c.tag||"geral";tags[t]=(tags[t]||0)+1;});
+  var tagList=Object.keys(tags).sort();
+
+  if(tagList.length<=1){selectedTags=new Set(tagList);startStudy();return;}
+
+  var h='<div class="tag-section">';
+  h+='<h2>'+deckData.name+'</h2>';
+  h+='<p class="sub">'+allCards.length+' cards · '+tagList.length+' temas</p>';
+  h+='<div class="sel-links"><button class="sel-link" onclick="selAll()">Todos</button><button class="sel-link" onclick="selNone()">Limpar</button></div>';
+  h+='<div class="tag-grid" id="tagGrid">';
+  tagList.forEach(function(t){h+='<button class="tag-btn" id="tb-'+t.replace(/\s/g,"_")+'" onclick="togTag(\''+t.replace(/'/g,"\\'")+'\')">'+t+' ('+tags[t]+')</button>';});
+  h+='</div>';
+  h+='<button class="start-btn" id="startBtn" onclick="startStudy()" disabled>Selecione temas</button>';
+  h+='</div>';
+  document.getElementById("content").innerHTML=h;
+}
+
+function togTag(t){if(selectedTags.has(t))selectedTags.delete(t);else selectedTags.add(t);updTags();}
+function selAll(){var tags={};allCards.forEach(function(c){tags[c.tag||"geral"]=1;});selectedTags=new Set(Object.keys(tags));updTags();}
+function selNone(){selectedTags.clear();updTags();}
+function updTags(){
+  var btns=document.querySelectorAll(".tag-btn");btns.forEach(function(b){var t=b.textContent.split(" (")[0];b.classList.toggle("active",selectedTags.has(t));});
+  var n=allCards.filter(function(c){return selectedTags.has(c.tag||"geral");}).length;
+  var btn=document.getElementById("startBtn");btn.disabled=n===0;btn.textContent=n>0?"Iniciar ("+n+" cards)":"Selecione temas";
+}
+
+function startStudy(){
+  cards=allCards.filter(function(c){return selectedTags.has(c.tag||"geral");});
+  // Shuffle
+  for(var i=cards.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=cards[i];cards[i]=cards[j];cards[j]=t;}
+  queue=[];for(var i=0;i<cards.length;i++)queue.push(i);
+  curIdx=0;reviewed=0;isFlipped=false;results={1:0,2:0,3:0,4:0};pendingReviews=[];
+
+  var h='<div class="deck-info"><strong id="dn">'+deckData.name+'</strong> · Card <strong id="cn">1</strong>/<strong id="tn">'+queue.length+'</strong></div>';
+  h+='<div class="progress-container"><div class="progress-fill" id="pbar" style="width:0%"></div></div>';
+  h+='<div class="stats-row"><div class="stat-chip new"><div class="dot"></div> Novos: <span id="sN">0</span></div><div class="stat-chip learning"><div class="dot"></div> Aprendendo: <span id="sL">0</span></div><div class="stat-chip review"><div class="dot"></div> Revisão: <span id="sR">0</span></div></div>';
+  h+='<div id="cardArea"></div>';
+  h+='<button class="show-btn" id="showBtn" onclick="flipCard()">Mostrar Resposta</button>';
+  h+='<div class="answer-buttons hidden" id="ansBtn"><button class="answer-btn again" onclick="answer(1)"><span class="bl">Errei</span><span class="bi" id="i1">—</span></button><button class="answer-btn hard" onclick="answer(2)"><span class="bl">Difícil</span><span class="bi" id="i2">—</span></button><button class="answer-btn good" onclick="answer(3)"><span class="bl">Bom</span><span class="bi" id="i3">—</span></button><button class="answer-btn easy" onclick="answer(4)"><span class="bl">Fácil</span><span class="bi" id="i4">—</span></button></div>';
+  h+='<div class="shortcuts" id="keys"><kbd>Espaço</kbd> resposta · <kbd>1</kbd> errei · <kbd>2</kbd> difícil · <kbd>3</kbd> bom · <kbd>4</kbd> fácil</div>';
+  h+='<div class="complete hidden" id="done"><div class="emoji">🎉</div><h2>Sessão Completa!</h2><p>Progresso salvo automaticamente.</p><div class="res-grid"><div class="res-item again"><div class="v" id="r1">0</div><div class="l">Errei</div></div><div class="res-item hard"><div class="v" id="r2">0</div><div class="l">Difícil</div></div><div class="res-item good"><div class="v" id="r3">0</div><div class="l">Bom</div></div><div class="res-item easy"><div class="v" id="r4">0</div><div class="l">Fácil</div></div></div><button class="restart-btn" onclick="showTagSelector()">Escolher Temas</button></div>';
+  document.getElementById("content").innerHTML=h;
+  renderCard();
+}
+
+function renderCard(){
+  if(curIdx>=queue.length){showComplete();return;}
+  var card=cards[queue[curIdx]];isFlipped=false;
+  document.getElementById("showBtn").classList.remove("hidden");
+  document.getElementById("ansBtn").classList.add("hidden");
+  document.getElementById("done").classList.add("hidden");
+  document.getElementById("keys").classList.remove("hidden");
+
+  var area=document.getElementById("cardArea");
+  if(deckData.type==="io"){
+    var h='<div class="io-card" onclick="flipCard()"><div class="io-card-header" id="cLabel">Pergunta</div><div class="io-wrapper">';
+    h+='<img class="base-img" id="bImg" src="'+(card.image_url||"")+'">';
+    h+='<div class="mask-overlay" id="mask"><img src="'+(card.qmask_url||"")+'"></div>';
+    h+='</div><div class="io-footer"><span class="card-tag" id="cTag">'+(card.state==="new"?"Novo":card.state==="learning"?"Aprendendo":"Revisão")+'</span><span>'+(card.tag||"")+'</span></div></div>';
+    area.innerHTML=h;
+  } else {
+    var h='<div class="card-container"><div class="card" id="flipCard" onclick="flipCard()">';
+    h+='<div class="card-face front"><div class="card-label">Pergunta</div><div class="card-body"><h2>'+card.front+'</h2></div><div class="card-footer"><span class="card-tag">'+(card.state==="new"?"Novo":card.state==="learning"?"Aprendendo":"Revisão")+'</span><span>'+(card.tag||"")+'</span></div></div>';
+    h+='<div class="card-face back"><div class="card-label answer">Resposta</div><div class="card-body"><div class="ans">'+card.back+'</div></div><div class="card-footer"><span class="card-tag">'+(card.state==="new"?"Novo":card.state==="learning"?"Aprendendo":"Revisão")+'</span><span>'+(card.tag||"")+'</span></div></div>';
+    h+='</div></div>';
+    area.innerHTML=h;
+  }
+
+  document.getElementById("cn").textContent=curIdx+1;
+  document.getElementById("tn").textContent=queue.length;
+  document.getElementById("pbar").style.width=(queue.length>0?(reviewed/queue.length)*100:0)+"%";
+  var nc=cards.filter(function(c){return c.state==="new";}).length;
+  var lc=cards.filter(function(c){return c.state==="learning";}).length;
+  var rc=cards.filter(function(c){return c.state==="review";}).length;
+  document.getElementById("sN").textContent=nc;document.getElementById("sL").textContent=lc;document.getElementById("sR").textContent=rc;
+
+  var ivs=FSRS.preview(card);
+  document.getElementById("i1").textContent=ivs[1];document.getElementById("i2").textContent=ivs[2];document.getElementById("i3").textContent=ivs[3];document.getElementById("i4").textContent=ivs[4];
+
+  // Preload next image
+  if(curIdx+1<queue.length){var nx=cards[queue[curIdx+1]];if(nx.image_url)new Image().src=nx.image_url;}
+}
+
+function flipCard(){
+  if(isFlipped)return;isFlipped=true;
+  var card=cards[queue[curIdx]];
+  if(deckData.type==="io"){
+    document.querySelector(".io-card-header").textContent="Resposta";
+    document.querySelector(".io-card-header").classList.add("answer");
+    document.getElementById("mask").innerHTML='<img src="'+(card.amask_url||"")+'">';
+  } else {
+    document.getElementById("flipCard").classList.add("flipped");
+  }
+  document.getElementById("showBtn").classList.add("hidden");
+  document.getElementById("ansBtn").classList.remove("hidden");
+}
+
+function answer(rating){
+  var idx=queue[curIdx];
+  cards[idx]=FSRS.review(cards[idx],rating);
+  results[rating]++;reviewed++;
+
+  // Queue review for saving
+  var c=cards[idx];
+  pendingReviews.push({card_id:c.id,state:c.state,stability:c.stability,difficulty:c.difficulty,interval_days:c.interval_days,reps:c.reps,lapses:c.lapses,due:c.due,last_review:c.last_review});
+
+  if(rating===1)queue.push(idx);
+  curIdx++;
+  renderCard();
+
+  // Save every 5 reviews
+  if(pendingReviews.length>=5)saveReviews();
+}
+
+async function saveReviews(){
+  if(pendingReviews.length===0)return;
+  var batch=pendingReviews.splice(0);
+  var token=getToken();if(!token)return;
+  try{await fetch(API_BASE+"/api/reviews/batch",{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},body:JSON.stringify({reviews:batch})});}catch(e){}
+}
+
+function showComplete(){
+  document.getElementById("cardArea").innerHTML="";
+  document.getElementById("showBtn").classList.add("hidden");
+  document.getElementById("ansBtn").classList.add("hidden");
+  document.getElementById("keys").classList.add("hidden");
+  document.getElementById("done").classList.remove("hidden");
+  document.getElementById("r1").textContent=results[1];document.getElementById("r2").textContent=results[2];document.getElementById("r3").textContent=results[3];document.getElementById("r4").textContent=results[4];
+  saveReviews();
+}
+
+document.addEventListener("keydown",function(e){
+  if(e.key===" "||e.key==="Enter"){e.preventDefault();if(!isFlipped)flipCard();}
+  if(isFlipped&&["1","2","3","4"].indexOf(e.key)>=0)answer(parseInt(e.key));
+});
+
+init();
+</script>
+
+</body>
+</html>
