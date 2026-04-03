@@ -118,6 +118,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:56px;display:flex;align-i
 
 <script>
 var API_BASE = "https://afyados-backend.onrender.com";
+var STORAGE_URL = "https://mmqfqlbojsbuuodfbilh.supabase.co/storage/v1/object/public/flashcard-media/";
 
 function getToken() {
   try { var r = localStorage.getItem("sb-mmqfqlbojsbuuodfbilh-auth-token"); if (r) { return JSON.parse(r).access_token; } } catch(e) {} return null;
@@ -211,6 +212,12 @@ function startStudy(){
   queue=[];for(var i=0;i<cards.length;i++)queue.push(i);
   curIdx=0;reviewed=0;isFlipped=false;results={1:0,2:0,3:0,4:0};pendingReviews=[];
 
+  // Rewrite image src paths to full public URLs
+  cards.forEach(function(c){
+    if(c.front)c.front=c.front.replace(/src="([^"]+)"/g,function(m,p){return p.startsWith("http")?m:'src="'+STORAGE_URL+p+'"';});
+    if(c.back)c.back=c.back.replace(/src="([^"]+)"/g,function(m,p){return p.startsWith("http")?m:'src="'+STORAGE_URL+p+'"';});
+  });
+
   var h='<div class="deck-info"><strong id="dn">'+deckData.name+'</strong> · Card <strong id="cn">1</strong>/<strong id="tn">'+queue.length+'</strong></div>';
   h+='<div class="progress-container"><div class="progress-fill" id="pbar" style="width:0%"></div></div>';
   h+='<div class="stats-row"><div class="stat-chip new"><div class="dot"></div> Novos: <span id="sN">0</span></div><div class="stat-chip learning"><div class="dot"></div> Aprendendo: <span id="sL">0</span></div><div class="stat-chip review"><div class="dot"></div> Revisão: <span id="sR">0</span></div></div>';
@@ -234,8 +241,8 @@ function renderCard(){
   var area=document.getElementById("cardArea");
   if(deckData.type==="io"){
     var h='<div class="io-card" onclick="flipCard()"><div class="io-card-header" id="cLabel">Pergunta</div><div class="io-wrapper">';
-    h+='<img class="base-img" id="bImg" src="'+(card.image_url||"")+'">';
-    h+='<div class="mask-overlay" id="mask"><img src="'+(card.qmask_url||"")+'"></div>';
+    h+='<img class="base-img" id="bImg" src="'+(card.image_url?STORAGE_URL+card.image_url:"")+'">';
+    h+='<div class="mask-overlay" id="mask"><img src="'+(card.qmask_url?STORAGE_URL+card.qmask_url:"")+'"></div>';
     h+='</div><div class="io-footer"><span class="card-tag" id="cTag">'+(card.state==="new"?"Novo":card.state==="learning"?"Aprendendo":"Revisão")+'</span><span>'+(card.tag||"")+'</span></div></div>';
     area.innerHTML=h;
   } else {
@@ -258,7 +265,7 @@ function renderCard(){
   document.getElementById("i1").textContent=ivs[1];document.getElementById("i2").textContent=ivs[2];document.getElementById("i3").textContent=ivs[3];document.getElementById("i4").textContent=ivs[4];
 
   // Preload next image
-  if(curIdx+1<queue.length){var nx=cards[queue[curIdx+1]];if(nx.image_url)new Image().src=nx.image_url;}
+  if(curIdx+1<queue.length){var nx=cards[queue[curIdx+1]];if(nx.image_url)new Image().src=STORAGE_URL+nx.image_url;}
 }
 
 function flipCard(){
@@ -267,7 +274,7 @@ function flipCard(){
   if(deckData.type==="io"){
     document.querySelector(".io-card-header").textContent="Resposta";
     document.querySelector(".io-card-header").classList.add("answer");
-    document.getElementById("mask").innerHTML='<img src="'+(card.amask_url||"")+'">';
+    document.getElementById("mask").innerHTML='<img src="'+(card.amask_url?STORAGE_URL+card.amask_url:"")+'">';
   } else {
     document.getElementById("flipCard").classList.add("flipped");
   }
