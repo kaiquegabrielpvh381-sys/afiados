@@ -278,38 +278,24 @@ function renderCard(){
 
 function renderIO(baseUrl, maskUrl) {
   var wrap = document.getElementById("ioWrap");
-  if (!baseUrl) { wrap.innerHTML = '<div class="loading-img">Sem imagem</div>'; return; }
-
-  var baseImg = new Image();
-  baseImg.crossOrigin = "anonymous";
-  baseImg.onload = function() {
-    var maskImg = new Image();
-    maskImg.crossOrigin = "anonymous";
-    maskImg.onload = function() {
-      var canvas = document.createElement("canvas");
-      canvas.width = baseImg.naturalWidth;
-      canvas.height = baseImg.naturalHeight;
-      var ctx = canvas.getContext("2d");
-      ctx.drawImage(baseImg, 0, 0);
-      ctx.drawImage(maskImg, 0, 0, canvas.width, canvas.height);
-      wrap.innerHTML = "";
-      wrap.appendChild(canvas);
-    };
-    maskImg.onerror = function() {
-      // No mask, just show base
-      var canvas = document.createElement("canvas");
-      canvas.width = baseImg.naturalWidth;
-      canvas.height = baseImg.naturalHeight;
-      var ctx = canvas.getContext("2d");
-      ctx.drawImage(baseImg, 0, 0);
-      wrap.innerHTML = "";
-      wrap.appendChild(canvas);
-    };
-    maskImg.src = maskUrl ? storageUrl(maskUrl) : "";
-    if (!maskUrl) maskImg.onerror();
+  // Masks in this deck are opaque PNGs (contain the full image + mask)
+  // So just show the mask directly. If no mask, show base image.
+  var url = maskUrl ? storageUrl(maskUrl) : (baseUrl ? storageUrl(baseUrl) : "");
+  if (!url) { wrap.innerHTML = '<div class="loading-img">Sem imagem</div>'; return; }
+  var img = new Image();
+  img.onload = function() { wrap.innerHTML = ""; img.style.maxWidth = "100%"; img.style.borderRadius = "8px"; wrap.appendChild(img); };
+  img.onerror = function() {
+    // Fallback: try base image
+    if (baseUrl && maskUrl) {
+      var img2 = new Image();
+      img2.onload = function() { wrap.innerHTML = ""; img2.style.maxWidth = "100%"; img2.style.borderRadius = "8px"; wrap.appendChild(img2); };
+      img2.onerror = function() { wrap.innerHTML = '<div class="loading-img">Erro ao carregar</div>'; };
+      img2.src = storageUrl(baseUrl);
+    } else {
+      wrap.innerHTML = '<div class="loading-img">Erro ao carregar</div>';
+    }
   };
-  baseImg.onerror = function() { wrap.innerHTML = '<div class="loading-img">Erro ao carregar imagem</div>'; };
-  baseImg.src = storageUrl(baseUrl);
+  img.src = url;
 }
 
 function flipCard(){
