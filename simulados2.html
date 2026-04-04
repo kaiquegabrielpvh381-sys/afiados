@@ -72,6 +72,14 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 .empty-state h3{font-size:18px;font-weight:700;color:var(--light);margin-bottom:8px;}
 .empty-state p{font-size:14px;max-width:360px;margin:0 auto;}
 
+.video-apresentacao{background:var(--card);border:1px solid var(--border-pink);border-radius:20px;padding:28px 32px;margin-bottom:20px;animation:fadeUp .3s ease;}
+.video-apresentacao-header{text-align:center;margin-bottom:20px;}
+.video-apresentacao-label{font-size:13px;font-weight:700;color:var(--pink-bright);letter-spacing:0.05em;text-transform:uppercase;}
+.video-apresentacao-sub{color:var(--muted);font-size:14px;margin-top:6px;}
+.video-wrapper{position:relative;padding-bottom:56.25%;height:0;border-radius:14px;overflow:hidden;background:#000;}
+.video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%;border-radius:14px;}
+@media(max-width:768px){.video-apresentacao{padding:20px 18px;}}
+
 @media(max-width:768px){
   nav{padding:0 16px;}
   .hero h1{font-size:30px;}
@@ -98,6 +106,21 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 .dash-banner-arrow{font-size:22px;font-weight:700;color:var(--pink-bright);flex-shrink:0;transition:transform .2s;}
 .dash-banner:hover .dash-banner-arrow{transform:translateX(4px);}
 @media(max-width:480px){.dash-banner{padding:16px 18px;gap:14px;}.dash-banner-icon{width:42px;height:42px;}.dash-banner-title{font-size:14px;}.dash-banner-sub{font-size:12px;}}
+
+/* WhatsApp Group Banner */
+.wpp-banner{display:flex;align-items:center;gap:20px;background:linear-gradient(135deg,rgba(37,211,102,0.10),rgba(18,140,126,0.07));border:1.5px solid rgba(37,211,102,0.30);border-radius:18px;padding:22px 28px;margin-bottom:20px;text-decoration:none;color:var(--text);transition:all .3s;animation:fadeUp .4s ease;}
+.wpp-banner:hover{border-color:#25D366;transform:translateY(-2px);box-shadow:0 8px 40px rgba(37,211,102,0.15);}
+.wpp-banner-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:rgba(37,211,102,0.12);border-radius:14px;color:#25D366;flex-shrink:0;}
+.wpp-banner-text{flex:1;min-width:0;}
+.wpp-banner-title{display:block;font-size:16px;font-weight:800;color:var(--text);margin-bottom:2px;}
+.wpp-banner-sub{display:block;font-size:13px;color:var(--muted);line-height:1.4;}
+.wpp-banner-arrow{font-size:22px;font-weight:700;color:#25D366;flex-shrink:0;transition:transform .2s;}
+.wpp-banner:hover .wpp-banner-arrow{transform:translateX(4px);}
+@media(max-width:480px){.wpp-banner{padding:16px 18px;gap:14px;}.wpp-banner-icon{width:42px;height:42px;}.wpp-banner-title{font-size:14px;}.wpp-banner-sub{font-size:12px;}}
+
+/* Cupom de desconto */
+.cupom-tag{display:inline-block;font-size:12px;font-weight:800;color:#fff;background:linear-gradient(90deg,#E07B00,#F5A623);padding:5px 12px;border-radius:8px;letter-spacing:0.05em;margin-bottom:8px;box-shadow:0 2px 10px rgba(245,166,35,0.35);}
+.sim-price-old{font-size:16px;font-weight:600;color:var(--muted);text-decoration:line-through;margin-bottom:2px;}
 </style>
 <style>
 .auth-loading{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;}
@@ -141,6 +164,18 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
 
 <div class="content">
 
+  <!-- ═══════════ WHATSAPP BANNER ═══════════ -->
+  <a href="https://chat.whatsapp.com/LvLqeKLjAfEIoV5nBvv7jp?mode=gi_t" target="_blank" class="wpp-banner">
+    <div class="wpp-banner-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </div>
+    <div class="wpp-banner-text">
+      <span class="wpp-banner-title">Grupo do 2º Período — Afyados</span>
+      <span class="wpp-banner-sub">Dicas, materiais e suporte com a galera do período. Entra no grupo! 👇</span>
+    </div>
+    <span class="wpp-banner-arrow">→</span>
+  </a>
+
   <!-- ═══════════ DASHBOARD BANNER ═══════════ -->
   <a href="dashboard.html" class="dash-banner" id="dash-banner" style="display:none;">
     <div class="dash-banner-icon">
@@ -177,8 +212,10 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
         </div>
       </div>
       <div class="sim-price-box">
-        <div class="sim-price">R$&nbsp;79<sub>,90</sub></div>
-        <div class="sim-period">pagamento único</div>
+        <div class="cupom-tag">🐣 FELIZPASCOA</div>
+        <div class="sim-price-old">R$&nbsp;79,90</div>
+        <div class="sim-price">R$&nbsp;67<sub>,91</sub></div>
+        <div class="sim-period">pagamento único · 15% off</div>
         <a href="https://pay.kiwify.com.br/ZtqnuTa" target="_blank" class="btn-pink" style="padding: 16px 24px; font-size: 15px; box-shadow: 0 4px 20px var(--pink-glow);">Garantir meu acesso</a>
       </div>
     </div>
@@ -214,9 +251,28 @@ nav{position:fixed;top:0;width:100%;z-index:500;height:68px;display:flex;align-i
         </div>
       </div>
       <div class="sim-price-box" id="multi-n1-box">
-        <div class="sim-price">R$&nbsp;79<sub>,90</sub></div>
-        <div class="sim-period">pagamento único</div>
+        <div class="cupom-tag">🐣 FELIZPASCOA</div>
+        <div class="sim-price-old">R$&nbsp;79,90</div>
+        <div class="sim-price">R$&nbsp;67<sub>,91</sub></div>
+        <div class="sim-period">pagamento único · 15% off</div>
         <a href="https://pay.kiwify.com.br/xZUbBUv" target="_blank" id="multi-n1-btn" class="btn-pink" style="padding: 16px 24px; font-size: 15px; box-shadow: 0 4px 20px var(--pink-glow);">Garantir meu acesso</a>
+      </div>
+    </div>
+
+    <!-- ═══════════ VÍDEO DE APRESENTAÇÃO ═══════════ -->
+    <div class="video-apresentacao">
+      <div class="video-apresentacao-header">
+        <span class="video-apresentacao-label">🎬 Veja o que está incluso</span>
+        <p class="video-apresentacao-sub">Conheça os materiais do Simulado Multi N1 antes de garantir seu acesso</p>
+      </div>
+      <div class="video-wrapper">
+        <iframe
+          src="https://www.youtube.com/embed/CvsA5M_EavM"
+          title="Apresentação dos materiais — Simulado Multi N1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
 
