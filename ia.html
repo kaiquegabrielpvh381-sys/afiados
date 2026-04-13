@@ -413,6 +413,7 @@ function send(){
       function read(){
         reader.read().then(function(result){
           if(result.done){
+            if(bubble._renderTimer){clearTimeout(bubble._renderTimer);bubble._renderTimer=null;}
             bubble.classList.remove('stream-cursor');
             bubble.innerHTML=md(full);
             if(full.trim()){convs[curId].messages.push({role:'bot',content:full});save();}
@@ -431,15 +432,13 @@ function send(){
               var parsed=JSON.parse(data);
               if(parsed.text){
                 full+=parsed.text;
-                // Use requestAnimationFrame to render smoothly without trembling
-                if(!bubble._rafPending){
-                  bubble._rafPending=true;
-                  requestAnimationFrame(function(){
-                    bubble._rafPending=false;
-                    bubble.innerHTML=md(full);
-                    document.getElementById('chatFlow').scrollTop=document.getElementById('chatFlow').scrollHeight;
-                  });
-                }
+                // Render com debounce: só atualiza o DOM quando o stream
+                // pausa por 90ms, evitando tremedeira durante tabelas/listas
+                if(bubble._renderTimer) clearTimeout(bubble._renderTimer);
+                bubble._renderTimer=setTimeout(function(){
+                  bubble.innerHTML=md(full);
+                  document.getElementById('chatFlow').scrollTop=document.getElementById('chatFlow').scrollHeight;
+                },90);
               }
             }catch(e){}
           });
