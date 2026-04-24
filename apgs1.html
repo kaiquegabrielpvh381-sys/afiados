@@ -4,7 +4,7 @@
   <link rel="icon" type="image/png" href="favicon.png">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APGs 1º Período | Afyados</title>
+<title>APGs 1º Período | Afiados</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--pink:#D6006E;--pink-bright:#FF1A7E;--pink-light:#FF6EB4;--pink-glow:rgba(214,0,110,0.25);--bg:#0C0810;--bg2:#110C16;--card:#1C1425;--border:rgba(255,255,255,0.07);--border-pink:rgba(214,0,110,0.3);--text:#F5F0FA;--muted:#9186A0;--light:#DDD5E8;}
@@ -63,12 +63,16 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
 /* Delays para animação dos cards */
-.apg-card:nth-child(1){animation-delay:.05s}.apg-card:nth-child(2){animation-delay:.1s}
-.apg-card:nth-child(3){animation-delay:.15s}.apg-card:nth-child(4){animation-delay:.2s}
-.apg-card:nth-child(5){animation-delay:.25s}.apg-card:nth-child(6){animation-delay:.3s}
-.apg-card:nth-child(7){animation-delay:.35s}.apg-card:nth-child(8){animation-delay:.4s}
-.apg-card:nth-child(9){animation-delay:.45s}.apg-card:nth-child(10){animation-delay:.5s}
-.apg-card:nth-child(11){animation-delay:.55s}
+.apg-card:nth-child(1){animation-delay:0.05s}.apg-card:nth-child(2){animation-delay:0.1s}
+.apg-card:nth-child(3){animation-delay:0.15s}.apg-card:nth-child(4){animation-delay:0.2s}
+.apg-card:nth-child(5){animation-delay:0.25s}.apg-card:nth-child(6){animation-delay:0.3s}
+.apg-card:nth-child(7){animation-delay:0.35s}.apg-card:nth-child(8){animation-delay:0.4s}
+.apg-card:nth-child(9){animation-delay:0.45s}.apg-card:nth-child(10){animation-delay:0.5s}
+.apg-card:nth-child(11){animation-delay:0.55s}.apg-card:nth-child(12){animation-delay:0.6s}
+.apg-card:nth-child(13){animation-delay:0.65s}.apg-card:nth-child(14){animation-delay:0.7s}
+.apg-card:nth-child(15){animation-delay:0.75s}.apg-card:nth-child(16){animation-delay:0.8s}
+.apg-card:nth-child(17){animation-delay:0.85s}.apg-card:nth-child(18){animation-delay:0.9s}
+.apg-card:nth-child(19){animation-delay:0.95s}.apg-card:nth-child(20){animation-delay:1.0s}.apg-card:nth-child(21){animation-delay:1.05s}
 
 @media(max-width:1100px){.apgs-grid{grid-template-columns:repeat(2,1fr);}}
 @media(max-width:768px){nav{padding:0 20px;}.hero{padding:110px 24px 60px;}.hero-stats{gap:24px;}.apgs-section,.cta-bottom{padding-left:24px;padding-right:24px;}.apgs-grid{grid-template-columns:1fr;}.cta-box{padding:36px 24px;}}
@@ -78,7 +82,7 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
 <nav>
   <a href="index.html" class="logo">
     <div class="logo-mark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAFnElEQVR4nO2aW6gVVRzGv7W3lzRMJTJFMyGyiB66mt0ISiuyiChCSHrIB4kgkB5C6q2XoKCoFHoo8C17iArpRlSUGFQngjIhIgmKCgsj4ZS69/71MOvfLMfZZ681M/ucs2l/MOzDnDXf//bNmrX+M9IYY4wxxhhj/G/hpsMIUGrHOceAcc451xuaY6MAoDVM/qEpAHDOOYDVknZLmisJSa3C8d8lhaMjaadz7hWg7ZzrDsvXoQBw/lgAfEk1TAI3e76hKmEoANr+dyPQBY4DneDo+qNTcv6ET8IfwAqgNapJaAFtYJ8PqJOgAEvC056rPdPxJCNQwZ0+mG5CAnp+/BFgJdktNVoqIJ8L5gITNVTwjOcbaRXcV1EFPeAosGbUVTAf+DqQdixMMbs930irYEsFFdj4DnBVyDcyKKjgK6+ClLnAxu71fLMnAfhHXcS4OnOBje8B14d8swb02fSE/29IBR8zGyZDcwC4BthhQQ64pgkVAGwK+WYEZNJ3wIfeqSsHORWo4DTgANWfCPtmVAVBJW8kX79PkC14YlXwQCGo1CTc43nmDD/iU4Mw+b/jnTnuf28Lg+xzbVMqOADMwytxumIPK3hD4PwJ//cb/n9TSjPg2FYIKjUJWz3P9KmA/N5/r+BMD/gHuIAB9ye5ChYDh0hXgT0SvwdOZ7pUwMl7fHPEYBuX58OxEVwPFxIZCxv/SIy9JoJ3PtNzgP0lTtvG5U9guR/ftyrkSlpEPRX8Apw5yF4ZUh8hLd+l3SzpakldSWHWnT+3WNJW3/Xta8NztZxzRyXt8tfTb3yZP5J6kpZL2j7IXi0E1V8IHJyiWlaVn4AzIlRgc8FZwK8VVBA2TVaRuDZIyVbbV2yLpAuVZb7seqvKSkn3+6r0vTetas65w5JeVLoKnLe3RNKjnq/ZyTCo/hLgx4gqmQq+I+sKx84FZwOHyeeSFBX0gL+Ac1JUEKsAu/e3SVqt/tUPeXuSzpd0d4QKbC74TdLLyqsaCxu/SNKORlUQVGcZ2Wwbe492/NjPyLrCg5bHZmeNr2QVFXSBY8DFxtlEAuxZ/UQQWCwsURtCrghbz1WwFY5/LcZeTPBWlXPJnu2pVTGHXje+SHvnkTVBU+1BPv+sr50E8orsKgQUC3P+b2BVbBL870sVbdr492PsxThyEdk7OstsCuyaH8hWewNXauQquIRsh1lVBQAbw0JWTcCeQmZTYNds91xRO7YGbNv4/WQTcJoKyKV/LfkLzFRY9X8GlpKwTg/sryN/mqTCknBXyBmbAKvA2wWyFNjO8HHPlbRfD3zYW9EHGz9BtnmL2y6TZ/9WT1Cl+uGucAUVeneBHzfV8MOSsDnknMqoLXnnAZ8XSFJg1X82ynB/f1r++KiiL3b7fENM64xTW9ZVgg9fZq6mRuc28Od2z11HBQ+GnGXGrPoLgG9J35YarPo7pzQYl4CwAVNVkcXJuFwF5Nl+qKIhyKt/DFhLjeqX+HVvEFAqLJanQs6yTC8lbrs7yNCrpYaqJSD8wOKLgp1YWDyTlDVsybP8WEUDBmuPX+r5GmlP0awK9oSc4dJzBdWaEUUDzezETk6AKXQu2fY6tJcCW9Tlr/DIs/tkDWIjb2YXVp4E83NTYC8V5UUiayYeoX71o94K1UiCrQs+If3VusFUsN5I5wNvFgKpQtoBLj8ps80nwFRwS+BvasEsxrekrHe3VtI8Sb8r68aeUPadbuxxzPPsdc5NMMTvep1zXaDlnHtX0gvK+oyp/lqMG/CdKgFXVKx8iMuYhvf15BNiG/i0ps+HnCddJ+k6ZZ3Vrj+KX3ZLp/bre/7cQefcB/gvxIeZAEuC/xJ9maQ7JC1UpoaW/7V3CwQ+9vz5tj/mSJps1KnGyKbRnimg+O1+sj8z8T2/T8Ls+lJsjDHGGGOMEcK/1DWOZHItVZ0AAAAASUVORK5CYII=" style="width:26px;height:26px;object-fit:contain;"></div>
-    <span class="logo-name">AFYADOS</span>
+    <span class="logo-name">AFIADOS</span>
   </a>
   <a href="index.html" class="nav-back">
     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
@@ -90,12 +94,12 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
   <div class="hero-mesh"></div>
   <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-tag"><span class="tag-dot"></span>1º Período · Afya</div>
+    <div class="hero-tag"><span class="tag-dot"></span>1º Período · Medicina</div>
     <h1>APGs do <em>1º Período</em></h1>
-    <p class="hero-sub">Roteiros completos elaborados pela equipe Afyados — com objetivos de aprendizagem, hipóteses, discussão guiada e referências bibliográficas.</p>
+    <p class="hero-sub">Roteiros completos elaborados pela equipe Afiados — com objetivos de aprendizagem, hipóteses, discussão guiada e referências bibliográficas.</p>
     <div class="hero-stats">
-      <div class="hstat"><div class="hstat-n">11</div><div class="hstat-l">APGs disponíveis</div></div>
-      <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Padrão Afya</div></div>
+      <div class="hstat"><div class="hstat-n">21</div><div class="hstat-l">APGs disponíveis</div></div>
+      <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Padrão PBL</div></div>
       <div class="hstat"><div class="hstat-n">Kiwify</div><div class="hstat-l">Entrega imediata</div></div>
     </div>
   </div>
@@ -167,15 +171,151 @@ nav{position:fixed;top:0;width:100%;z-index:500;padding:0 56px;height:72px;displ
       </a>
     </div>
 
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 13</div><div class="apg-emoji">🛡️</div></div>
+      <h3 class="apg-titulo">Imunidade Inata</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Explicar a imunidade inata (barreiras físicas, químicas e biológicas, componentes celulares e moléculas solúveis)</li>
+        <li>Compreender o sistema complemento e suas vias de ativação</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/0H6OHKK" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 13
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 14</div><div class="apg-emoji">⚔️</div></div>
+      <h3 class="apg-titulo">Imunidade Adaptativa</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Destacar as características da imunidade adaptativa e as diferenças da imunidade inata</li>
+        <li>Compreender a imunidade adaptativa celular e os processos de apresentação de antígeno</li>
+        <li>Compreender a imunidade adaptativa humoral (estrutura e função da imunoglobulina)</li>
+        <li>Diferenciar imunidade ativa e passiva</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/Ddm6rt7" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 14
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 15</div><div class="apg-emoji">🔥</div></div>
+      <h3 class="apg-titulo">Inflamação</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Entender o processo da inflamação aguda e crônica, destacando células e fenômenos vasculares envolvidos</li>
+        <li>Diferenciar os tipos de inflamação (aguda e crônica)</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/zzESA7j" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 15
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 16</div><div class="apg-emoji">🧴</div></div>
+      <h3 class="apg-titulo">Sistema Tegumentar</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Estudar a histologia da pele e anexos, e diferenciar pele fina e espessa</li>
+        <li>Compreender as funções da pele</li>
+        <li>Descrever o processo de reparo tecidual (cicatriz e fibrose) com destaque ao tecido conjuntivo</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/7qdXXUv" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 16
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 17</div><div class="apg-emoji">🤧</div></div>
+      <h3 class="apg-titulo">Hipersensibilidade</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Revisar os tipos de anticorpos</li>
+        <li>Compreender os tipos de reações de hipersensibilidade, manifestações clínicas e principais quadros</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/9C8Xe3e" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 17
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 18</div><div class="apg-emoji">👃</div></div>
+      <h3 class="apg-titulo">Vias Aéreas Superiores</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Descrever a anatomia e histologia das vias aéreas superiores (inervação e vascularização)</li>
+        <li>Explicar as funções e mecanismos de defesa (condução, filtração, umidificação e aquecimento)</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/NGD1bpN" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 18
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 19</div><div class="apg-emoji">🎤</div></div>
+      <h3 class="apg-titulo">Fisiologia Vocal</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Explicar a fisiologia vocal</li>
+        <li>Conhecer os mecanismos de defesa do sistema respiratório (mucociliar, tosse, sistema fagocitário e órgãos linfoides na faringe e laringe com foco nas tonsilas)</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/9PcZ1jz" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 19
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 20</div><div class="apg-emoji">🫁</div></div>
+      <h3 class="apg-titulo">Vias Respiratórias Inferiores</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Estudar a anatomia e histologia do pulmão, membranas pleurais e árvore brônquica</li>
+        <li>Compreender a anatomia do tórax, costelas e musculatura da inspiração/expiração</li>
+        <li>Entender a mecânica respiratória (curvas pressão/volume, capacidades, complacência e elastância)</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/pCKkL1s" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 20
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 21</div><div class="apg-emoji">👶</div></div>
+      <h3 class="apg-titulo">Embriogênese e Maturação Pulmonar</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Compreender a embriogênese do sistema respiratório</li>
+        <li>Descrever a composição e função do surfactante (inclusive a imunológica)</li>
+        <li>Compreender os estágios da maturação pulmonar, com características celulares e histológicas</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/C5OfboJ" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 21
+      </a>
+    </div>
+
+    <div class="apg-card">
+      <div class="apg-header"><div class="apg-badge">APG 22</div><div class="apg-emoji">💨</div></div>
+      <h3 class="apg-titulo">Hematose</h3>
+      <div class="apg-obj-label">Objetivos de aprendizagem</div>
+      <ul class="apg-obj">
+        <li>Compreender a hematose (barreira hematoaérea, perfusão e difusão)</li>
+        <li>Analisar o transporte de oxigênio e gás carbônico</li>
+        <li>Discutir a curva de saturação da hemoglobina</li>
+      </ul>
+      <a href="https://pay.kiwify.com.br/zcHbokt" target="_blank" class="apg-btn">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>Comprar APG 22
+      </a>
+    </div>
+
   </div>
 </section>
 
 <div class="cta-bottom">
   <div class="cta-box">
     <h2>Quer <em>tudo incluso?</em></h2>
-    <p>No Clube Afyados você tem acesso a todas as APGs do semestre, aulas de SOI, apostilas autorais, monitorias ao vivo e a IA Afyados 24h.</p>
+    <p>No Clube Afiados você tem acesso a todas as APGs do semestre, aulas de SOI, apostilas autorais, monitorias ao vivo e a IA Afiados 24h.</p>
     <div class="cta-btns">
-      <a href="https://pay.kiwify.com.br/bdZ9MHN" target="_blank" class="btn-pink">Quero o Clube Afyados</a>
+      <a href="https://pay.kiwify.com.br/bdZ9MHN" target="_blank" class="btn-pink">Quero o Clube Afiados</a>
       <a href="index.html" class="btn-ghost">Ver todos os planos →</a>
     </div>
   </div>
